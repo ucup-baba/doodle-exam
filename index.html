@@ -1,0 +1,2632 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doodle Exam — Ujian Matematika Teorema Pythagoras Kelas VIII</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka (Judul Doodle), Nunito (Teks Soal), Amiri (Teks Doa Arab) -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- MathLive Visual Math Editor -->
+    <link rel="stylesheet" href="https://unpkg.com/mathlive/dist/mathlive-static.css">
+    <script defer src="https://unpkg.com/mathlive"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        doodle: ['Fredoka', 'sans-serif'],
+                        body: ['Nunito', 'sans-serif'],
+                        arabic: ['Amiri', 'serif'],
+                    },
+                    colors: {
+                        paper: '#fdfbf7',
+                        ink: '#1e293b',
+                        pastel: {
+                            yellow: '#fef08a',
+                            blue: '#bae6fd',
+                            pink: '#fbcfe8',
+                            green: '#bbf7d0',
+                            purple: '#e9d5ff',
+                            orange: '#fed7aa'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Latar Kertas Buku Catatan Matematika */
+        body {
+            background-color: #fdfbf7;
+            background-image: 
+                linear-gradient(#e2e8f0 1px, transparent 1px),
+                linear-gradient(90deg, #e2e8f0 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: #1e293b;
+            font-family: 'Nunito', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Garis Margin Merah Buku Tulis */
+        .notebook-margin {
+            border-left: 3px double #fca5a5;
+        }
+
+        /* Gaya Kartu & Tombol Doodle */
+        .doodle-card {
+            background: #ffffff;
+            border: 3px solid #1e293b;
+            border-radius: 20px;
+            box-shadow: 5px 5px 0px #1e293b;
+            transition: all 0.2s ease;
+        }
+
+        .doodle-card-sm {
+            background: #ffffff;
+            border: 2.5px solid #1e293b;
+            border-radius: 14px;
+            box-shadow: 3px 3px 0px #1e293b;
+        }
+
+        .doodle-btn {
+            border: 2.5px solid #1e293b;
+            border-radius: 14px;
+            box-shadow: 3px 3px 0px #1e293b;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .doodle-btn:hover:not(:disabled) {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px #1e293b;
+        }
+
+        .doodle-btn:active:not(:disabled) {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #1e293b;
+        }
+
+        .doodle-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .doodle-input {
+            border: 2.5px solid #1e293b;
+            border-radius: 12px;
+            padding: 0.65rem 1rem;
+            background: #ffffff;
+            transition: all 0.2s;
+        }
+
+        .doodle-input:focus {
+            outline: none;
+            box-shadow: 3px 3px 0px #3b82f6;
+            border-color: #1d4ed8;
+        }
+
+        /* Animasi Ornamen Melayang */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(4deg); }
+        }
+        .animate-float {
+            animation: floatSlow 5s ease-in-out infinite;
+        }
+
+        /* Kustomisasi MathLive Editor */
+        math-field {
+            width: 100%;
+            min-height: 54px;
+            padding: 10px 14px;
+            font-size: 1.15rem;
+            background: #f8fafc;
+            border: 2.5px solid #1e293b;
+            border-radius: 12px;
+            box-shadow: inset 2px 2px 4px rgba(0,0,0,0.04);
+            transition: all 0.2s;
+        }
+        math-field:focus-within {
+            background: #ffffff;
+            border-color: #2563eb;
+            box-shadow: 3px 3px 0px #2563eb;
+            outline: none;
+        }
+
+        /* Animasi Countdown */
+        @keyframes popNumber {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .countdown-pop {
+            animation: popNumber 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; border: 2px solid #f1f5f9; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between relative selection:bg-yellow-200">
+
+    <!-- ORNAMEN DOODLE LATAR BELAKANG (Tidak Mengganggu Konsentrasi) -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0 opacity-30">
+        <!-- Rumus Pythagoras Pojok Kiri Atas -->
+        <svg class="absolute top-6 left-6 w-28 h-28 text-blue-500 animate-float" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M15 80 L80 80 L15 20 Z" stroke-linejoin="round"/>
+            <rect x="15" y="68" width="12" height="12"/>
+            <text x="42" y="95" font-family="Fredoka" font-size="14" fill="currentColor" stroke="none">a² + b² = c²</text>
+        </svg>
+        <!-- Penggaris & Pensil Kanan Atas -->
+        <svg class="absolute top-12 right-10 w-24 h-24 text-amber-500 animate-float" style="animation-delay: 1.5s;" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5">
+            <rect x="20" y="15" width="22" height="70" rx="3" transform="rotate(25 30 50)"/>
+            <line x1="28" y1="25" x2="35" y2="28" transform="rotate(25 30 50)"/>
+            <line x1="28" y1="38" x2="38" y2="42" transform="rotate(25 30 50)"/>
+            <line x1="28" y1="51" x2="35" y2="54" transform="rotate(25 30 50)"/>
+        </svg>
+        <!-- Bintang & Awan Kiri Bawah -->
+        <svg class="absolute bottom-10 left-10 w-24 h-24 text-purple-500 animate-float" style="animation-delay: 2.5s;" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M50 15 L58 38 L82 38 L62 52 L70 76 L50 62 L30 76 L38 52 L18 38 L42 38 Z" stroke-linejoin="round"/>
+        </svg>
+        <!-- Busur & Geometri Kanan Bawah -->
+        <svg class="absolute bottom-8 right-12 w-28 h-28 text-emerald-600 animate-float" style="animation-delay: 0.8s;" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M10 75 A 40 40 0 0 1 90 75 Z"/>
+            <path d="M25 75 A 25 25 0 0 1 75 75 Z"/>
+            <line x1="50" y1="75" x2="50" y2="68"/>
+        </svg>
+    </div>
+
+    <!-- HEADER UTAMA / NAVBAR -->
+    <header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b-4 border-slate-800 px-4 py-3 shadow-sm">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+            <!-- Brand Doodle -->
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl bg-yellow-300 border-2 border-slate-800 flex items-center justify-center shadow-[2px_2px_0px_#1e293b]">
+                    <i class="ph-fill ph-ruler text-2xl text-slate-800"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="font-doodle text-xl md:text-2xl font-bold text-slate-800 tracking-tight">DOODLE EXAM</h1>
+                        <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-sky-200 border border-slate-800 text-slate-900">Kelas VIII SMP/MTs</span>
+                    </div>
+                    <p class="text-xs text-slate-600 font-semibold">Bab: Teorema Pythagoras & Aplikasinya</p>
+                </div>
+            </div>
+
+            <!-- Status Bar Saat Ujian Berlangsung -->
+            <div id="examHeaderControls" class="hidden items-center gap-2 md:gap-4 flex-wrap">
+                <!-- Indikator Auto-Save -->
+                <div id="saveStatusBadge" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-100 border-2 border-slate-800 text-xs font-bold text-emerald-900">
+                    <i class="ph-fill ph-cloud-check text-base text-emerald-600"></i>
+                    <span id="saveStatusText">Tersimpan</span>
+                </div>
+
+                <!-- Identitas Singkat -->
+                <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-purple-100 border-2 border-slate-800 text-xs font-bold">
+                    <i class="ph-fill ph-student text-base text-purple-700"></i>
+                    <span id="headerStudentName">Siswa</span>
+                    <span class="px-1.5 py-0.5 bg-white rounded border border-slate-700" id="headerStudentClass">8A</span>
+                </div>
+
+                <!-- Timer 100 Menit -->
+                <div id="timerBox" class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-amber-200 border-2 border-slate-800 shadow-[2px_2px_0px_#1e293b]">
+                    <i class="ph-bold ph-timer text-lg text-slate-800 animate-pulse"></i>
+                    <div class="text-left">
+                        <span class="block text-[10px] uppercase font-extrabold text-slate-700 leading-none">Sisa Waktu</span>
+                        <span id="timerDisplay" class="font-doodle text-base md:text-lg font-bold text-slate-900 tracking-wider">100:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tombol Panel Guru & Konfigurasi GAS -->
+            <div id="landingHeaderControls" class="flex items-center gap-2">
+                <button onclick="openTeacherModal()" class="doodle-btn bg-purple-200 hover:bg-purple-300 px-3 py-1.5 text-xs md:text-sm flex items-center gap-1.5">
+                    <i class="ph-bold ph-chalkboard-teacher text-base"></i>
+                    <span>Panel Guru & Kisi-Kisi</span>
+                </button>
+                <button onclick="openBackendModal()" class="doodle-btn bg-emerald-200 hover:bg-emerald-300 px-3 py-1.5 text-xs md:text-sm flex items-center gap-1.5">
+                    <i class="ph-bold ph-database text-base"></i>
+                    <span class="hidden sm:inline">Setup Google Sheets</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- KONTEN UTAMA -->
+    <main class="flex-grow z-10 px-4 py-6 md:py-8 max-w-7xl w-full mx-auto">
+
+        <!-- ==========================================
+             VIEW 1: HALAMAN PEMBUKA & IDENTITAS SISWA
+             ========================================== -->
+        <section id="viewLanding" class="max-w-4xl mx-auto">
+            <div class="doodle-card p-6 md:p-10 relative overflow-hidden notebook-margin">
+                <!-- Stiker Sudut -->
+                <div class="absolute -top-3 -right-3 bg-pink-300 border-2 border-slate-800 px-5 py-2 rounded-bl-2xl font-doodle font-bold text-xs md:text-sm shadow-sm flex items-center gap-1">
+                    <i class="ph-fill ph-sparkle text-amber-600"></i> Interaktif & Visual
+                </div>
+
+                <div class="grid md:grid-cols-12 gap-8 items-center">
+                    <!-- Kolom Kiri: Ilustrasi Doodle & Info Ujian -->
+                    <div class="md:col-span-6 space-y-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-200 border-2 border-slate-800 text-xs font-bold">
+                            <i class="ph-fill ph-book-open-text"></i> Evaluasi Mandiri Matematika
+                        </div>
+
+                        <h2 class="font-doodle text-3xl md:text-4xl font-bold text-slate-900 leading-tight">
+                            Petualangan Segitiga Siku-Siku: <span class="underline decoration-wavy decoration-pink-500">Teorema Pythagoras</span>
+                        </h2>
+
+                        <p class="text-slate-700 text-sm md:text-base leading-relaxed">
+                            Selamat datang di <strong>Doodle Classroom</strong>! Ujian ini dirancang dengan ilustrasi interaktif untuk menguji pemahamanmu tentang hubungan sisi segitiga siku-siku, tripel Pythagoras, dan penerapannya dalam kehidupan nyata.
+                        </p>
+
+                        <!-- Kartu Info Ringkas -->
+                        <div class="grid grid-cols-3 gap-2.5 pt-2">
+                            <div class="doodle-card-sm bg-sky-100 p-3 text-center">
+                                <i class="ph-bold ph-list-numbers text-2xl text-sky-700"></i>
+                                <div class="font-doodle font-bold text-lg text-slate-900">20 Soal</div>
+                                <div class="text-[11px] font-bold text-slate-600">15 Objektif + 5 Esai</div>
+                            </div>
+                            <div class="doodle-card-sm bg-amber-100 p-3 text-center">
+                                <i class="ph-bold ph-clock-countdown text-2xl text-amber-700"></i>
+                                <div class="font-doodle font-bold text-lg text-slate-900">100 Menit</div>
+                                <div class="text-[11px] font-bold text-slate-600">Auto-Save Aktif</div>
+                            </div>
+                            <div class="doodle-card-sm bg-emerald-100 p-3 text-center">
+                                <i class="ph-bold ph-compass-tool text-2xl text-emerald-700"></i>
+                                <div class="font-doodle font-bold text-lg text-slate-900">Interaktif</div>
+                                <div class="text-[11px] font-bold text-slate-600">Gambar & Editor Rumus</div>
+                            </div>
+                        </div>
+
+                        <!-- Ilustrasi SVG Interaktif Mini di Halaman Depan -->
+                        <div class="doodle-card-sm bg-slate-50 p-4 relative">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-bold text-slate-700 flex items-center gap-1">
+                                    <i class="ph-fill ph-hand-tap text-blue-600"></i> Coba Geser Slider Pembuktian Pythagoras:
+                                </span>
+                                <span id="demoPythagorasBadge" class="text-xs font-extrabold px-2 py-0.5 bg-yellow-200 border border-slate-800 rounded">3² + 4² = 5²</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <svg id="landingInteractiveSvg" viewBox="0 0 180 130" class="w-40 h-28 mx-auto flex-shrink-0">
+                                    <polygon id="demoTriangle" points="35,100 115,100 35,40" fill="#bae6fd" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                                    <rect x="35" y="88" width="12" height="12" fill="none" stroke="#1e293b" stroke-width="2"/>
+                                    <text id="demoLabelA" x="15" y="75" font-family="Fredoka" font-size="13" font-weight="bold" fill="#0369a1">a=3</text>
+                                    <text id="demoLabelB" x="65" y="118" font-family="Fredoka" font-size="13" font-weight="bold" fill="#b45309">b=4</text>
+                                    <text id="demoLabelC" x="82" y="65" font-family="Fredoka" font-size="13" font-weight="bold" fill="#be185d">c=5</text>
+                                </svg>
+                                <div class="flex-grow space-y-2 text-xs">
+                                    <label class="block font-bold text-slate-700">Pilih Kelipatan Tripel (3-4-5):</label>
+                                    <input id="demoMultiplierSlider" type="range" min="1" max="4" value="1" oninput="updateLandingDemo(this.value)" class="w-full accent-blue-600 cursor-pointer">
+                                    <p id="demoCalcText" class="text-slate-600 font-semibold">Luas persegi miring: 9 + 16 = 25 satuan²</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kolom Kanan: Formulir Identitas Siswa -->
+                    <div class="md:col-span-6">
+                        <div class="doodle-card-sm bg-amber-50/70 p-6 space-y-4">
+                            <div class="flex items-center gap-2 border-b-2 border-dashed border-slate-300 pb-3">
+                                <div class="w-9 h-9 rounded-xl bg-pink-300 border-2 border-slate-800 flex items-center justify-center">
+                                    <i class="ph-bold ph-identification-card text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-doodle font-bold text-lg text-slate-900">Identitas Peserta Ujian</h3>
+                                    <p class="text-xs text-slate-600">Lengkapi data dengan benar sebelum memulai ujian</p>
+                                </div>
+                            </div>
+
+                            <!-- Pesan Validasi Error -->
+                            <div id="identityErrorBox" class="hidden p-3 rounded-xl bg-red-100 border-2 border-red-600 text-red-900 text-xs font-bold flex items-center gap-2">
+                                <i class="ph-fill ph-warning-circle text-lg text-red-600 flex-shrink-0"></i>
+                                <span id="identityErrorText">Mohon lengkapi seluruh kolom wajib!</span>
+                            </div>
+
+                            <form id="studentIdentityForm" onsubmit="handleIdentitySubmit(event)" class="space-y-3.5" novalidate>
+                                <div>
+                                    <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1">
+                                        Nama Lengkap Siswa <span class="text-red-600">*</span>
+                                    </label>
+                                    <input type="text" id="inputStudentName" placeholder="Contoh: Budi Santoso" class="doodle-input w-full text-sm font-bold" required>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1">
+                                            Kelas <span class="text-red-600">*</span>
+                                        </label>
+                                        <select id="inputStudentClass" class="doodle-input w-full text-sm font-bold" required>
+                                            <option value="">-- Pilih Kelas --</option>
+                                            <option value="VIII-A">Kelas VIII-A</option>
+                                            <option value="VIII-B">Kelas VIII-B</option>
+                                            <option value="VIII-C">Kelas VIII-C</option>
+                                            <option value="VIII-D">Kelas VIII-D</option>
+                                            <option value="VIII-E">Kelas VIII-E</option>
+                                            <option value="VIII-Unggulan">VIII-Unggulan</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1">
+                                            Nomor Absen <span class="text-red-600">*</span>
+                                        </label>
+                                        <input type="number" id="inputStudentAbsent" min="1" max="50" placeholder="Contoh: 12" class="doodle-input w-full text-sm font-bold" required>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1">
+                                        Kode Ujian / Token Kelas <span class="text-slate-400 font-normal">(Opsional)</span>
+                                    </label>
+                                    <input type="text" id="inputExamToken" placeholder="Default: PYTHAGORAS8" value="PYTHAGORAS8" class="doodle-input w-full text-sm font-bold uppercase">
+                                </div>
+
+                                <!-- Tombol Lanjutkan -->
+                                <div class="pt-2">
+                                    <button type="submit" class="doodle-btn w-full bg-yellow-300 hover:bg-yellow-400 py-3.5 text-base md:text-lg flex items-center justify-center gap-2">
+                                        <span>Lanjutkan ke Doa Sebelum Ujian</span>
+                                        <i class="ph-bold ph-arrow-circle-right text-xl"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             VIEW 2: COUNTDOWN 5 DETIK & KUTIPAN MOTIVASI
+             ========================================== -->
+        <section id="viewCountdown" class="hidden max-w-2xl mx-auto my-8">
+            <div class="doodle-card p-8 md:p-12 text-center space-y-6 bg-gradient-to-b from-amber-50 to-white">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-200 border-2 border-slate-800 text-xs font-bold">
+                    <i class="ph-fill ph-rocket-launch text-base"></i> Persiapan Memulai Ujian
+                </div>
+
+                <h3 class="font-doodle text-xl font-bold text-slate-700">Tarik napas dalam-dalam, ujian dimulai dalam:</h3>
+
+                <!-- Angka Countdown Besar -->
+                <div class="py-4">
+                    <div id="countdownNumber" class="w-32 h-32 mx-auto rounded-3xl bg-yellow-300 border-4 border-slate-800 shadow-[6px_6px_0px_#1e293b] flex items-center justify-center font-doodle text-7xl font-bold text-slate-900 countdown-pop">
+                        5
+                    </div>
+                </div>
+
+                <!-- Kotak Kutipan Motivasi Terverifikasi -->
+                <div class="doodle-card-sm bg-white p-6 text-left relative">
+                    <i class="ph-fill ph-quotes text-4xl text-amber-300 absolute top-3 right-4"></i>
+                    <p class="text-xs font-extrabold uppercase tracking-wider text-purple-700 mb-2">Kutipan Semangat Belajar Hari Ini:</p>
+                    <blockquote id="countdownQuoteText" class="text-base md:text-lg font-bold text-slate-800 italic leading-relaxed mb-3">
+                        "..."
+                    </blockquote>
+                    <div class="flex items-center justify-between text-xs font-bold text-slate-600 border-t border-dashed border-slate-300 pt-2">
+                        <span id="countdownQuoteAuthor" class="text-slate-900">— Tokoh</span>
+                        <span id="countdownQuoteSource" class="text-slate-500">Sumber Terverifikasi</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             VIEW 3: HALAMAN UJIAN INTERAKTIF UTAMA
+             ========================================== -->
+        <section id="viewExam" class="hidden">
+            <!-- Banner Kutipan Sesi -->
+            <div class="mb-5 doodle-card-sm bg-amber-100/90 px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs">
+                <div class="flex items-center gap-2">
+                    <span class="px-2 py-0.5 rounded bg-amber-300 border border-slate-800 font-bold">Motivasi Sesi Ini</span>
+                    <span id="sessionQuoteBanner" class="font-bold italic text-slate-800"></span>
+                </div>
+                <span id="sessionQuoteAuthorBanner" class="font-extrabold text-slate-700"></span>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-6 items-start">
+                <!-- KOLOM KIRI (8 Kolom): Kartu Soal & Gambar Interaktif -->
+                <div class="lg:col-span-8 space-y-5">
+                    <div class="doodle-card p-5 md:p-8 notebook-margin relative">
+                        <!-- Header Nomor & Jenis Soal -->
+                        <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-5 border-b-2 border-dashed border-slate-300">
+                            <div class="flex items-center gap-2.5">
+                                <span id="qNumberBadge" class="px-3.5 py-1.5 rounded-xl bg-yellow-300 border-2 border-slate-800 font-doodle font-bold text-base md:text-lg shadow-[2px_2px_0px_#1e293b]">
+                                    Soal #1
+                                </span>
+                                <span id="qTypeBadge" class="px-3 py-1 rounded-xl bg-sky-200 border-2 border-slate-800 text-xs font-extrabold text-slate-900">
+                                    Pilihan Ganda
+                                </span>
+                            </div>
+
+                            <!-- Tandai Ragu-ragu -->
+                            <button onclick="toggleDoubtCurrent()" id="btnDoubtToggle" class="doodle-btn px-3 py-1.5 text-xs bg-slate-100 hover:bg-amber-200 flex items-center gap-1.5">
+                                <i class="ph-bold ph-flag text-sm"></i>
+                                <span id="doubtBtnText">Tandai Ragu-ragu</span>
+                            </button>
+                        </div>
+
+                        <!-- Teks Pertanyaan -->
+                        <div id="questionPromptContainer" class="text-base md:text-lg font-bold text-slate-800 leading-relaxed mb-5 space-y-2">
+                            <!-- Diisi via JS -->
+                        </div>
+
+                        <!-- KANVAS / WIDGET GAMBAR GEOMETRI INTERAKTIF -->
+                        <div id="interactiveDiagramContainer" class="mb-6">
+                            <!-- Diisi SVG Interaktif via JS -->
+                        </div>
+
+                        <!-- AREA JAWABAN DINAMIS (PG / Mencocokkan / Kompleks / Esai + MathLive) -->
+                        <div id="answerInputContainer" class="space-y-4">
+                            <!-- Diisi via JS -->
+                        </div>
+
+                        <!-- Navigasi Soal Bawah -->
+                        <div class="flex items-center justify-between gap-3 pt-6 mt-8 border-t-2 border-dashed border-slate-300">
+                            <button id="btnPrevQuestion" onclick="navigateQuestion(-1)" class="doodle-btn bg-slate-200 hover:bg-slate-300 px-4 py-2.5 text-sm flex items-center gap-2">
+                                <i class="ph-bold ph-arrow-left"></i>
+                                <span>Soal Sebelumnya</span>
+                            </button>
+
+                            <div class="text-xs font-extrabold text-slate-500 hidden sm:block" id="questionProgressLabel">
+                                1 dari 20 Soal
+                            </div>
+
+                            <button id="btnNextQuestion" onclick="navigateQuestion(1)" class="doodle-btn bg-sky-300 hover:bg-sky-400 px-5 py-2.5 text-sm flex items-center gap-2">
+                                <span>Soal Selanjutnya</span>
+                                <i class="ph-bold ph-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KOLOM KANAN (4 Kolom): Peta Nomor Soal & Ringkasan -->
+                <div class="lg:col-span-4 space-y-5 sticky top-20">
+                    <div class="doodle-card p-5 space-y-4">
+                        <div class="flex items-center justify-between border-b-2 border-dashed border-slate-300 pb-2.5">
+                            <h3 class="font-doodle font-bold text-base text-slate-900 flex items-center gap-1.5">
+                                <i class="ph-fill ph-grid-four text-purple-600 text-lg"></i> Navigasi Nomor Soal
+                            </h3>
+                            <span id="answeredCountBadge" class="text-xs font-extrabold px-2.5 py-0.5 rounded-full bg-emerald-200 border border-slate-800">
+                                0/20 Terjawab
+                            </span>
+                        </div>
+
+                        <!-- Kelompok Objektif (1-15) -->
+                        <div>
+                            <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-2">A. Soal Objektif (Nomor 1 - 15)</p>
+                            <div id="navGridObjective" class="grid grid-cols-5 gap-2">
+                                <!-- Diisi JS -->
+                            </div>
+                        </div>
+
+                        <!-- Kelompok Esai (16-20) -->
+                        <div>
+                            <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-2">B. Soal Esai & Uraian (Nomor 16 - 20)</p>
+                            <div id="navGridEssay" class="grid grid-cols-5 gap-2">
+                                <!-- Diisi JS -->
+                            </div>
+                        </div>
+
+                        <!-- Legenda Warna -->
+                        <div class="grid grid-cols-2 gap-2 pt-2 text-[11px] font-bold text-slate-600 border-t border-dashed border-slate-300">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3.5 h-3.5 rounded bg-emerald-300 border border-slate-800 inline-block"></span> Sudah Dijawab
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3.5 h-3.5 rounded bg-amber-300 border border-slate-800 inline-block"></span> Ragu-ragu
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3.5 h-3.5 rounded bg-sky-300 border-2 border-slate-900 inline-block"></span> Sedang Dibuka
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3.5 h-3.5 rounded bg-white border border-slate-800 inline-block"></span> Belum Dijawab
+                            </div>
+                        </div>
+
+                        <!-- Tombol Kumpulkan Ujian -->
+                        <div class="pt-3">
+                            <button onclick="openSubmitConfirmation()" class="doodle-btn w-full bg-emerald-300 hover:bg-emerald-400 py-3 text-sm md:text-base flex items-center justify-center gap-2">
+                                <i class="ph-bold ph-paper-plane-tilt text-lg"></i>
+                                <span>Kumpulkan Jawaban Ujian</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Bantuan Cepat Rumus Pythagoras -->
+                    <div class="doodle-card-sm bg-purple-50 p-4 text-xs space-y-1.5">
+                        <div class="font-doodle font-bold text-slate-800 flex items-center gap-1.5">
+                            <i class="ph-fill ph-lightbulb text-amber-500 text-base"></i> Tips Interaktif:
+                        </div>
+                        <p class="text-slate-600 leading-relaxed">
+                            Klik pada <strong>titik sudut atau tombol interaktif pada gambar segitiga</strong> di setiap soal untuk menyorot sisi siku-siku dan hipotenusa!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             VIEW 4: HASIL UJIAN & BUKTI PENGUMPULAN
+             ========================================== -->
+        <section id="viewResult" class="hidden max-w-4xl mx-auto space-y-6">
+            <div class="doodle-card p-6 md:p-10 text-center space-y-6 relative overflow-hidden">
+                <div class="w-20 h-20 mx-auto rounded-3xl bg-emerald-300 border-3 border-slate-800 shadow-[4px_4px_0px_#1e293b] flex items-center justify-center">
+                    <i class="ph-fill ph-medal text-5xl text-slate-900"></i>
+                </div>
+
+                <div class="space-y-2">
+                    <span class="px-3 py-1 rounded-full bg-emerald-100 border border-slate-800 text-xs font-extrabold text-emerald-900">
+                        Ujian Selesai & Tersimpan
+                    </span>
+                    <h2 class="font-doodle text-3xl md:text-4xl font-bold text-slate-900">Alhamdulillah, Jawabanmu TelahTerkirim!</h2>
+                    <p id="resultSyncStatus" class="text-sm font-bold text-slate-600">Data jawaban telah direkam di sistem dan siap dievaluasi guru.</p>
+                </div>
+
+                <!-- Ringkasan Nilai Objektif & Estimasi Esai -->
+                <div class="grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
+                    <div class="doodle-card-sm bg-sky-100 p-4">
+                        <div class="text-xs font-bold text-slate-600">Skor Objektif Otomatis</div>
+                        <div id="resObjectiveScore" class="font-doodle text-3xl font-bold text-slate-900 my-1">0 / 60</div>
+                        <div id="resObjectiveDetail" class="text-[11px] font-bold text-sky-900">15 Soal Objektif</div>
+                    </div>
+                    <div class="doodle-card-sm bg-purple-100 p-4">
+                        <div class="text-xs font-bold text-slate-600">Skor Rubrik Esai (Awal)</div>
+                        <div id="resEssayScore" class="font-doodle text-3xl font-bold text-slate-900 my-1">0 / 40</div>
+                        <div class="text-[11px] font-bold text-purple-900">Diverifikasi oleh Guru</div>
+                    </div>
+                    <div class="doodle-card-sm bg-yellow-200 p-4">
+                        <div class="text-xs font-bold text-slate-700">Total Skor Sementara</div>
+                        <div id="resTotalScore" class="font-doodle text-4xl font-bold text-slate-900 my-1">0</div>
+                        <div class="text-[11px] font-extrabold text-slate-800">Skala 100 Poin</div>
+                    </div>
+                </div>
+
+                <!-- Detail Kartu Bukti Ujian -->
+                <div class="doodle-card-sm bg-slate-50 p-5 max-w-2xl mx-auto text-left text-xs md:text-sm space-y-2">
+                    <div class="font-doodle font-bold text-base text-slate-900 border-b border-dashed border-slate-300 pb-2 mb-2">
+                        Bukti Pengumpulan Ujian
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Nama Siswa:</span> <strong id="resName">-</strong></div>
+                        <div><span class="text-slate-500">Kelas / Absen:</span> <strong id="resClassAbsent">-</strong></div>
+                        <div><span class="text-slate-500">Waktu Selesai:</span> <strong id="resTimestamp">-</strong></div>
+                        <div><span class="text-slate-500">Durasi Pengerjaan:</span> <strong id="resDuration">-</strong></div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-3 pt-2">
+                    <button onclick="downloadStudentReceiptJSON()" class="doodle-btn bg-sky-200 hover:bg-sky-300 px-5 py-2.5 text-sm flex items-center gap-2">
+                        <i class="ph-bold ph-download-simple"></i>
+                        <span>Unduh Bukti Jawaban (.JSON)</span>
+                    </button>
+                    <button onclick="resetExamForNewStudent()" class="doodle-btn bg-amber-200 hover:bg-amber-300 px-5 py-2.5 text-sm flex items-center gap-2">
+                        <i class="ph-bold ph-arrows-clockwise"></i>
+                        <span>Mulai Sesi Siswa Baru</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==========================================
+         MODAL 1: POP-UP DOA SEBELUM UJIAN
+         ========================================== -->
+    <div id="modalPrayer" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="doodle-card max-w-xl w-full p-6 md:p-8 bg-white space-y-5 animate-[popNumber_0.3s_ease]">
+            <div class="flex items-center justify-between border-b-2 border-dashed border-slate-300 pb-3">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-10 h-10 rounded-2xl bg-emerald-200 border-2 border-slate-800 flex items-center justify-center">
+                        <i class="ph-fill ph-hands-praying text-2xl text-emerald-800"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-doodle font-bold text-xl text-slate-900">Doa Sebelum Memulai Ujian</h3>
+                        <p class="text-xs text-slate-600">Awali dengan doa dan kejujuran agar ilmumu berkah</p>
+                    </div>
+                </div>
+                <button onclick="closePrayerModal()" class="text-slate-400 hover:text-slate-700">
+                    <i class="ph-bold ph-x text-xl"></i>
+                </button>
+            </div>
+
+            <div class="doodle-card-sm bg-amber-50/80 p-5 space-y-4 text-center">
+                <!-- Teks Arab -->
+                <p class="font-arabic text-2xl md:text-3xl leading-loose text-slate-900" dir="rtl">
+                    رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي وَاحْلُلْ عُقْدَةً مِنْ لِسَانِي يَفْقَهُوا قَوْلِي، رَبِّ زِدْنِي عِلْمًا وَارْزُقْنِي فَهمًا
+                </p>
+                <!-- Transliterasi Latin -->
+                <p class="text-xs md:text-sm font-bold text-emerald-800 italic">
+                    "Rabbisyrahlī shadrī, wa yassirlī amrī, wahlul 'uqdatam mil lisānī yafqahū qaulī. Rabbi zidnī 'ilman warzuqnī fahman."
+                </p>
+                <!-- Terjemahan Bahasa Indonesia -->
+                <p class="text-xs md:text-sm text-slate-700 leading-relaxed border-t border-dashed border-amber-300 pt-3">
+                    Artinya: <em>"Ya Tuhanku, lapangkanlah untukku dadaku, dan mudahkanlah untukku urusanku, dan lepaskanlah kekakuan dari lidahku, supaya mereka mengerti perkataanku. Ya Tuhanku, tambahkanlah kepadaku ilmu pengetahuan dan berikanlah aku kepahaman yang baik."</em>
+                </p>
+            </div>
+
+            <div class="text-xs text-slate-600 bg-sky-50 p-3 rounded-xl border border-sky-200 flex items-center gap-2">
+                <i class="ph-fill ph-info text-sky-600 text-lg flex-shrink-0"></i>
+                <span>Bagi siswa yang beragama selain Islam, dipersilakan berdoa menurut agama dan kepercayaan masing-masing.</span>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                <button onclick="closePrayerModal()" class="doodle-btn bg-slate-100 hover:bg-slate-200 py-3 px-4 text-sm sm:w-1/3">
+                    Kembali
+                </button>
+                <button onclick="startCountdownSequence()" class="doodle-btn bg-emerald-300 hover:bg-emerald-400 py-3 px-6 text-base sm:w-2/3 flex items-center justify-center gap-2">
+                    <i class="ph-bold ph-sparkle text-lg"></i>
+                    <span>Aamiin, Siap Memulai</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         MODAL 2: KONFIRMASI KUMPULKAN UJIAN
+         ========================================== -->
+    <div id="modalSubmitConfirm" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="doodle-card max-w-md w-full p-6 bg-white space-y-4">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-amber-200 border-2 border-slate-800 flex items-center justify-center flex-shrink-0">
+                    <i class="ph-fill ph-CheckSquareOffset text-2xl text-amber-900"></i>
+                </div>
+                <div>
+                    <h3 class="font-doodle font-bold text-xl text-slate-900">Kumpulkan Jawaban Sekarang?</h3>
+                    <p class="text-xs text-slate-600">Pastikan kamu sudah memeriksa kembali jawabanmu.</p>
+                </div>
+            </div>
+
+            <div id="submitSummaryBox" class="doodle-card-sm bg-slate-50 p-4 text-xs space-y-2 font-bold">
+                <!-- Diisi via JS -->
+            </div>
+
+            <div class="flex gap-3 pt-2">
+                <button onclick="closeSubmitConfirmation()" class="doodle-btn bg-slate-200 hover:bg-slate-300 py-2.5 px-4 text-sm w-1/2">
+                    Periksa Lagi
+                </button>
+                <button id="btnConfirmFinalSubmit" onclick="finalizeExamSubmission(false)" class="doodle-btn bg-emerald-300 hover:bg-emerald-400 py-2.5 px-4 text-sm w-1/2 flex items-center justify-center gap-1.5">
+                    <i class="ph-bold ph-check-circle"></i>
+                    <span>Ya, Kumpulkan!</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         MODAL 3: PANEL ADMINISTRASI GURU & KUNCI JAWABAN
+         ========================================== -->
+    <div id="modalTeacherAdmin" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="doodle-card max-w-5xl w-full max-h-[90vh] flex flex-col bg-white overflow-hidden">
+            <div class="p-5 bg-purple-100 border-b-3 border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <i class="ph-fill ph-chalkboard-teacher text-2xl text-purple-800"></i>
+                    <div>
+                        <h3 class="font-doodle font-bold text-lg md:text-xl text-slate-900">Panel Administrasi Guru — Kisi-Kisi, Kunci, Rubrik & Penanda HOTS</h3>
+                        <p class="text-xs text-slate-600">Catatan: Label HOTS, Kunci Jawaban, dan Pembahasan disembunyikan sepenuhnya dari layar siswa selama ujian.</p>
+                    </div>
+                </div>
+                <button onclick="closeTeacherModal()" class="doodle-btn bg-white px-3 py-1 text-xs">Tutup</button>
+            </div>
+
+            <!-- Proteksi PIN Guru Sederhana -->
+            <div id="teacherAuthBox" class="p-8 text-center space-y-4">
+                <div class="w-14 h-14 mx-auto rounded-2xl bg-purple-200 border-2 border-slate-800 flex items-center justify-center">
+                    <i class="ph-bold ph-lock-key text-2xl"></i>
+                </div>
+                <h4 class="font-doodle font-bold text-lg">Akses Khusus Guru Matematika</h4>
+                <p class="text-xs text-slate-600 max-w-md mx-auto">
+                    Masukkan kode akses guru untuk melihat kunci jawaban, penanda soal HOTS, bobot skor, dan rubrik penilaian esai. (Kode Demo: <strong>GURU8</strong>)
+                </p>
+                <div class="flex justify-center gap-2 max-w-xs mx-auto">
+                    <input type="password" id="inputTeacherPin" placeholder="Kode Guru (GURU8)" value="GURU8" class="doodle-input text-sm font-bold text-center w-full">
+                    <button onclick="unlockTeacherPanel()" class="doodle-btn bg-purple-300 hover:bg-purple-400 px-4 py-2 text-sm">Buka</button>
+                </div>
+            </div>
+
+            <!-- Konten Kisi-kisi & Kunci Jawaban -->
+            <div id="teacherContentBox" class="hidden p-5 overflow-y-auto space-y-4 text-xs md:text-sm">
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div class="doodle-card-sm bg-sky-50 p-3">
+                        <div class="text-xs text-slate-500 font-bold">Pilihan Ganda (1-10)</div>
+                        <div class="font-doodle font-bold text-base">10 Soal (3 HOTS)</div>
+                        <div class="text-[11px] text-sky-700 font-bold">Bobot: 10 × 3 = 30 Poin</div>
+                    </div>
+                    <div class="doodle-card-sm bg-amber-50 p-3">
+                        <div class="text-xs text-slate-500 font-bold">Mencocokkan (11-12)</div>
+                        <div class="font-doodle font-bold text-base">2 Soal (6 Pasang)</div>
+                        <div class="text-[11px] text-amber-700 font-bold">Bobot: 2 × 6 = 12 Poin</div>
+                    </div>
+                    <div class="doodle-card-sm bg-emerald-50 p-3">
+                        <div class="text-xs text-slate-500 font-bold">Pilihan Kompleks (13-15)</div>
+                        <div class="font-doodle font-bold text-base">3 Soal Multi-Opsi</div>
+                        <div class="text-[11px] text-emerald-700 font-bold">Bobot: 3 × 6 = 18 Poin</div>
+                    </div>
+                    <div class="doodle-card-sm bg-pink-50 p-3">
+                        <div class="text-xs text-slate-500 font-bold">Esai Uraian (16-20)</div>
+                        <div class="font-doodle font-bold text-base">5 Soal (2 Beranak, 1 HOTS)</div>
+                        <div class="text-[11px] text-pink-700 font-bold">Bobot Total Esai: 40 Poin</div>
+                    </div>
+                </div>
+
+                <div id="teacherQuestionsTable" class="space-y-3">
+                    <!-- Diisi via JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         MODAL 4: KODE GOOGLE APPS SCRIPT & INTEGRASI SHEETS
+         ========================================== -->
+    <div id="modalBackendSetup" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="doodle-card max-w-4xl w-full max-h-[90vh] flex flex-col bg-white overflow-hidden">
+            <div class="p-5 bg-emerald-100 border-b-3 border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <i class="ph-fill ph-google-logo text-2xl text-emerald-800"></i>
+                    <div>
+                        <h3 class="font-doodle font-bold text-lg md:text-xl text-slate-900">Integrasi Google Apps Script & Google Sheets Database</h3>
+                        <p class="text-xs text-slate-600">Siap dipasang langsung sebagai Google Apps Script Web App maupun koneksi REST Web App URL</p>
+                    </div>
+                </div>
+                <button onclick="closeBackendModal()" class="doodle-btn bg-white px-3 py-1 text-xs">Tutup</button>
+            </div>
+
+            <div class="p-5 overflow-y-auto space-y-4 text-xs md:text-sm">
+                <div class="doodle-card-sm bg-amber-50 p-4 space-y-2">
+                    <label class="block font-bold text-slate-800">URL Google Apps Script Web App (Opsional jika berjalan di luar GAS iframe):</label>
+                    <div class="flex gap-2">
+                        <input type="url" id="inputGasWebhookUrl" placeholder="https://script.google.com/macros/s/AKfycb.../exec" class="doodle-input w-full text-xs font-mono">
+                        <button onclick="saveGasWebhookUrl()" class="doodle-btn bg-emerald-300 hover:bg-emerald-400 px-4 py-2 text-xs whitespace-nowrap">Simpan URL</button>
+                    </div>
+                    <p class="text-[11px] text-slate-600">
+                        *Jika file ini dipasang langsung di dalam <code>index.html</code> pada proyek Google Apps Script, aplikasi otomatis menggunakan <code>google.script.run</code> secara native, dan jika memakai URL eksternal aplikasi menggunakan <code>fetch()</code>.
+                    </p>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-slate-800">File <code>Code.gs</code> (Salin ke Editor Google Apps Script pada Google Sheets):</span>
+                        <button onclick="copyGasBackendCode()" class="doodle-btn bg-sky-200 hover:bg-sky-300 px-3 py-1 text-xs flex items-center gap-1">
+                            <i class="ph-bold ph-copy"></i> <span id="copyGasBtnText">Salin Code.gs</span>
+                        </button>
+                    </div>
+                    <pre id="gasCodeBlock" class="p-4 rounded-xl bg-slate-900 text-emerald-300 font-mono text-xs overflow-x-auto leading-relaxed">/**
+ * DOODLE EXAM - BACKEND GOOGLE APPS SCRIPT (Code.gs)
+ * Materi: Teorema Pythagoras Kelas VIII SMP/MTs
+ */
+const SHEET_HASIL = 'Hasil_Ujian';
+const SHEET_DETAIL = 'Detail_Jawaban';
+
+function doGet(e) {
+  setupSheetsIfNeeded();
+  return HtmlService.createHtmlOutputFromFile('index')
+    .setTitle('Doodle Exam — Ujian Matematika Pythagoras Kelas VIII')
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)
+    .addMetaTag('viewport', 'width=device-width, initial-scale=1');
+}
+
+function doPost(e) {
+  try {
+    const payload = JSON.parse(e.postData.contents);
+    const result = simpanHasilUjianKeSheets(payload);
+    return ContentService.createTextOutput(JSON.stringify(result))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({ status: 'error', message: err.toString() }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function setupSheetsIfNeeded() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sheetHasil = ss.getSheetByName(SHEET_HASIL);
+  if (!sheetHasil) {
+    sheetHasil = ss.insertSheet(SHEET_HASIL);
+    sheetHasil.appendRow([
+      'Timestamp', 'Nama Siswa', 'Kelas', 'No Absen', 'Kode Ujian',
+      'Durasi (Detik)', 'Skor PG (30)', 'Skor Mencocokkan (12)', 'Skor Kompleks (18)',
+      'Total Objektif (60)', 'Skor Awal Esai (40)', 'Total Skor (100)', 'Kutipan Sesi'
+    ]);
+    sheetHasil.getRange(1, 1, 1, 13).setFontWeight('bold').setBackground('#fef08a');
+  }
+
+  let sheetDetail = ss.getSheetByName(SHEET_DETAIL);
+  if (!sheetDetail) {
+    sheetDetail = ss.insertSheet(SHEET_DETAIL);
+    sheetDetail.appendRow(['Timestamp', 'Nama Siswa', 'Kelas', 'JSON Jawaban Lengkap']);
+    sheetDetail.getRange(1, 1, 1, 4).setFontWeight('bold').setBackground('#bae6fd');
+  }
+}
+
+function simpanHasilUjianKeSheets(data) {
+  setupSheetsIfNeeded();
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheetHasil = ss.getSheetByName(SHEET_HASIL);
+  const sheetDetail = ss.getSheetByName(SHEET_DETAIL);
+  const now = new Date();
+
+  sheetHasil.appendRow([
+    now,
+    data.student.name,
+    data.student.className,
+    data.student.absent,
+    data.student.token,
+    data.durationSeconds,
+    data.scores.mcqScore,
+    data.scores.matchScore,
+    data.scores.complexScore,
+    data.scores.objectiveTotal,
+    data.scores.essayScore,
+    data.scores.grandTotal,
+    data.quoteUsed
+  ]);
+
+  sheetDetail.appendRow([
+    now,
+    data.student.name,
+    data.student.className,
+    JSON.stringify(data.answers)
+  ]);
+
+  return { status: 'success', timestamp: now.toISOString() };
+}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFIKASI -->
+    <div id="toastNotification" class="fixed bottom-5 right-5 z-50 hidden doodle-card-sm bg-slate-900 text-white px-4 py-3 text-xs md:text-sm font-bold flex items-center gap-2.5 shadow-lg">
+        <i id="toastIcon" class="ph-fill ph-check-circle text-emerald-400 text-lg"></i>
+        <span id="toastMessage">Notifikasi</span>
+    </div>
+
+    <!-- ==========================================
+         SCRIPT UTAMA APLIKASI DOODLE EXAM
+         ========================================== -->
+    <script>
+        /********************************************************************
+         * 1. KUMPULAN 10 KUTIPAN MOTIVASI TERVERIFIKASI
+         ********************************************************************/
+        const VERIFIED_QUOTES = [
+            {
+                quote: "Pendidikan bukan cuma pergi ke sekolah dan mendapatkan gelar. Tapi juga soal memperluas pengetahuan dan menyerap ilmu kehidupan.",
+                author: "Shakuntala Devi",
+                source: "Buku 'Figuring: The Joy of Numbers' (Matematikawan India)"
+            },
+            {
+                quote: "Ing ngarsa sung tuladha, ing madya mangun karsa, tut wuri handayani.",
+                author: "Ki Hadjar Dewantara",
+                source: "Asas Taman Siswa (1922) — Bapak Pendidikan Nasional Indonesia"
+            },
+            {
+                quote: "Keberhasilan bukanlah milik orang yang pintar. Keberhasilan adalah kepunyaan mereka yang senantiasa berusaha.",
+                author: "Prof. Dr. Ing. B.J. Habibie",
+                source: "Pidato & Wawancara Inspiratif Presiden RI ke-3"
+            },
+            {
+                quote: "Alam semesta ini ditulis dalam bahasa matematika, dan huruf-hurufnya adalah segitiga, lingkaran, serta bangun geometri lainnya.",
+                author: "Galileo Galilei",
+                source: "Il Saggiatore (The Assayer, 1623)"
+            },
+            {
+                quote: "Bukan karena saya sangat pintar, melainkan karena saya bertahan lebih lama dalam menghadapi dan memecahkan suatu masalah.",
+                author: "Albert Einstein",
+                source: "Dikutip dalam 'Einstein: His Life and Universe' oleh Walter Isaacson"
+            },
+            {
+                quote: "Barangsiapa belum pernah merasakan pahitnya menuntut ilmu walau sesaat, ia akan menelan hinanya kebodohan sepanjang hidupnya.",
+                author: "Imam Asy-Syafi'i",
+                source: "Diwan Al-Imam Asy-Syafi'i"
+            },
+            {
+                quote: "Pendidikan adalah senjata paling ampuh yang bisa kamu gunakan untuk mengubah dunia.",
+                author: "Nelson Mandela",
+                source: "Pidato Mindset Network, Johannesburg (16 Juli 2003)"
+            },
+            {
+                quote: "Kejujuran adalah bab pertama dalam buku kebijaksanaan.",
+                author: "Thomas Jefferson",
+                source: "Surat kepada Nathaniel Macon (12 Januari 1819)"
+            },
+            {
+                quote: "Satu-satunya cara untuk mempelajari matematika adalah dengan mengerjakan matematika.",
+                author: "Paul Halmos",
+                source: "Buku 'I Want to Be a Mathematician' (1985)"
+            },
+            {
+                quote: "Disiplin diri dan ketekunan adalah jembatan yang menghubungkan cita-cita dengan pencapaian nyata.",
+                author: "Jim Rohn",
+                source: "The Treasury of Quotes (1994)"
+            }
+        ];
+
+        /********************************************************************
+         * 2. DATABASE 20 SOAL TEOREMA PYTHAGORAS KELAS VIII SMP/MTs
+         *    - 10 Pilihan Ganda (3 HOTS: Nomor 8, 9, 10)
+         *    - 2 Mencocokkan (Nomor 11, 12)
+         *    - 3 Pilihan Kompleks Lebih dari Satu (Nomor 13, 14, 15)
+         *    - 5 Soal Esai (2 Soal Beranak: 16a-b-c & 17a-b, 1 HOTS: Nomor 20)
+         ********************************************************************/
+        const EXAM_QUESTIONS = [
+            // --- BAGIAN A1: 10 SOAL PILIHAN GANDA (3 Poin / Soal = 30 Poin) ---
+            {
+                id: 1,
+                numberLabel: "1",
+                section: "Objektif",
+                type: "mcq",
+                difficulty: "Mudah",
+                isHOTS: false,
+                points: 3,
+                prompt: "Perhatikan segitiga siku-siku $PQR$ yang siku-siku di titik $Q$ pada gambar interaktif di bawah ini! Klik pada sisi-sisinya untuk mengamati keterangannya. Manakah pernyataan dan rumus Teorema Pythagoras yang <strong>paling tepat</strong> untuk segitiga $PQR$ tersebut?",
+                diagramType: "triangle_pqr_basic",
+                options: [
+                    { id: "A", text: "Sisi miring adalah $PQ$, sehingga $PQ^2 = QR^2 + PR^2$" },
+                    { id: "B", text: "Sisi miring adalah $PR$, sehingga $PR^2 = PQ^2 + QR^2$" },
+                    { id: "C", text: "Sisi miring adalah $QR$, sehingga $QR^2 = PQ^2 + PR^2$" },
+                    { id: "D", text: "Sisi miring adalah $PR$, sehingga $PR^2 = PQ^2 - QR^2$" }
+                ],
+                correctKey: "B",
+                explanation: "Sisi di depan sudut siku-siku Q adalah sisi PR (hipotenusa/sisi miring). Maka berlaku PR² = PQ² + QR²."
+            },
+            {
+                id: 2,
+                numberLabel: "2",
+                section: "Objektif",
+                type: "mcq",
+                difficulty: "Mudah",
+                isHOTS: false,
+                points: 3,
+                prompt: "Sebuah segitiga siku-siku memiliki panjang kedua sisi penyikunya masing-masing $6\\text{ cm}$ dan $8\\text{ cm}$. Berapakah panjang sisi miring (hipotenusa) segitiga tersebut?",
+                diagramType: "triangle_6_8_x",
+                options: [
+                    { id: "A", text: "$10\\text{ cm}$" },
+                    { id: "B", text: "$12\\text{ cm}$" },
+                    { id: "C", text: "$14\\text{ cm}$" },
+                    { id: "D", text: "$100\\text{ cm}$" }
+                ],
+                correctKey: "A",
+                explanation: "c = √(6² + 8²) = √(36 + 64) = √100 = 10 cm."
+            },
+            {
+                id: 3,
+                numberLabel: "3",
+                section: "Objektif",
+                type: "mcq",
+                difficulty: "Mudah",
+                isHOTS: false,
+                points: 3,
+                prompt: "Diketahui segitiga $ABC$ siku-siku di $B$. Jika panjang sisi miring $AC = 13\\text{ cm}$ dan salah satu sisi siku-sikunya $AB = 5\\text{ cm}$, maka panjang sisi siku-siku $BC$ adalah ....",
+                diagramType: "triangle_5_b_13",
+                options: [
+                    { id: "A", text: "$8\\text{ cm}$" },
+                    { id: "B", text: "$9\\text{ cm}$" },
+                    { id: "C", text: "$12\\text{ cm}$" },
+                    { id: "D", text: "$18\\text{ cm}$" }
+                ],
+                correctKey: "C",
+                explanation: "BC = √(AC² - AB²) = √(13² - 5²) = √(169 - 25) = √144 = 12 cm."
+            },
+            {
+                id: 4,
+                numberLabel: "4",
+                section: "Objektif",
+                type: "mcq",
+                difficulty: "Sedang",
+                isHOTS: false,
+                points: 3,
+                prompt: "Tiga bilangan asli $(a, b, c)$ disebut <strong>Tripel Pythagoras</strong> apabila memenuhi $a^2 + b^2 = c^2$. Di antara kelompok tiga bilangan berikut, manakah yang merupakan Tripel Pythagoras?",
+                diagramType: "triple_tester",
+                options: [
+                    { id: "A", text: "$7,\\; 12,\\; 15$" },
+                    { id: "B", text: "$8,\\; 15,\\; 17$" },
+                    { id: "C", text: "$9,\\; 12,\\; 16$" },
+                    { id: "D", text: "$10,\\; 20,\\; 25$" }
+                ],
+                correctKey: "B",
+                explanation: "8² + 15² = 64 + 225 = 289, dan 17² = 289. Jadi (8, 15, 17) adalah tripel Pythagoras."
+            },
+            {
+                id: 5,
+                numberLabel: "5",
+                section: "Objektif",
+                type: "mcq",
+                difficulty: "Sedang",
+                isHOTS: false,
+                points: 3,
+                prompt: "Sebuah tangga yang panjangnya $10\\text{ m}$ disandarkan pada tembok vertikal. Jika jarak ujung bawah tangga ke pangkal tembok adalah $6\\text{ m}$ dan tanah datar tegak lurus terhadap tembok, berapakah tinggi tembok yang dicapai ujung atas tangga?",
+                diagramType: "ladder_wall",
+                options: [
+                    { id: "A", text: "$4\\text{ m}$" },
+                    { id: "B", text: "$7\\text{ m}$" },
+                    { id: "C", text: "$8\\text{ m}$" },
+                    { id: "D", text: "$11,6\\text{ m}$" }
+                ],
+                correctKey: "C",
+                explanation: "t = √(10² - 6²) = √(100 - 36) = √64 = 8 m."
+            },
+            {
+                id: 6,
+                numberLabel: "6",
+                section: "Objektif",
+                type: "mcq",
+                difficulty: "Sedang",
+                isHOTS: false,
+                points: 3,
+                prompt: "Sebuah taman sekolah berbentuk persegi panjang dengan ukuran panjang $24\\text{ m}$ dan lebar $10\\text{ m}$. Di tengah taman akan dibuat jalan setapak lurus mengikuti garis diagonal taman. Berapakah panjang jalan diagonal tersebut?",
+                diagramType: "rectangle_diagonal",
+                options: [
+                    { id: "A", text: "$25\\text{ m}$" },
+                    { id: "B", text: "$26\\text{ m}$" },
+                    { id: "C", text: "$28\\text{ m}$" },
+                    { id: "D", text: "$34\\text{ m}$" }
+                ],
+                correctKey: "B",
+                explanation: "d = √(24² + 10²) = √(576 + 100) = √676 = 26 m (kelipatan 2 dari tripel 5-12-13)."
+            },
+            {
+                id: 7,
+                numberLabel: "7",
+                section: "Objektif",
+                type: "mcq",
+                difficulty: "Sedang",
+                isHOTS: false,
+                points: 3,
+                prompt: "Pada bidang koordinat Kartesius, titik $A$ terletak pada koordinat $(2, 1)$ dan titik $B$ terletak pada koordinat $(10, 7)$. Berapakah jarak lurus antara titik $A$ dan titik $B$?",
+                diagramType: "cartesian_points",
+                options: [
+                    { id: "A", text: "$8\\text{ satuan}$" },
+                    { id: "B", text: "$10\\text{ satuan}$" },
+                    { id: "C", text: "$12\\text{ satuan}$" },
+                    { id: "D", text: "$14\\text{ satuan}$" }
+                ],
+                correctKey: "B",
+                explanation: "Δx = 10 - 2 = 8; Δy = 7 - 1 = 6. Jarak AB = √(8² + 6²) = √(64 + 36) = √100 = 10 satuan."
+            },
+            {
+                id: 8,
+                numberLabel: "8",
+                section: "Objektif",
+                type: "mcq",
+                difficulty: "Sulit (HOTS)",
+                isHOTS: true, // HOTS 1 PG (Disembunyikan dari siswa)
+                points: 3,
+                prompt: "Perhatikan bangun gabungan dua segitiga siku-siku $\\triangle ABD$ dan $\\triangle BCD$ pada gambar interaktif berikut! Diketahui $\\angle DAB = 90^\\circ$ dengan $AB = 12\\text{ cm}$ dan $AD = 9\\text{ cm}$. Segitiga $BCD$ siku-siku di $B$ ($\\angle DBC = 90^\\circ$) dengan panjang sisi miring $CD = 17\\text{ cm}$. Berapakah panjang sisi $BC$?",
+                diagramType: "two_triangles_hots",
+                options: [
+                    { id: "A", text: "$8\\text{ cm}$" },
+                    { id: "B", text: "$10\\text{ cm}$" },
+                    { id: "C", text: "$13\\text{ cm}$" },
+                    { id: "D", text: "$15\\text{ cm}$" }
+                ],
+                correctKey: "A",
+                explanation: "Langkah 1: Cari BD dari ΔABD siku-siku di A -> BD = √(12² + 9²) = √(144 + 81) = √225 = 15 cm. Langkah 2: Pada ΔBCD siku-siku di B, CD adalah sisi miring (17 cm), maka BC = √(CD² - BD²) = √(17² - 15²) = √(289 - 225) = √64 = 8 cm."
+            },
+            {
+                id: 9,
+                numberLabel: "9",
+                section: "Objektif",
+                type: "mcq",
+                difficulty: "Sulit (HOTS)",
+                isHOTS: true, // HOTS 2 PG
+                points: 3,
+                prompt: "Raka dan Dinda sedang menghitung panjang sisi siku-siku $p$ pada segitiga yang memiliki sisi miring $25\\text{ cm}$ dan sisi siku-siku lainnya $24\\text{ cm}$.<br>• <strong>Cara Raka:</strong> Menghitung $p = \\sqrt{25^2 - 24^2} = \\sqrt{625 - 576} = \\sqrt{49} = 7\\text{ cm}$.<br>• <strong>Cara Dinda:</strong> Menggunakan sifat selisih kuadrat $p = \\sqrt{(25+24)(25-24)} = \\sqrt{49 \\times 1} = 7\\text{ cm}$.<br>Berdasarkan analisis matematis, evaluasi manakah yang paling tepat terhadap strategi keduanya?",
+                diagramType: "strategy_eval_hots",
+                options: [
+                    { id: "A", text: "Hanya cara Raka yang benar secara matematis, sedangkan cara Dinda kebetulan saja menghasilkan angka yang sama." },
+                    { id: "B", text: "Kedua cara benar secara matematis, dan strategi Dinda lebih efisien karena memanfaatkan identitas aljabar $c^2 - b^2 = (c+b)(c-b)$ tanpa harus menghitung kuadrat bilangan besar." },
+                    { id: "C", text: "Cara Dinda salah karena rumus Teorema Pythagoras tidak boleh diubah ke bentuk perkalian." },
+                    { id: "D", text: "Kedua cara salah karena seharusnya sisi yang dicari dihitung dengan $p = \\sqrt{25^2 + 24^2}$." }
+                ],
+                correctKey: "B",
+                explanation: "Identitas aljabar c² - b² = (c + b)(c - b) selalu berlaku untuk semua bilangan real dan sangat membantu mempercepat perhitungan Pythagoras."
+            },
+            {
+                id: 10,
+                numberLabel: "10",
+                section: "Objektif",
+                type: "mcq",
+                difficulty: "Sulit (HOTS)",
+                isHOTS: true, // HOTS 3 PG
+                points: 3,
+                prompt: "Sebuah drone pemantau terbang tepat di atas titik $P$ pada ketinggian vertikal $120\\text{ m}$ dari permukaan tanah datar. Di tanah, terdapat pos pengamat $A$ dan pos pengamat $B$ yang berada segaris di sebelah timur titik $P$. Jarak pandang lurus dari drone ke pos $A$ adalah $130\\text{ m}$, sedangkan jarak pandang lurus dari drone ke pos $B$ adalah $200\\text{ m}$. Berapakah jarak darat antara pos $A$ dan pos $B$?",
+                diagramType: "drone_hots",
+                options: [
+                    { id: "A", text: "$70\\text{ m}$" },
+                    { id: "B", text: "$110\\text{ m}$" },
+                    { id: "C", text: "$160\\text{ m}$" },
+                    { id: "D", text: "$210\\text{ m}$" }
+                ],
+                correctKey: "B",
+                explanation: "Jarak P ke Pos A = √(130² - 120²) = √(16900 - 14400) = √2500 = 50 m. Jarak P ke Pos B = √(200² - 120²) = √(40000 - 14400) = √25600 = 160 m. Karena segaris di sebelah timur, jarak Pos A ke Pos B = 160 m - 50 m = 110 m."
+            },
+
+            // --- BAGIAN A2: 2 SOAL MENCOCOKKAN (6 Poin / Soal = 12 Poin; 2 Poin per pasangan benar) ---
+            {
+                id: 11,
+                numberLabel: "11",
+                section: "Objektif",
+                type: "matching",
+                difficulty: "Sedang",
+                isHOTS: false,
+                points: 6,
+                prompt: "<strong>Soal Mencocokkan 1:</strong> Pasangkan setiap ukuran dua sisi segitiga siku-siku di sebelah kiri dengan panjang sisi ketiga yang tepat di sebelah kanan! (Setiap pasangan benar bernilai 2 poin).",
+                diagramType: "matching_triangles",
+                leftItems: [
+                    { id: "L1", text: "Sisi siku-siku $a = 9\\text{ cm}$ dan sisi siku-siku $b = 12\\text{ cm}$. Panjang sisi miring $c$ adalah..." },
+                    { id: "L2", text: "Sisi miring $c = 25\\text{ cm}$ dan sisi siku-siku $a = 7\\text{ cm}$. Panjang sisi siku-siku $b$ adalah..." },
+                    { id: "L3", text: "Sisi miring $c = 17\\text{ cm}$ dan sisi siku-siku $b = 15\\text{ cm}$. Panjang sisi siku-siku $a$ adalah..." }
+                ],
+                rightOptions: [
+                    { value: "8 cm", label: "8 cm" },
+                    { value: "15 cm", label: "15 cm" },
+                    { value: "20 cm", label: "20 cm" },
+                    { value: "24 cm", label: "24 cm" }
+                ],
+                correctPairs: {
+                    "L1": "15 cm",
+                    "L2": "24 cm",
+                    "L3": "8 cm"
+                },
+                explanation: "L1: √(9²+12²) = 15 cm; L2: √(25²-7²) = 24 cm; L3: √(17²-15²) = 8 cm."
+            },
+            {
+                id: 12,
+                numberLabel: "12",
+                section: "Objektif",
+                type: "matching",
+                difficulty: "Sedang",
+                isHOTS: false,
+                points: 6,
+                prompt: "<strong>Soal Mencocokkan 2:</strong> Pasangkan permasalahan kontekstual di sebelah kiri dengan hasil perhitungan Pythagoras yang benar di sebelah kanan! (Setiap pasangan benar bernilai 2 poin).",
+                diagramType: "matching_contextual",
+                leftItems: [
+                    { id: "M1", text: "Panjang diagonal layar monitor persegi panjang berukuran $16\\text{ inci} \\times 12\\text{ inci}$" },
+                    { id: "M2", text: "Tinggi tiang bendera jika kawat penyangga sepanjang $13\\text{ m}$ dipatok $5\\text{ m}$ dari pangkal tiang" },
+                    { id: "M3", text: "Jarak terpendek kapal ke pelabuhan setelah berlayar $12\\text{ km}$ ke utara lalu $35\\text{ km}$ ke timur" }
+                ],
+                rightOptions: [
+                    { value: "12 m", label: "12 m" },
+                    { value: "20 inci", label: "20 inci" },
+                    { value: "37 km", label: "37 km" },
+                    { value: "47 km", label: "47 km" }
+                ],
+                correctPairs: {
+                    "M1": "20 inci",
+                    "M2": "12 m",
+                    "M3": "37 km"
+                },
+                explanation: "M1: √(16²+12²) = 20 inci; M2: √(13²-5²) = 12 m; M3: √(12²+35²) = √(144+1225) = √1369 = 37 km."
+            },
+
+            // --- BAGIAN A3: 3 SOAL PILIHAN LEBIH DARI SATU / KOMPLEKS (6 Poin / Soal = 18 Poin) ---
+            {
+                id: 13,
+                numberLabel: "13",
+                section: "Objektif",
+                type: "complex",
+                difficulty: "Sedang",
+                isHOTS: false,
+                points: 6,
+                prompt: "<strong>Pilihan Lebih dari Satu:</strong> Manakah di antara kelompok tiga bilangan di bawah ini yang merupakan <strong>Tripel Pythagoras</strong>? <em>(Petunjuk: Pilih semua jawaban yang benar! Nilai penuh 6 poin diberikan jika seluruh pilihan benar dipilih dan tidak ada pilihan salah).</em>",
+                diagramType: "triple_grid_visual",
+                options: [
+                    { id: "A", text: "$5,\\; 12,\\; 13$" },
+                    { id: "B", text: "$6,\\; 8,\\; 12$" },
+                    { id: "C", text: "$7,\\; 24,\\; 25$" },
+                    { id: "D", text: "$9,\\; 40,\\; 41$" },
+                    { id: "E", text: "$10,\\; 12,\\; 15$" }
+                ],
+                correctKeys: ["A", "C", "D"],
+                explanation: "(5,12,13), (7,24,25), dan (9,40,41) ketiganya memenuhi a² + b² = c²."
+            },
+            {
+                id: 14,
+                numberLabel: "14",
+                section: "Objektif",
+                type: "complex",
+                difficulty: "Sedang",
+                isHOTS: false,
+                points: 6,
+                prompt: "<strong>Pilihan Lebih dari Satu:</strong> Perhatikan segitiga siku-siku $KLM$ yang siku-siku di titik $L$ dengan panjang $KL = k$, $LM = m$, dan sisi miring $KM = l$. Manakah persamaan matematika berikut yang <strong>bernilai benar</strong>? <em>(Pilih lebih dari satu jawaban yang benar!)</em>",
+                diagramType: "triangle_klm_labels",
+                options: [
+                    { id: "A", text: "$l^2 = k^2 + m^2$" },
+                    { id: "B", text: "$k^2 = l^2 - m^2$" },
+                    { id: "C", text: "$m^2 = k^2 - l^2$" },
+                    { id: "D", text: "$m = \\sqrt{l^2 - k^2}$" },
+                    { id: "E", text: "$l = k + m$" }
+                ],
+                correctKeys: ["A", "B", "D"],
+                explanation: "Karena siku-siku di L, sisi miring adalah KM = l. Maka l² = k² + m², sehingga k² = l² - m² dan m = √(l² - k²)."
+            },
+            {
+                id: 15,
+                numberLabel: "15",
+                section: "Objektif",
+                type: "complex",
+                difficulty: "Sedang",
+                isHOTS: false,
+                points: 6,
+                prompt: "<strong>Pilihan Lebih dari Satu:</strong> Sebuah persegi panjang memiliki ukuran panjang $15\\text{ cm}$ dan lebar $8\\text{ cm}$. Pernyataan manakah di bawah ini yang <strong>benar</strong> berkaitan dengan bangun tersebut? <em>(Pilih lebih dari satu jawaban yang benar!)</em>",
+                diagramType: "rect_15_8",
+                options: [
+                    { id: "A", text: "Panjang diagonal persegi panjang tersebut adalah $17\\text{ cm}$." },
+                    { id: "B", text: "Kuadrat panjang diagonalnya sama dengan $15^2 + 8^2 = 289$." },
+                    { id: "C", text: "Panjang diagonalnya sama dengan jumlah panjang dan lebarnya yaitu $23\\text{ cm}$." },
+                    { id: "D", text: "Diagonal membagi persegi panjang menjadi dua segitiga siku-siku yang kongruen dengan ukuran sisi $8\\text{ cm}, 15\\text{ cm}, 17\\text{ cm}$." }
+                ],
+                correctKeys: ["A", "B", "D"],
+                explanation: "Diagonal = √(15² + 8²) = √(225 + 64) = √289 = 17 cm, membentuk dua segitiga siku-siku 8-15-17."
+            },
+
+            // --- BAGIAN B: 5 SOAL ESAI (Total 40 Poin: 2 Soal Beranak [16 & 17], 2 Soal Reguler [18 & 19], 1 Soal HOTS [20]) ---
+            {
+                id: 16,
+                numberLabel: "16 (a, b, c)",
+                section: "Esai",
+                type: "essay_branched",
+                difficulty: "Sedang",
+                isHOTS: false,
+                points: 10,
+                prompt: "<strong>Soal Esai Beranak 1 (16a, 16b, 16c):</strong> Sebuah tiang pemancar sinyal internet di sekolah memiliki tinggi vertikal $12\\text{ m}$ di atas tanah datar. Untuk menahan tiang agar kokoh, dipasang seutas kawat baja lurus dari puncak tiang ke sebuah patok di tanah yang berjarak $9\\text{ m}$ dari pangkal bawah tiang.",
+                diagramType: "essay_tower_wire",
+                subQuestions: [
+                    {
+                        subId: "16a",
+                        label: "16a",
+                        points: 4,
+                        prompt: "Gunakan Teorema Pythagoras untuk menentukan panjang minimum satu utas kawat baja dari puncak tiang sampai ke patok! Tuliskan rumus dan langkah perhitungannya.",
+                        expectedKeywords: ["15", "12^2", "9^2", "225", "144", "81"],
+                        sampleKey: "c = \\sqrt{12^2 + 9^2} = \\sqrt{144 + 81} = \\sqrt{225} = 15\\text{ m}"
+                    },
+                    {
+                        subId: "16b",
+                        label: "16b",
+                        points: 3,
+                        prompt: "Jika teknisi memasang <strong>4 utas kawat baja yang identik</strong> di keempat sisi tiang dan setiap kawat membutuhkan tambahan panjang $1\\text{ m}$ untuk ikatan simpul, berapakah total panjang kawat baja yang dibutuhkan seluruhnya?",
+                        expectedKeywords: ["64", "16", "60"],
+                        sampleKey: "\\text{Panjang 1 kawat + simpul} = 15 + 1 = 16\\text{ m}. \\text{Total 4 kawat} = 4 \\times 16 = 64\\text{ m}."
+                    },
+                    {
+                        subId: "16c",
+                        label: "16c",
+                        points: 3,
+                        prompt: "Jika panitia sekolah telah membeli 1 gulung kawat baja sepanjang $70\\text{ m}$, jelaskan kesimpulanmu apakah kawat tersebut cukup dan berapa sisa atau kekurangannya!",
+                        expectedKeywords: ["cukup", "6", "sisa"],
+                        sampleKey: "Kawat 70 m cukup, karena hanya dibutuhkan 64 m dan masih tersisa 70 - 64 = 6 m."
+                    }
+                ],
+                explanation: "16a: 15 m; 16b: 4 × (15+1) = 64 m; 16c: Cukup, sisa 6 m."
+            },
+            {
+                id: 17,
+                numberLabel: "17 (a, b)",
+                section: "Esai",
+                type: "essay_branched",
+                difficulty: "Sedang",
+                isHOTS: false,
+                points: 8,
+                prompt: "<strong>Soal Esai Beranak 2 (17a, 17b):</strong> Pak Ahmad memiliki kebun berbentuk trapesium siku-siku $ABCD$ ($AB \\parallel DC$ dan siku-siku di $A$ serta $D$). Panjang sisi sejajar atas $DC = 14\\text{ m}$, sisi sejajar bawah $AB = 22\\text{ m}$, dan tinggi trapesium $AD = 15\\text{ m}$.",
+                diagramType: "essay_trapezoid",
+                subQuestions: [
+                    {
+                        subId: "17a",
+                        label: "17a",
+                        points: 4,
+                        prompt: "Tentukan panjang sisi miring $BC$ pada trapesium tersebut menggunakan bantuan garis tinggi dari titik $C$ tegak lurus ke sisi $AB$!",
+                        expectedKeywords: ["17", "8", "15", "289", "64", "225"],
+                        sampleKey: "Alas segitiga siku-siku = 22 - 14 = 8\\text{ m}, tinggi = 15\\text{ m}. BC = \\sqrt{8^2 + 15^2} = \\sqrt{64 + 225} = \\sqrt{289} = 17\\text{ m}."
+                    },
+                    {
+                        subId: "17b",
+                        label: "17b",
+                        points: 4,
+                        prompt: "Gunakan hasil pada bagian (17a) untuk menghitung <strong>keliling total</strong> kebun trapesium $ABCD$ milik Pak Ahmad!",
+                        expectedKeywords: ["68", "22", "17", "14", "15"],
+                        sampleKey: "\\text{Keliling} = AB + BC + CD + DA = 22 + 17 + 14 + 15 = 68\\text{ m}."
+                    }
+                ],
+                explanation: "17a: BC = √(8² + 15²) = 17 m; 17b: Keliling = 22 + 17 + 14 + 15 = 68 m."
+            },
+            {
+                id: 18,
+                numberLabel: "18",
+                section: "Esai",
+                type: "essay_single",
+                difficulty: "Mudah",
+                isHOTS: false,
+                points: 6,
+                prompt: "<strong>Soal Esai Konsep & Perhitungan:</strong> Sebuah segitiga siku-siku sama kaki memiliki panjang kedua sisi siku-sikunya masing-masing $10\\text{ cm}$. Tentukan panjang sisi miringnya! <em>(Catatan: Kamu boleh menuliskan jawaban akhir dalam bentuk akar sederhana seperti $10\\sqrt{2}\\text{ cm}$ maupun pendekatan desimal $14,14\\text{ cm}$ beserta langkah perhitungannya).</em>",
+                diagramType: "essay_isosceles_right",
+                expectedKeywords: ["200", "10\\sqrt{2}", "14,14", "14.14", "100"],
+                sampleKey: "c = \\sqrt{10^2 + 10^2} = \\sqrt{100 + 100} = \\sqrt{200} = 10\\sqrt{2}\\text{ cm} \\approx 14,14\\text{ cm}.",
+                explanation: "Menerima bentuk akar sederhana √200 = 10√2 cm maupun desimal 14,14 cm."
+            },
+            {
+                id: 19,
+                numberLabel: "19",
+                section: "Esai",
+                type: "essay_single",
+                difficulty: "Sedang",
+                isHOTS: false,
+                points: 6,
+                prompt: "<strong>Soal Esai Pembuktian Jenis Segitiga:</strong> Seorang tukang kayu memotong tiga batang kayu dengan ukuran panjang $9\\text{ cm}$, $12\\text{ cm}$, dan $16\\text{ cm}$ untuk membuat bingkai siku-siku. Selidikilah menggunakan perhitungan kuadrat sisi-sisinya, apakah ketiga kayu tersebut benar-benar membentuk segitiga siku-siku? Jelaskan alasanmu!",
+                diagramType: "essay_wood_check",
+                expectedKeywords: ["225", "256", "bukan", "tumpul", "tidak"],
+                sampleKey: "9^2 + 12^2 = 81 + 144 = 225, sedangkan sisi terpanjang 16^2 = 256. Karena 225 \\neq 256 (atau 9^2 + 12^2 < 16^2), maka BUKAN segitiga siku-siku melainkan segitiga tumpul.",
+                explanation: "9² + 12² = 225 < 16² (256), sehingga bukan segitiga siku-siku (termasuk segitiga tumpul)."
+            },
+            {
+                id: 20,
+                numberLabel: "20",
+                section: "Esai",
+                type: "essay_single",
+                difficulty: "Sulit (HOTS)",
+                isHOTS: true, // HOTS Esai (Disembunyikan dari siswa)
+                points: 10,
+                prompt: "<strong>Soal Esai Pemecahan Masalah Kontekstual:</strong> Sebuah sungai lurus memiliki lebar $12\\text{ m}$. Pos Kemah $A$ berada tepat di tepi seberang utara sungai. Pos Logistik $B$ berada di tepi selatan sungai, berjarak $16\\text{ m}$ ke arah timur dari titik $P$ (titik tepat di seberang Pos $A$). Panitia pramuka memiliki dua opsi pemasangan kabel komunikasi dari Pos $A$ ke Pos $B$:<br>• <strong>Opsi 1:</strong> Menarik kabel lurus langsung menyeberangi sungai secara diagonal dari $A$ ke $B$ dengan biaya kabel tahan air Rp$50.000,00$ per meter.<br>• <strong>Opsi 2:</strong> Menarik kabel menyeberang tegak lurus dari $A$ ke $P$ ($12\\text{ m}$) dengan biaya Rp$50.000,00$/meter, lalu dilanjutkan kabel darat dari $P$ ke $B$ ($16\\text{ m}$) dengan biaya Rp$30.000,00$/meter.<br>Analisislah panjang kabel pada Opsi 1, hitung total biaya masing-masing opsi, dan tentukan opsi manakah yang paling hemat beserta selisih biayanya!",
+                diagramType: "essay_river_hots",
+                expectedKeywords: ["20", "1.000.000", "1000000", "1.080.000", "1080000", "80.000", "Opsi 1"],
+                sampleKey: "Panjang diagonal AB (Opsi 1) = \\sqrt{12^2 + 16^2} = \\sqrt{144 + 256} = \\sqrt{400} = 20\\text{ m}. Biaya Opsi 1 = 20 \\times 50.000 = \\text{Rp}1.000.000. Biaya Opsi 2 = (12 \\times 50.000) + (16 \\times 30.000) = 600.000 + 480.000 = \\text{Rp}1.080.000. Kesimpulan: Opsi 1 lebih hemat sebesar Rp80.000.",
+                explanation: "Jarak diagonal AB = 20 m -> Biaya Opsi 1 = Rp1.000.000. Biaya Opsi 2 = Rp600.000 + Rp480.000 = Rp1.080.000. Opsi 1 lebih hemat Rp80.000."
+            }
+        ];
+
+        /********************************************************************
+         * 3. STATE MANAGEMENT & LOCAL STORAGE PERSISTENCE
+         ********************************************************************/
+        const STORAGE_KEY = "DOODLE_EXAM_PYTHAGORAS_V1";
+        const EXAM_DURATION_SECONDS = 100 * 60; // 100 Menit = 6000 detik
+
+        let appState = {
+            phase: "landing", // landing | countdown | exam | finished
+            student: {
+                name: "",
+                className: "",
+                absent: "",
+                token: "PYTHAGORAS8"
+            },
+            selectedQuote: null,
+            examStartTime: null,
+            remainingSeconds: EXAM_DURATION_SECONDS,
+            currentQuestionIndex: 0,
+            answers: {}, // Menyimpan jawaban PG, Matching, Complex, Essay (LaTeX + plain)
+            doubtFlags: {}, // Menyimpan status ragu-ragu per soal id
+            activeMathFieldId: null,
+            finalScores: null,
+            gasWebhookUrl: ""
+        };
+
+        let timerInterval = null;
+
+        // Muat state saat halaman dibuka / di-refresh
+        window.addEventListener("DOMContentLoaded", () => {
+            loadStateFromStorage();
+            renderMathNotationInDOM();
+
+            if (appState.phase === "exam") {
+                restoreExamSession();
+            } else if (appState.phase === "finished" && appState.finalScores) {
+                showResultScreen();
+            }
+        });
+
+        function saveStateToStorage() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+                triggerSaveBadge();
+            } catch (e) {
+                console.warn("Penyimpanan lokal penuh atau dibatasi:", e);
+            }
+        }
+
+        function loadStateFromStorage() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return;
+                const parsed = JSON.parse(raw);
+                appState = { ...appState, ...parsed };
+                if (appState.gasWebhookUrl) {
+                    const urlInput = document.getElementById("inputGasWebhookUrl");
+                    if (urlInput) urlInput.value = appState.gasWebhookUrl;
+                }
+            } catch (e) {
+                console.warn("Gagal memuat state:", e);
+            }
+        }
+
+        function triggerSaveBadge() {
+            const badge = document.getElementById("saveStatusBadge");
+            const text = document.getElementById("saveStatusText");
+            if (!badge || !text) return;
+            text.textContent = "Menyimpan...";
+            badge.classList.replace("bg-emerald-100", "bg-amber-100");
+            setTimeout(() => {
+                text.textContent = "Tersimpan Otomatis";
+                badge.classList.replace("bg-amber-100", "bg-emerald-100");
+            }, 450);
+        }
+
+        /********************************************************************
+         * 4. DEMO INTERAKTIF HALAMAN AWAL & VALIDASI IDENTITAS
+         ********************************************************************/
+        function updateLandingDemo(multiplier) {
+            const k = parseInt(multiplier, 10);
+            const a = 3 * k, b = 4 * k, c = 5 * k;
+            document.getElementById("demoLabelA").textContent = `a=${a}`;
+            document.getElementById("demoLabelB").textContent = `b=${b}`;
+            document.getElementById("demoLabelC").textContent = `c=${c}`;
+            document.getElementById("demoPythagorasBadge").textContent = `${a}² + ${b}² = ${c}²`;
+            document.getElementById("demoCalcText").textContent = `Kuadrat sisi: ${a*a} + ${b*b} = ${c*c} satuan²`;
+        }
+
+        function handleIdentitySubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById("inputStudentName").value.trim();
+            const className = document.getElementById("inputStudentClass").value.trim();
+            const absent = document.getElementById("inputStudentAbsent").value.trim();
+            const token = document.getElementById("inputExamToken").value.trim() || "PYTHAGORAS8";
+
+            const errBox = document.getElementById("identityErrorBox");
+            const errText = document.getElementById("identityErrorText");
+
+            if (!name || name.length < 2) {
+                errText.textContent = "Nama lengkap siswa wajib diisi (minimal 2 karakter)!";
+                errBox.classList.remove("hidden");
+                document.getElementById("inputStudentName").focus();
+                return;
+            }
+            if (!className) {
+                errText.textContent = "Silakan pilih kelasmu terlebih dahulu!";
+                errBox.classList.remove("hidden");
+                document.getElementById("inputStudentClass").focus();
+                return;
+            }
+            if (!absent || parseInt(absent, 10) < 1) {
+                errText.textContent = "Nomor absen wajib diisi dengan angka yang valid!";
+                errBox.classList.remove("hidden");
+                document.getElementById("inputStudentAbsent").focus();
+                return;
+            }
+
+            errBox.classList.add("hidden");
+            appState.student = { name, className, absent, token };
+            saveStateToStorage();
+
+            // Tampilkan Pop-up Doa Sebelum Ujian
+            document.getElementById("modalPrayer").classList.remove("hidden");
+        }
+
+        function closePrayerModal() {
+            document.getElementById("modalPrayer").classList.add("hidden");
+        }
+
+        /********************************************************************
+         * 5. COUNTDOWN 5 DETIK & PEMILIHAN KUTIPAN MOTIVASI ACAK
+         ********************************************************************/
+        function startCountdownSequence() {
+            closePrayerModal();
+            document.getElementById("viewLanding").classList.add("hidden");
+            document.getElementById("viewCountdown").classList.remove("hidden");
+
+            // Pilih kutipan acak jika belum ada di sesi ini
+            if (!appState.selectedQuote) {
+                const randomIndex = Math.floor(Math.random() * VERIFIED_QUOTES.length);
+                appState.selectedQuote = VERIFIED_QUOTES[randomIndex];
+                saveStateToStorage();
+            }
+
+            document.getElementById("countdownQuoteText").textContent = `"${appState.selectedQuote.quote}"`;
+            document.getElementById("countdownQuoteAuthor").textContent = `— ${appState.selectedQuote.author}`;
+            document.getElementById("countdownQuoteSource").textContent = appState.selectedQuote.source;
+
+            let count = 5;
+            const numEl = document.getElementById("countdownNumber");
+            numEl.textContent = count;
+
+            const cdTimer = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    numEl.classList.remove("countdown-pop");
+                    void numEl.offsetWidth; // trigger reflow
+                    numEl.textContent = count;
+                    numEl.classList.add("countdown-pop");
+                } else {
+                    clearInterval(cdTimer);
+                    beginActualExam();
+                }
+            }, 1000);
+        }
+
+        function beginActualExam() {
+            appState.phase = "exam";
+            if (!appState.examStartTime) {
+                appState.examStartTime = Date.now();
+                appState.remainingSeconds = EXAM_DURATION_SECONDS;
+            }
+            saveStateToStorage();
+            restoreExamSession();
+        }
+
+        function restoreExamSession() {
+            document.getElementById("viewLanding").classList.add("hidden");
+            document.getElementById("viewCountdown").classList.add("hidden");
+            document.getElementById("viewResult").classList.add("hidden");
+            document.getElementById("viewExam").classList.remove("hidden");
+
+            document.getElementById("examHeaderControls").classList.remove("hidden");
+            document.getElementById("examHeaderControls").classList.add("flex");
+            document.getElementById("headerStudentName").textContent = appState.student.name;
+            document.getElementById("headerStudentClass").textContent = `${appState.student.className} (#${appState.student.absent})`;
+
+            if (!appState.selectedQuote) {
+                appState.selectedQuote = VERIFIED_QUOTES[0];
+            }
+            document.getElementById("sessionQuoteBanner").textContent = `"${appState.selectedQuote.quote}"`;
+            document.getElementById("sessionQuoteAuthorBanner").textContent = `— ${appState.selectedQuote.author}`;
+
+            startExamCountdownTimer();
+            renderQuestionByIndex(appState.currentQuestionIndex || 0);
+            renderNavigationGrid();
+        }
+
+        /********************************************************************
+         * 6. TIMER UJIAN 100 MENIT (REAL-TIME & ANTI-RELOAD RESET)
+         ********************************************************************/
+        function startExamCountdownTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+
+            const updateTimerUI = () => {
+                // Hitung sisa waktu akurat berdasarkan examStartTime
+                const elapsedSec = Math.floor((Date.now() - appState.examStartTime) / 1000);
+                const left = Math.max(0, EXAM_DURATION_SECONDS - elapsedSec);
+                appState.remainingSeconds = left;
+
+                const mins = Math.floor(left / 60);
+                const secs = left % 60;
+                const formatted = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+                const display = document.getElementById("timerDisplay");
+                const timerBox = document.getElementById("timerBox");
+
+                if (display) display.textContent = formatted;
+
+                // Peringatan warna jika waktu < 10 menit
+                if (left <= 600 && timerBox) {
+                    timerBox.classList.remove("bg-amber-200");
+                    timerBox.classList.add("bg-red-300");
+                }
+
+                if (left <= 0) {
+                    clearInterval(timerInterval);
+                    showToast("Waktu ujian 100 menit telah habis! Jawaban dikumpulkan otomatis.", "warning");
+                    finalizeExamSubmission(true);
+                }
+            };
+
+            updateTimerUI();
+            timerInterval = setInterval(updateTimerUI, 1000);
+        }
+
+        /********************************************************************
+         * 7. GENERATOR ILUSTRASI SVG GEOMETRI INTERAKTIF (20 SOAL)
+         ********************************************************************/
+        function generateInteractiveSVG(diagramType, qId) {
+            const wrapperStart = `<div class="doodle-card-sm bg-slate-50/90 p-4 border-2 border-slate-800">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2 pb-1.5 border-b border-dashed border-slate-300">
+                    <span class="text-xs font-extrabold text-blue-800 flex items-center gap-1">
+                        <i class="ph-fill ph-cursor-click text-base"></i> Ilustrasi Geometri Interaktif (Klik elemen gambar/tombol untuk eksplorasi)
+                    </span>
+                    <span id="svgInfoBadge_${qId}" class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-yellow-200 border border-slate-800 text-slate-900">
+                        Klik sisi/titik pada gambar!
+                    </span>
+                </div>`;
+            const wrapperEnd = `</div>`;
+
+            let svgBody = "";
+
+            switch (diagramType) {
+                case "triangle_pqr_basic":
+                    svgBody = `
+                    <div class="flex flex-col md:flex-row items-center gap-4">
+                        <svg viewBox="0 0 280 180" class="w-full max-w-xs h-44 mx-auto select-none">
+                            <polygon points="50,145 210,145 50,35" fill="#e0f2fe" stroke="#1e293b" stroke-width="2"/>
+                            <!-- Tanda Siku di Q -->
+                            <rect x="50" y="127" width="18" height="18" fill="#fef08a" stroke="#1e293b" stroke-width="2"
+                                class="cursor-pointer hover:fill-amber-300"
+                                onclick="setSvgBadge(${qId}, 'Sudut Q = 90° (Sudut Siku-Siku). Sisi di depannya adalah PR!')"/>
+                            <!-- Sisi PQ -->
+                            <line x1="50" y1="35" x2="50" y2="145" stroke="#0284c7" stroke-width="6" stroke-linecap="round"
+                                class="cursor-pointer hover:stroke-amber-500 transition-all"
+                                onclick="setSvgBadge(${qId}, 'Sisi PQ: Sisi siku-siku tegak (mengapit sudut Q)')"/>
+                            <!-- Sisi QR -->
+                            <line x1="50" y1="145" x2="210" y2="145" stroke="#16a34a" stroke-width="6" stroke-linecap="round"
+                                class="cursor-pointer hover:stroke-amber-500 transition-all"
+                                onclick="setSvgBadge(${qId}, 'Sisi QR: Sisi siku-siku alas (mengapit sudut Q)')"/>
+                            <!-- Sisi Miring PR -->
+                            <line x1="50" y1="35" x2="210" y2="145" stroke="#e11d48" stroke-width="6" stroke-linecap="round"
+                                class="cursor-pointer hover:stroke-amber-500 transition-all"
+                                onclick="setSvgBadge(${qId}, 'Sisi PR: Hipotenusa / Sisi Miring (Terpanjang, di depan ∠Q)')"/>
+                            <circle cx="50" cy="35" r="5" fill="#1e293b"/><text x="30" y="32" font-family="Fredoka" font-weight="bold" font-size="16">P</text>
+                            <circle cx="50" cy="145" r="5" fill="#1e293b"/><text x="30" y="160" font-family="Fredoka" font-weight="bold" font-size="16">Q (90°)</text>
+                            <circle cx="210" cy="145" r="5" fill="#1e293b"/><text x="220" y="160" font-family="Fredoka" font-weight="bold" font-size="16">R</text>
+                        </svg>
+                        <div class="text-xs space-y-2 md:w-1/2">
+                            <p class="font-bold text-slate-700">Klik tombol sorot bagian segitiga:</p>
+                            <div class="flex flex-wrap gap-1.5">
+                                <button type="button" onclick="setSvgBadge(${qId}, 'Sisi PR berada tepat di depan sudut siku-siku Q (90°), maka PR adalah Hipotenusa.')" class="doodle-btn bg-rose-100 px-2.5 py-1">Sorot Hipotenusa (PR)</button>
+                                <button type="button" onclick="setSvgBadge(${qId}, 'Sisi PQ dan QR mengapit sudut 90° di titik Q (Sisi Penyiku).')" class="doodle-btn bg-sky-100 px-2.5 py-1">Sorot Sisi Penyiku</button>
+                            </div>
+                        </div>
+                    </div>`;
+                    break;
+
+                case "triangle_6_8_x":
+                    svgBody = `
+                    <svg viewBox="0 0 280 175" class="w-full max-w-xs h-44 mx-auto">
+                        <polygon points="45,140 215,140 45,35" fill="#fef9c3" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                        <rect x="45" y="122" width="18" height="18" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <text x="10" y="95" font-family="Fredoka" font-weight="bold" font-size="15" fill="#0369a1" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Sisi tegak a = 6 cm → a² = 36')">6 cm</text>
+                        <text x="115" y="162" font-family="Fredoka" font-weight="bold" font-size="15" fill="#15803d" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Sisi alas b = 8 cm → b² = 64')">8 cm</text>
+                        <text x="135" y="80" font-family="Fredoka" font-weight="bold" font-size="16" fill="#be123c" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Sisi miring c = √(6² + 8²) = ?')">c = ? cm</text>
+                    </svg>`;
+                    break;
+
+                case "triangle_5_b_13":
+                    svgBody = `
+                    <svg viewBox="0 0 280 175" class="w-full max-w-xs h-44 mx-auto">
+                        <polygon points="55,140 225,140 55,45" fill="#dcfce7" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                        <rect x="55" y="124" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <text x="35" y="40" font-family="Fredoka" font-weight="bold" font-size="14">A</text>
+                        <text x="35" y="152" font-family="Fredoka" font-weight="bold" font-size="14">B</text>
+                        <text x="232" y="152" font-family="Fredoka" font-weight="bold" font-size="14">C</text>
+                        <text x="12" y="98" font-family="Fredoka" font-weight="bold" font-size="14" fill="#0369a1" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'AB = 5 cm → AB² = 25')">5 cm</text>
+                        <text x="120" y="162" font-family="Fredoka" font-weight="bold" font-size="15" fill="#be123c" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Sisi siku-siku BC = √(AC² - AB²)')">BC = ? cm</text>
+                        <text x="140" y="82" font-family="Fredoka" font-weight="bold" font-size="14" fill="#7e22ce" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Sisi miring AC = 13 cm → AC² = 169')">13 cm</text>
+                    </svg>`;
+                    break;
+
+                case "triple_tester":
+                    svgBody = `
+                    <div class="flex flex-col sm:flex-row items-center justify-around gap-4 p-2">
+                        <div class="text-xs space-y-2">
+                            <p class="font-bold text-slate-700">Kalkulator Kuadrat Cepat (Klik untuk melihat nilai $n^2$):</p>
+                            <div class="flex flex-wrap gap-1.5">
+                                ${[7,8,9,10,12,15,16,17,20,25].map(n => 
+                                    `<button type="button" onclick="setSvgBadge(${qId}, 'Nilai kuadrat: ${n}² = ${n*n}')" class="doodle-btn bg-white hover:bg-sky-100 px-2.5 py-1 text-xs">${n}²</button>`
+                                ).join('')}
+                            </div>
+                        </div>
+                    </div>`;
+                    break;
+
+                case "ladder_wall":
+                    svgBody = `
+                    <svg viewBox="0 0 280 185" class="w-full max-w-xs h-48 mx-auto">
+                        <!-- Tanah & Tembok -->
+                        <line x1="25" y1="150" x2="250" y2="150" stroke="#475569" stroke-width="4"/>
+                        <rect x="45" y="25" width="18" height="125" fill="#fca5a5" stroke="#1e293b" stroke-width="2.5"/>
+                        <rect x="63" y="134" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <!-- Tangga -->
+                        <line x1="63" y1="35" x2="185" y2="150" stroke="#d97706" stroke-width="6" stroke-linecap="round"
+                            class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Panjang Tangga (Sisi Miring) = 10 m')"/>
+                        <text x="135" y="82" font-family="Fredoka" font-weight="bold" font-size="14" fill="#b45309">Tangga = 10 m</text>
+                        <text x="95" y="170" font-family="Fredoka" font-weight="bold" font-size="14" fill="#0369a1">Jarak Alas = 6 m</text>
+                        <text x="72" y="95" font-family="Fredoka" font-weight="bold" font-size="14" fill="#be123c">t = ? m</text>
+                    </svg>`;
+                    break;
+
+                case "rectangle_diagonal":
+                    svgBody = `
+                    <svg viewBox="0 0 300 175" class="w-full max-w-sm h-44 mx-auto">
+                        <rect x="40" y="30" width="210" height="105" fill="#bbf7d0" stroke="#1e293b" stroke-width="3"/>
+                        <rect x="40" y="119" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <line x1="40" y1="30" x2="250" y2="135" stroke="#e11d48" stroke-width="4" stroke-dasharray="6,4"
+                            class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Jalan Diagonal membagi taman menjadi segitiga siku-siku (24 m dan 10 m)')"/>
+                        <text x="120" y="155" font-family="Fredoka" font-weight="bold" font-size="14" fill="#1e293b">Panjang = 24 m</text>
+                        <text x="256" y="88" font-family="Fredoka" font-weight="bold" font-size="14" fill="#1e293b">10 m</text>
+                        <text x="125" y="75" font-family="Fredoka" font-weight="bold" font-size="14" fill="#be123c">d = ? m</text>
+                    </svg>`;
+                    break;
+
+                case "cartesian_points":
+                    svgBody = `
+                    <svg viewBox="0 0 290 180" class="w-full max-w-sm h-44 mx-auto">
+                        <!-- Sumbu -->
+                        <line x1="35" y1="150" x2="265" y2="150" stroke="#64748b" stroke-width="2"/>
+                        <line x1="35" y1="20" x2="35" y2="150" stroke="#64748b" stroke-width="2"/>
+                        <!-- Segitiga Bantu -->
+                        <line x1="65" y1="130" x2="215" y2="130" stroke="#0284c7" stroke-width="2.5" stroke-dasharray="4"/>
+                        <line x1="215" y1="130" x2="215" y2="45" stroke="#16a34a" stroke-width="2.5" stroke-dasharray="4"/>
+                        <line x1="65" y1="130" x2="215" y2="45" stroke="#e11d48" stroke-width="3.5"/>
+                        <circle cx="65" cy="130" r="5" fill="#1e293b" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Titik A(2, 1)')"/>
+                        <circle cx="215" cy="45" r="5" fill="#1e293b" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Titik B(10, 7)')"/>
+                        <text x="48" y="122" font-family="Fredoka" font-weight="bold" font-size="13">A(2,1)</text>
+                        <text x="195" y="35" font-family="Fredoka" font-weight="bold" font-size="13">B(10,7)</text>
+                        <text x="115" y="145" font-family="Fredoka" font-weight="bold" font-size="12" fill="#0284c7" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Selisih mendatar Δx = 10 - 2 = 8 satuan')">Δx = 10 - 2</text>
+                        <text x="222" y="95" font-family="Fredoka" font-weight="bold" font-size="12" fill="#16a34a" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Selisih tegak Δy = 7 - 1 = 6 satuan')">Δy = 7 - 1</text>
+                    </svg>`;
+                    break;
+
+                case "two_triangles_hots":
+                    svgBody = `
+                    <svg viewBox="0 0 310 190" class="w-full max-w-sm h-48 mx-auto">
+                        <!-- Segitiga ABD -->
+                        <polygon points="45,150 165,150 45,55" fill="#bae6fd" stroke="#1e293b" stroke-width="2.5"
+                            class="cursor-pointer" onclick="setSvgBadge(${qId}, 'ΔABD siku-siku di A: AB = 12 cm, AD = 9 cm. Cari sisi miring BD terlebih dahulu!')"/>
+                        <rect x="45" y="135" width="15" height="15" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <!-- Segitiga BCD siku-siku di B -->
+                        <polygon points="165,150 245,85 45,55" fill="#fde68a" fill-opacity="0.7" stroke="#1e293b" stroke-width="2.5"
+                            class="cursor-pointer" onclick="setSvgBadge(${qId}, 'ΔBCD siku-siku di B (∠DBC = 90°). Sisi miringnya adalah CD = 17 cm!')"/>
+                        <text x="28" y="162" font-family="Fredoka" font-weight="bold" font-size="14">A</text>
+                        <text x="165" y="168" font-family="Fredoka" font-weight="bold" font-size="14">B (90° ke C)</text>
+                        <text x="255" y="88" font-family="Fredoka" font-weight="bold" font-size="14">C</text>
+                        <text x="28" y="50" font-family="Fredoka" font-weight="bold" font-size="14">D</text>
+                        <text x="10" y="108" font-family="Fredoka" font-weight="bold" font-size="13" fill="#0369a1">9 cm</text>
+                        <text x="95" y="166" font-family="Fredoka" font-weight="bold" font-size="13" fill="#0369a1">12 cm</text>
+                        <text x="135" y="52" font-family="Fredoka" font-weight="bold" font-size="13" fill="#b45309">CD = 17 cm</text>
+                        <text x="212" y="128" font-family="Fredoka" font-weight="bold" font-size="14" fill="#be123c">BC = ?</text>
+                    </svg>`;
+                    break;
+
+                case "strategy_eval_hots":
+                    svgBody = `
+                    <svg viewBox="0 0 290 160" class="w-full max-w-sm h-40 mx-auto">
+                        <polygon points="45,135 235,135 45,35" fill="#f3e8ff" stroke="#1e293b" stroke-width="3"/>
+                        <rect x="45" y="119" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <text x="12" y="90" font-family="Fredoka" font-weight="bold" font-size="14" fill="#be123c">p = ?</text>
+                        <text x="115" y="152" font-family="Fredoka" font-weight="bold" font-size="14" fill="#1e293b">b = 24 cm</text>
+                        <text x="135" y="75" font-family="Fredoka" font-weight="bold" font-size="14" fill="#6b21a8" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'c² - b² = 25² - 24² = (25+24)(25-24)')">c = 25 cm</text>
+                    </svg>`;
+                    break;
+
+                case "drone_hots":
+                    svgBody = `
+                    <svg viewBox="0 0 320 180" class="w-full max-w-md h-44 mx-auto">
+                        <!-- Tanah -->
+                        <line x1="30" y1="145" x2="295" y2="145" stroke="#1e293b" stroke-width="3"/>
+                        <!-- Tinggi Drone -->
+                        <line x1="60" y1="35" x2="60" y2="145" stroke="#0284c7" stroke-width="3" stroke-dasharray="4"/>
+                        <rect x="60" y="131" width="14" height="14" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <!-- Garis Pandang Pos A & Pos B -->
+                        <line x1="60" y1="35" x2="145" y2="145" stroke="#16a34a" stroke-width="3" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Segitiga siku-siku D-P-A: tinggi 120 m, sisi miring 130 m')"/>
+                        <line x1="60" y1="35" x2="265" y2="145" stroke="#e11d48" stroke-width="3" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Segitiga siku-siku D-P-B: tinggi 120 m, sisi miring 200 m')"/>
+                        <circle cx="60" cy="35" r="7" fill="#f59e0b" stroke="#1e293b" stroke-width="2"/>
+                        <text x="45" y="22" font-family="Fredoka" font-weight="bold" font-size="13">Drone</text>
+                        <text x="12" y="95" font-family="Fredoka" font-weight="bold" font-size="12" fill="#0284c7">120 m</text>
+                        <text x="82" y="102" font-family="Fredoka" font-weight="bold" font-size="12" fill="#15803d">130 m</text>
+                        <text x="175" y="82" font-family="Fredoka" font-weight="bold" font-size="12" fill="#be123c">200 m</text>
+                        <text x="52" y="164" font-family="Fredoka" font-weight="bold" font-size="13">P</text>
+                        <text x="135" y="164" font-family="Fredoka" font-weight="bold" font-size="13">Pos A</text>
+                        <text x="250" y="164" font-family="Fredoka" font-weight="bold" font-size="13">Pos B</text>
+                    </svg>`;
+                    break;
+
+                case "essay_tower_wire":
+                    svgBody = `
+                    <svg viewBox="0 0 290 180" class="w-full max-w-xs h-44 mx-auto">
+                        <line x1="30" y1="150" x2="260" y2="150" stroke="#334155" stroke-width="3"/>
+                        <line x1="80" y1="30" x2="80" y2="150" stroke="#0284c7" stroke-width="6"/>
+                        <rect x="80" y="134" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <line x1="80" y1="30" x2="195" y2="150" stroke="#e11d48" stroke-width="3.5" stroke-dasharray="5,3"
+                            class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Kawat Baja = Sisi miring dari tinggi 12 m dan jarak patok 9 m')"/>
+                        <circle cx="80" cy="30" r="6" fill="#fef08a" stroke="#1e293b" stroke-width="2"/>
+                        <text x="18" y="95" font-family="Fredoka" font-weight="bold" font-size="13" fill="#0369a1">12 m</text>
+                        <text x="120" y="168" font-family="Fredoka" font-weight="bold" font-size="13" fill="#15803d">9 m</text>
+                        <text x="145" y="85" font-family="Fredoka" font-weight="bold" font-size="13" fill="#be123c">Kawat = ?</text>
+                    </svg>`;
+                    break;
+
+                case "essay_trapezoid":
+                    svgBody = `
+                    <svg viewBox="0 0 310 180" class="w-full max-w-sm h-44 mx-auto">
+                        <polygon points="45,145 255,145 185,40 45,40" fill="#dcfce7" stroke="#1e293b" stroke-width="3"/>
+                        <line x1="185" y1="40" x2="185" y2="145" stroke="#e11d48" stroke-width="2.5" stroke-dasharray="5,4"
+                            class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Garis tinggi proyeksi C ke AB = 15 m, sisa alas = 22 - 14 = 8 m!')"/>
+                        <rect x="45" y="130" width="15" height="15" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <rect x="185" y="130" width="15" height="15" fill="none" stroke="#e11d48" stroke-width="2"/>
+                        <text x="28" y="155" font-family="Fredoka" font-weight="bold" font-size="13">A</text>
+                        <text x="262" y="155" font-family="Fredoka" font-weight="bold" font-size="13">B</text>
+                        <text x="185" y="30" font-family="Fredoka" font-weight="bold" font-size="13">C</text>
+                        <text x="28" y="35" font-family="Fredoka" font-weight="bold" font-size="13">D</text>
+                        <text x="95" y="32" font-family="Fredoka" font-weight="bold" font-size="13" fill="#0369a1">DC = 14 m</text>
+                        <text x="105" y="165" font-family="Fredoka" font-weight="bold" font-size="13" fill="#0369a1">AB = 22 m</text>
+                        <text x="8" y="98" font-family="Fredoka" font-weight="bold" font-size="13" fill="#15803d">15 m</text>
+                        <text x="225" y="92" font-family="Fredoka" font-weight="bold" font-size="13" fill="#be123c">BC=?</text>
+                    </svg>`;
+                    break;
+
+                case "essay_river_hots":
+                    svgBody = `
+                    <svg viewBox="0 0 320 185" class="w-full max-w-md h-48 mx-auto">
+                        <!-- Sungai -->
+                        <rect x="20" y="45" width="280" height="90" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
+                        <!-- Jalur Tegak Lurus & Darat (Opsi 2) -->
+                        <line x1="65" y1="45" x2="65" y2="135" stroke="#16a34a" stroke-width="4" stroke-dasharray="5,3"
+                            class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Opsi 2 Air (AP): 12 m × Rp50.000/m')"/>
+                        <line x1="65" y1="135" x2="235" y2="135" stroke="#d97706" stroke-width="5"
+                            class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Opsi 2 Darat (PB): 16 m × Rp30.000/m')"/>
+                        <!-- Jalur Diagonal (Opsi 1) -->
+                        <line x1="65" y1="45" x2="235" y2="135" stroke="#e11d48" stroke-width="4"
+                            class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Opsi 1 Diagonal (AB): √(12² + 16²) m × Rp50.000/m')"/>
+                        <rect x="65" y="121" width="14" height="14" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <circle cx="65" cy="45" r="6" fill="#be123c"/><text x="45" y="35" font-family="Fredoka" font-weight="bold" font-size="13">Pos A (Utara)</text>
+                        <circle cx="65" cy="135" r="5" fill="#1e293b"/><text x="48" y="158" font-family="Fredoka" font-weight="bold" font-size="13">P</text>
+                        <circle cx="235" cy="135" r="6" fill="#15803d"/><text x="205" y="158" font-family="Fredoka" font-weight="bold" font-size="13">Pos B (Selatan)</text>
+                        <text x="22" y="98" font-family="Fredoka" font-weight="bold" font-size="12" fill="#0369a1">12 m</text>
+                        <text x="135" y="155" font-family="Fredoka" font-weight="bold" font-size="12" fill="#b45309">16 m</text>
+                    </svg>`;
+                    break;
+
+                default:
+                    svgBody = `
+                    <svg viewBox="0 0 280 155" class="w-full max-w-xs h-36 mx-auto">
+                        <polygon points="50,130 210,130 50,30" fill="#e0e7ff" stroke="#1e293b" stroke-width="3"/>
+                        <rect x="50" y="114" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <text x="22" y="85" font-family="Fredoka" font-weight="bold" font-size="14" fill="#0369a1">sisi a</text>
+                        <text x="115" y="148" font-family="Fredoka" font-weight="bold" font-size="14" fill="#15803d">sisi b</text>
+                        <text x="130" y="72" font-family="Fredoka" font-weight="bold" font-size="14" fill="#be123c" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Rumus Teorema Pythagoras: a² + b² = c²')">miring c</text>
+                    </svg>`;
+                    break;
+            }
+
+            return wrapperStart + svgBody + wrapperEnd;
+        }
+
+        function setSvgBadge(qId, message) {
+            const el = document.getElementById(`svgInfoBadge_${qId}`);
+            if (el) {
+                el.textContent = message;
+                el.classList.remove("bg-yellow-200");
+                el.classList.add("bg-sky-200");
+            }
+        }
+
+        /********************************************************************
+         * 8. RENDER SOAL & INPUT JAWABAN (PG, MENCOCOKKAN, KOMPLEKS, ESAI)
+         ********************************************************************/
+        function formatMathStringToHTML(str) {
+            if (!str) return "";
+            // Mengubah notasi $...$ sederhana menjadi tampilan matematika yang rapi dan mudah dibaca siswa
+            return str.replace(/\$([^$]+)\$/g, (match, expr) => {
+                let formatted = expr
+                    .replace(/\\sqrt\{([^}]+)\}/g, '√($1)')
+                    .replace(/\\text\{([^}]+)\}/g, '$1')
+                    .replace(/\\triangle/g, '△')
+                    .replace(/\\angle/g, '∠')
+                    .replace(/\\circ/g, '°')
+                    .replace(/\\times/g, '×')
+                    .replace(/\\parallel/g, '∥')
+                    .replace(/\\neq/g, '≠')
+                    .replace(/\\approx/g, '≈')
+                    .replace(/\^2/g, '²')
+                    .replace(/\^3/g, '³')
+                    .replace(/\\;/g, ' ');
+                return `<span class="font-extrabold text-blue-900 bg-sky-100/80 px-1.5 py-0.5 rounded border border-sky-300 inline-block">${formatted}</span>`;
+            });
+        }
+
+        function renderQuestionByIndex(index) {
+            if (index < 0 || index >= EXAM_QUESTIONS.length) return;
+            appState.currentQuestionIndex = index;
+            saveStateToStorage();
+
+            const q = EXAM_QUESTIONS[index];
+            document.getElementById("qNumberBadge").textContent = `Soal #${q.numberLabel}`;
+
+            const typeLabels = {
+                mcq: "Pilihan Ganda (1 Jawaban Benar)",
+                matching: "Mencocokkan Pasangan",
+                complex: "Pilihan Kompleks (Lebih dari 1 Benar)",
+                essay_branched: "Esai Beranak & Editor Matematika",
+                essay_single: "Esai Uraian & Editor Matematika"
+            };
+            document.getElementById("qTypeBadge").textContent = typeLabels[q.type] || "Soal Matematika";
+
+            // Update tombol ragu-ragu
+            const isDoubt = !!appState.doubtFlags[q.id];
+            const doubtBtn = document.getElementById("btnDoubtToggle");
+            const doubtText = document.getElementById("doubtBtnText");
+            if (isDoubt) {
+                doubtBtn.classList.replace("bg-slate-100", "bg-amber-300");
+                doubtText.textContent = "Ditandai Ragu-ragu";
+            } else {
+                doubtBtn.classList.replace("bg-amber-300", "bg-slate-100");
+                doubtText.textContent = "Tandai Ragu-ragu";
+            }
+
+            // Render Teks Pertanyaan (TANPA menampilkan label HOTS ke siswa)
+            document.getElementById("questionPromptContainer").innerHTML = `<p>${formatMathStringToHTML(q.prompt)}</p>`;
+
+            // Render Ilustrasi SVG Interaktif
+            document.getElementById("interactiveDiagramContainer").innerHTML = generateInteractiveSVG(q.diagramType, q.id);
+
+            // Render Input Jawaban sesuai tipe
+            const container = document.getElementById("answerInputContainer");
+            container.innerHTML = "";
+
+            if (q.type === "mcq") {
+                renderMCQOptions(q, container);
+            } else if (q.type === "matching") {
+                renderMatchingInput(q, container);
+            } else if (q.type === "complex") {
+                renderComplexInput(q, container);
+            } else if (q.type === "essay_branched" || q.type === "essay_single") {
+                renderEssayWithMathToolbar(q, container);
+            }
+
+            // Tombol Navigasi Prev/Next
+            document.getElementById("btnPrevQuestion").disabled = (index === 0);
+            const nextBtn = document.getElementById("btnNextQuestion");
+            if (index === EXAM_QUESTIONS.length - 1) {
+                nextBtn.innerHTML = `<span>Selesai & Periksa</span> <i class="ph-bold ph-check-circle"></i>`;
+                nextBtn.onclick = () => openSubmitConfirmation();
+            } else {
+                nextBtn.innerHTML = `<span>Soal Selanjutnya</span> <i class="ph-bold ph-arrow-right"></i>`;
+                nextBtn.onclick = () => navigateQuestion(1);
+            }
+
+            document.getElementById("questionProgressLabel").textContent = `Soal ${index + 1} dari ${EXAM_QUESTIONS.length}`;
+            renderNavigationGrid();
+        }
+
+        // A1. Render Pilihan Ganda
+        function renderMCQOptions(q, container) {
+            const currentAns = appState.answers[q.id] || "";
+            const list = document.createElement("div");
+            list.className = "grid sm:grid-cols-2 gap-3";
+
+            q.options.forEach(opt => {
+                const selected = currentAns === opt.id;
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = `doodle-btn p-4 text-left flex items-center gap-3 ${selected ? 'bg-yellow-300 ring-2 ring-slate-900' : 'bg-white hover:bg-sky-50'}`;
+                btn.onclick = () => {
+                    appState.answers[q.id] = opt.id;
+                    saveStateToStorage();
+                    renderQuestionByIndex(appState.currentQuestionIndex);
+                };
+                btn.innerHTML = `
+                    <span class="w-9 h-9 rounded-xl border-2 border-slate-800 flex items-center justify-center font-doodle font-bold text-base flex-shrink-0 ${selected ? 'bg-slate-900 text-yellow-300' : 'bg-slate-100 text-slate-800'}">
+                        ${opt.id}
+                    </span>
+                    <span class="font-body font-bold text-sm md:text-base text-slate-800">${formatMathStringToHTML(opt.text)}</span>
+                `;
+                list.appendChild(btn);
+            });
+            container.appendChild(list);
+        }
+
+        // A2. Render Mencocokkan (Responsif di Laptop & HP)
+        function renderMatchingInput(q, container) {
+            const savedPairs = appState.answers[q.id] || {};
+            const box = document.createElement("div");
+            box.className = "space-y-3";
+
+            q.leftItems.forEach((item, idx) => {
+                const currentVal = savedPairs[item.id] || "";
+                const row = document.createElement("div");
+                row.className = "doodle-card-sm p-4 bg-white flex flex-col md:flex-row md:items-center justify-between gap-3";
+
+                const optionsHtml = q.rightOptions.map(ro =>
+                    `<option value="${ro.value}" ${currentVal === ro.value ? 'selected' : ''}>${ro.label}</option>`
+                ).join("");
+
+                row.innerHTML = `
+                    <div class="flex items-start gap-2.5 md:w-2/3">
+                        <span class="w-7 h-7 rounded-lg bg-purple-200 border border-slate-800 font-doodle font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">${idx + 1}</span>
+                        <p class="text-sm font-bold text-slate-800">${formatMathStringToHTML(item.text)}</p>
+                    </div>
+                    <div class="md:w-1/3">
+                        <select onchange="handleMatchingChange(${q.id}, '${item.id}', this.value)" class="doodle-input w-full text-sm font-bold bg-amber-50">
+                            <option value="">-- Pilih Pasangan --</option>
+                            ${optionsHtml}
+                        </select>
+                    </div>
+                `;
+                box.appendChild(row);
+            });
+            container.appendChild(box);
+        }
+
+        function handleMatchingChange(qId, leftId, value) {
+            if (!appState.answers[qId] || typeof appState.answers[qId] !== "object") {
+                appState.answers[qId] = {};
+            }
+            if (value) {
+                appState.answers[qId][leftId] = value;
+            } else {
+                delete appState.answers[qId][leftId];
+            }
+            saveStateToStorage();
+            renderNavigationGrid();
+        }
+
+        // A3. Render Pilihan Lebih dari Satu (Kompleks)
+        function renderComplexInput(q, container) {
+            const selectedArr = Array.isArray(appState.answers[q.id]) ? appState.answers[q.id] : [];
+            const info = document.createElement("div");
+            info.className = "p-3 rounded-xl bg-purple-100 border-2 border-slate-800 text-xs font-bold text-purple-950 flex items-center gap-2";
+            info.innerHTML = `<i class="ph-fill ph-checks text-lg"></i> <span>Petunjuk: Lebih dari satu jawaban mungkin benar. Klik kotak untuk memilih beberapa opsi sekaligus!</span>`;
+            container.appendChild(info);
+
+            const list = document.createElement("div");
+            list.className = "space-y-2.5";
+
+            q.options.forEach(opt => {
+                const isChecked = selectedArr.includes(opt.id);
+                const item = document.createElement("button");
+                item.type = "button";
+                item.className = `doodle-btn w-full p-3.5 text-left flex items-center gap-3 ${isChecked ? 'bg-emerald-200 ring-2 ring-slate-900' : 'bg-white hover:bg-slate-50'}`;
+                item.onclick = () => {
+                    let next = [...selectedArr];
+                    if (next.includes(opt.id)) {
+                        next = next.filter(x => x !== opt.id);
+                    } else {
+                        next.push(opt.id);
+                    }
+                    appState.answers[q.id] = next.sort();
+                    saveStateToStorage();
+                    renderQuestionByIndex(appState.currentQuestionIndex);
+                };
+                item.innerHTML = `
+                    <span class="w-8 h-8 rounded-lg border-2 border-slate-800 flex items-center justify-center flex-shrink-0 ${isChecked ? 'bg-slate-900 text-emerald-300' : 'bg-white'}">
+                        <i class="ph-bold ${isChecked ? 'ph-check-square' : 'ph-square'} text-lg"></i>
+                    </span>
+                    <span class="font-body font-bold text-sm md:text-base text-slate-800"><strong>(${opt.id})</strong> ${formatMathStringToHTML(opt.text)}</span>
+                `;
+                list.appendChild(item);
+            });
+            container.appendChild(list);
+        }
+
+        /********************************************************************
+         * 9. EDITOR MATEMATIKA VISUAL (MATHLIVE) & SHORTCUT SIMBOL LENGKAP
+         ********************************************************************/
+        function renderEssayWithMathToolbar(q, container) {
+            if (!appState.answers[q.id] || typeof appState.answers[q.id] !== "object") {
+                appState.answers[q.id] = {};
+            }
+
+            // Toolbar Shortcut Simbol Matematika Interaktif
+            const toolbar = document.createElement("div");
+            toolbar.className = "doodle-card-sm bg-amber-50 p-3 space-y-2 sticky top-16 z-20";
+            toolbar.innerHTML = `
+                <div class="flex items-center justify-between text-xs font-extrabold text-slate-700">
+                    <span class="flex items-center gap-1"><i class="ph-fill ph-math-operations text-purple-700 text-base"></i> Toolbar Rumus & Shortcut Simbol Matematika:</span>
+                    <span class="text-[11px] text-slate-500">Klik tombol untuk menyisipkan ke kotak rumus aktif</span>
+                </div>
+                <div class="flex flex-wrap gap-1.5">
+                    <button type="button" onclick="insertMathLatex('\\sqrt{#0}')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs" title="Akar Kuadrat">√□</button>
+                    <button type="button" onclick="insertMathLatex('\\sqrt[3]{#0}')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs" title="Akar Pangkat Tiga">∛□</button>
+                    <button type="button" onclick="insertMathLatex('#0^{2}')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs" title="Pangkat Dua">x²</button>
+                    <button type="button" onclick="insertMathLatex('#0^{3}')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs" title="Pangkat Tiga">x³</button>
+                    <button type="button" onclick="insertMathLatex('\\frac{#0}{#?}')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs" title="Pecahan">a/b</button>
+                    <button type="button" onclick="insertMathLatex('a^2 + b^2 = c^2')" class="doodle-btn bg-sky-100 hover:bg-sky-200 px-2.5 py-1 text-xs" title="Rumus Pythagoras">a²+b²=c²</button>
+                    <button type="button" onclick="insertMathLatex('\\times')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">×</button>
+                    <button type="button" onclick="insertMathLatex('\\div')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">÷</button>
+                    <button type="button" onclick="insertMathLatex('+')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">+</button>
+                    <button type="button" onclick="insertMathLatex('-')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">−</button>
+                    <button type="button" onclick="insertMathLatex('\\pm')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">±</button>
+                    <button type="button" onclick="insertMathLatex('=')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">=</button>
+                    <button type="button" onclick="insertMathLatex('\\neq')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">≠</button>
+                    <button type="button" onclick="insertMathLatex('<')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">&lt;</button>
+                    <button type="button" onclick="insertMathLatex('>')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">&gt;</button>
+                    <button type="button" onclick="insertMathLatex('\\le')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">≤</button>
+                    <button type="button" onclick="insertMathLatex('\\ge')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">≥</button>
+                    <button type="button" onclick="insertMathLatex('(#0)')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">( )</button>
+                    <button type="button" onclick="insertMathLatex('\\pi')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">π</button>
+                    <button type="button" onclick="insertMathLatex('^\\circ')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">°</button>
+                    <button type="button" onclick="insertMathLatex('#0_{1}')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs" title="Subskrip">x₁</button>
+                    <button type="button" onclick="mathFieldCommand('undo')" class="doodle-btn bg-purple-100 hover:bg-purple-200 px-2.5 py-1 text-xs" title="Undo"><i class="ph-bold ph-arrow-u-up-left"></i> Undo</button>
+                    <button type="button" onclick="mathFieldCommand('deleteBackward')" class="doodle-btn bg-rose-100 hover:bg-rose-200 px-2.5 py-1 text-xs" title="Hapus"><i class="ph-bold ph-backspace"></i> Hapus</button>
+                </div>
+            `;
+            container.appendChild(toolbar);
+
+            const subList = q.type === "essay_branched"
+                ? q.subQuestions
+                : [{ subId: `single_${q.id}`, label: `Jawaban Esai #${q.numberLabel}`, points: q.points, prompt: "Tuliskan rumus, langkah perhitungan, dan kesimpulan jawabanmu di bawah ini:" }];
+
+            subList.forEach((sub, idx) => {
+                const subSaved = appState.answers[q.id][sub.subId] || { latex: "", text: "" };
+                const mfDomId = `mathfield_${q.id}_${sub.subId}`;
+                const taDomId = `textarea_${q.id}_${sub.subId}`;
+
+                const card = document.createElement("div");
+                card.className = "doodle-card-sm p-4 bg-white space-y-3";
+                card.innerHTML = `
+                    <div class="flex items-center justify-between border-b border-dashed border-slate-200 pb-2">
+                        <span class="px-2.5 py-0.5 rounded-lg bg-purple-200 border border-slate-800 font-doodle font-bold text-xs md:text-sm">
+                            Subsoal ${sub.label}
+                        </span>
+                        <span class="text-[11px] font-bold text-slate-500">Bobot: ${sub.points} Poin</span>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800">${formatMathStringToHTML(sub.prompt)}</p>
+
+                    <div class="space-y-1.5">
+                        <label class="block text-xs font-extrabold text-blue-800">
+                            1. Baris Rumus / Perhitungan Matematika Visual (Klik tombol √□, x² di atas):
+                        </label>
+                        <math-field id="${mfDomId}" virtual-keyboard-mode="onfocus">${subSaved.latex || ""}</math-field>
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <label class="block text-xs font-extrabold text-slate-700">
+                            2. Penjelasan Langkah & Kesimpulan Jawaban (Dapat diperbesar):
+                        </label>
+                        <textarea id="${taDomId}" rows="3" placeholder="Ketik langkah penyelesaian, satuan (cm/m/km), atau kesimpulan jawabanmu di sini..."
+                            class="doodle-input w-full text-sm font-semibold resize-y">${subSaved.text || ""}</textarea>
+                    </div>
+                `;
+                container.appendChild(card);
+
+                // Pasang event listener untuk MathLive & Textarea Fallback
+                setTimeout(() => {
+                    const mf = document.getElementById(mfDomId);
+                    const ta = document.getElementById(taDomId);
+
+                    if (mf) {
+                        if (idx === 0) appState.activeMathFieldId = mfDomId;
+                        mf.addEventListener("focus", () => {
+                            appState.activeMathFieldId = mfDomId;
+                        });
+                        mf.addEventListener("input", () => {
+                            saveEssaySubAnswer(q.id, sub.subId, mf.value, ta ? ta.value : "");
+                        });
+                    }
+                    if (ta) {
+                        ta.addEventListener("focus", () => {
+                            appState.activeMathFieldId = taDomId;
+                        });
+                        ta.addEventListener("input", () => {
+                            saveEssaySubAnswer(q.id, sub.subId, mf ? mf.value : "", ta.value);
+                        });
+                    }
+                }, 40);
+            });
+        }
+
+        function saveEssaySubAnswer(qId, subId, latexVal, textVal) {
+            if (!appState.answers[qId] || typeof appState.answers[qId] !== "object") {
+                appState.answers[qId] = {};
+            }
+            appState.answers[qId][subId] = {
+                latex: latexVal || "",
+                text: textVal || ""
+            };
+            saveStateToStorage();
+            renderNavigationGrid();
+        }
+
+        function insertMathLatex(latexSnippet) {
+            const activeId = appState.activeMathFieldId;
+            if (!activeId) return;
+            const el = document.getElementById(activeId);
+            if (!el) return;
+
+            if (el.tagName.toLowerCase() === "math-field" && typeof el.executeCommand === "function") {
+                el.focus();
+                el.executeCommand(["insert", latexSnippet]);
+            } else if (el.tagName.toLowerCase() === "textarea") {
+                // Fallback jika siswa sedang fokus di textarea biasa
+                const clean = latexSnippet
+                    .replace(/\\sqrt\[3\]\{#0\}/g, '∛()')
+                    .replace(/\\sqrt\{#0\}/g, '√()')
+                    .replace(/#0\^\{2\}/g, '²')
+                    .replace(/#0\^\{3\}/g, '³')
+                    .replace(/\\frac\{#0\}\{#\?\}/g, '(/)')
+                    .replace(/\\times/g, '×')
+                    .replace(/\\div/g, '÷')
+                    .replace(/\\pm/g, '±')
+                    .replace(/\\neq/g, '≠')
+                    .replace(/\\le/g, '≤')
+                    .replace(/\\ge/g, '≥')
+                    .replace(/\\pi/g, 'π')
+                    .replace(/\^\\circ/g, '°')
+                    .replace(/#0_\{1\}/g, '₁')
+                    .replace(/#0/g, '');
+                const start = el.selectionStart || 0;
+                const end = el.selectionEnd || 0;
+                el.value = el.value.substring(0, start) + clean + el.value.substring(end);
+                el.focus();
+                el.dispatchEvent(new Event("input"));
+            }
+        }
+
+        function mathFieldCommand(cmd) {
+            const activeId = appState.activeMathFieldId;
+            if (!activeId) return;
+            const el = document.getElementById(activeId);
+            if (!el) return;
+
+            if (el.tagName.toLowerCase() === "math-field" && typeof el.executeCommand === "function") {
+                el.focus();
+                el.executeCommand(cmd);
+            } else if (el.tagName.toLowerCase() === "textarea" && cmd === "deleteBackward") {
+                el.value = el.value.slice(0, -1);
+                el.dispatchEvent(new Event("input"));
+            }
+        }
+
+        /********************************************************************
+         * 10. NAVIGASI SOAL & CEK STATUS TERJAWAB
+         ********************************************************************/
+        function isQuestionAnswered(q) {
+            const ans = appState.answers[q.id];
+            if (!ans) return false;
+            if (q.type === "mcq") return typeof ans === "string" && ans.length > 0;
+            if (q.type === "matching") {
+                return typeof ans === "object" && Object.keys(ans).length === q.leftItems.length;
+            }
+            if (q.type === "complex") {
+                return Array.isArray(ans) && ans.length > 0;
+            }
+            if (q.type === "essay_branched") {
+                return q.subQuestions.every(sq => {
+                    const item = ans[sq.subId];
+                    return item && ((item.latex && item.latex.trim() !== "") || (item.text && item.text.trim() !== ""));
+                });
+            }
+            if (q.type === "essay_single") {
+                const item = ans[`single_${q.id}`];
+                return item && ((item.latex && item.latex.trim() !== "") || (item.text && item.text.trim() !== ""));
+            }
+            return false;
+        }
+
+        function renderNavigationGrid() {
+            const objGrid = document.getElementById("navGridObjective");
+            const essGrid = document.getElementById("navGridEssay");
+            if (!objGrid || !essGrid) return;
+
+            objGrid.innerHTML = "";
+            essGrid.innerHTML = "";
+
+            let answeredTotal = 0;
+
+            EXAM_QUESTIONS.forEach((q, idx) => {
+                const answered = isQuestionAnswered(q);
+                if (answered) answeredTotal++;
+                const isCurrent = idx === appState.currentQuestionIndex;
+                const isDoubt = !!appState.doubtFlags[q.id];
+
+                let colorClass = "bg-white text-slate-800 hover:bg-slate-100";
+                if (isDoubt) {
+                    colorClass = "bg-amber-300 text-slate-900";
+                } else if (answered) {
+                    colorClass = "bg-emerald-300 text-slate-900";
+                }
+                if (isCurrent) {
+                    colorClass += " ring-3 ring-sky-500 bg-sky-200";
+                }
+
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = `doodle-btn py-2 text-xs font-bold ${colorClass}`;
+                btn.textContent = q.id;
+                btn.onclick = () => renderQuestionByIndex(idx);
+
+                if (q.section === "Objektif") {
+                    objGrid.appendChild(btn);
+                } else {
+                    essGrid.appendChild(btn);
+                }
+            });
+
+            document.getElementById("answeredCountBadge").textContent = `${answeredTotal}/20 Terjawab`;
+        }
+
+        function navigateQuestion(delta) {
+            const nextIdx = appState.currentQuestionIndex + delta;
+            if (nextIdx >= 0 && nextIdx < EXAM_QUESTIONS.length) {
+                renderQuestionByIndex(nextIdx);
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+        }
+
+        function toggleDoubtCurrent() {
+            const q = EXAM_QUESTIONS[appState.currentQuestionIndex];
+            appState.doubtFlags[q.id] = !appState.doubtFlags[q.id];
+            saveStateToStorage();
+            renderQuestionByIndex(appState.currentQuestionIndex);
+        }
+
+        /********************************************************************
+         * 11. PENILAIAN OTOMATIS & PENGUMPULAN KE GOOGLE APPS SCRIPT
+         ********************************************************************/
+        function openSubmitConfirmation() {
+            let answeredCount = 0;
+            let doubtCount = 0;
+            EXAM_QUESTIONS.forEach(q => {
+                if (isQuestionAnswered(q)) answeredCount++;
+                if (appState.doubtFlags[q.id]) doubtCount++;
+            });
+            const unanswered = EXAM_QUESTIONS.length - answeredCount;
+
+            const box = document.getElementById("submitSummaryBox");
+            box.innerHTML = `
+                <div class="flex justify-between"><span>Soal Sudah Dijawab:</span> <span class="text-emerald-700">${answeredCount} dari 20 Soal</span></div>
+                <div class="flex justify-between"><span>Soal Belum Dijawab:</span> <span class="${unanswered > 0 ? 'text-red-600' : 'text-slate-600'}">${unanswered} Soal</span></div>
+                <div class="flex justify-between"><span>Ditandai Ragu-ragu:</span> <span class="text-amber-700">${doubtCount} Soal</span></div>
+            `;
+            document.getElementById("modalSubmitConfirm").classList.remove("hidden");
+        }
+
+        function closeSubmitConfirmation() {
+            document.getElementById("modalSubmitConfirm").classList.add("hidden");
+        }
+
+        function calculateExamScores() {
+            let mcqScore = 0;     // Maks 10 * 3 = 30
+            let matchScore = 0;   // Maks 2 * 6 = 12
+            let complexScore = 0; // Maks 3 * 6 = 18
+            let essayScore = 0;   // Maks 40
+
+            EXAM_QUESTIONS.forEach(q => {
+                const ans = appState.answers[q.id];
+                if (q.type === "mcq") {
+                    if (ans === q.correctKey) mcqScore += q.points;
+                } else if (q.type === "matching") {
+                    if (ans && typeof ans === "object") {
+                        Object.keys(q.correctPairs).forEach(leftKey => {
+                            if (ans[leftKey] === q.correctPairs[leftKey]) {
+                                matchScore += 2; // 2 poin per pasangan benar
+                            }
+                        });
+                    }
+                } else if (q.type === "complex") {
+                    // Aturan ketat sesuai instruksi: Nilai penuh jika seluruh pilihan benar dipilih dan tidak ada pilihan salah
+                    if (Array.isArray(ans)) {
+                        const sortedAns = [...ans].sort().join(",");
+                        const sortedKey = [...q.correctKeys].sort().join(",");
+                        if (sortedAns === sortedKey) {
+                            complexScore += q.points;
+                        }
+                    }
+                } else if (q.type === "essay_branched") {
+                    if (ans && typeof ans === "object") {
+                        q.subQuestions.forEach(sq => {
+                            const subAns = ans[sq.subId];
+                            if (subAns) {
+                                const combined = `${subAns.latex || ""} ${subAns.text || ""}`.toLowerCase();
+                                const matchedHits = sq.expectedKeywords.filter(kw => combined.includes(kw.toLowerCase()));
+                                if (matchedHits.length >= 2) {
+                                    essayScore += sq.points;
+                                } else if (combined.trim().length > 3) {
+                                    essayScore += Math.ceil(sq.points / 2);
+                                }
+                            }
+                        });
+                    }
+                } else if (q.type === "essay_single") {
+                    if (ans && ans[`single_${q.id}`]) {
+                        const subAns = ans[`single_${q.id}`];
+                        const combined = `${subAns.latex || ""} ${subAns.text || ""}`.toLowerCase();
+                        const matchedHits = q.expectedKeywords.filter(kw => combined.includes(kw.toLowerCase()));
+                        if (matchedHits.length >= 1) {
+                            essayScore += q.points;
+                        } else if (combined.trim().length > 5) {
+                            essayScore += Math.ceil(q.points / 2);
+                        }
+                    }
+                }
+            });
+
+            const objectiveTotal = mcqScore + matchScore + complexScore;
+            const grandTotal = objectiveTotal + essayScore;
+
+            return {
+                mcqScore,
+                matchScore,
+                complexScore,
+                objectiveTotal,
+                essayScore,
+                grandTotal
+            };
+        }
+
+        async function finalizeExamSubmission(isAutoSubmit = false) {
+            closeSubmitConfirmation();
+            if (timerInterval) clearInterval(timerInterval);
+
+            const scores = calculateExamScores();
+            const durationSeconds = appState.examStartTime
+                ? Math.min(EXAM_DURATION_SECONDS, Math.floor((Date.now() - appState.examStartTime) / 1000))
+                : 0;
+
+            appState.phase = "finished";
+            appState.finalScores = {
+                ...scores,
+                durationSeconds,
+                submittedAt: new Date().toLocaleString("id-ID")
+            };
+            saveStateToStorage();
+
+            const payload = {
+                student: appState.student,
+                durationSeconds,
+                scores,
+                quoteUsed: appState.selectedQuote ? `${appState.selectedQuote.quote} (${appState.selectedQuote.author})` : "-",
+                answers: appState.answers
+            };
+
+            // Kirim ke Google Apps Script (Native google.script.run atau Webhook URL)
+            const syncText = document.getElementById("resultSyncStatus");
+            if (typeof google !== "undefined" && google.script && google.script.run) {
+                google.script.run
+                    .withSuccessHandler(() => {
+                        if (syncText) syncText.textContent = "✅ Tersinkronisasi langsung ke Google Sheets melalui Google Apps Script!";
+                        showToast("Jawaban berhasil disimpan ke Google Sheets!", "success");
+                    })
+                    .withFailureHandler((err) => {
+                        if (syncText) syncText.textContent = "⚠️ Tersimpan di perangkat lokal (Gagal sinkron ke GAS: " + err + ")";
+                    })
+                    .simpanHasilUjianKeSheets(payload);
+            } else if (appState.gasWebhookUrl) {
+                try {
+                    await fetch(appState.gasWebhookUrl, {
+                        method: "POST",
+                        mode: "no-cors",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    });
+                    if (syncText) syncText.textContent = "✅ Data telah dikirim ke Google Sheets Web App URL!";
+                } catch (e) {
+                    if (syncText) syncText.textContent = "Data tersimpan aman di memori browser & siap diunduh.";
+                }
+            }
+
+            showResultScreen();
+        }
+
+        function showResultScreen() {
+            document.getElementById("viewLanding").classList.add("hidden");
+            document.getElementById("viewCountdown").classList.add("hidden");
+            document.getElementById("viewExam").classList.add("hidden");
+            document.getElementById("examHeaderControls").classList.add("hidden");
+            document.getElementById("viewResult").classList.remove("hidden");
+
+            const sc = appState.finalScores;
+            document.getElementById("resObjectiveScore").textContent = `${sc.objectiveTotal} / 60`;
+            document.getElementById("resObjectiveDetail").textContent = `PG: ${sc.mcqScore} | Pasangan: ${sc.matchScore} | Kompleks: ${sc.complexScore}`;
+            document.getElementById("resEssayScore").textContent = `${sc.essayScore} / 40`;
+            document.getElementById("resTotalScore").textContent = sc.grandTotal;
+
+            document.getElementById("resName").textContent = appState.student.name;
+            document.getElementById("resClassAbsent").textContent = `${appState.student.className} / No. ${appState.student.absent}`;
+            document.getElementById("resTimestamp").textContent = sc.submittedAt;
+            const m = Math.floor(sc.durationSeconds / 60);
+            const s = sc.durationSeconds % 60;
+            document.getElementById("resDuration").textContent = `${m} menit ${s} detik`;
+        }
+
+        function downloadStudentReceiptJSON() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState, null, 2));
+            const dlAnchor = document.createElement("a");
+            dlAnchor.setAttribute("href", dataStr);
+            dlAnchor.setAttribute("download", `Bukti_Ujian_${appState.student.name.replace(/\s+/g, '_')}.json`);
+            document.body.appendChild(dlAnchor);
+            dlAnchor.click();
+            dlAnchor.remove();
+        }
+
+        function resetExamForNewStudent() {
+            localStorage.removeItem(STORAGE_KEY);
+            window.location.reload();
+        }
+
+        /********************************************************************
+         * 12. PANEL GURU (KISI-KISI, KUNCI, RUBRIK & LABEL HOTS) & SETUP GAS
+         ********************************************************************/
+        function openTeacherModal() {
+            document.getElementById("modalTeacherAdmin").classList.remove("hidden");
+        }
+        function closeTeacherModal() {
+            document.getElementById("modalTeacherAdmin").classList.add("hidden");
+        }
+
+        function unlockTeacherPanel() {
+            const pin = document.getElementById("inputTeacherPin").value.trim().toUpperCase();
+            if (pin !== "GURU8") {
+                showToast("Kode akses guru salah! Gunakan kode: GURU8", "error");
+                return;
+            }
+            document.getElementById("teacherAuthBox").classList.add("hidden");
+            const content = document.getElementById("teacherContentBox");
+            content.classList.remove("hidden");
+
+            const tableContainer = document.getElementById("teacherQuestionsTable");
+            tableContainer.innerHTML = EXAM_QUESTIONS.map(q => {
+                let keyDisplay = "";
+                if (q.type === "mcq") keyDisplay = `Kunci Pilihan Ganda: <strong>${q.correctKey}</strong>`;
+                if (q.type === "matching") keyDisplay = `Pasangan Kunci: <code>${JSON.stringify(q.correctPairs)}</code>`;
+                if (q.type === "complex") keyDisplay = `Kunci Multi-Opsi: <strong>${q.correctKeys.join(", ")}</strong>`;
+                if (q.type === "essay_branched") {
+                    keyDisplay = q.subQuestions.map(sq => `<div>• <strong>${sq.label} (${sq.points} poin):</strong> ${formatMathStringToHTML('$' + sq.sampleKey + '$')}</div>`).join("");
+                }
+                if (q.type === "essay_single") {
+                    keyDisplay = `Rubrik / Kunci: ${formatMathStringToHTML('$' + q.sampleKey + '$')}`;
+                }
+
+                return `
+                <div class="doodle-card-sm p-3.5 bg-white space-y-1.5">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded bg-slate-900 text-white font-doodle font-bold text-xs">No. ${q.numberLabel}</span>
+                            <span class="px-2 py-0.5 rounded bg-sky-100 border border-slate-700 font-bold text-xs">${q.section} (${q.points} Poin)</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-100 border border-slate-400 font-bold text-xs">${q.difficulty}</span>
+                            ${q.isHOTS ? '<span class="px-2.5 py-0.5 rounded bg-rose-500 text-white font-extrabold text-xs">★ SOAL HOTS (Admin Only)</span>' : ''}
+                        </div>
+                    </div>
+                    <div class="text-xs text-slate-700">${formatMathStringToHTML(q.prompt)}</div>
+                    <div class="p-2 rounded bg-emerald-50 border border-emerald-200 text-xs text-emerald-950">${keyDisplay}</div>
+                    <div class="text-[11px] text-slate-500"><strong>Pembahasan:</strong> ${q.explanation}</div>
+                </div>`;
+            }).join("");
+        }
+
+        function openBackendModal() {
+            document.getElementById("modalBackendSetup").classList.remove("hidden");
+        }
+        function closeBackendModal() {
+            document.getElementById("modalBackendSetup").classList.add("hidden");
+        }
+
+        function saveGasWebhookUrl() {
+            const url = document.getElementById("inputGasWebhookUrl").value.trim();
+            appState.gasWebhookUrl = url;
+            saveStateToStorage();
+            showToast("URL Google Apps Script Web App berhasil disimpan!", "success");
+        }
+
+        function copyGasBackendCode() {
+            const codeText = document.getElementById("gasCodeBlock").innerText;
+            const tempTa = document.createElement("textarea");
+            tempTa.value = codeText;
+            document.body.appendChild(tempTa);
+            tempTa.select();
+            document.execCommand("copy");
+            tempTa.remove();
+
+            document.getElementById("copyGasBtnText").textContent = "Tersalin!";
+            showToast("Kode Code.gs berhasil disalin ke clipboard!", "success");
+            setTimeout(() => {
+                document.getElementById("copyGasBtnText").textContent = "Salin Code.gs";
+            }, 2000);
+        }
+
+        function renderMathNotationInDOM() {
+            // Helper inisialisasi awal
+        }
+
+        function showToast(msg, type = "success") {
+            const toast = document.getElementById("toastNotification");
+            const icon = document.getElementById("toastIcon");
+            const text = document.getElementById("toastMessage");
+            text.textContent = msg;
+
+            icon.className = type === "error"
+                ? "ph-fill ph-warning-octagon text-rose-400 text-lg"
+                : type === "warning"
+                ? "ph-fill ph-clock-countdown text-amber-400 text-lg"
+                : "ph-fill ph-check-circle text-emerald-400 text-lg";
+
+            toast.classList.remove("hidden");
+            setTimeout(() => {
+                toast.classList.add("hidden");
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
