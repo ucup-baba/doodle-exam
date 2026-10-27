@@ -1227,7 +1227,7 @@ function simpanHasilUjianKeSheets(data) {
                         subId: "16a",
                         label: "16a",
                         points: 4,
-                        prompt: "Gunakan Teorema Pythagoras untuk menentukan panjang minimum satu utas kawat baja dari puncak tiang sampai ke patok! Tuliskan rumus dan langkah perhitungannya.",
+                        prompt: "Gunakan Teorema Pythagoras untuk menentukan panjang minimum satu utas kawat baja dari puncak tiang sampai ke patok!",
                         expectedKeywords: ["15", "12^2", "9^2", "225", "144", "81"],
                         sampleKey: "c = \\sqrt{12^2 + 9^2} = \\sqrt{144 + 81} = \\sqrt{225} = 15\\text{ m}"
                     },
@@ -1243,7 +1243,7 @@ function simpanHasilUjianKeSheets(data) {
                         subId: "16c",
                         label: "16c",
                         points: 3,
-                        prompt: "Jika panitia sekolah telah membeli 1 gulung kawat baja sepanjang $70\\text{ m}$, jelaskan kesimpulanmu apakah kawat tersebut cukup dan berapa sisa atau kekurangannya!",
+                        prompt: "Jika panitia sekolah telah membeli 1 gulung kawat baja sepanjang $70\\text{ m}$, tentukan apakah kawat tersebut cukup, serta berapa sisa atau kekurangannya!",
                         expectedKeywords: ["cukup", "6", "sisa"],
                         sampleKey: "Kawat 70 m cukup, karena hanya dibutuhkan 64 m dan masih tersisa 70 - 64 = 6 m."
                     }
@@ -1288,7 +1288,7 @@ function simpanHasilUjianKeSheets(data) {
                 difficulty: "Mudah",
                 isHOTS: false,
                 points: 6,
-                prompt: "<strong>Soal Esai Konsep & Perhitungan:</strong> Sebuah segitiga siku-siku sama kaki memiliki panjang kedua sisi siku-sikunya masing-masing $10\\text{ cm}$. Tentukan panjang sisi miringnya! <em>(Catatan: Kamu boleh menuliskan jawaban akhir dalam bentuk akar sederhana seperti $10\\sqrt{2}\\text{ cm}$ maupun pendekatan desimal $14,14\\text{ cm}$ beserta langkah perhitungannya).</em>",
+                prompt: "<strong>Soal Esai Konsep & Perhitungan:</strong> Sebuah segitiga siku-siku sama kaki memiliki panjang kedua sisi siku-sikunya masing-masing $10\\text{ cm}$. Tentukan panjang sisi miringnya!",
                 diagramType: "essay_isosceles_right",
                 expectedKeywords: ["200", "10\\sqrt{2}", "14,14", "14.14", "100"],
                 sampleKey: "c = \\sqrt{10^2 + 10^2} = \\sqrt{100 + 100} = \\sqrt{200} = 10\\sqrt{2}\\text{ cm} \\approx 14,14\\text{ cm}.",
@@ -1302,7 +1302,7 @@ function simpanHasilUjianKeSheets(data) {
                 difficulty: "Sedang",
                 isHOTS: false,
                 points: 6,
-                prompt: "<strong>Soal Esai Pembuktian Jenis Segitiga:</strong> Seorang tukang kayu memotong tiga batang kayu dengan ukuran panjang $9\\text{ cm}$, $12\\text{ cm}$, dan $16\\text{ cm}$ untuk membuat bingkai siku-siku. Selidikilah menggunakan perhitungan kuadrat sisi-sisinya, apakah ketiga kayu tersebut benar-benar membentuk segitiga siku-siku? Jelaskan alasanmu!",
+                prompt: "<strong>Soal Esai Pembuktian Jenis Segitiga:</strong> Seorang tukang kayu memotong tiga batang kayu dengan ukuran panjang $9\\text{ cm}$, $12\\text{ cm}$, dan $16\\text{ cm}$ untuk membuat bingkai siku-siku. Selidikilah menggunakan perhitungan kuadrat sisi-sisinya, apakah ketiga kayu tersebut benar-benar membentuk segitiga siku-siku? Lengkapi isian berikut!",
                 diagramType: "essay_wood_check",
                 expectedKeywords: ["225", "256", "bukan", "tumpul", "tidak"],
                 sampleKey: "9^2 + 12^2 = 81 + 144 = 225, sedangkan sisi terpanjang 16^2 = 256. Karena 225 \\neq 256 (atau 9^2 + 12^2 < 16^2), maka BUKAN segitiga siku-siku melainkan segitiga tumpul.",
@@ -1316,13 +1316,111 @@ function simpanHasilUjianKeSheets(data) {
                 difficulty: "Sulit (HOTS)",
                 isHOTS: true, // HOTS Esai (Disembunyikan dari siswa)
                 points: 10,
-                prompt: "<strong>Soal Esai Pemecahan Masalah Kontekstual:</strong> Sebuah sungai lurus memiliki lebar $12\\text{ m}$. Pos Kemah $A$ berada tepat di tepi seberang utara sungai. Pos Logistik $B$ berada di tepi selatan sungai, berjarak $16\\text{ m}$ ke arah timur dari titik $P$ (titik tepat di seberang Pos $A$). Panitia pramuka memiliki dua opsi pemasangan kabel komunikasi dari Pos $A$ ke Pos $B$:<br>• <strong>Opsi 1:</strong> Menarik kabel lurus langsung menyeberangi sungai secara diagonal dari $A$ ke $B$ dengan biaya kabel tahan air Rp$50.000,00$ per meter.<br>• <strong>Opsi 2:</strong> Menarik kabel menyeberang tegak lurus dari $A$ ke $P$ ($12\\text{ m}$) dengan biaya Rp$50.000,00$/meter, lalu dilanjutkan kabel darat dari $P$ ke $B$ ($16\\text{ m}$) dengan biaya Rp$30.000,00$/meter.<br>Analisislah panjang kabel pada Opsi 1, hitung total biaya masing-masing opsi, dan tentukan opsi manakah yang paling hemat beserta selisih biayanya!",
+                prompt: "<strong>Soal Esai Pemecahan Masalah Kontekstual:</strong> Sebuah sungai lurus memiliki lebar $12\\text{ m}$. Pos Kemah $A$ berada tepat di tepi seberang utara sungai. Pos Logistik $B$ berada di tepi selatan sungai, berjarak $16\\text{ m}$ ke arah timur dari titik $P$ (titik tepat di seberang Pos $A$). Panitia pramuka memiliki dua opsi pemasangan kabel komunikasi dari Pos $A$ ke Pos $B$:<br>• <strong>Opsi 1:</strong> Menarik kabel lurus langsung menyeberangi sungai secara diagonal dari $A$ ke $B$ dengan biaya kabel tahan air Rp$50.000,00$ per meter.<br>• <strong>Opsi 2:</strong> Menarik kabel menyeberang tegak lurus dari $A$ ke $P$ ($12\\text{ m}$) dengan biaya Rp$50.000,00$/meter, lalu dilanjutkan kabel darat dari $P$ ke $B$ ($16\\text{ m}$) dengan biaya Rp$30.000,00$/meter.<br>Analisislah panjang kabel pada Opsi 1, hitung total biaya masing-masing opsi, dan tentukan opsi manakah yang paling hemat beserta selisih biayanya! Lengkapi isian berikut!",
                 diagramType: "essay_river_hots",
                 expectedKeywords: ["20", "1.000.000", "1000000", "1.080.000", "1080000", "80.000", "Opsi 1"],
                 sampleKey: "Panjang diagonal AB (Opsi 1) = \\sqrt{12^2 + 16^2} = \\sqrt{144 + 256} = \\sqrt{400} = 20\\text{ m}. Biaya Opsi 1 = 20 \\times 50.000 = \\text{Rp}1.000.000. Biaya Opsi 2 = (12 \\times 50.000) + (16 \\times 30.000) = 600.000 + 480.000 = \\text{Rp}1.080.000. Kesimpulan: Opsi 1 lebih hemat sebesar Rp80.000.",
                 explanation: "Jarak diagonal AB = 20 m -> Biaya Opsi 1 = Rp1.000.000. Biaya Opsi 2 = Rp600.000 + Rp480.000 = Rp1.080.000. Opsi 1 lebih hemat Rp80.000."
             }
         ];
+
+        /********************************************************************
+         * 2b. KUNCI ISIAN ESAI (ANGKA / BENTUK AKAR + SATUAN) — DICOCOKKAN OTOMATIS
+         ********************************************************************/
+        const UNIT_OPTIONS = ["mm", "cm", "m", "km", "mm²", "cm²", "m²", "km²", "mm³", "cm³", "m³", "inci", "Rp", "satuan"];
+
+        const ESSAY_FIELDS = {
+            "16a": [
+                { id: "f1", kind: "number", label: "Panjang satu utas kawat baja", value: 15, unit: "m", keyText: "15 m" }
+            ],
+            "16b": [
+                { id: "f1", kind: "number", label: "Total panjang kawat baja yang dibutuhkan", value: 64, unit: "m", keyText: "64 m" }
+            ],
+            "16c": [
+                { id: "f1", kind: "choice", label: "Kesimpulan", choices: ["Kawat cukup", "Kawat tidak cukup"], answer: "Kawat cukup" },
+                { id: "f2", kind: "number", label: "Sisa / kekurangan kawat", value: 6, unit: "m", keyText: "6 m" }
+            ],
+            "17a": [
+                { id: "f1", kind: "number", label: "Panjang sisi BC", value: 17, unit: "m", keyText: "17 m" }
+            ],
+            "17b": [
+                { id: "f1", kind: "number", label: "Keliling kebun ABCD", value: 68, unit: "m", keyText: "68 m" }
+            ],
+            "single_18": [
+                { id: "f1", kind: "number", label: "Panjang sisi miring", value: 10 * Math.SQRT2, unit: "cm", keyText: "10√2 cm (≈ 14,14 cm; √200 juga diterima)" }
+            ],
+            "single_19": [
+                { id: "f1", kind: "number", label: "9² + 12² =", value: 225, unit: "cm²", keyText: "225 cm²" },
+                { id: "f2", kind: "number", label: "16² =", value: 256, unit: "cm²", keyText: "256 cm²" },
+                { id: "f3", kind: "choice", label: "Kesimpulan jenis segitiga", choices: ["Segitiga siku-siku", "Segitiga lancip", "Segitiga tumpul"], answer: "Segitiga tumpul" }
+            ],
+            "single_20": [
+                { id: "f1", kind: "number", label: "Panjang kabel Opsi 1 (AB)", value: 20, unit: "m", keyText: "20 m" },
+                { id: "f2", kind: "number", label: "Total biaya Opsi 1", value: 1000000, unit: "Rp", keyText: "Rp1.000.000" },
+                { id: "f3", kind: "number", label: "Total biaya Opsi 2", value: 1080000, unit: "Rp", keyText: "Rp1.080.000" },
+                { id: "f4", kind: "choice", label: "Opsi yang paling hemat", choices: ["Opsi 1", "Opsi 2"], answer: "Opsi 1" },
+                { id: "f5", kind: "number", label: "Selisih biaya", value: 80000, unit: "Rp", keyText: "Rp80.000" }
+            ]
+        };
+
+        function getEssaySubList(q) {
+            return q.type === "essay_branched"
+                ? q.subQuestions
+                : [{ subId: `single_${q.id}`, label: `${q.numberLabel}`, points: q.points, prompt: "" }];
+        }
+
+        // Parsing angka format Indonesia: "1.000.000" (titik ribuan), "14,14" (koma desimal)
+        function parseIDNumber(str) {
+            if (str === undefined || str === null) return NaN;
+            let s = String(str).trim().replace(/\s+/g, "");
+            if (s === "") return NaN;
+            if (s.includes(",")) {
+                s = s.replace(/\./g, "").replace(",", ".");
+            } else if (/^\d{1,3}(\.\d{3})+$/.test(s)) {
+                s = s.replace(/\./g, "");
+            }
+            if (!/^-?\d*\.?\d+$/.test(s)) return NaN;
+            return parseFloat(s);
+        }
+
+        // Nilai isian: koefisien × √(bilangan dalam akar)
+        function evaluateNumberField(fa) {
+            if (!fa) return NaN;
+            const coefRaw = (fa.coef || "").trim();
+            if (fa.useRoot) {
+                const rad = parseIDNumber(fa.rad);
+                if (isNaN(rad) || rad < 0) return NaN;
+                const coef = coefRaw === "" ? 1 : parseIDNumber(coefRaw);
+                if (isNaN(coef)) return NaN;
+                return coef * Math.sqrt(rad);
+            }
+            return parseIDNumber(coefRaw);
+        }
+
+        function isFieldFilled(field, fa) {
+            if (!fa) return false;
+            if (field.kind === "choice") return !!fa.choice;
+            return !isNaN(evaluateNumberField(fa)) && !!fa.unit;
+        }
+
+        // Skor 1 = angka & satuan benar; 0,5 = angka benar tapi satuan salah; 0 = salah
+        function scoreField(field, fa) {
+            if (!fa) return 0;
+            if (field.kind === "choice") return fa.choice === field.answer ? 1 : 0;
+            const v = evaluateNumberField(fa);
+            if (isNaN(v)) return 0;
+            const tol = Math.max(0.01, Math.abs(field.value) * 0.001);
+            if (Math.abs(v - field.value) > tol) return 0;
+            return fa.unit === field.unit ? 1 : 0.5;
+        }
+
+        function formatFieldAnswer(field, fa) {
+            if (!fa) return "-";
+            if (field.kind === "choice") return fa.choice || "-";
+            const coef = (fa.coef || "").trim();
+            const num = fa.useRoot ? `${coef}√${(fa.rad || "").trim()}` : coef;
+            return `${num || "-"} ${fa.unit || ""}`.trim();
+        }
 
         /********************************************************************
          * 3. STATE MANAGEMENT & LOCAL STORAGE PERSISTENCE
@@ -1802,8 +1900,8 @@ function simpanHasilUjianKeSheets(data) {
                 mcq: "Pilihan Ganda (1 Jawaban Benar)",
                 matching: "Mencocokkan Pasangan",
                 complex: "Pilihan Kompleks (Lebih dari 1 Benar)",
-                essay_branched: "Esai Beranak (Tulis Jawaban)",
-                essay_single: "Esai (Tulis Jawaban)"
+                essay_branched: "Esai Beranak (Isian Jawaban)",
+                essay_single: "Esai (Isian Jawaban)"
             };
             document.getElementById("qTypeBadge").textContent = typeLabels[q.type] || "Soal Matematika";
 
@@ -1966,56 +2064,116 @@ function simpanHasilUjianKeSheets(data) {
         }
 
         /********************************************************************
-         * 9. INPUT JAWABAN ESAI (TEKS BIASA)
+         * 9. INPUT JAWABAN ESAI (ISIAN ANGKA / AKAR + PILIHAN SATUAN)
          ********************************************************************/
-        function renderEssayInput(q, container) {
-            if (!appState.answers[q.id] || typeof appState.answers[q.id] !== "object") {
-                appState.answers[q.id] = {};
-            }
-
-            const subList = q.type === "essay_branched"
-                ? q.subQuestions
-                : [{ subId: `single_${q.id}`, label: `${q.numberLabel}`, points: q.points, prompt: "" }];
-
-            subList.forEach(sub => {
-                const subSaved = appState.answers[q.id][sub.subId] || { latex: "", text: "" };
-                const taDomId = `textarea_${q.id}_${sub.subId}`;
-
-                const card = document.createElement("div");
-                card.className = "doodle-card-sm p-4 bg-white space-y-3";
-                card.innerHTML = `
-                    ${q.type === "essay_branched" ? `
-                    <div class="flex items-center justify-between border-b border-dashed border-slate-200 pb-2">
-                        <span class="px-2.5 py-0.5 rounded-lg bg-purple-200 border border-slate-800 font-doodle font-bold text-xs md:text-sm">
-                            Soal ${sub.label}
-                        </span>
-                        <span class="text-[11px] font-bold text-slate-500">Bobot: ${sub.points} Poin</span>
-                    </div>
-                    <p class="text-sm font-bold text-slate-800">${formatMathStringToHTML(sub.prompt)}</p>` : ""}
-                    <label for="${taDomId}" class="block text-xs font-extrabold text-slate-700">Jawaban:</label>
-                    <textarea id="${taDomId}" rows="6" placeholder="Tulis jawabanmu di sini..."
-                        class="doodle-input w-full text-sm font-semibold resize-y"></textarea>
-                `;
-                container.appendChild(card);
-
-                const ta = card.querySelector("textarea");
-                ta.value = subSaved.text || "";
-                ta.addEventListener("input", () => {
-                    saveEssaySubAnswer(q.id, sub.subId, ta.value);
-                });
-            });
+        function getFieldAnswer(qId, subId, fieldId) {
+            const qa = appState.answers[qId];
+            if (!qa || typeof qa !== "object") return {};
+            const sa = qa[subId];
+            if (!sa || !sa.fields) return {};
+            return sa.fields[fieldId] || {};
         }
 
-        function saveEssaySubAnswer(qId, subId, textVal) {
-            if (!appState.answers[qId] || typeof appState.answers[qId] !== "object") {
-                appState.answers[qId] = {};
-            }
-            appState.answers[qId][subId] = {
-                latex: "",
-                text: textVal || ""
-            };
+        function setFieldAnswer(qId, subId, fieldId, patch) {
+            if (!appState.answers[qId] || typeof appState.answers[qId] !== "object") appState.answers[qId] = {};
+            const qa = appState.answers[qId];
+            if (!qa[subId] || !qa[subId].fields) qa[subId] = { fields: {} };
+            qa[subId].fields[fieldId] = { ...(qa[subId].fields[fieldId] || {}), ...patch };
             saveStateToStorage();
             renderNavigationGrid();
+        }
+
+        function escapeAttr(s) {
+            return String(s || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+        }
+
+        function renderEssayInput(q, container) {
+            const help = document.createElement("div");
+            help.className = "p-3 rounded-xl bg-amber-50 border-2 border-slate-800 text-xs font-bold text-slate-700 space-y-1";
+            help.innerHTML = `
+                <div class="flex items-center gap-1.5"><i class="ph-fill ph-info text-base text-amber-600"></i> Petunjuk pengisian:</div>
+                <ul class="list-disc pl-5 font-semibold space-y-0.5">
+                    <li>Tulis jawaban akhir berupa angka. Gunakan <strong>koma</strong> untuk desimal (contoh: 2,5).</li>
+                    <li>Jika jawaban berbentuk akar, centang <strong>√ Akar</strong> lalu isi angka di depan dan di dalam akar (contoh: 5√3).</li>
+                    <li>Jangan lupa memilih <strong>satuan</strong> yang tepat.</li>
+                </ul>`;
+            container.appendChild(help);
+
+            getEssaySubList(q).forEach(sub => {
+                const fields = ESSAY_FIELDS[sub.subId] || [];
+                const card = document.createElement("div");
+                card.className = "doodle-card-sm p-4 bg-white space-y-3";
+
+                const header = q.type === "essay_branched" ? `
+                    <div class="flex items-center justify-between border-b border-dashed border-slate-200 pb-2">
+                        <span class="px-2.5 py-0.5 rounded-lg bg-purple-200 border border-slate-800 font-doodle font-bold text-xs md:text-sm">Soal ${sub.label}</span>
+                        <span class="text-[11px] font-bold text-slate-500">Bobot: ${sub.points} Poin</span>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800">${formatMathStringToHTML(sub.prompt)}</p>` : "";
+
+                const rows = fields.map(f => {
+                    const fa = getFieldAnswer(q.id, sub.subId, f.id);
+                    const base = `${q.id}|${sub.subId}|${f.id}`;
+                    if (f.kind === "choice") {
+                        return `
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                            <label class="text-sm font-extrabold text-slate-800 sm:w-56">${f.label}</label>
+                            <select data-k="${base}" data-p="choice" class="essay-in doodle-input text-sm font-bold bg-amber-50 sm:w-64">
+                                <option value="">-- Pilih --</option>
+                                ${f.choices.map(c => `<option value="${escapeAttr(c)}" ${fa.choice === c ? "selected" : ""}>${c}</option>`).join("")}
+                            </select>
+                        </div>`;
+                    }
+                    const unitOpts = UNIT_OPTIONS.map(u => `<option value="${u}" ${fa.unit === u ? "selected" : ""}>${u}</option>`).join("");
+                    return `
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                        <label class="text-sm font-extrabold text-slate-800 sm:w-56">${f.label}</label>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <input type="text" inputmode="decimal" autocomplete="off" data-k="${base}" data-p="coef"
+                                value="${escapeAttr(fa.coef)}" placeholder="${fa.useRoot ? "(angka depan)" : "angka"}"
+                                class="essay-in doodle-input text-sm font-bold w-32 text-center">
+                            <label class="flex items-center gap-1 text-xs font-extrabold px-2 py-2 rounded-lg border-2 border-slate-800 bg-slate-50 cursor-pointer select-none">
+                                <input type="checkbox" data-k="${base}" data-p="useRoot" class="essay-root accent-slate-800" ${fa.useRoot ? "checked" : ""}> √ Akar
+                            </label>
+                            <span class="${fa.useRoot ? "flex" : "hidden"} items-center gap-1" data-rootbox="${base}">
+                                <span class="font-doodle font-bold text-2xl text-slate-800">√</span>
+                                <input type="text" inputmode="decimal" autocomplete="off" data-k="${base}" data-p="rad"
+                                    value="${escapeAttr(fa.rad)}" placeholder="dalam akar"
+                                    class="essay-in doodle-input text-sm font-bold w-28 text-center border-t-4">
+                            </span>
+                            <select data-k="${base}" data-p="unit" class="essay-in doodle-input text-sm font-bold bg-sky-50 w-32">
+                                <option value="">Satuan</option>
+                                ${unitOpts}
+                            </select>
+                        </div>
+                    </div>`;
+                }).join("");
+
+                card.innerHTML = `${header}
+                    <div class="text-xs font-extrabold text-slate-500">Jawaban:</div>
+                    <div class="space-y-3">${rows}</div>`;
+                container.appendChild(card);
+            });
+
+            container.querySelectorAll(".essay-in").forEach(el => {
+                const handler = () => {
+                    const [qId, subId, fId] = el.dataset.k.split("|");
+                    setFieldAnswer(Number(qId), subId, fId, { [el.dataset.p]: el.value });
+                };
+                el.addEventListener("input", handler);
+                el.addEventListener("change", handler);
+            });
+            container.querySelectorAll(".essay-root").forEach(el => {
+                el.addEventListener("change", () => {
+                    const [qId, subId, fId] = el.dataset.k.split("|");
+                    setFieldAnswer(Number(qId), subId, fId, { useRoot: el.checked });
+                    const box = container.querySelector(`[data-rootbox="${el.dataset.k}"]`);
+                    if (box) {
+                        box.classList.toggle("hidden", !el.checked);
+                        box.classList.toggle("flex", el.checked);
+                    }
+                });
+            });
         }
 
         /********************************************************************
@@ -2031,15 +2189,10 @@ function simpanHasilUjianKeSheets(data) {
             if (q.type === "complex") {
                 return Array.isArray(ans) && ans.length > 0;
             }
-            if (q.type === "essay_branched") {
-                return q.subQuestions.every(sq => {
-                    const item = ans[sq.subId];
-                    return item && ((item.latex && item.latex.trim() !== "") || (item.text && item.text.trim() !== ""));
-                });
-            }
-            if (q.type === "essay_single") {
-                const item = ans[`single_${q.id}`];
-                return item && ((item.latex && item.latex.trim() !== "") || (item.text && item.text.trim() !== ""));
+            if (q.type === "essay_branched" || q.type === "essay_single") {
+                return getEssaySubList(q).every(sub =>
+                    (ESSAY_FIELDS[sub.subId] || []).every(f => isFieldFilled(f, getFieldAnswer(q.id, sub.subId, f.id)))
+                );
             }
             return false;
         }
@@ -2153,35 +2306,17 @@ function simpanHasilUjianKeSheets(data) {
                             complexScore += q.points;
                         }
                     }
-                } else if (q.type === "essay_branched") {
-                    if (ans && typeof ans === "object") {
-                        q.subQuestions.forEach(sq => {
-                            const subAns = ans[sq.subId];
-                            if (subAns) {
-                                const combined = `${subAns.latex || ""} ${subAns.text || ""}`.toLowerCase();
-                                const matchedHits = sq.expectedKeywords.filter(kw => combined.includes(kw.toLowerCase()));
-                                if (matchedHits.length >= 2) {
-                                    essayScore += sq.points;
-                                } else if (combined.trim().length > 3) {
-                                    essayScore += Math.ceil(sq.points / 2);
-                                }
-                            }
-                        });
-                    }
-                } else if (q.type === "essay_single") {
-                    if (ans && ans[`single_${q.id}`]) {
-                        const subAns = ans[`single_${q.id}`];
-                        const combined = `${subAns.latex || ""} ${subAns.text || ""}`.toLowerCase();
-                        const matchedHits = q.expectedKeywords.filter(kw => combined.includes(kw.toLowerCase()));
-                        if (matchedHits.length >= 1) {
-                            essayScore += q.points;
-                        } else if (combined.trim().length > 5) {
-                            essayScore += Math.ceil(q.points / 2);
-                        }
-                    }
+                } else if (q.type === "essay_branched" || q.type === "essay_single") {
+                    getEssaySubList(q).forEach(sub => {
+                        const fields = ESSAY_FIELDS[sub.subId] || [];
+                        if (!fields.length) return;
+                        const got = fields.reduce((acc, f) => acc + scoreField(f, getFieldAnswer(q.id, sub.subId, f.id)), 0);
+                        essayScore += sub.points * got / fields.length;
+                    });
                 }
             });
 
+            essayScore = Math.round(essayScore * 10) / 10;
             const objectiveTotal = mcqScore + matchScore + complexScore;
             const grandTotal = objectiveTotal + essayScore;
 
@@ -2311,11 +2446,12 @@ function simpanHasilUjianKeSheets(data) {
                 if (q.type === "mcq") keyDisplay = `Kunci Pilihan Ganda: <strong>${q.correctKey}</strong>`;
                 if (q.type === "matching") keyDisplay = `Pasangan Kunci: <code>${JSON.stringify(q.correctPairs)}</code>`;
                 if (q.type === "complex") keyDisplay = `Kunci Multi-Opsi: <strong>${q.correctKeys.join(", ")}</strong>`;
-                if (q.type === "essay_branched") {
-                    keyDisplay = q.subQuestions.map(sq => `<div>• <strong>${sq.label} (${sq.points} poin):</strong> ${formatMathStringToHTML('$' + sq.sampleKey + '$')}</div>`).join("");
-                }
-                if (q.type === "essay_single") {
-                    keyDisplay = `Rubrik / Kunci: ${formatMathStringToHTML('$' + q.sampleKey + '$')}`;
+                if (q.type === "essay_branched" || q.type === "essay_single") {
+                    keyDisplay = getEssaySubList(q).map(sub => {
+                        const items = (ESSAY_FIELDS[sub.subId] || [])
+                            .map(f => `${f.label} <strong>${f.kind === "choice" ? f.answer : f.keyText}</strong>`).join("; ");
+                        return `<div>• <strong>${sub.label} (${sub.points} poin):</strong> ${items}</div>`;
+                    }).join("") + `<div class="text-[11px] text-slate-500 mt-1">Penilaian otomatis: angka + satuan benar = penuh; angka benar satuan salah = setengah.</div>`;
                 }
 
                 return `
