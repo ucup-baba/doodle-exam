@@ -270,6 +270,20 @@
 
                     <!-- Kolom Kanan: Formulir Identitas Siswa -->
                     <div class="md:col-span-6">
+                        <!-- Banner Lanjutkan Ujian Jika Sesi Masih Berjalan -->
+                        <div id="resumeExamCard" class="hidden doodle-card-sm bg-emerald-100 border-2 border-slate-800 p-4 mb-4 space-y-2">
+                            <div class="flex items-center gap-2 text-emerald-900 font-extrabold text-sm">
+                                <i class="ph-fill ph-arrow-circle-right text-xl text-emerald-600"></i>
+                                <span>Sesi Ujian Ditemukan!</span>
+                            </div>
+                            <p class="text-xs text-slate-700 font-bold">
+                                Jawaban Anda tersimpan aman atas nama <strong id="resumeStudentName" class="text-blue-800"></strong> (<span id="resumeStudentClass"></span>).
+                            </p>
+                            <button type="button" onclick="restoreExamSession()" class="doodle-btn bg-emerald-400 hover:bg-emerald-500 w-full py-2.5 text-xs font-black flex items-center justify-center gap-2">
+                                <i class="ph-bold ph-play"></i> Lanjutkan Mengerjakan Ujian &rarr;
+                            </button>
+                        </div>
+
                         <div class="doodle-card-sm bg-amber-50/70 p-6 space-y-4">
                             <div class="flex items-center gap-2 border-b-2 border-dashed border-slate-300 pb-3">
                                 <div class="w-9 h-9 rounded-xl bg-pink-300 border-2 border-slate-800 flex items-center justify-center">
@@ -1526,9 +1540,12 @@ function simpanHasilUjianKeSheets(data) {
         };
 
         let timerInterval = null;
+        let hasInitialized = false;
 
-        // Muat state saat halaman dibuka / di-refresh
-        window.addEventListener("DOMContentLoaded", () => {
+        // Muat state saat halaman dibuka / di-refresh (Mendukung DOMContentLoaded, pageshow bfcache, dan readyState)
+        function initAppSession() {
+            if (hasInitialized) return;
+            hasInitialized = true;
             loadStateFromStorage();
             renderMathNotationInDOM();
 
@@ -1536,8 +1553,32 @@ function simpanHasilUjianKeSheets(data) {
                 restoreExamSession();
             } else if (appState.phase === "finished" && appState.finalScores) {
                 showResultScreen();
+            } else if (appState.student && appState.student.name && Object.keys(appState.answers || {}).length > 0) {
+                // Fallback aman: jika ada jawaban tersimpan, otomatis pulihkan sesi ujian
+                restoreExamSession();
+            } else if (appState.student && appState.student.name) {
+                showResumeExamBanner();
             }
-        });
+        }
+
+        if (document.readyState === "loading") {
+            window.addEventListener("DOMContentLoaded", initAppSession);
+        } else {
+            initAppSession();
+        }
+        window.addEventListener("pageshow", initAppSession);
+        window.addEventListener("load", initAppSession);
+
+        function showResumeExamBanner() {
+            const card = document.getElementById("resumeExamCard");
+            const rName = document.getElementById("resumeStudentName");
+            const rClass = document.getElementById("resumeStudentClass");
+            if (card && rName && rClass && appState.student) {
+                rName.textContent = appState.student.name || "-";
+                rClass.textContent = `${appState.student.className || "-"} (#${appState.student.absent || "-"})`;
+                card.classList.remove("hidden");
+            }
+        }
 
         function saveStateToStorage() {
             try {
@@ -1560,6 +1601,14 @@ function simpanHasilUjianKeSheets(data) {
                 if (appState.gasWebhookUrl) {
                     const urlInput = document.getElementById("inputGasWebhookUrl");
                     if (urlInput) urlInput.value = appState.gasWebhookUrl;
+                }
+                if (appState.student) {
+                    const nameIn = document.getElementById("inputStudentName");
+                    const classIn = document.getElementById("inputStudentClass");
+                    const absentIn = document.getElementById("inputStudentAbsent");
+                    if (nameIn && !nameIn.value && appState.student.name) nameIn.value = appState.student.name;
+                    if (classIn && !classIn.value && appState.student.className) classIn.value = appState.student.className;
+                    if (absentIn && !absentIn.value && appState.student.absent) absentIn.value = appState.student.absent;
                 }
             } catch (e) {
                 console.warn("Gagal memuat state:", e);
@@ -1614,6 +1663,12 @@ function simpanHasilUjianKeSheets(data) {
             errBox.classList.add("hidden");
             appState.student = { name, className, absent, token };
             saveStateToStorage();
+
+            // Jika sebelumnya sudah ada jawaban tersimpan di sesi ini, langsung pulihkan ke lembar soal!
+            if (Object.keys(appState.answers || {}).length > 0) {
+                restoreExamSession();
+                return;
+            }
 
             // Tampilkan Pop-up Doa Sebelum Ujian
             document.getElementById("modalPrayer").classList.remove("hidden");
@@ -1673,7 +1728,11 @@ function simpanHasilUjianKeSheets(data) {
         }
 
         function restoreExamSession() {
+            appState.phase = "exam";
+            saveStateToStorage();
             document.getElementById("viewLanding").classList.add("hidden");
+            const resumeCard = document.getElementById("resumeExamCard");
+            if (resumeCard) resumeCard.classList.add("hidden");
             const lhc = document.getElementById("landingHeaderControls");
             if (lhc) lhc.classList.add("hidden");
             document.getElementById("viewCountdown").classList.add("hidden");
@@ -1682,8 +1741,9 @@ function simpanHasilUjianKeSheets(data) {
 
             document.getElementById("examHeaderControls").classList.remove("hidden");
             document.getElementById("examHeaderControls").classList.add("flex");
-            document.getElementById("headerStudentName").textContent = appState.student.name;
-            document.getElementById("headerStudentClass").textContent = `${appState.student.className} (#${appState.student.absent})`;
+            const st = appState.student || {};
+            document.getElementById("headerStudentName").textContent = st.name || "Siswa";
+            document.getElementById("headerStudentClass").textContent = `${st.className || "-"} (#${st.absent || "-"})`;
 
             if (!appState.selectedQuote) {
                 appState.selectedQuote = VERIFIED_QUOTES[0];
