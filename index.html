@@ -772,7 +772,7 @@
                         1. Tempel URL Web App Google Apps Script di sini:
                     </label>
                     <div class="flex gap-2">
-                        <input type="url" id="inputGasWebhookUrl" placeholder="https://script.google.com/macros/s/AKfycb.../exec" class="doodle-input w-full text-xs font-mono">
+                        <input type="url" id="inputGasWebhookUrl" value="https://script.google.com/macros/s/AKfycbymaL3hjEKXSlLEQqxGDpIZkn5VYYKJM3mfo_IOJ82bpTJd8xEPWL-72NPFt5ANUnXN/exec" placeholder="https://script.google.com/macros/s/AKfycb.../exec" class="doodle-input w-full text-xs font-mono">
                         <button onclick="saveGasWebhookUrl()" class="doodle-btn bg-emerald-300 hover:bg-emerald-400 px-4 py-2 text-xs whitespace-nowrap">Simpan URL</button>
                     </div>
                     <p class="text-[11px] text-slate-600">
@@ -1505,6 +1505,7 @@ function simpanHasilUjianKeSheets(data) {
          ********************************************************************/
         const STORAGE_KEY = "DOODLE_EXAM_PYTHAGORAS_V1";
         const EXAM_DURATION_SECONDS = 100 * 60; // 100 Menit = 6000 detik
+        const DEFAULT_GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbymaL3hjEKXSlLEQqxGDpIZkn5VYYKJM3mfo_IOJ82bpTJd8xEPWL-72NPFt5ANUnXN/exec";
 
         let appState = {
             phase: "landing", // landing | countdown | exam | finished
@@ -1521,7 +1522,7 @@ function simpanHasilUjianKeSheets(data) {
             answers: {}, // Menyimpan jawaban PG, Matching, Complex, Essay (LaTeX + plain)
             doubtFlags: {}, // Menyimpan status ragu-ragu per soal id
             finalScores: null,
-            gasWebhookUrl: ""
+            gasWebhookUrl: DEFAULT_GAS_WEBHOOK_URL
         };
 
         let timerInterval = null;
@@ -1554,7 +1555,7 @@ function simpanHasilUjianKeSheets(data) {
                 const parsed = JSON.parse(raw);
                 appState = { ...appState, ...parsed };
                 if (!appState.gasWebhookUrl) {
-                    appState.gasWebhookUrl = localStorage.getItem("DOODLE_GAS_URL") || "";
+                    appState.gasWebhookUrl = localStorage.getItem("DOODLE_GAS_URL") || DEFAULT_GAS_WEBHOOK_URL;
                 }
                 if (appState.gasWebhookUrl) {
                     const urlInput = document.getElementById("inputGasWebhookUrl");
@@ -2477,7 +2478,7 @@ function simpanHasilUjianKeSheets(data) {
         }
 
         async function sendPayloadToSheets(payload) {
-            const webhookUrl = appState.gasWebhookUrl || localStorage.getItem("DOODLE_GAS_URL") || "";
+            const webhookUrl = appState.gasWebhookUrl || localStorage.getItem("DOODLE_GAS_URL") || DEFAULT_GAS_WEBHOOK_URL;
             if (typeof google !== "undefined" && google.script && google.script.run) {
                 return new Promise((resolve, reject) => {
                     google.script.run
