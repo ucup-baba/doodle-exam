@@ -10,9 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <!-- MathLive Visual Math Editor -->
-    <link rel="stylesheet" href="https://unpkg.com/mathlive/dist/mathlive-static.css">
-    <script defer src="https://unpkg.com/mathlive"></script>
 
     <script>
         tailwind.config = {
@@ -123,24 +120,6 @@
             animation: floatSlow 5s ease-in-out infinite;
         }
 
-        /* Kustomisasi MathLive Editor */
-        math-field {
-            width: 100%;
-            min-height: 54px;
-            padding: 10px 14px;
-            font-size: 1.15rem;
-            background: #f8fafc;
-            border: 2.5px solid #1e293b;
-            border-radius: 12px;
-            box-shadow: inset 2px 2px 4px rgba(0,0,0,0.04);
-            transition: all 0.2s;
-        }
-        math-field:focus-within {
-            background: #ffffff;
-            border-color: #2563eb;
-            box-shadow: 3px 3px 0px #2563eb;
-            outline: none;
-        }
 
         /* Animasi Countdown */
         @keyframes popNumber {
@@ -252,10 +231,6 @@
              ========================================== -->
         <section id="viewLanding" class="max-w-4xl mx-auto">
             <div class="doodle-card p-6 md:p-10 relative overflow-hidden notebook-margin">
-                <!-- Stiker Sudut -->
-                <div class="absolute -top-3 -right-3 bg-pink-300 border-2 border-slate-800 px-5 py-2 rounded-bl-2xl font-doodle font-bold text-xs md:text-sm shadow-sm flex items-center gap-1">
-                    <i class="ph-fill ph-sparkle text-amber-600"></i> Interaktif & Visual
-                </div>
 
                 <div class="grid md:grid-cols-12 gap-8 items-center">
                     <!-- Kolom Kiri: Ilustrasi Doodle & Info Ujian -->
@@ -269,7 +244,7 @@
                         </h2>
 
                         <p class="text-slate-700 text-sm md:text-base leading-relaxed">
-                            Selamat datang di <strong>Doodle Classroom</strong>! Ujian ini dirancang dengan ilustrasi interaktif untuk menguji pemahamanmu tentang hubungan sisi segitiga siku-siku, tripel Pythagoras, dan penerapannya dalam kehidupan nyata.
+                            Selamat datang di <strong>Doodle Classroom</strong>! Ujian ini menguji pemahamanmu tentang hubungan sisi segitiga siku-siku, tripel Pythagoras, dan penerapannya dalam kehidupan nyata. Kerjakan dengan jujur dan teliti.
                         </p>
 
                         <!-- Kartu Info Ringkas -->
@@ -285,35 +260,12 @@
                                 <div class="text-[11px] font-bold text-slate-600">Auto-Save Aktif</div>
                             </div>
                             <div class="doodle-card-sm bg-emerald-100 p-3 text-center">
-                                <i class="ph-bold ph-compass-tool text-2xl text-emerald-700"></i>
-                                <div class="font-doodle font-bold text-lg text-slate-900">Interaktif</div>
-                                <div class="text-[11px] font-bold text-slate-600">Gambar & Editor Rumus</div>
+                                <i class="ph-bold ph-pencil-simple-line text-2xl text-emerald-700"></i>
+                                <div class="font-doodle font-bold text-lg text-slate-900">Esai</div>
+                                <div class="text-[11px] font-bold text-slate-600">Tulis Jawaban Langsung</div>
                             </div>
                         </div>
 
-                        <!-- Ilustrasi SVG Interaktif Mini di Halaman Depan -->
-                        <div class="doodle-card-sm bg-slate-50 p-4 relative">
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-xs font-bold text-slate-700 flex items-center gap-1">
-                                    <i class="ph-fill ph-hand-tap text-blue-600"></i> Coba Geser Slider Pembuktian Pythagoras:
-                                </span>
-                                <span id="demoPythagorasBadge" class="text-xs font-extrabold px-2 py-0.5 bg-yellow-200 border border-slate-800 rounded">3² + 4² = 5²</span>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <svg id="landingInteractiveSvg" viewBox="0 0 180 130" class="w-40 h-28 mx-auto flex-shrink-0">
-                                    <polygon id="demoTriangle" points="35,100 115,100 35,40" fill="#bae6fd" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
-                                    <rect x="35" y="88" width="12" height="12" fill="none" stroke="#1e293b" stroke-width="2"/>
-                                    <text id="demoLabelA" x="15" y="75" font-family="Fredoka" font-size="13" font-weight="bold" fill="#0369a1">a=3</text>
-                                    <text id="demoLabelB" x="65" y="118" font-family="Fredoka" font-size="13" font-weight="bold" fill="#b45309">b=4</text>
-                                    <text id="demoLabelC" x="82" y="65" font-family="Fredoka" font-size="13" font-weight="bold" fill="#be185d">c=5</text>
-                                </svg>
-                                <div class="flex-grow space-y-2 text-xs">
-                                    <label class="block font-bold text-slate-700">Pilih Kelipatan Tripel (3-4-5):</label>
-                                    <input id="demoMultiplierSlider" type="range" min="1" max="4" value="1" oninput="updateLandingDemo(this.value)" class="w-full accent-blue-600 cursor-pointer">
-                                    <p id="demoCalcText" class="text-slate-600 font-semibold">Luas persegi miring: 9 + 16 = 25 satuan²</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <!-- Kolom Kanan: Formulir Identitas Siswa -->
@@ -421,7 +373,7 @@
         </section>
 
         <!-- ==========================================
-             VIEW 3: HALAMAN UJIAN INTERAKTIF UTAMA
+             VIEW 3: HALAMAN UJIAN UTAMA
              ========================================== -->
         <section id="viewExam" class="hidden">
             <!-- Banner Kutipan Sesi -->
@@ -434,7 +386,7 @@
             </div>
 
             <div class="grid lg:grid-cols-12 gap-6 items-start">
-                <!-- KOLOM KIRI (8 Kolom): Kartu Soal & Gambar Interaktif -->
+                <!-- KOLOM KIRI (8 Kolom): Kartu Soal -->
                 <div class="lg:col-span-8 space-y-5">
                     <div class="doodle-card p-5 md:p-8 notebook-margin relative">
                         <!-- Header Nomor & Jenis Soal -->
@@ -460,12 +412,7 @@
                             <!-- Diisi via JS -->
                         </div>
 
-                        <!-- KANVAS / WIDGET GAMBAR GEOMETRI INTERAKTIF -->
-                        <div id="interactiveDiagramContainer" class="mb-6">
-                            <!-- Diisi SVG Interaktif via JS -->
-                        </div>
-
-                        <!-- AREA JAWABAN DINAMIS (PG / Mencocokkan / Kompleks / Esai + MathLive) -->
+                        <!-- AREA JAWABAN DINAMIS (PG / Mencocokkan / Kompleks / Esai) -->
                         <div id="answerInputContainer" class="space-y-4">
                             <!-- Diisi via JS -->
                         </div>
@@ -542,15 +489,6 @@
                         </div>
                     </div>
 
-                    <!-- Bantuan Cepat Rumus Pythagoras -->
-                    <div class="doodle-card-sm bg-purple-50 p-4 text-xs space-y-1.5">
-                        <div class="font-doodle font-bold text-slate-800 flex items-center gap-1.5">
-                            <i class="ph-fill ph-lightbulb text-amber-500 text-base"></i> Tips Interaktif:
-                        </div>
-                        <p class="text-slate-600 leading-relaxed">
-                            Klik pada <strong>titik sudut atau tombol interaktif pada gambar segitiga</strong> di setiap soal untuk menyorot sisi siku-siku dan hipotenusa!
-                        </p>
-                    </div>
                 </div>
             </div>
         </section>
@@ -968,7 +906,7 @@ function simpanHasilUjianKeSheets(data) {
                 difficulty: "Mudah",
                 isHOTS: false,
                 points: 3,
-                prompt: "Perhatikan segitiga siku-siku $PQR$ yang siku-siku di titik $Q$ pada gambar interaktif di bawah ini! Klik pada sisi-sisinya untuk mengamati keterangannya. Manakah pernyataan dan rumus Teorema Pythagoras yang <strong>paling tepat</strong> untuk segitiga $PQR$ tersebut?",
+                prompt: "Diketahui segitiga $PQR$ siku-siku di titik $Q$. Manakah pernyataan dan rumus Teorema Pythagoras yang <strong>paling tepat</strong> untuk segitiga $PQR$ tersebut?",
                 diagramType: "triangle_pqr_basic",
                 options: [
                     { id: "A", text: "Sisi miring adalah $PQ$, sehingga $PQ^2 = QR^2 + PR^2$" },
@@ -1101,7 +1039,7 @@ function simpanHasilUjianKeSheets(data) {
                 difficulty: "Sulit (HOTS)",
                 isHOTS: true, // HOTS 1 PG (Disembunyikan dari siswa)
                 points: 3,
-                prompt: "Perhatikan bangun gabungan dua segitiga siku-siku $\\triangle ABD$ dan $\\triangle BCD$ pada gambar interaktif berikut! Diketahui $\\angle DAB = 90^\\circ$ dengan $AB = 12\\text{ cm}$ dan $AD = 9\\text{ cm}$. Segitiga $BCD$ siku-siku di $B$ ($\\angle DBC = 90^\\circ$) dengan panjang sisi miring $CD = 17\\text{ cm}$. Berapakah panjang sisi $BC$?",
+                prompt: "Sebuah bangun tersusun dari dua segitiga siku-siku $\\triangle ABD$ dan $\\triangle BCD$ yang memiliki sisi persekutuan $BD$. Diketahui $\\angle DAB = 90^\\circ$ dengan $AB = 12\\text{ cm}$ dan $AD = 9\\text{ cm}$. Segitiga $BCD$ siku-siku di $B$ ($\\angle DBC = 90^\\circ$) dengan panjang sisi miring $CD = 17\\text{ cm}$. Berapakah panjang sisi $BC$?",
                 diagramType: "two_triangles_hots",
                 options: [
                     { id: "A", text: "$8\\text{ cm}$" },
@@ -1403,7 +1341,6 @@ function simpanHasilUjianKeSheets(data) {
             currentQuestionIndex: 0,
             answers: {}, // Menyimpan jawaban PG, Matching, Complex, Essay (LaTeX + plain)
             doubtFlags: {}, // Menyimpan status ragu-ragu per soal id
-            activeMathFieldId: null,
             finalScores: null,
             gasWebhookUrl: ""
         };
@@ -1459,17 +1396,8 @@ function simpanHasilUjianKeSheets(data) {
         }
 
         /********************************************************************
-         * 4. DEMO INTERAKTIF HALAMAN AWAL & VALIDASI IDENTITAS
+         * 4. VALIDASI IDENTITAS SISWA
          ********************************************************************/
-        function updateLandingDemo(multiplier) {
-            const k = parseInt(multiplier, 10);
-            const a = 3 * k, b = 4 * k, c = 5 * k;
-            document.getElementById("demoLabelA").textContent = `a=${a}`;
-            document.getElementById("demoLabelB").textContent = `b=${b}`;
-            document.getElementById("demoLabelC").textContent = `c=${c}`;
-            document.getElementById("demoPythagorasBadge").textContent = `${a}² + ${b}² = ${c}²`;
-            document.getElementById("demoCalcText").textContent = `Kuadrat sisi: ${a*a} + ${b*b} = ${c*c} satuan²`;
-        }
 
         function handleIdentitySubmit(e) {
             e.preventDefault();
@@ -1619,280 +1547,6 @@ function simpanHasilUjianKeSheets(data) {
         }
 
         /********************************************************************
-         * 7. GENERATOR ILUSTRASI SVG GEOMETRI INTERAKTIF (20 SOAL)
-         ********************************************************************/
-        function generateInteractiveSVG(diagramType, qId) {
-            const wrapperStart = `<div class="doodle-card-sm bg-slate-50/90 p-4 border-2 border-slate-800">
-                <div class="flex flex-wrap items-center justify-between gap-2 mb-2 pb-1.5 border-b border-dashed border-slate-300">
-                    <span class="text-xs font-extrabold text-blue-800 flex items-center gap-1">
-                        <i class="ph-fill ph-cursor-click text-base"></i> Ilustrasi Geometri Interaktif (Klik elemen gambar/tombol untuk eksplorasi)
-                    </span>
-                    <span id="svgInfoBadge_${qId}" class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-yellow-200 border border-slate-800 text-slate-900">
-                        Klik sisi/titik pada gambar!
-                    </span>
-                </div>`;
-            const wrapperEnd = `</div>`;
-
-            let svgBody = "";
-
-            switch (diagramType) {
-                case "triangle_pqr_basic":
-                    svgBody = `
-                    <div class="flex flex-col md:flex-row items-center gap-4">
-                        <svg viewBox="0 0 280 180" class="w-full max-w-xs h-44 mx-auto select-none">
-                            <polygon points="50,145 210,145 50,35" fill="#e0f2fe" stroke="#1e293b" stroke-width="2"/>
-                            <!-- Tanda Siku di Q -->
-                            <rect x="50" y="127" width="18" height="18" fill="#fef08a" stroke="#1e293b" stroke-width="2"
-                                class="cursor-pointer hover:fill-amber-300"
-                                onclick="setSvgBadge(${qId}, 'Sudut Q = 90° (Sudut Siku-Siku). Sisi di depannya adalah PR!')"/>
-                            <!-- Sisi PQ -->
-                            <line x1="50" y1="35" x2="50" y2="145" stroke="#0284c7" stroke-width="6" stroke-linecap="round"
-                                class="cursor-pointer hover:stroke-amber-500 transition-all"
-                                onclick="setSvgBadge(${qId}, 'Sisi PQ: Sisi siku-siku tegak (mengapit sudut Q)')"/>
-                            <!-- Sisi QR -->
-                            <line x1="50" y1="145" x2="210" y2="145" stroke="#16a34a" stroke-width="6" stroke-linecap="round"
-                                class="cursor-pointer hover:stroke-amber-500 transition-all"
-                                onclick="setSvgBadge(${qId}, 'Sisi QR: Sisi siku-siku alas (mengapit sudut Q)')"/>
-                            <!-- Sisi Miring PR -->
-                            <line x1="50" y1="35" x2="210" y2="145" stroke="#e11d48" stroke-width="6" stroke-linecap="round"
-                                class="cursor-pointer hover:stroke-amber-500 transition-all"
-                                onclick="setSvgBadge(${qId}, 'Sisi PR: Hipotenusa / Sisi Miring (Terpanjang, di depan ∠Q)')"/>
-                            <circle cx="50" cy="35" r="5" fill="#1e293b"/><text x="30" y="32" font-family="Fredoka" font-weight="bold" font-size="16">P</text>
-                            <circle cx="50" cy="145" r="5" fill="#1e293b"/><text x="30" y="160" font-family="Fredoka" font-weight="bold" font-size="16">Q (90°)</text>
-                            <circle cx="210" cy="145" r="5" fill="#1e293b"/><text x="220" y="160" font-family="Fredoka" font-weight="bold" font-size="16">R</text>
-                        </svg>
-                        <div class="text-xs space-y-2 md:w-1/2">
-                            <p class="font-bold text-slate-700">Klik tombol sorot bagian segitiga:</p>
-                            <div class="flex flex-wrap gap-1.5">
-                                <button type="button" onclick="setSvgBadge(${qId}, 'Sisi PR berada tepat di depan sudut siku-siku Q (90°), maka PR adalah Hipotenusa.')" class="doodle-btn bg-rose-100 px-2.5 py-1">Sorot Hipotenusa (PR)</button>
-                                <button type="button" onclick="setSvgBadge(${qId}, 'Sisi PQ dan QR mengapit sudut 90° di titik Q (Sisi Penyiku).')" class="doodle-btn bg-sky-100 px-2.5 py-1">Sorot Sisi Penyiku</button>
-                            </div>
-                        </div>
-                    </div>`;
-                    break;
-
-                case "triangle_6_8_x":
-                    svgBody = `
-                    <svg viewBox="0 0 280 175" class="w-full max-w-xs h-44 mx-auto">
-                        <polygon points="45,140 215,140 45,35" fill="#fef9c3" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
-                        <rect x="45" y="122" width="18" height="18" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <text x="10" y="95" font-family="Fredoka" font-weight="bold" font-size="15" fill="#0369a1" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Sisi tegak a = 6 cm → a² = 36')">6 cm</text>
-                        <text x="115" y="162" font-family="Fredoka" font-weight="bold" font-size="15" fill="#15803d" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Sisi alas b = 8 cm → b² = 64')">8 cm</text>
-                        <text x="135" y="80" font-family="Fredoka" font-weight="bold" font-size="16" fill="#be123c" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Sisi miring c = √(6² + 8²) = ?')">c = ? cm</text>
-                    </svg>`;
-                    break;
-
-                case "triangle_5_b_13":
-                    svgBody = `
-                    <svg viewBox="0 0 280 175" class="w-full max-w-xs h-44 mx-auto">
-                        <polygon points="55,140 225,140 55,45" fill="#dcfce7" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
-                        <rect x="55" y="124" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <text x="35" y="40" font-family="Fredoka" font-weight="bold" font-size="14">A</text>
-                        <text x="35" y="152" font-family="Fredoka" font-weight="bold" font-size="14">B</text>
-                        <text x="232" y="152" font-family="Fredoka" font-weight="bold" font-size="14">C</text>
-                        <text x="12" y="98" font-family="Fredoka" font-weight="bold" font-size="14" fill="#0369a1" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'AB = 5 cm → AB² = 25')">5 cm</text>
-                        <text x="120" y="162" font-family="Fredoka" font-weight="bold" font-size="15" fill="#be123c" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Sisi siku-siku BC = √(AC² - AB²)')">BC = ? cm</text>
-                        <text x="140" y="82" font-family="Fredoka" font-weight="bold" font-size="14" fill="#7e22ce" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Sisi miring AC = 13 cm → AC² = 169')">13 cm</text>
-                    </svg>`;
-                    break;
-
-                case "triple_tester":
-                    svgBody = `
-                    <div class="flex flex-col sm:flex-row items-center justify-around gap-4 p-2">
-                        <div class="text-xs space-y-2">
-                            <p class="font-bold text-slate-700">Kalkulator Kuadrat Cepat (Klik untuk melihat nilai $n^2$):</p>
-                            <div class="flex flex-wrap gap-1.5">
-                                ${[7,8,9,10,12,15,16,17,20,25].map(n => 
-                                    `<button type="button" onclick="setSvgBadge(${qId}, 'Nilai kuadrat: ${n}² = ${n*n}')" class="doodle-btn bg-white hover:bg-sky-100 px-2.5 py-1 text-xs">${n}²</button>`
-                                ).join('')}
-                            </div>
-                        </div>
-                    </div>`;
-                    break;
-
-                case "ladder_wall":
-                    svgBody = `
-                    <svg viewBox="0 0 280 185" class="w-full max-w-xs h-48 mx-auto">
-                        <!-- Tanah & Tembok -->
-                        <line x1="25" y1="150" x2="250" y2="150" stroke="#475569" stroke-width="4"/>
-                        <rect x="45" y="25" width="18" height="125" fill="#fca5a5" stroke="#1e293b" stroke-width="2.5"/>
-                        <rect x="63" y="134" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <!-- Tangga -->
-                        <line x1="63" y1="35" x2="185" y2="150" stroke="#d97706" stroke-width="6" stroke-linecap="round"
-                            class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Panjang Tangga (Sisi Miring) = 10 m')"/>
-                        <text x="135" y="82" font-family="Fredoka" font-weight="bold" font-size="14" fill="#b45309">Tangga = 10 m</text>
-                        <text x="95" y="170" font-family="Fredoka" font-weight="bold" font-size="14" fill="#0369a1">Jarak Alas = 6 m</text>
-                        <text x="72" y="95" font-family="Fredoka" font-weight="bold" font-size="14" fill="#be123c">t = ? m</text>
-                    </svg>`;
-                    break;
-
-                case "rectangle_diagonal":
-                    svgBody = `
-                    <svg viewBox="0 0 300 175" class="w-full max-w-sm h-44 mx-auto">
-                        <rect x="40" y="30" width="210" height="105" fill="#bbf7d0" stroke="#1e293b" stroke-width="3"/>
-                        <rect x="40" y="119" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <line x1="40" y1="30" x2="250" y2="135" stroke="#e11d48" stroke-width="4" stroke-dasharray="6,4"
-                            class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Jalan Diagonal membagi taman menjadi segitiga siku-siku (24 m dan 10 m)')"/>
-                        <text x="120" y="155" font-family="Fredoka" font-weight="bold" font-size="14" fill="#1e293b">Panjang = 24 m</text>
-                        <text x="256" y="88" font-family="Fredoka" font-weight="bold" font-size="14" fill="#1e293b">10 m</text>
-                        <text x="125" y="75" font-family="Fredoka" font-weight="bold" font-size="14" fill="#be123c">d = ? m</text>
-                    </svg>`;
-                    break;
-
-                case "cartesian_points":
-                    svgBody = `
-                    <svg viewBox="0 0 290 180" class="w-full max-w-sm h-44 mx-auto">
-                        <!-- Sumbu -->
-                        <line x1="35" y1="150" x2="265" y2="150" stroke="#64748b" stroke-width="2"/>
-                        <line x1="35" y1="20" x2="35" y2="150" stroke="#64748b" stroke-width="2"/>
-                        <!-- Segitiga Bantu -->
-                        <line x1="65" y1="130" x2="215" y2="130" stroke="#0284c7" stroke-width="2.5" stroke-dasharray="4"/>
-                        <line x1="215" y1="130" x2="215" y2="45" stroke="#16a34a" stroke-width="2.5" stroke-dasharray="4"/>
-                        <line x1="65" y1="130" x2="215" y2="45" stroke="#e11d48" stroke-width="3.5"/>
-                        <circle cx="65" cy="130" r="5" fill="#1e293b" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Titik A(2, 1)')"/>
-                        <circle cx="215" cy="45" r="5" fill="#1e293b" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Titik B(10, 7)')"/>
-                        <text x="48" y="122" font-family="Fredoka" font-weight="bold" font-size="13">A(2,1)</text>
-                        <text x="195" y="35" font-family="Fredoka" font-weight="bold" font-size="13">B(10,7)</text>
-                        <text x="115" y="145" font-family="Fredoka" font-weight="bold" font-size="12" fill="#0284c7" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Selisih mendatar Δx = 10 - 2 = 8 satuan')">Δx = 10 - 2</text>
-                        <text x="222" y="95" font-family="Fredoka" font-weight="bold" font-size="12" fill="#16a34a" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Selisih tegak Δy = 7 - 1 = 6 satuan')">Δy = 7 - 1</text>
-                    </svg>`;
-                    break;
-
-                case "two_triangles_hots":
-                    svgBody = `
-                    <svg viewBox="0 0 310 190" class="w-full max-w-sm h-48 mx-auto">
-                        <!-- Segitiga ABD -->
-                        <polygon points="45,150 165,150 45,55" fill="#bae6fd" stroke="#1e293b" stroke-width="2.5"
-                            class="cursor-pointer" onclick="setSvgBadge(${qId}, 'ΔABD siku-siku di A: AB = 12 cm, AD = 9 cm. Cari sisi miring BD terlebih dahulu!')"/>
-                        <rect x="45" y="135" width="15" height="15" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <!-- Segitiga BCD siku-siku di B -->
-                        <polygon points="165,150 245,85 45,55" fill="#fde68a" fill-opacity="0.7" stroke="#1e293b" stroke-width="2.5"
-                            class="cursor-pointer" onclick="setSvgBadge(${qId}, 'ΔBCD siku-siku di B (∠DBC = 90°). Sisi miringnya adalah CD = 17 cm!')"/>
-                        <text x="28" y="162" font-family="Fredoka" font-weight="bold" font-size="14">A</text>
-                        <text x="165" y="168" font-family="Fredoka" font-weight="bold" font-size="14">B (90° ke C)</text>
-                        <text x="255" y="88" font-family="Fredoka" font-weight="bold" font-size="14">C</text>
-                        <text x="28" y="50" font-family="Fredoka" font-weight="bold" font-size="14">D</text>
-                        <text x="10" y="108" font-family="Fredoka" font-weight="bold" font-size="13" fill="#0369a1">9 cm</text>
-                        <text x="95" y="166" font-family="Fredoka" font-weight="bold" font-size="13" fill="#0369a1">12 cm</text>
-                        <text x="135" y="52" font-family="Fredoka" font-weight="bold" font-size="13" fill="#b45309">CD = 17 cm</text>
-                        <text x="212" y="128" font-family="Fredoka" font-weight="bold" font-size="14" fill="#be123c">BC = ?</text>
-                    </svg>`;
-                    break;
-
-                case "strategy_eval_hots":
-                    svgBody = `
-                    <svg viewBox="0 0 290 160" class="w-full max-w-sm h-40 mx-auto">
-                        <polygon points="45,135 235,135 45,35" fill="#f3e8ff" stroke="#1e293b" stroke-width="3"/>
-                        <rect x="45" y="119" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <text x="12" y="90" font-family="Fredoka" font-weight="bold" font-size="14" fill="#be123c">p = ?</text>
-                        <text x="115" y="152" font-family="Fredoka" font-weight="bold" font-size="14" fill="#1e293b">b = 24 cm</text>
-                        <text x="135" y="75" font-family="Fredoka" font-weight="bold" font-size="14" fill="#6b21a8" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'c² - b² = 25² - 24² = (25+24)(25-24)')">c = 25 cm</text>
-                    </svg>`;
-                    break;
-
-                case "drone_hots":
-                    svgBody = `
-                    <svg viewBox="0 0 320 180" class="w-full max-w-md h-44 mx-auto">
-                        <!-- Tanah -->
-                        <line x1="30" y1="145" x2="295" y2="145" stroke="#1e293b" stroke-width="3"/>
-                        <!-- Tinggi Drone -->
-                        <line x1="60" y1="35" x2="60" y2="145" stroke="#0284c7" stroke-width="3" stroke-dasharray="4"/>
-                        <rect x="60" y="131" width="14" height="14" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <!-- Garis Pandang Pos A & Pos B -->
-                        <line x1="60" y1="35" x2="145" y2="145" stroke="#16a34a" stroke-width="3" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Segitiga siku-siku D-P-A: tinggi 120 m, sisi miring 130 m')"/>
-                        <line x1="60" y1="35" x2="265" y2="145" stroke="#e11d48" stroke-width="3" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Segitiga siku-siku D-P-B: tinggi 120 m, sisi miring 200 m')"/>
-                        <circle cx="60" cy="35" r="7" fill="#f59e0b" stroke="#1e293b" stroke-width="2"/>
-                        <text x="45" y="22" font-family="Fredoka" font-weight="bold" font-size="13">Drone</text>
-                        <text x="12" y="95" font-family="Fredoka" font-weight="bold" font-size="12" fill="#0284c7">120 m</text>
-                        <text x="82" y="102" font-family="Fredoka" font-weight="bold" font-size="12" fill="#15803d">130 m</text>
-                        <text x="175" y="82" font-family="Fredoka" font-weight="bold" font-size="12" fill="#be123c">200 m</text>
-                        <text x="52" y="164" font-family="Fredoka" font-weight="bold" font-size="13">P</text>
-                        <text x="135" y="164" font-family="Fredoka" font-weight="bold" font-size="13">Pos A</text>
-                        <text x="250" y="164" font-family="Fredoka" font-weight="bold" font-size="13">Pos B</text>
-                    </svg>`;
-                    break;
-
-                case "essay_tower_wire":
-                    svgBody = `
-                    <svg viewBox="0 0 290 180" class="w-full max-w-xs h-44 mx-auto">
-                        <line x1="30" y1="150" x2="260" y2="150" stroke="#334155" stroke-width="3"/>
-                        <line x1="80" y1="30" x2="80" y2="150" stroke="#0284c7" stroke-width="6"/>
-                        <rect x="80" y="134" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <line x1="80" y1="30" x2="195" y2="150" stroke="#e11d48" stroke-width="3.5" stroke-dasharray="5,3"
-                            class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Kawat Baja = Sisi miring dari tinggi 12 m dan jarak patok 9 m')"/>
-                        <circle cx="80" cy="30" r="6" fill="#fef08a" stroke="#1e293b" stroke-width="2"/>
-                        <text x="18" y="95" font-family="Fredoka" font-weight="bold" font-size="13" fill="#0369a1">12 m</text>
-                        <text x="120" y="168" font-family="Fredoka" font-weight="bold" font-size="13" fill="#15803d">9 m</text>
-                        <text x="145" y="85" font-family="Fredoka" font-weight="bold" font-size="13" fill="#be123c">Kawat = ?</text>
-                    </svg>`;
-                    break;
-
-                case "essay_trapezoid":
-                    svgBody = `
-                    <svg viewBox="0 0 310 180" class="w-full max-w-sm h-44 mx-auto">
-                        <polygon points="45,145 255,145 185,40 45,40" fill="#dcfce7" stroke="#1e293b" stroke-width="3"/>
-                        <line x1="185" y1="40" x2="185" y2="145" stroke="#e11d48" stroke-width="2.5" stroke-dasharray="5,4"
-                            class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Garis tinggi proyeksi C ke AB = 15 m, sisa alas = 22 - 14 = 8 m!')"/>
-                        <rect x="45" y="130" width="15" height="15" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <rect x="185" y="130" width="15" height="15" fill="none" stroke="#e11d48" stroke-width="2"/>
-                        <text x="28" y="155" font-family="Fredoka" font-weight="bold" font-size="13">A</text>
-                        <text x="262" y="155" font-family="Fredoka" font-weight="bold" font-size="13">B</text>
-                        <text x="185" y="30" font-family="Fredoka" font-weight="bold" font-size="13">C</text>
-                        <text x="28" y="35" font-family="Fredoka" font-weight="bold" font-size="13">D</text>
-                        <text x="95" y="32" font-family="Fredoka" font-weight="bold" font-size="13" fill="#0369a1">DC = 14 m</text>
-                        <text x="105" y="165" font-family="Fredoka" font-weight="bold" font-size="13" fill="#0369a1">AB = 22 m</text>
-                        <text x="8" y="98" font-family="Fredoka" font-weight="bold" font-size="13" fill="#15803d">15 m</text>
-                        <text x="225" y="92" font-family="Fredoka" font-weight="bold" font-size="13" fill="#be123c">BC=?</text>
-                    </svg>`;
-                    break;
-
-                case "essay_river_hots":
-                    svgBody = `
-                    <svg viewBox="0 0 320 185" class="w-full max-w-md h-48 mx-auto">
-                        <!-- Sungai -->
-                        <rect x="20" y="45" width="280" height="90" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
-                        <!-- Jalur Tegak Lurus & Darat (Opsi 2) -->
-                        <line x1="65" y1="45" x2="65" y2="135" stroke="#16a34a" stroke-width="4" stroke-dasharray="5,3"
-                            class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Opsi 2 Air (AP): 12 m × Rp50.000/m')"/>
-                        <line x1="65" y1="135" x2="235" y2="135" stroke="#d97706" stroke-width="5"
-                            class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Opsi 2 Darat (PB): 16 m × Rp30.000/m')"/>
-                        <!-- Jalur Diagonal (Opsi 1) -->
-                        <line x1="65" y1="45" x2="235" y2="135" stroke="#e11d48" stroke-width="4"
-                            class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Opsi 1 Diagonal (AB): √(12² + 16²) m × Rp50.000/m')"/>
-                        <rect x="65" y="121" width="14" height="14" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <circle cx="65" cy="45" r="6" fill="#be123c"/><text x="45" y="35" font-family="Fredoka" font-weight="bold" font-size="13">Pos A (Utara)</text>
-                        <circle cx="65" cy="135" r="5" fill="#1e293b"/><text x="48" y="158" font-family="Fredoka" font-weight="bold" font-size="13">P</text>
-                        <circle cx="235" cy="135" r="6" fill="#15803d"/><text x="205" y="158" font-family="Fredoka" font-weight="bold" font-size="13">Pos B (Selatan)</text>
-                        <text x="22" y="98" font-family="Fredoka" font-weight="bold" font-size="12" fill="#0369a1">12 m</text>
-                        <text x="135" y="155" font-family="Fredoka" font-weight="bold" font-size="12" fill="#b45309">16 m</text>
-                    </svg>`;
-                    break;
-
-                default:
-                    svgBody = `
-                    <svg viewBox="0 0 280 155" class="w-full max-w-xs h-36 mx-auto">
-                        <polygon points="50,130 210,130 50,30" fill="#e0e7ff" stroke="#1e293b" stroke-width="3"/>
-                        <rect x="50" y="114" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <text x="22" y="85" font-family="Fredoka" font-weight="bold" font-size="14" fill="#0369a1">sisi a</text>
-                        <text x="115" y="148" font-family="Fredoka" font-weight="bold" font-size="14" fill="#15803d">sisi b</text>
-                        <text x="130" y="72" font-family="Fredoka" font-weight="bold" font-size="14" fill="#be123c" class="cursor-pointer" onclick="setSvgBadge(${qId}, 'Rumus Teorema Pythagoras: a² + b² = c²')">miring c</text>
-                    </svg>`;
-                    break;
-            }
-
-            return wrapperStart + svgBody + wrapperEnd;
-        }
-
-        function setSvgBadge(qId, message) {
-            const el = document.getElementById(`svgInfoBadge_${qId}`);
-            if (el) {
-                el.textContent = message;
-                el.classList.remove("bg-yellow-200");
-                el.classList.add("bg-sky-200");
-            }
-        }
-
-        /********************************************************************
          * 8. RENDER SOAL & INPUT JAWABAN (PG, MENCOCOKKAN, KOMPLEKS, ESAI)
          ********************************************************************/
         function formatMathStringToHTML(str) {
@@ -1928,8 +1582,8 @@ function simpanHasilUjianKeSheets(data) {
                 mcq: "Pilihan Ganda (1 Jawaban Benar)",
                 matching: "Mencocokkan Pasangan",
                 complex: "Pilihan Kompleks (Lebih dari 1 Benar)",
-                essay_branched: "Esai Beranak & Editor Matematika",
-                essay_single: "Esai Uraian & Editor Matematika"
+                essay_branched: "Esai Beranak (Tulis Jawaban)",
+                essay_single: "Esai (Tulis Jawaban)"
             };
             document.getElementById("qTypeBadge").textContent = typeLabels[q.type] || "Soal Matematika";
 
@@ -1948,8 +1602,6 @@ function simpanHasilUjianKeSheets(data) {
             // Render Teks Pertanyaan (TANPA menampilkan label HOTS ke siswa)
             document.getElementById("questionPromptContainer").innerHTML = `<p>${formatMathStringToHTML(q.prompt)}</p>`;
 
-            // Render Ilustrasi SVG Interaktif
-            document.getElementById("interactiveDiagramContainer").innerHTML = generateInteractiveSVG(q.diagramType, q.id);
 
             // Render Input Jawaban sesuai tipe
             const container = document.getElementById("answerInputContainer");
@@ -1962,7 +1614,7 @@ function simpanHasilUjianKeSheets(data) {
             } else if (q.type === "complex") {
                 renderComplexInput(q, container);
             } else if (q.type === "essay_branched" || q.type === "essay_single") {
-                renderEssayWithMathToolbar(q, container);
+                renderEssayInput(q, container);
             }
 
             // Tombol Navigasi Prev/Next
@@ -2091,172 +1743,56 @@ function simpanHasilUjianKeSheets(data) {
         }
 
         /********************************************************************
-         * 9. EDITOR MATEMATIKA VISUAL (MATHLIVE) & SHORTCUT SIMBOL LENGKAP
+         * 9. INPUT JAWABAN ESAI (TEKS BIASA)
          ********************************************************************/
-        function renderEssayWithMathToolbar(q, container) {
+        function renderEssayInput(q, container) {
             if (!appState.answers[q.id] || typeof appState.answers[q.id] !== "object") {
                 appState.answers[q.id] = {};
             }
 
-            // Toolbar Shortcut Simbol Matematika Interaktif
-            const toolbar = document.createElement("div");
-            toolbar.className = "doodle-card-sm bg-amber-50 p-3 space-y-2 sticky top-16 z-20";
-            toolbar.innerHTML = `
-                <div class="flex items-center justify-between text-xs font-extrabold text-slate-700">
-                    <span class="flex items-center gap-1"><i class="ph-fill ph-math-operations text-purple-700 text-base"></i> Toolbar Rumus & Shortcut Simbol Matematika:</span>
-                    <span class="text-[11px] text-slate-500">Klik tombol untuk menyisipkan ke kotak rumus aktif</span>
-                </div>
-                <div class="flex flex-wrap gap-1.5">
-                    <button type="button" onclick="insertMathLatex('\\sqrt{#0}')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs" title="Akar Kuadrat">√□</button>
-                    <button type="button" onclick="insertMathLatex('\\sqrt[3]{#0}')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs" title="Akar Pangkat Tiga">∛□</button>
-                    <button type="button" onclick="insertMathLatex('#0^{2}')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs" title="Pangkat Dua">x²</button>
-                    <button type="button" onclick="insertMathLatex('#0^{3}')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs" title="Pangkat Tiga">x³</button>
-                    <button type="button" onclick="insertMathLatex('\\frac{#0}{#?}')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs" title="Pecahan">a/b</button>
-                    <button type="button" onclick="insertMathLatex('a^2 + b^2 = c^2')" class="doodle-btn bg-sky-100 hover:bg-sky-200 px-2.5 py-1 text-xs" title="Rumus Pythagoras">a²+b²=c²</button>
-                    <button type="button" onclick="insertMathLatex('\\times')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">×</button>
-                    <button type="button" onclick="insertMathLatex('\\div')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">÷</button>
-                    <button type="button" onclick="insertMathLatex('+')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">+</button>
-                    <button type="button" onclick="insertMathLatex('-')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">−</button>
-                    <button type="button" onclick="insertMathLatex('\\pm')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">±</button>
-                    <button type="button" onclick="insertMathLatex('=')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">=</button>
-                    <button type="button" onclick="insertMathLatex('\\neq')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">≠</button>
-                    <button type="button" onclick="insertMathLatex('<')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">&lt;</button>
-                    <button type="button" onclick="insertMathLatex('>')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">&gt;</button>
-                    <button type="button" onclick="insertMathLatex('\\le')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">≤</button>
-                    <button type="button" onclick="insertMathLatex('\\ge')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">≥</button>
-                    <button type="button" onclick="insertMathLatex('(#0)')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">( )</button>
-                    <button type="button" onclick="insertMathLatex('\\pi')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">π</button>
-                    <button type="button" onclick="insertMathLatex('^\\circ')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs">°</button>
-                    <button type="button" onclick="insertMathLatex('#0_{1}')" class="doodle-btn bg-white hover:bg-yellow-200 px-2.5 py-1 text-xs" title="Subskrip">x₁</button>
-                    <button type="button" onclick="mathFieldCommand('undo')" class="doodle-btn bg-purple-100 hover:bg-purple-200 px-2.5 py-1 text-xs" title="Undo"><i class="ph-bold ph-arrow-u-up-left"></i> Undo</button>
-                    <button type="button" onclick="mathFieldCommand('deleteBackward')" class="doodle-btn bg-rose-100 hover:bg-rose-200 px-2.5 py-1 text-xs" title="Hapus"><i class="ph-bold ph-backspace"></i> Hapus</button>
-                </div>
-            `;
-            container.appendChild(toolbar);
-
             const subList = q.type === "essay_branched"
                 ? q.subQuestions
-                : [{ subId: `single_${q.id}`, label: `Jawaban Esai #${q.numberLabel}`, points: q.points, prompt: "Tuliskan rumus, langkah perhitungan, dan kesimpulan jawabanmu di bawah ini:" }];
+                : [{ subId: `single_${q.id}`, label: `${q.numberLabel}`, points: q.points, prompt: "" }];
 
-            subList.forEach((sub, idx) => {
+            subList.forEach(sub => {
                 const subSaved = appState.answers[q.id][sub.subId] || { latex: "", text: "" };
-                const mfDomId = `mathfield_${q.id}_${sub.subId}`;
                 const taDomId = `textarea_${q.id}_${sub.subId}`;
 
                 const card = document.createElement("div");
                 card.className = "doodle-card-sm p-4 bg-white space-y-3";
                 card.innerHTML = `
+                    ${q.type === "essay_branched" ? `
                     <div class="flex items-center justify-between border-b border-dashed border-slate-200 pb-2">
                         <span class="px-2.5 py-0.5 rounded-lg bg-purple-200 border border-slate-800 font-doodle font-bold text-xs md:text-sm">
-                            Subsoal ${sub.label}
+                            Soal ${sub.label}
                         </span>
                         <span class="text-[11px] font-bold text-slate-500">Bobot: ${sub.points} Poin</span>
                     </div>
-                    <p class="text-sm font-bold text-slate-800">${formatMathStringToHTML(sub.prompt)}</p>
-
-                    <div class="space-y-1.5">
-                        <label class="block text-xs font-extrabold text-blue-800">
-                            1. Baris Rumus / Perhitungan Matematika Visual (Klik tombol √□, x² di atas):
-                        </label>
-                        <math-field id="${mfDomId}" virtual-keyboard-mode="onfocus">${subSaved.latex || ""}</math-field>
-                    </div>
-
-                    <div class="space-y-1.5">
-                        <label class="block text-xs font-extrabold text-slate-700">
-                            2. Penjelasan Langkah & Kesimpulan Jawaban (Dapat diperbesar):
-                        </label>
-                        <textarea id="${taDomId}" rows="3" placeholder="Ketik langkah penyelesaian, satuan (cm/m/km), atau kesimpulan jawabanmu di sini..."
-                            class="doodle-input w-full text-sm font-semibold resize-y">${subSaved.text || ""}</textarea>
-                    </div>
+                    <p class="text-sm font-bold text-slate-800">${formatMathStringToHTML(sub.prompt)}</p>` : ""}
+                    <label for="${taDomId}" class="block text-xs font-extrabold text-slate-700">Jawaban:</label>
+                    <textarea id="${taDomId}" rows="6" placeholder="Tulis jawabanmu di sini..."
+                        class="doodle-input w-full text-sm font-semibold resize-y"></textarea>
                 `;
                 container.appendChild(card);
 
-                // Pasang event listener untuk MathLive & Textarea Fallback
-                setTimeout(() => {
-                    const mf = document.getElementById(mfDomId);
-                    const ta = document.getElementById(taDomId);
-
-                    if (mf) {
-                        if (idx === 0) appState.activeMathFieldId = mfDomId;
-                        mf.addEventListener("focus", () => {
-                            appState.activeMathFieldId = mfDomId;
-                        });
-                        mf.addEventListener("input", () => {
-                            saveEssaySubAnswer(q.id, sub.subId, mf.value, ta ? ta.value : "");
-                        });
-                    }
-                    if (ta) {
-                        ta.addEventListener("focus", () => {
-                            appState.activeMathFieldId = taDomId;
-                        });
-                        ta.addEventListener("input", () => {
-                            saveEssaySubAnswer(q.id, sub.subId, mf ? mf.value : "", ta.value);
-                        });
-                    }
-                }, 40);
+                const ta = card.querySelector("textarea");
+                ta.value = subSaved.text || "";
+                ta.addEventListener("input", () => {
+                    saveEssaySubAnswer(q.id, sub.subId, ta.value);
+                });
             });
         }
 
-        function saveEssaySubAnswer(qId, subId, latexVal, textVal) {
+        function saveEssaySubAnswer(qId, subId, textVal) {
             if (!appState.answers[qId] || typeof appState.answers[qId] !== "object") {
                 appState.answers[qId] = {};
             }
             appState.answers[qId][subId] = {
-                latex: latexVal || "",
+                latex: "",
                 text: textVal || ""
             };
             saveStateToStorage();
             renderNavigationGrid();
-        }
-
-        function insertMathLatex(latexSnippet) {
-            const activeId = appState.activeMathFieldId;
-            if (!activeId) return;
-            const el = document.getElementById(activeId);
-            if (!el) return;
-
-            if (el.tagName.toLowerCase() === "math-field" && typeof el.executeCommand === "function") {
-                el.focus();
-                el.executeCommand(["insert", latexSnippet]);
-            } else if (el.tagName.toLowerCase() === "textarea") {
-                // Fallback jika siswa sedang fokus di textarea biasa
-                const clean = latexSnippet
-                    .replace(/\\sqrt\[3\]\{#0\}/g, '∛()')
-                    .replace(/\\sqrt\{#0\}/g, '√()')
-                    .replace(/#0\^\{2\}/g, '²')
-                    .replace(/#0\^\{3\}/g, '³')
-                    .replace(/\\frac\{#0\}\{#\?\}/g, '(/)')
-                    .replace(/\\times/g, '×')
-                    .replace(/\\div/g, '÷')
-                    .replace(/\\pm/g, '±')
-                    .replace(/\\neq/g, '≠')
-                    .replace(/\\le/g, '≤')
-                    .replace(/\\ge/g, '≥')
-                    .replace(/\\pi/g, 'π')
-                    .replace(/\^\\circ/g, '°')
-                    .replace(/#0_\{1\}/g, '₁')
-                    .replace(/#0/g, '');
-                const start = el.selectionStart || 0;
-                const end = el.selectionEnd || 0;
-                el.value = el.value.substring(0, start) + clean + el.value.substring(end);
-                el.focus();
-                el.dispatchEvent(new Event("input"));
-            }
-        }
-
-        function mathFieldCommand(cmd) {
-            const activeId = appState.activeMathFieldId;
-            if (!activeId) return;
-            const el = document.getElementById(activeId);
-            if (!el) return;
-
-            if (el.tagName.toLowerCase() === "math-field" && typeof el.executeCommand === "function") {
-                el.focus();
-                el.executeCommand(cmd);
-            } else if (el.tagName.toLowerCase() === "textarea" && cmd === "deleteBackward") {
-                el.value = el.value.slice(0, -1);
-                el.dispatchEvent(new Event("input"));
-            }
         }
 
         /********************************************************************

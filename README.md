@@ -17,8 +17,7 @@ Aplikasi web interaktif untuk asesmen mandiri dan ujian matematika materi **Teor
   - **2 Mencocokkan Pasangan** (Nomor 11–12, 6 pasang konteks & perhitungan)
   - **3 Pilihan Kompleks / Lebih dari Satu** (Nomor 13–15)
   - **5 Soal Esai & Uraian** (Nomor 16–20, mencakup soal beranak & HOTS kontekstual)
-- **📐 Gambar Geometri Interaktif (SVG):** Setiap soal dilengkapi diagram visual yang dapat diklik untuk menyorot sisi miring (hipotenusa), sisi penyiku, maupun pembuktian nilai kuadrat.
-- **✍️ Editor Matematika Visual MathLive:** Dukungan input rumus interaktif ($\sqrt{\phantom{x}}$, $x^2$, $\frac{a}{b}$) dan toolbar tombol simbol matematika lengkap.
+- **✍️ Esai Tulis Langsung:** Jawaban esai cukup diketik pada kotak teks biasa, tanpa alat bantu.
 - **🔒 Panel Guru & Administrasi:** Akses kunci jawaban, rubrik penilaian, indikator kisi-kisi, dan penanda soal HOTS (terproteksi kode akses guru `GURU8`).
 - **☁️ Integrasi Google Sheets / Google Apps Script:** Dilengkapi skrip `Code.gs` untuk merekam rekap skor dan jawaban siswa secara langsung ke Google Spreadsheet.
 
@@ -46,9 +45,7 @@ start index.html      # Windows
 ## 🛠️ Teknologi yang Digunakan
 
 - [Tailwind CSS CDN](https://tailwindcss.com/)
-- [MathLive](https://cortexjs.io/mathlive/)
 - [Phosphor Icons](https://phosphoricons.com/)
 - Google Fonts: *Fredoka*, *Nunito*, *Amiri*
-- HTML5 Canvas & Inline SVG Graphics
 - Vanilla JavaScript (ES6+)
 - Google Apps Script (Opsional)
