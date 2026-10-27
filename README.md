@@ -20,7 +20,7 @@ Aplikasi web interaktif untuk asesmen mandiri dan ujian matematika materi **Teor
 - **🖼️ Gambar Pendukung Soal:** Gambar statis (tanpa petunjuk) untuk soal geometri.
 - **✍️ Isian Esai Terstruktur & Koreksi Otomatis:** Input jawaban akhir berupa angka atau bentuk akar (√) lengkap dengan pilihan dropdown satuan (m, m², cm, cm², cm³, mm, km, Rp, dll.) yang langsung dikoreksi otomatis oleh sistem.
 - **🔒 Panel Guru & Administrasi:** Akses kunci jawaban, rubrik penilaian, indikator kisi-kisi, dan penanda soal HOTS (terproteksi kode akses guru `GURU8`).
-- **☁️ Integrasi Google Sheets / Google Apps Script:** Dilengkapi skrip `Code.gs` untuk merekam rekap skor dan jawaban siswa secara langsung ke Google Spreadsheet.
+- **☁️ Integrasi Google Sheets / Google Apps Script:** Terhubung langsung ke spreadsheet [Ujian](https://docs.google.com/spreadsheets/d/13lFYNxpwdyA2M1OiyxhETYX1gnlyvF5lhaCZjWZaUZc/edit) melalui Google Apps Script Web App untuk merekam rekap nilai, durasi, dan jawaban lengkap siswa secara realtime.
 
 ---
 

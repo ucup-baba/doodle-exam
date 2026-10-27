@@ -666,16 +666,29 @@
                 </div>
                 <h4 class="font-doodle font-bold text-lg">Akses Khusus Guru Matematika</h4>
                 <p class="text-xs text-slate-600 max-w-md mx-auto">
-                    Masukkan kode akses guru untuk melihat kunci jawaban, penanda soal HOTS, bobot skor, dan rubrik penilaian esai. (Kode Demo: <strong>GURU8</strong>)
+                    Panel ini dilindungi kode sandi guru untuk menjaga kerahasiaan kisi-kisi, kunci jawaban, dan rubrik penilaian dari siswa.
                 </p>
                 <div class="flex justify-center gap-2 max-w-xs mx-auto">
-                    <input type="password" id="inputTeacherPin" placeholder="Kode Guru (GURU8)" value="GURU8" class="doodle-input text-sm font-bold text-center w-full">
+                    <input type="password" id="inputTeacherPin" placeholder="Masukkan kode sandi guru..." class="doodle-input text-sm font-bold text-center w-full" autocomplete="off">
                     <button onclick="unlockTeacherPanel()" class="doodle-btn bg-purple-300 hover:bg-purple-400 px-4 py-2 text-sm">Buka</button>
                 </div>
             </div>
 
             <!-- Konten Kisi-kisi & Kunci Jawaban -->
             <div id="teacherContentBox" class="hidden p-5 overflow-y-auto space-y-4 text-xs md:text-sm">
+                <!-- Bar Pengaturan Sandi Guru & Spreadsheet -->
+                <div class="doodle-card-sm bg-purple-50 p-3.5 flex flex-wrap items-center justify-between gap-3 border border-purple-200">
+                    <div class="flex items-center gap-2">
+                        <i class="ph-fill ph-shield-check text-xl text-purple-700"></i>
+                        <span class="font-bold text-slate-800">Keamanan Guru:</span>
+                        <input type="password" id="inputNewTeacherPin" placeholder="Ganti sandi baru..." class="doodle-input py-1 px-2.5 text-xs font-bold w-44">
+                        <button onclick="changeTeacherPin()" class="doodle-btn bg-purple-300 hover:bg-purple-400 px-3 py-1 text-xs">Simpan Sandi Baru</button>
+                    </div>
+                    <a href="https://docs.google.com/spreadsheets/d/13lFYNxpwdyA2M1OiyxhETYX1gnlyvF5lhaCZjWZaUZc/edit" target="_blank" class="doodle-btn bg-emerald-200 hover:bg-emerald-300 px-3 py-1 text-xs flex items-center gap-1.5">
+                        <i class="ph-bold ph-table text-sm text-emerald-800"></i>
+                        <span>Buka Spreadsheet Ujian ↗</span>
+                    </a>
+                </div>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     <div class="doodle-card-sm bg-sky-50 p-3">
                         <div class="text-xs text-slate-500 font-bold">Pilihan Ganda (1-10)</div>
@@ -715,45 +728,94 @@
                 <div class="flex items-center gap-2.5">
                     <i class="ph-fill ph-google-logo text-2xl text-emerald-800"></i>
                     <div>
-                        <h3 class="font-doodle font-bold text-lg md:text-xl text-slate-900">Integrasi Google Apps Script & Google Sheets Database</h3>
-                        <p class="text-xs text-slate-600">Siap dipasang langsung sebagai Google Apps Script Web App maupun koneksi REST Web App URL</p>
+                        <h3 class="font-doodle font-bold text-lg md:text-xl text-slate-900">Integrasi Google Spreadsheet & Apps Script</h3>
+                        <p class="text-xs text-slate-600">Menghubungkan rekaman nilai dan jawaban siswa langsung ke Google Spreadsheet guru</p>
                     </div>
                 </div>
                 <button onclick="closeBackendModal()" class="doodle-btn bg-white px-3 py-1 text-xs">Tutup</button>
             </div>
 
             <div class="p-5 overflow-y-auto space-y-4 text-xs md:text-sm">
+                <!-- Info Spreadsheet Terhubung -->
+                <div class="doodle-card-sm bg-emerald-50 p-4 space-y-2 border-2 border-emerald-300">
+                    <div class="flex items-center justify-between flex-wrap gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-lg bg-emerald-200 border border-emerald-800 flex items-center justify-center font-bold text-emerald-900">
+                                <i class="ph-fill ph-file-spreadsheet text-lg"></i>
+                            </span>
+                            <div>
+                                <h4 class="font-doodle font-bold text-sm text-slate-900">Google Spreadsheet Target Terhubung:</h4>
+                                <p class="text-xs font-mono text-emerald-800">ID: 13lFYNxpwdyA2M1OiyxhETYX1gnlyvF5lhaCZjWZaUZc</p>
+                            </div>
+                        </div>
+                        <a href="https://docs.google.com/spreadsheets/d/13lFYNxpwdyA2M1OiyxhETYX1gnlyvF5lhaCZjWZaUZc/edit" target="_blank" class="doodle-btn bg-emerald-300 hover:bg-emerald-400 py-1.5 px-3 text-xs flex items-center gap-1.5">
+                            <i class="ph-bold ph-arrow-square-out text-sm"></i>
+                            <span>Buka Google Spreadsheet Ini ↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Input Web App URL -->
                 <div class="doodle-card-sm bg-amber-50 p-4 space-y-2">
-                    <label class="block font-bold text-slate-800">URL Google Apps Script Web App (Opsional jika berjalan di luar GAS iframe):</label>
+                    <label class="block font-bold text-slate-800">
+                        1. Tempel URL Web App Google Apps Script di sini:
+                    </label>
                     <div class="flex gap-2">
                         <input type="url" id="inputGasWebhookUrl" placeholder="https://script.google.com/macros/s/AKfycb.../exec" class="doodle-input w-full text-xs font-mono">
                         <button onclick="saveGasWebhookUrl()" class="doodle-btn bg-emerald-300 hover:bg-emerald-400 px-4 py-2 text-xs whitespace-nowrap">Simpan URL</button>
                     </div>
                     <p class="text-[11px] text-slate-600">
-                        *Jika file ini dipasang langsung di dalam <code>index.html</code> pada proyek Google Apps Script, aplikasi otomatis menggunakan <code>google.script.run</code> secara native, dan jika memakai URL eksternal aplikasi menggunakan <code>fetch()</code>.
+                        *URL ini didapatkan setelah Anda menerapkan (Deploy) skrip <code>Code.gs</code> di bawah ini sebagai <strong>Aplikasi Web (Web App)</strong> dengan izin akses <strong>Siapa saja (Anyone)</strong>.
                     </p>
+                </div>
+
+                <!-- Panduan 3 Langkah -->
+                <div class="doodle-card-sm bg-sky-50 p-4 space-y-1.5 text-xs text-slate-700">
+                    <div class="font-bold text-sky-900 flex items-center gap-1.5">
+                        <i class="ph-fill ph-info text-base"></i> Langkah Cepat Menautkan (Hanya 1 Menit):
+                    </div>
+                    <ol class="list-decimal pl-5 space-y-1 font-semibold">
+                        <li>Buka Google Spreadsheet di atas, klik menu <strong>Ekstensi (Extensions) &rarr; Apps Script</strong>.</li>
+                        <li>Hapus seluruh kode bawaan yang ada di editor, lalu salin dan tempelkan kode <code>Code.gs</code> di bawah ini. Tekan ikon Simpan (disk).</li>
+                        <li>Klik tombol biru <strong>Terapkan (Deploy) &rarr; Penerapan Baru (New deployment)</strong>:
+                            <ul class="list-disc pl-5 mt-0.5 text-slate-600">
+                                <li>Pilih jenis: <strong>Aplikasi Web (Web App)</strong></li>
+                                <li>Jalankan sebagai (Execute as): <strong>Saya (Me)</strong></li>
+                                <li>Siapa yang memiliki akses (Who has access): <strong>Siapa saja (Anyone)</strong></li>
+                            </ul>
+                        </li>
+                        <li>Salin <strong>URL Aplikasi Web</strong> yang dihasilkan (berakhiran <code>/exec</code>), lalu tempelkan ke kolom isian nomor 1 di atas dan klik <strong>Simpan URL</strong>. Selesai!</li>
+                    </ol>
                 </div>
 
                 <div class="space-y-2">
                     <div class="flex items-center justify-between">
-                        <span class="font-bold text-slate-800">File <code>Code.gs</code> (Salin ke Editor Google Apps Script pada Google Sheets):</span>
+                        <span class="font-bold text-slate-800">File <code>Code.gs</code> (Khusus Spreadsheet 13lFYNxpwdyA2M1OiyxhETYX1gnlyvF5lhaCZjWZaUZc):</span>
                         <button onclick="copyGasBackendCode()" class="doodle-btn bg-sky-200 hover:bg-sky-300 px-3 py-1 text-xs flex items-center gap-1">
                             <i class="ph-bold ph-copy"></i> <span id="copyGasBtnText">Salin Code.gs</span>
                         </button>
                     </div>
                     <pre id="gasCodeBlock" class="p-4 rounded-xl bg-slate-900 text-emerald-300 font-mono text-xs overflow-x-auto leading-relaxed">/**
  * DOODLE EXAM - BACKEND GOOGLE APPS SCRIPT (Code.gs)
+ * Ditautkan ke Google Spreadsheet: 13lFYNxpwdyA2M1OiyxhETYX1gnlyvF5lhaCZjWZaUZc
  * Materi: Teorema Pythagoras Kelas VIII SMP/MTs
  */
+const SPREADSHEET_ID = '13lFYNxpwdyA2M1OiyxhETYX1gnlyvF5lhaCZjWZaUZc';
 const SHEET_HASIL = 'Hasil_Ujian';
 const SHEET_DETAIL = 'Detail_Jawaban';
 
+function getSpreadsheet() {
+  try {
+    return SpreadsheetApp.openById(SPREADSHEET_ID);
+  } catch (err) {
+    return SpreadsheetApp.getActiveSpreadsheet();
+  }
+}
+
 function doGet(e) {
   setupSheetsIfNeeded();
-  return HtmlService.createHtmlOutputFromFile('index')
-    .setTitle('Doodle Exam — Ujian Matematika Pythagoras Kelas VIII')
-    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)
-    .addMetaTag('viewport', 'width=device-width, initial-scale=1');
+  return ContentService.createTextOutput("Backend Doodle Exam Google Sheets Aktif & Terhubung!")
+    .setMimeType(ContentService.MimeType.TEXT);
 }
 
 function doPost(e) {
@@ -769,14 +831,14 @@ function doPost(e) {
 }
 
 function setupSheetsIfNeeded() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ss = getSpreadsheet();
   let sheetHasil = ss.getSheetByName(SHEET_HASIL);
   if (!sheetHasil) {
     sheetHasil = ss.insertSheet(SHEET_HASIL);
     sheetHasil.appendRow([
       'Timestamp', 'Nama Siswa', 'Kelas', 'No Absen', 'Kode Ujian',
-      'Durasi (Detik)', 'Skor PG (30)', 'Skor Mencocokkan (12)', 'Skor Kompleks (18)',
-      'Total Objektif (60)', 'Skor Awal Esai (40)', 'Total Skor (100)', 'Kutipan Sesi'
+      'Durasi', 'Skor PG (30)', 'Skor Mencocokkan (12)', 'Skor Kompleks (18)',
+      'Total Objektif (60)', 'Skor Esai (40)', 'Total Skor (100)', 'Kutipan Sesi'
     ]);
     sheetHasil.getRange(1, 1, 1, 13).setFontWeight('bold').setBackground('#fef08a');
   }
@@ -784,17 +846,21 @@ function setupSheetsIfNeeded() {
   let sheetDetail = ss.getSheetByName(SHEET_DETAIL);
   if (!sheetDetail) {
     sheetDetail = ss.insertSheet(SHEET_DETAIL);
-    sheetDetail.appendRow(['Timestamp', 'Nama Siswa', 'Kelas', 'JSON Jawaban Lengkap']);
-    sheetDetail.getRange(1, 1, 1, 4).setFontWeight('bold').setBackground('#bae6fd');
+    sheetDetail.appendRow(['Timestamp', 'Nama Siswa', 'Kelas', 'No Absen', 'JSON Jawaban Lengkap']);
+    sheetDetail.getRange(1, 1, 1, 5).setFontWeight('bold').setBackground('#bae6fd');
   }
 }
 
 function simpanHasilUjianKeSheets(data) {
   setupSheetsIfNeeded();
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ss = getSpreadsheet();
   const sheetHasil = ss.getSheetByName(SHEET_HASIL);
   const sheetDetail = ss.getSheetByName(SHEET_DETAIL);
   const now = new Date();
+
+  const mins = Math.floor((data.durationSeconds || 0) / 60);
+  const secs = (data.durationSeconds || 0) % 60;
+  const durasiFormatted = mins + ' menit ' + secs + ' detik';
 
   sheetHasil.appendRow([
     now,
@@ -802,7 +868,7 @@ function simpanHasilUjianKeSheets(data) {
     data.student.className,
     data.student.absent,
     data.student.token,
-    data.durationSeconds,
+    durasiFormatted,
     data.scores.mcqScore,
     data.scores.matchScore,
     data.scores.complexScore,
@@ -816,6 +882,7 @@ function simpanHasilUjianKeSheets(data) {
     now,
     data.student.name,
     data.student.className,
+    data.student.absent,
     JSON.stringify(data.answers)
   ]);
 
@@ -1547,6 +1614,8 @@ function simpanHasilUjianKeSheets(data) {
         function startCountdownSequence() {
             closePrayerModal();
             document.getElementById("viewLanding").classList.add("hidden");
+            const lhc = document.getElementById("landingHeaderControls");
+            if (lhc) lhc.classList.add("hidden");
             document.getElementById("viewCountdown").classList.remove("hidden");
 
             // Pilih kutipan acak jika belum ada di sesi ini
@@ -1590,6 +1659,8 @@ function simpanHasilUjianKeSheets(data) {
 
         function restoreExamSession() {
             document.getElementById("viewLanding").classList.add("hidden");
+            const lhc = document.getElementById("landingHeaderControls");
+            if (lhc) lhc.classList.add("hidden");
             document.getElementById("viewCountdown").classList.add("hidden");
             document.getElementById("viewResult").classList.add("hidden");
             document.getElementById("viewExam").classList.remove("hidden");
@@ -2386,6 +2457,8 @@ function simpanHasilUjianKeSheets(data) {
 
         function showResultScreen() {
             document.getElementById("viewLanding").classList.add("hidden");
+            const lhc = document.getElementById("landingHeaderControls");
+            if (lhc) lhc.classList.add("hidden");
             document.getElementById("viewCountdown").classList.add("hidden");
             document.getElementById("viewExam").classList.add("hidden");
             document.getElementById("examHeaderControls").classList.add("hidden");
@@ -2430,15 +2503,37 @@ function simpanHasilUjianKeSheets(data) {
             document.getElementById("modalTeacherAdmin").classList.add("hidden");
         }
 
+        function getTeacherPin() {
+            return localStorage.getItem("DOODLE_TEACHER_PIN") || "GURU8";
+        }
+
         function unlockTeacherPanel() {
             const pin = document.getElementById("inputTeacherPin").value.trim().toUpperCase();
-            if (pin !== "GURU8") {
-                showToast("Kode akses guru salah! Gunakan kode: GURU8", "error");
+            const actualPin = getTeacherPin();
+            if (pin !== actualPin) {
+                showToast("Kode sandi guru salah! Akses ditolak.", "error");
                 return;
             }
             document.getElementById("teacherAuthBox").classList.add("hidden");
             const content = document.getElementById("teacherContentBox");
             content.classList.remove("hidden");
+            showToast("Panel Guru berhasil dibuka!", "success");
+
+            renderTeacherTable();
+        }
+
+        function changeTeacherPin() {
+            const newPin = document.getElementById("inputNewTeacherPin").value.trim().toUpperCase();
+            if (!newPin || newPin.length < 4) {
+                showToast("Sandi baru minimal 4 karakter!", "error");
+                return;
+            }
+            localStorage.setItem("DOODLE_TEACHER_PIN", newPin);
+            document.getElementById("inputNewTeacherPin").value = "";
+            showToast("Sandi guru berhasil diperbarui!", "success");
+        }
+
+        function renderTeacherTable() {
 
             const tableContainer = document.getElementById("teacherQuestionsTable");
             tableContainer.innerHTML = EXAM_QUESTIONS.map(q => {
