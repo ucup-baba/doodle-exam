@@ -546,12 +546,16 @@
                 </div>
 
                 <div class="flex flex-wrap justify-center gap-3 pt-2">
+                    <button id="btnResyncSheets" onclick="resyncCurrentResultToSheets()" class="doodle-btn bg-emerald-300 hover:bg-emerald-400 px-5 py-2.5 text-sm flex items-center gap-2">
+                        <i class="ph-bold ph-cloud-arrow-up text-lg"></i>
+                        <span>Kirim Ulang ke Google Spreadsheet</span>
+                    </button>
                     <button onclick="downloadStudentReceiptJSON()" class="doodle-btn bg-sky-200 hover:bg-sky-300 px-5 py-2.5 text-sm flex items-center gap-2">
-                        <i class="ph-bold ph-download-simple"></i>
+                        <i class="ph-bold ph-download-simple text-lg"></i>
                         <span>Unduh Bukti Jawaban (.JSON)</span>
                     </button>
                     <button onclick="resetExamForNewStudent()" class="doodle-btn bg-amber-200 hover:bg-amber-300 px-5 py-2.5 text-sm flex items-center gap-2">
-                        <i class="ph-bold ph-arrows-clockwise"></i>
+                        <i class="ph-bold ph-arrows-clockwise text-lg"></i>
                         <span>Mulai Sesi Siswa Baru</span>
                     </button>
                 </div>
@@ -678,16 +682,23 @@
             <div id="teacherContentBox" class="hidden p-5 overflow-y-auto space-y-4 text-xs md:text-sm">
                 <!-- Bar Pengaturan Sandi Guru & Spreadsheet -->
                 <div class="doodle-card-sm bg-purple-50 p-3.5 flex flex-wrap items-center justify-between gap-3 border border-purple-200">
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-2 flex-wrap">
                         <i class="ph-fill ph-shield-check text-xl text-purple-700"></i>
                         <span class="font-bold text-slate-800">Keamanan Guru:</span>
                         <input type="password" id="inputNewTeacherPin" placeholder="Ganti sandi baru..." class="doodle-input py-1 px-2.5 text-xs font-bold w-44">
                         <button onclick="changeTeacherPin()" class="doodle-btn bg-purple-300 hover:bg-purple-400 px-3 py-1 text-xs">Simpan Sandi Baru</button>
                     </div>
-                    <a href="https://docs.google.com/spreadsheets/d/13lFYNxpwdyA2M1OiyxhETYX1gnlyvF5lhaCZjWZaUZc/edit" target="_blank" class="doodle-btn bg-emerald-200 hover:bg-emerald-300 px-3 py-1 text-xs flex items-center gap-1.5">
-                        <i class="ph-bold ph-table text-sm text-emerald-800"></i>
-                        <span>Buka Spreadsheet Ujian ↗</span>
-                    </a>
+                    <div class="flex items-center gap-2">
+                        <button onclick="openImportJsonDialog()" class="doodle-btn bg-sky-200 hover:bg-sky-300 px-3 py-1 text-xs flex items-center gap-1.5" title="Jika siswa mengirim berkas JSON via WhatsApp">
+                            <i class="ph-bold ph-upload-simple"></i>
+                            <span>Import JSON Siswa ke Sheets</span>
+                        </button>
+                        <input type="file" id="inputTeacherImportJson" accept=".json" class="hidden" onchange="handleTeacherImportJson(event)">
+                        <a href="https://docs.google.com/spreadsheets/d/13lFYNxpwdyA2M1OiyxhETYX1gnlyvF5lhaCZjWZaUZc/edit" target="_blank" class="doodle-btn bg-emerald-200 hover:bg-emerald-300 px-3 py-1 text-xs flex items-center gap-1.5">
+                            <i class="ph-bold ph-table text-sm text-emerald-800"></i>
+                            <span>Buka Spreadsheet Ujian ↗</span>
+                        </a>
+                    </div>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     <div class="doodle-card-sm bg-sky-50 p-3">
@@ -1542,6 +1553,9 @@ function simpanHasilUjianKeSheets(data) {
                 if (!raw) return;
                 const parsed = JSON.parse(raw);
                 appState = { ...appState, ...parsed };
+                if (!appState.gasWebhookUrl) {
+                    appState.gasWebhookUrl = localStorage.getItem("DOODLE_GAS_URL") || "";
+                }
                 if (appState.gasWebhookUrl) {
                     const urlInput = document.getElementById("inputGasWebhookUrl");
                     if (urlInput) urlInput.value = appState.gasWebhookUrl;
@@ -2428,28 +2442,12 @@ function simpanHasilUjianKeSheets(data) {
 
             // Kirim ke Google Apps Script (Native google.script.run atau Webhook URL)
             const syncText = document.getElementById("resultSyncStatus");
-            if (typeof google !== "undefined" && google.script && google.script.run) {
-                google.script.run
-                    .withSuccessHandler(() => {
-                        if (syncText) syncText.textContent = "✅ Tersinkronisasi langsung ke Google Sheets melalui Google Apps Script!";
-                        showToast("Jawaban berhasil disimpan ke Google Sheets!", "success");
-                    })
-                    .withFailureHandler((err) => {
-                        if (syncText) syncText.textContent = "⚠️ Tersimpan di perangkat lokal (Gagal sinkron ke GAS: " + err + ")";
-                    })
-                    .simpanHasilUjianKeSheets(payload);
-            } else if (appState.gasWebhookUrl) {
-                try {
-                    await fetch(appState.gasWebhookUrl, {
-                        method: "POST",
-                        mode: "no-cors",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(payload)
-                    });
-                    if (syncText) syncText.textContent = "✅ Data telah dikirim ke Google Sheets Web App URL!";
-                } catch (e) {
-                    if (syncText) syncText.textContent = "Data tersimpan aman di memori browser & siap diunduh.";
-                }
+            try {
+                await sendPayloadToSheets(payload);
+                if (syncText) syncText.textContent = "✅ Jawaban berhasil terekam di Google Spreadsheet!";
+                showToast("Jawaban berhasil disimpan ke Google Sheets!", "success");
+            } catch (err) {
+                if (syncText) syncText.textContent = "ℹ️ Jawaban tersimpan aman di perangkat. Klik tombol 'Unduh Bukti Jawaban (.JSON)' untuk mengirim bukti ke guru.";
             }
 
             showResultScreen();
@@ -2476,6 +2474,88 @@ function simpanHasilUjianKeSheets(data) {
             const m = Math.floor(sc.durationSeconds / 60);
             const s = sc.durationSeconds % 60;
             document.getElementById("resDuration").textContent = `${m} menit ${s} detik`;
+        }
+
+        async function sendPayloadToSheets(payload) {
+            const webhookUrl = appState.gasWebhookUrl || localStorage.getItem("DOODLE_GAS_URL") || "";
+            if (typeof google !== "undefined" && google.script && google.script.run) {
+                return new Promise((resolve, reject) => {
+                    google.script.run
+                        .withSuccessHandler(res => resolve(res))
+                        .withFailureHandler(err => reject(err))
+                        .simpanHasilUjianKeSheets(payload);
+                });
+            } else if (webhookUrl) {
+                await fetch(webhookUrl, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+                return { status: "success" };
+            } else {
+                throw new Error("URL Web App Google Sheets belum diatur di aplikasi.");
+            }
+        }
+
+        async function resyncCurrentResultToSheets() {
+            const syncText = document.getElementById("resultSyncStatus");
+            const btn = document.getElementById("btnResyncSheets");
+            if (!appState.finalScores) {
+                showToast("Belum ada data nilai ujian yang tersimpan.", "error");
+                return;
+            }
+            if (btn) btn.disabled = true;
+            if (syncText) syncText.textContent = "⏳ Sedang mencoba mengirim data ke Google Spreadsheet...";
+
+            const payload = {
+                student: appState.student,
+                durationSeconds: appState.finalScores.durationSeconds || 0,
+                scores: appState.finalScores,
+                quoteUsed: appState.selectedQuote ? `${appState.selectedQuote.quote} (${appState.selectedQuote.author})` : "-",
+                answers: appState.answers
+            };
+
+            try {
+                await sendPayloadToSheets(payload);
+                if (syncText) syncText.textContent = "✅ Berhasil dikirim ke Google Spreadsheet!";
+                showToast("Data ujian berhasil disinkronkan ke Google Spreadsheet!", "success");
+            } catch (err) {
+                if (syncText) syncText.textContent = "⚠️ Belum terkirim: " + err.message + ". Silakan unduh bukti JSON atau kirim screenshot ke guru.";
+                showToast(err.message, "warning");
+            } finally {
+                if (btn) btn.disabled = false;
+            }
+        }
+
+        function openImportJsonDialog() {
+            document.getElementById("inputTeacherImportJson").click();
+        }
+
+        async function handleTeacherImportJson(e) {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+            try {
+                const text = await file.text();
+                const parsed = JSON.parse(text);
+                if (!parsed.student || !parsed.finalScores) {
+                    throw new Error("Format file JSON tidak sesuai bukti ujian Doodle Exam.");
+                }
+                const payload = {
+                    student: parsed.student,
+                    durationSeconds: parsed.finalScores.durationSeconds || 0,
+                    scores: parsed.finalScores,
+                    quoteUsed: parsed.selectedQuote ? `${parsed.selectedQuote.quote} (${parsed.selectedQuote.author})` : "-",
+                    answers: parsed.answers || {}
+                };
+                showToast("Mengirim data siswa " + parsed.student.name + " ke Sheets...", "warning");
+                await sendPayloadToSheets(payload);
+                showToast("✅ Nilai " + parsed.student.name + " berhasil dimasukkan ke Google Spreadsheet!", "success");
+            } catch (err) {
+                showToast("Gagal mengimpor: " + err.message, "error");
+            } finally {
+                e.target.value = "";
+            }
         }
 
         function downloadStudentReceiptJSON() {
@@ -2576,6 +2656,7 @@ function simpanHasilUjianKeSheets(data) {
         function saveGasWebhookUrl() {
             const url = document.getElementById("inputGasWebhookUrl").value.trim();
             appState.gasWebhookUrl = url;
+            localStorage.setItem("DOODLE_GAS_URL", url);
             saveStateToStorage();
             showToast("URL Google Apps Script Web App berhasil disimpan!", "success");
         }
