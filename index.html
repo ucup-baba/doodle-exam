@@ -412,6 +412,9 @@
                             <!-- Diisi via JS -->
                         </div>
 
+                        <!-- Gambar Pendukung Soal (statis) -->
+                        <div id="questionDiagramContainer" class="mb-6"></div>
+
                         <!-- AREA JAWABAN DINAMIS (PG / Mencocokkan / Kompleks / Esai) -->
                         <div id="answerInputContainer" class="space-y-4">
                             <!-- Diisi via JS -->
@@ -906,7 +909,7 @@ function simpanHasilUjianKeSheets(data) {
                 difficulty: "Mudah",
                 isHOTS: false,
                 points: 3,
-                prompt: "Diketahui segitiga $PQR$ siku-siku di titik $Q$. Manakah pernyataan dan rumus Teorema Pythagoras yang <strong>paling tepat</strong> untuk segitiga $PQR$ tersebut?",
+                prompt: "Perhatikan gambar segitiga $PQR$ yang siku-siku di titik $Q$ berikut! Manakah pernyataan dan rumus Teorema Pythagoras yang <strong>paling tepat</strong> untuk segitiga $PQR$ tersebut?",
                 diagramType: "triangle_pqr_basic",
                 options: [
                     { id: "A", text: "Sisi miring adalah $PQ$, sehingga $PQ^2 = QR^2 + PR^2$" },
@@ -1039,7 +1042,7 @@ function simpanHasilUjianKeSheets(data) {
                 difficulty: "Sulit (HOTS)",
                 isHOTS: true, // HOTS 1 PG (Disembunyikan dari siswa)
                 points: 3,
-                prompt: "Sebuah bangun tersusun dari dua segitiga siku-siku $\\triangle ABD$ dan $\\triangle BCD$ yang memiliki sisi persekutuan $BD$. Diketahui $\\angle DAB = 90^\\circ$ dengan $AB = 12\\text{ cm}$ dan $AD = 9\\text{ cm}$. Segitiga $BCD$ siku-siku di $B$ ($\\angle DBC = 90^\\circ$) dengan panjang sisi miring $CD = 17\\text{ cm}$. Berapakah panjang sisi $BC$?",
+                prompt: "Perhatikan gambar bangun yang tersusun dari dua segitiga siku-siku $\\triangle ABD$ dan $\\triangle BCD$ berikut! Diketahui $\\angle DAB = 90^\\circ$ dengan $AB = 12\\text{ cm}$ dan $AD = 9\\text{ cm}$. Segitiga $BCD$ siku-siku di $B$ ($\\angle DBC = 90^\\circ$) dengan panjang sisi miring $CD = 17\\text{ cm}$. Berapakah panjang sisi $BC$?",
                 diagramType: "two_triangles_hots",
                 options: [
                     { id: "A", text: "$8\\text{ cm}$" },
@@ -1547,6 +1550,222 @@ function simpanHasilUjianKeSheets(data) {
         }
 
         /********************************************************************
+         * 7. GAMBAR PENDUKUNG SOAL (SVG STATIS, TANPA INTERAKSI/PETUNJUK)
+         ********************************************************************/
+        const SVG_TXT = 'font-family="Fredoka" font-weight="bold"';
+
+        function generateDiagramSVG(diagramType) {
+            let svg = "";
+            switch (diagramType) {
+                case "triangle_pqr_basic":
+                    svg = `
+                    <svg viewBox="0 0 280 175" class="w-full max-w-xs h-44 mx-auto">
+                        <polygon points="50,140 210,140 50,35" fill="#e0f2fe" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                        <rect x="50" y="124" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <text x="32" y="32" ${SVG_TXT} font-size="16">P</text>
+                        <text x="32" y="158" ${SVG_TXT} font-size="16">Q</text>
+                        <text x="216" y="158" ${SVG_TXT} font-size="16">R</text>
+                    </svg>`;
+                    break;
+
+                case "triangle_6_8_x":
+                    svg = `
+                    <svg viewBox="0 0 280 175" class="w-full max-w-xs h-44 mx-auto">
+                        <polygon points="45,140 215,140 45,35" fill="#fef9c3" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                        <rect x="45" y="122" width="18" height="18" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <text x="6" y="95" ${SVG_TXT} font-size="15">6 cm</text>
+                        <text x="110" y="162" ${SVG_TXT} font-size="15">8 cm</text>
+                        <text x="138" y="80" ${SVG_TXT} font-size="15">?</text>
+                    </svg>`;
+                    break;
+
+                case "triangle_5_b_13":
+                    svg = `
+                    <svg viewBox="0 0 280 175" class="w-full max-w-xs h-44 mx-auto">
+                        <polygon points="55,140 225,140 55,45" fill="#dcfce7" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                        <rect x="55" y="124" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <text x="38" y="40" ${SVG_TXT} font-size="14">A</text>
+                        <text x="38" y="155" ${SVG_TXT} font-size="14">B</text>
+                        <text x="230" y="155" ${SVG_TXT} font-size="14">C</text>
+                        <text x="12" y="98" ${SVG_TXT} font-size="14">5 cm</text>
+                        <text x="140" y="82" ${SVG_TXT} font-size="14">13 cm</text>
+                        <text x="132" y="162" ${SVG_TXT} font-size="14">?</text>
+                    </svg>`;
+                    break;
+
+                case "ladder_wall":
+                    svg = `
+                    <svg viewBox="0 0 280 185" class="w-full max-w-xs h-48 mx-auto">
+                        <line x1="25" y1="150" x2="250" y2="150" stroke="#475569" stroke-width="4"/>
+                        <rect x="45" y="25" width="18" height="125" fill="#fca5a5" stroke="#1e293b" stroke-width="2.5"/>
+                        <rect x="63" y="134" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <line x1="63" y1="35" x2="185" y2="150" stroke="#d97706" stroke-width="6" stroke-linecap="round"/>
+                        <text x="135" y="82" ${SVG_TXT} font-size="14">10 m</text>
+                        <text x="110" y="170" ${SVG_TXT} font-size="14">6 m</text>
+                        <text x="72" y="95" ${SVG_TXT} font-size="14">?</text>
+                    </svg>`;
+                    break;
+
+                case "rectangle_diagonal":
+                    svg = `
+                    <svg viewBox="0 0 300 175" class="w-full max-w-sm h-44 mx-auto">
+                        <rect x="40" y="30" width="210" height="105" fill="#bbf7d0" stroke="#1e293b" stroke-width="3"/>
+                        <line x1="40" y1="30" x2="250" y2="135" stroke="#1e293b" stroke-width="3" stroke-dasharray="6,4"/>
+                        <text x="128" y="155" ${SVG_TXT} font-size="14">24 m</text>
+                        <text x="256" y="88" ${SVG_TXT} font-size="14">10 m</text>
+                    </svg>`;
+                    break;
+
+                case "cartesian_points":
+                    svg = `
+                    <svg viewBox="0 0 290 180" class="w-full max-w-sm h-44 mx-auto">
+                        <line x1="35" y1="150" x2="265" y2="150" stroke="#64748b" stroke-width="2"/>
+                        <line x1="35" y1="20" x2="35" y2="150" stroke="#64748b" stroke-width="2"/>
+                        <text x="268" y="155" ${SVG_TXT} font-size="12">x</text>
+                        <text x="30" y="15" ${SVG_TXT} font-size="12">y</text>
+                        <text x="22" y="164" ${SVG_TXT} font-size="11">O</text>
+                        <line x1="65" y1="130" x2="215" y2="45" stroke="#1e293b" stroke-width="3"/>
+                        <circle cx="65" cy="130" r="5" fill="#1e293b"/>
+                        <circle cx="215" cy="45" r="5" fill="#1e293b"/>
+                        <text x="48" y="122" ${SVG_TXT} font-size="13">A(2, 1)</text>
+                        <text x="195" y="35" ${SVG_TXT} font-size="13">B(10, 7)</text>
+                    </svg>`;
+                    break;
+
+                case "two_triangles_hots":
+                    svg = `
+                    <svg viewBox="0 0 310 190" class="w-full max-w-sm h-48 mx-auto">
+                        <polygon points="45,150 165,150 45,55" fill="#bae6fd" stroke="#1e293b" stroke-width="2.5"/>
+                        <rect x="45" y="135" width="15" height="15" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <polygon points="165,150 222,78 45,55" fill="#fde68a" fill-opacity="0.7" stroke="#1e293b" stroke-width="2.5"/>
+                        <text x="28" y="164" ${SVG_TXT} font-size="14">A</text>
+                        <text x="162" y="168" ${SVG_TXT} font-size="14">B</text>
+                        <text x="228" y="78" ${SVG_TXT} font-size="14">C</text>
+                        <text x="28" y="50" ${SVG_TXT} font-size="14">D</text>
+                        <text x="8" y="108" ${SVG_TXT} font-size="13">9 cm</text>
+                        <text x="88" y="168" ${SVG_TXT} font-size="13">12 cm</text>
+                        <text x="140" y="56" ${SVG_TXT} font-size="13">17 cm</text>
+                    </svg>`;
+                    break;
+
+                case "strategy_eval_hots":
+                    svg = `
+                    <svg viewBox="0 0 290 160" class="w-full max-w-sm h-40 mx-auto">
+                        <polygon points="45,135 235,135 45,35" fill="#f3e8ff" stroke="#1e293b" stroke-width="3"/>
+                        <rect x="45" y="119" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <text x="24" y="90" ${SVG_TXT} font-size="14">p</text>
+                        <text x="118" y="152" ${SVG_TXT} font-size="14">24 cm</text>
+                        <text x="140" y="75" ${SVG_TXT} font-size="14">25 cm</text>
+                    </svg>`;
+                    break;
+
+                case "drone_hots":
+                    svg = `
+                    <svg viewBox="0 0 320 180" class="w-full max-w-md h-44 mx-auto">
+                        <line x1="30" y1="145" x2="295" y2="145" stroke="#1e293b" stroke-width="3"/>
+                        <line x1="60" y1="35" x2="60" y2="145" stroke="#1e293b" stroke-width="2.5" stroke-dasharray="4"/>
+                        <rect x="60" y="131" width="14" height="14" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <line x1="60" y1="35" x2="145" y2="145" stroke="#1e293b" stroke-width="2.5"/>
+                        <line x1="60" y1="35" x2="265" y2="145" stroke="#1e293b" stroke-width="2.5"/>
+                        <circle cx="60" cy="35" r="7" fill="#f59e0b" stroke="#1e293b" stroke-width="2"/>
+                        <text x="45" y="22" ${SVG_TXT} font-size="13">Drone</text>
+                        <text x="12" y="95" ${SVG_TXT} font-size="12">120 m</text>
+                        <text x="84" y="102" ${SVG_TXT} font-size="12">130 m</text>
+                        <text x="175" y="82" ${SVG_TXT} font-size="12">200 m</text>
+                        <text x="54" y="164" ${SVG_TXT} font-size="13">P</text>
+                        <text x="138" y="164" ${SVG_TXT} font-size="13">A</text>
+                        <text x="260" y="164" ${SVG_TXT} font-size="13">B</text>
+                    </svg>`;
+                    break;
+
+                case "triangle_klm_labels":
+                    svg = `
+                    <svg viewBox="0 0 280 170" class="w-full max-w-xs h-40 mx-auto">
+                        <polygon points="50,135 220,135 50,35" fill="#e0e7ff" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                        <rect x="50" y="119" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <text x="32" y="32" ${SVG_TXT} font-size="15">K</text>
+                        <text x="32" y="152" ${SVG_TXT} font-size="15">L</text>
+                        <text x="226" y="152" ${SVG_TXT} font-size="15">M</text>
+                        <text x="30" y="90" ${SVG_TXT} font-size="14" font-style="italic">k</text>
+                        <text x="130" y="154" ${SVG_TXT} font-size="14" font-style="italic">m</text>
+                        <text x="140" y="78" ${SVG_TXT} font-size="14" font-style="italic">l</text>
+                    </svg>`;
+                    break;
+
+                case "rect_15_8":
+                    svg = `
+                    <svg viewBox="0 0 300 160" class="w-full max-w-sm h-40 mx-auto">
+                        <rect x="40" y="30" width="210" height="100" fill="#fef3c7" stroke="#1e293b" stroke-width="3"/>
+                        <text x="130" y="150" ${SVG_TXT} font-size="14">15 cm</text>
+                        <text x="256" y="85" ${SVG_TXT} font-size="14">8 cm</text>
+                    </svg>`;
+                    break;
+
+                case "essay_tower_wire":
+                    svg = `
+                    <svg viewBox="0 0 290 180" class="w-full max-w-xs h-44 mx-auto">
+                        <line x1="30" y1="150" x2="260" y2="150" stroke="#334155" stroke-width="3"/>
+                        <line x1="80" y1="30" x2="80" y2="150" stroke="#0284c7" stroke-width="6"/>
+                        <rect x="80" y="134" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <line x1="80" y1="30" x2="195" y2="150" stroke="#1e293b" stroke-width="2.5" stroke-dasharray="5,3"/>
+                        <circle cx="195" cy="150" r="4" fill="#1e293b"/>
+                        <text x="40" y="95" ${SVG_TXT} font-size="13">12 m</text>
+                        <text x="128" y="168" ${SVG_TXT} font-size="13">9 m</text>
+                        <text x="150" y="85" ${SVG_TXT} font-size="13">kawat</text>
+                    </svg>`;
+                    break;
+
+                case "essay_trapezoid":
+                    svg = `
+                    <svg viewBox="0 0 310 180" class="w-full max-w-sm h-44 mx-auto">
+                        <polygon points="45,145 255,145 185,40 45,40" fill="#dcfce7" stroke="#1e293b" stroke-width="3"/>
+                        <rect x="45" y="130" width="15" height="15" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <rect x="45" y="40" width="15" height="15" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <text x="28" y="158" ${SVG_TXT} font-size="13">A</text>
+                        <text x="260" y="158" ${SVG_TXT} font-size="13">B</text>
+                        <text x="188" y="32" ${SVG_TXT} font-size="13">C</text>
+                        <text x="28" y="35" ${SVG_TXT} font-size="13">D</text>
+                        <text x="100" y="32" ${SVG_TXT} font-size="13">14 m</text>
+                        <text x="135" y="165" ${SVG_TXT} font-size="13">22 m</text>
+                        <text x="8" y="98" ${SVG_TXT} font-size="13">15 m</text>
+                    </svg>`;
+                    break;
+
+                case "essay_isosceles_right":
+                    svg = `
+                    <svg viewBox="0 0 240 180" class="w-full max-w-xs h-44 mx-auto">
+                        <polygon points="50,150 180,150 50,20" fill="#fce7f3" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                        <rect x="50" y="134" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <text x="8" y="90" ${SVG_TXT} font-size="14">10 cm</text>
+                        <text x="95" y="170" ${SVG_TXT} font-size="14">10 cm</text>
+                    </svg>`;
+                    break;
+
+                case "essay_river_hots":
+                    svg = `
+                    <svg viewBox="0 0 320 185" class="w-full max-w-md h-48 mx-auto">
+                        <rect x="20" y="45" width="280" height="90" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
+                        <text x="250" y="95" ${SVG_TXT} font-size="12" fill="#0369a1">Sungai</text>
+                        <circle cx="65" cy="45" r="6" fill="#1e293b"/><text x="50" y="35" ${SVG_TXT} font-size="13">A</text>
+                        <circle cx="65" cy="135" r="5" fill="#1e293b"/><text x="58" y="158" ${SVG_TXT} font-size="13">P</text>
+                        <circle cx="235" cy="135" r="6" fill="#1e293b"/><text x="230" y="158" ${SVG_TXT} font-size="13">B</text>
+                        <text x="6" y="40" ${SVG_TXT} font-size="11">Utara</text>
+                        <text x="6" y="150" ${SVG_TXT} font-size="11">Selatan</text>
+                    </svg>`;
+                    break;
+
+                default:
+                    return "";
+            }
+
+            return `<div class="doodle-card-sm bg-white p-4 border-2 border-slate-800">
+                <p class="text-xs font-extrabold text-slate-500 mb-2">Gambar:</p>
+                ${svg}
+                <p class="text-[11px] text-slate-400 text-center mt-1">Gambar tidak sesuai skala sebenarnya.</p>
+            </div>`;
+        }
+
+        /********************************************************************
          * 8. RENDER SOAL & INPUT JAWABAN (PG, MENCOCOKKAN, KOMPLEKS, ESAI)
          ********************************************************************/
         function formatMathStringToHTML(str) {
@@ -1557,6 +1776,7 @@ function simpanHasilUjianKeSheets(data) {
                     .replace(/\\sqrt\{([^}]+)\}/g, '√($1)')
                     .replace(/\\text\{([^}]+)\}/g, '$1')
                     .replace(/\\triangle/g, '△')
+                    .replace(/\^\\circ/g, '°')
                     .replace(/\\angle/g, '∠')
                     .replace(/\\circ/g, '°')
                     .replace(/\\times/g, '×')
@@ -1601,6 +1821,9 @@ function simpanHasilUjianKeSheets(data) {
 
             // Render Teks Pertanyaan (TANPA menampilkan label HOTS ke siswa)
             document.getElementById("questionPromptContainer").innerHTML = `<p>${formatMathStringToHTML(q.prompt)}</p>`;
+
+            // Render Gambar Pendukung Soal (statis)
+            document.getElementById("questionDiagramContainer").innerHTML = generateDiagramSVG(q.diagramType);
 
 
             // Render Input Jawaban sesuai tipe

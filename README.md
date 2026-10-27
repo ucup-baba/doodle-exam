@@ -17,6 +17,7 @@ Aplikasi web interaktif untuk asesmen mandiri dan ujian matematika materi **Teor
   - **2 Mencocokkan Pasangan** (Nomor 11–12, 6 pasang konteks & perhitungan)
   - **3 Pilihan Kompleks / Lebih dari Satu** (Nomor 13–15)
   - **5 Soal Esai & Uraian** (Nomor 16–20, mencakup soal beranak & HOTS kontekstual)
+- **🖼️ Gambar Pendukung Soal:** Gambar statis (tanpa petunjuk) untuk soal geometri.
 - **✍️ Esai Tulis Langsung:** Jawaban esai cukup diketik pada kotak teks biasa, tanpa alat bantu.
 - **🔒 Panel Guru & Administrasi:** Akses kunci jawaban, rubrik penilaian, indikator kisi-kisi, dan penanda soal HOTS (terproteksi kode akses guru `GURU8`).
 - **☁️ Integrasi Google Sheets / Google Apps Script:** Dilengkapi skrip `Code.gs` untuk merekam rekap skor dan jawaban siswa secara langsung ke Google Spreadsheet.
