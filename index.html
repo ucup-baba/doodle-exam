@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doodle Exam — Ujian Matematika Teorema Pythagoras Kelas VIII</title>
+    <title>Doodle Exam — Remedi & Pengayaan Teorema Pythagoras Kelas VIII</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Fredoka (Judul Doodle), Nunito (Teks Soal), Amiri (Teks Doa Arab) -->
@@ -180,7 +180,7 @@
                         <h1 class="font-doodle text-xl md:text-2xl font-bold text-slate-800 tracking-tight">DOODLE EXAM</h1>
                         <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-sky-200 border border-slate-800 text-slate-900">Kelas VIII SMP/MTs</span>
                     </div>
-                    <p class="text-xs text-slate-600 font-semibold">Bab: Teorema Pythagoras & Aplikasinya</p>
+                    <p class="text-xs text-slate-600 font-semibold">Program Remedi (< 75) & Pengayaan (≥ 75) • Teorema Pythagoras (Boleh Open Book)</p>
                 </div>
             </div>
 
@@ -226,49 +226,71 @@
     <!-- KONTEN UTAMA -->
     <main class="flex-grow z-10 px-4 py-6 md:py-8 max-w-7xl w-full mx-auto">
 
-        <!-- ==========================================
-             VIEW 1: HALAMAN PEMBUKA & IDENTITAS SISWA
+                <!-- ==========================================
+             VIEW 1: HALAMAN PEMBUKA & FILTER OTOMATIS REMEDI / PENGAYAAN
              ========================================== -->
         <section id="viewLanding" class="max-w-4xl mx-auto">
             <div class="doodle-card p-6 md:p-10 relative overflow-hidden notebook-margin">
 
-                <div class="grid md:grid-cols-12 gap-8 items-center">
-                    <!-- Kolom Kiri: Ilustrasi Doodle & Info Ujian -->
+                <div class="grid md:grid-cols-12 gap-8 items-start">
+                    <!-- Kolom Kiri: Ilustrasi Doodle & Info Program Remedi/Pengayaan -->
                     <div class="md:col-span-6 space-y-4">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-200 border-2 border-slate-800 text-xs font-bold">
-                            <i class="ph-fill ph-book-open-text"></i> Evaluasi Mandiri Matematika
+                        <div class="flex flex-wrap items-center gap-2">
+                            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-yellow-200 border-2 border-slate-800 text-xs font-bold">
+                                <i class="ph-fill ph-arrows-Split"></i> Program Remedi & Pengayaan
+                            </div>
+                            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-200 border-2 border-slate-800 text-xs font-extrabold text-emerald-950">
+                                <i class="ph-fill ph-book-open"></i> BOLEH OPEN BOOK
+                            </div>
                         </div>
 
                         <h2 class="font-doodle text-3xl md:text-4xl font-bold text-slate-900 leading-tight">
-                            Petualangan Segitiga Siku-Siku: <span class="underline decoration-wavy decoration-pink-500">Teorema Pythagoras</span>
+                            Remedi & Pengayaan: <span class="underline decoration-wavy decoration-pink-500">Teorema Pythagoras</span>
                         </h2>
 
                         <p class="text-slate-700 text-sm md:text-base leading-relaxed">
-                            Selamat datang di <strong>Doodle Classroom</strong>! Ujian ini menguji pemahamanmu tentang hubungan sisi segitiga siku-siku, tripel Pythagoras, dan penerapannya dalam kehidupan nyata. Kerjakan dengan jujur dan teliti.
+                            Sistem ini secara otomatis menyesuaikan paket soal berdasarkan <strong>Nilai Ujian Utama (KKM 75)</strong>:
                         </p>
 
+                        <div class="space-y-2 text-xs font-bold">
+                            <div class="p-3 rounded-xl bg-amber-100 border-2 border-slate-800 flex items-start gap-2.5">
+                                <i class="ph-fill ph-wrench text-lg text-amber-800 flex-shrink-0 mt-0.5"></i>
+                                <div>
+                                    <span class="font-extrabold text-slate-900">Paket Remedi / Perbaikan (Nilai &lt; 75 atau Belum Terdaftar):</span>
+                                    <p class="text-slate-700 font-semibold mt-0.5">15 soal objektif setara ujian utama dengan variasi angka baru. Boleh membuka buku/catatan!</p>
+                                </div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-purple-100 border-2 border-slate-800 flex items-start gap-2.5">
+                                <i class="ph-fill ph-ShootingStar text-lg text-purple-800 flex-shrink-0 mt-0.5"></i>
+                                <div>
+                                    <span class="font-extrabold text-slate-900">Paket Pengayaan (Nilai &ge; 75):</span>
+                                    <p class="text-slate-700 font-semibold mt-0.5">15 soal tantangan pengembangan konsep & aplikasi Pythagoras tingkat lanjut. Boleh membuka buku/catatan!</p>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Kartu Info Ringkas -->
-                        <div class="grid grid-cols-3 gap-2.5 pt-2">
+                        <div class="grid grid-cols-3 gap-2.5 pt-1">
                             <div class="doodle-card-sm bg-sky-100 p-3 text-center">
                                 <i class="ph-bold ph-list-numbers text-2xl text-sky-700"></i>
-                                <div class="font-doodle font-bold text-lg text-slate-900">20 Soal</div>
-                                <div class="text-[11px] font-bold text-slate-600">15 Objektif + 5 Esai</div>
+                                <div class="font-doodle font-bold text-lg text-slate-900">15 Soal</div>
+                                <div class="text-[11px] font-bold text-slate-600">PG, Jodohkan, Kompleks</div>
+                            </div>
+                            <div class="doodle-card-sm bg-emerald-100 p-3 text-center">
+                                <i class="ph-bold ph-book-open-text text-2xl text-emerald-700"></i>
+                                <div class="font-doodle font-bold text-lg text-slate-900">Open Book</div>
+                                <div class="text-[11px] font-bold text-slate-600">Boleh Buka Catatan</div>
                             </div>
                             <div class="doodle-card-sm bg-amber-100 p-3 text-center">
                                 <i class="ph-bold ph-clock-countdown text-2xl text-amber-700"></i>
-                                <div class="font-doodle font-bold text-lg text-slate-900">100 Menit</div>
-                                <div class="text-[11px] font-bold text-slate-600">Auto-Save Aktif</div>
-                            </div>
-                            <div class="doodle-card-sm bg-emerald-100 p-3 text-center">
-                                <i class="ph-bold ph-pencil-simple-line text-2xl text-emerald-700"></i>
-                                <div class="font-doodle font-bold text-lg text-slate-900">Esai</div>
-                                <div class="text-[11px] font-bold text-slate-600">Tulis Jawaban Langsung</div>
+                                <div class="font-doodle font-bold text-lg text-slate-900">90 Menit</div>
+                                <div class="text-[11px] font-bold text-slate-600">Skor Otomatis 100</div>
                             </div>
                         </div>
 
                     </div>
 
-                    <!-- Kolom Kanan: Formulir Identitas Siswa -->
+                    <!-- Kolom Kanan: Formulir Filter Nama Terdaftar & Identitas Siswa -->
                     <div class="md:col-span-6">
                         <!-- Banner Lanjutkan Ujian Jika Sesi Masih Berjalan -->
                         <div id="resumeExamCard" class="hidden doodle-card-sm bg-emerald-100 border-2 border-slate-800 p-4 mb-4 space-y-2">
@@ -290,8 +312,8 @@
                                     <i class="ph-bold ph-identification-card text-xl"></i>
                                 </div>
                                 <div>
-                                    <h3 class="font-doodle font-bold text-lg text-slate-900">Identitas Peserta Ujian</h3>
-                                    <p class="text-xs text-slate-600">Lengkapi data dengan benar sebelum memulai ujian</p>
+                                    <h3 class="font-doodle font-bold text-lg text-slate-900">Pilih Nama / Identitas Peserta</h3>
+                                    <p class="text-xs text-slate-600">Pilih namamu dari daftar nilai atau tulis nama jika belum terdaftar</p>
                                 </div>
                             </div>
 
@@ -302,11 +324,38 @@
                             </div>
 
                             <form id="studentIdentityForm" onsubmit="handleIdentitySubmit(event)" class="space-y-3.5" novalidate>
+                                <!-- Dropdown Filter Siswa Terdaftar -->
+                                <div>
+                                    <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1">
+                                        1. Cari di Daftar Peserta Ujian Sebelumnya:
+                                    </label>
+                                    <select id="selectRegisteredStudent" onchange="handleSelectRegisteredStudent(this.value)" class="doodle-input w-full text-xs md:text-sm font-bold bg-sky-50">
+                                        <option value="">-- Pilih Namamu dari Daftar Berikut --</option>
+                                        <!-- Diisi otomatis via JS dari database nilai + sinkronisasi Sheets -->
+                                    </select>
+                                    <p class="text-[11px] font-bold text-slate-500 mt-1">
+                                        *Jika namamu belum ada di daftar atas, pilih <strong>"Nama Belum Ada (Ikut Perbaikan/Remedi)"</strong> atau langsung ketik namamu di bawah.
+                                    </p>
+                                </div>
+
+                                <!-- Indikator Paket Otomatis (Remedi / Pengayaan) -->
+                                <div id="packageStatusBanner" class="p-3.5 rounded-xl bg-amber-100 border-2 border-slate-800 space-y-1">
+                                    <div class="flex items-center justify-between">
+                                        <span id="packageBadgeTitle" class="text-xs font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-300 border border-slate-800 text-slate-900">
+                                            🛠️ PROGRAM REMEDI / PERBAIKAN
+                                        </span>
+                                        <span id="packagePrevScoreLabel" class="text-xs font-bold text-slate-700">KKM: 75</span>
+                                    </div>
+                                    <p id="packageBadgeDesc" class="text-xs font-bold text-slate-700 pt-1">
+                                        Paket Soal: 15 Soal Perbaikan Objektif (Boleh Open Book).
+                                    </p>
+                                </div>
+
                                 <div>
                                     <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1">
                                         Nama Lengkap Siswa <span class="text-red-600">*</span>
                                     </label>
-                                    <input type="text" id="inputStudentName" placeholder="Contoh: Budi Santoso" class="doodle-input w-full text-sm font-bold" required>
+                                    <input type="text" id="inputStudentName" oninput="handleManualNameInput(this.value)" placeholder="Ketik nama lengkapmu..." class="doodle-input w-full text-sm font-bold" required>
                                 </div>
 
                                 <div class="grid grid-cols-2 gap-3">
@@ -328,21 +377,21 @@
                                         <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1">
                                             Nomor Absen <span class="text-red-600">*</span>
                                         </label>
-                                        <input type="number" id="inputStudentAbsent" min="1" max="50" placeholder="Contoh: 12" class="doodle-input w-full text-sm font-bold" required>
+                                        <input type="number" id="inputStudentAbsent" min="1" max="50" placeholder="Contoh: 8" class="doodle-input w-full text-sm font-bold" required>
                                     </div>
                                 </div>
 
                                 <div>
                                     <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1">
-                                        Kode Ujian / Token Kelas <span class="text-slate-400 font-normal">(Opsional)</span>
+                                        Kode Paket Ujian <span class="text-slate-400 font-normal">(Otomatis)</span>
                                     </label>
-                                    <input type="text" id="inputExamToken" placeholder="Default: PYTHAGORAS8" value="PYTHAGORAS8" class="doodle-input w-full text-sm font-bold uppercase">
+                                    <input type="text" id="inputExamToken" value="REMEDI-PYTHAGORAS" readonly class="doodle-input w-full text-xs font-extrabold uppercase bg-slate-100 text-slate-700 cursor-not-allowed">
                                 </div>
 
                                 <!-- Tombol Lanjutkan -->
                                 <div class="pt-2">
                                     <button type="submit" class="doodle-btn w-full bg-yellow-300 hover:bg-yellow-400 py-3.5 text-base md:text-lg flex items-center justify-center gap-2">
-                                        <span>Lanjutkan ke Doa Sebelum Ujian</span>
+                                        <span>Mulai Kerjakan Soal</span>
                                         <i class="ph-bold ph-arrow-circle-right text-xl"></i>
                                     </button>
                                 </div>
@@ -465,21 +514,20 @@
                             </span>
                         </div>
 
+                        <!-- Info Paket Aktif & Open Book -->
+                        <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-400 text-[11px] font-bold text-emerald-950 flex items-center justify-between">
+                            <span id="sidebarPackageBadge" class="font-extrabold">🛠️ Paket Remedi</span>
+                            <span class="px-2 py-0.5 rounded bg-emerald-200 border border-slate-700">📖 Open Book</span>
+                        </div>
+
                         <!-- Kelompok Objektif (1-15) -->
                         <div>
-                            <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-2">A. Soal Objektif (Nomor 1 - 15)</p>
+                            <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-2">Daftar 15 Soal (PG, Menjodohkan, Kompleks)</p>
                             <div id="navGridObjective" class="grid grid-cols-5 gap-2">
                                 <!-- Diisi JS -->
                             </div>
                         </div>
-
-                        <!-- Kelompok Esai (16-20) -->
-                        <div>
-                            <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-2">B. Soal Esai & Uraian (Nomor 16 - 20)</p>
-                            <div id="navGridEssay" class="grid grid-cols-5 gap-2">
-                                <!-- Diisi JS -->
-                            </div>
-                        </div>
+                        <div id="navGridEssay" class="hidden"></div>
 
                         <!-- Legenda Warna -->
                         <div class="grid grid-cols-2 gap-2 pt-2 text-[11px] font-bold text-slate-600 border-t border-dashed border-slate-300">
@@ -527,20 +575,20 @@
                     <p id="resultSyncStatus" class="text-sm font-bold text-slate-600">Data jawaban telah direkam di sistem dan siap dievaluasi guru.</p>
                 </div>
 
-                <!-- Ringkasan Nilai Objektif & Estimasi Esai -->
+                <!-- Ringkasan Nilai 15 Soal (PG, Menjodohkan, Kompleks) -->
                 <div class="grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
                     <div class="doodle-card-sm bg-sky-100 p-4">
-                        <div class="text-xs font-bold text-slate-600">Skor Objektif Otomatis</div>
-                        <div id="resObjectiveScore" class="font-doodle text-3xl font-bold text-slate-900 my-1">0 / 60</div>
-                        <div id="resObjectiveDetail" class="text-[11px] font-bold text-sky-900">15 Soal Objektif</div>
+                        <div class="text-xs font-bold text-slate-600">Rincian Poin Bagian</div>
+                        <div id="resObjectiveScore" class="font-doodle text-2xl font-bold text-slate-900 my-1">15 Soal</div>
+                        <div id="resObjectiveDetail" class="text-[11px] font-bold text-sky-900">PG: 0 | Jodoh: 0 | Kompleks: 0</div>
                     </div>
                     <div class="doodle-card-sm bg-purple-100 p-4">
-                        <div class="text-xs font-bold text-slate-600">Skor Rubrik Esai (Awal)</div>
-                        <div id="resEssayScore" class="font-doodle text-3xl font-bold text-slate-900 my-1">0 / 40</div>
-                        <div class="text-[11px] font-bold text-purple-900">Diverifikasi oleh Guru</div>
+                        <div class="text-xs font-bold text-slate-600">Program Ujian</div>
+                        <div id="resEssayScore" class="font-doodle text-xl font-bold text-slate-900 my-1">REMEDI</div>
+                        <div id="resPackageSubtext" class="text-[11px] font-bold text-purple-900">KKM 75 • Open Book</div>
                     </div>
                     <div class="doodle-card-sm bg-yellow-200 p-4">
-                        <div class="text-xs font-bold text-slate-700">Total Skor Sementara</div>
+                        <div class="text-xs font-bold text-slate-700">Total Nilai Akhir</div>
                         <div id="resTotalScore" class="font-doodle text-4xl font-bold text-slate-900 my-1">0</div>
                         <div class="text-[11px] font-extrabold text-slate-800">Skala 100 Poin</div>
                     </div>
@@ -717,23 +765,25 @@
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     <div class="doodle-card-sm bg-sky-50 p-3">
                         <div class="text-xs text-slate-500 font-bold">Pilihan Ganda (1-10)</div>
-                        <div class="font-doodle font-bold text-base">10 Soal (3 HOTS)</div>
-                        <div class="text-[11px] text-sky-700 font-bold">Bobot: 10 × 3 = 30 Poin</div>
+                        <div class="font-doodle font-bold text-base">10 Soal PG</div>
+                        <div class="text-[11px] text-sky-700 font-bold">Bobot: 10 × 5 = 50 Poin</div>
                     </div>
                     <div class="doodle-card-sm bg-amber-50 p-3">
-                        <div class="text-xs text-slate-500 font-bold">Mencocokkan (11-12)</div>
+                        <div class="text-xs text-slate-500 font-bold">Menjodohkan (11-12)</div>
                         <div class="font-doodle font-bold text-base">2 Soal (6 Pasang)</div>
-                        <div class="text-[11px] text-amber-700 font-bold">Bobot: 2 × 6 = 12 Poin</div>
+                        <div class="text-[11px] text-amber-700 font-bold">Bobot: 2 × 10 = 20 Poin</div>
                     </div>
                     <div class="doodle-card-sm bg-emerald-50 p-3">
                         <div class="text-xs text-slate-500 font-bold">Pilihan Kompleks (13-15)</div>
                         <div class="font-doodle font-bold text-base">3 Soal Multi-Opsi</div>
-                        <div class="text-[11px] text-emerald-700 font-bold">Bobot: 3 × 6 = 18 Poin</div>
+                        <div class="text-[11px] text-emerald-700 font-bold">Bobot: 3 × 10 = 30 Poin</div>
                     </div>
-                    <div class="doodle-card-sm bg-pink-50 p-3">
-                        <div class="text-xs text-slate-500 font-bold">Esai Uraian (16-20)</div>
-                        <div class="font-doodle font-bold text-base">5 Soal (2 Beranak, 1 HOTS)</div>
-                        <div class="text-[11px] text-pink-700 font-bold">Bobot Total Esai: 40 Poin</div>
+                    <div class="doodle-card-sm bg-purple-50 p-3">
+                        <div class="text-xs text-slate-500 font-bold">Pilih Tampilan Kunci:</div>
+                        <div class="flex gap-1.5 mt-1">
+                            <button type="button" onclick="renderTeacherTable('remedi')" class="doodle-btn bg-amber-200 px-2.5 py-1 text-xs">Paket Remedi</button>
+                            <button type="button" onclick="renderTeacherTable('pengayaan')" class="doodle-btn bg-purple-200 px-2.5 py-1 text-xs">Paket Pengayaan</button>
+                        </div>
                     </div>
                 </div>
 
@@ -985,138 +1035,166 @@ function simpanHasilUjianKeSheets(data) {
         ];
 
         /********************************************************************
-         * 2. DATABASE 20 SOAL TEOREMA PYTHAGORAS KELAS VIII SMP/MTs
-         *    - 10 Pilihan Ganda (3 HOTS: Nomor 8, 9, 10)
-         *    - 2 Mencocokkan (Nomor 11, 12)
-         *    - 3 Pilihan Kompleks Lebih dari Satu (Nomor 13, 14, 15)
-         *    - 5 Soal Esai (2 Soal Beranak: 16a-b-c & 17a-b, 1 HOTS: Nomor 20)
+         * 2. DAFTAR SISWA TERDAFTAR & FILTER OTOMATIS REMEDI (<75) / PENGAYAAN (>=75)
+         *    - KKM = 75
+         *    - Siswa yang belum terdaftar otomatis masuk Paket Remedi (Perbaikan)
+         *    - Sinkron otomatis dengan CSV Google Spreadsheet jika ada data baru
          ********************************************************************/
-        const EXAM_QUESTIONS = [
-            // --- BAGIAN A1: 10 SOAL PILIHAN GANDA (3 Poin / Soal = 30 Poin) ---
+        const KKM_SCORE = 75;
+        const SPREADSHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/13lFYNxpwdyA2M1OiyxhETYX1gnlyvF5lhaCZjWZaUZc/gviz/tq?tqx=out:csv&sheet=Hasil_Ujian";
+
+        let REGISTERED_STUDENTS = [
+            { name: "Kholafa Rusydan", className: "VIII-A", absent: "6", prevScore: 88, packageType: "pengayaan" },
+            { name: "Abdul Aziz Al Faruq", className: "VIII-B", absent: "1", prevScore: 74, packageType: "remedi" },
+            { name: "Rusdi Galeh Pamungkas", className: "VIII-A", absent: "8", prevScore: 68, packageType: "remedi" },
+            { name: "Fitria Nur Khasanah", className: "VIII-A", absent: "3", prevScore: 64.5, packageType: "remedi" },
+            { name: "Chotidjah Allaydrus", className: "VIII-A", absent: "2", prevScore: 62.5, packageType: "remedi" },
+            { name: "Ghina May Fitri", className: "VIII-A", absent: "4", prevScore: 56.5, packageType: "remedi" },
+            { name: "Khafifah Nastitiani", className: "VIII-A", absent: "5", prevScore: 55.5, packageType: "remedi" }
+        ];
+
+        function normalizeStudentName(str) {
+            return String(str || "").trim().toLowerCase().replace(/\s+/g, " ");
+        }
+
+        function findRegisteredStudentByName(nameStr) {
+            const norm = normalizeStudentName(nameStr);
+            if (!norm) return null;
+            return REGISTERED_STUDENTS.find(s => normalizeStudentName(s.name) === norm) || null;
+        }
+
+        /********************************************************************
+         * 3. BANK SOAL PAKET REMEDI / PERBAIKAN (15 SOAL - SKALA 100 POIN)
+         *    - 10 Pilihan Ganda (@ 5 Poin = 50 Poin)
+         *    - 2 Menjodohkan (@ 10 Poin = 20 Poin)
+         *    - 3 Pilihan Kompleks Multi-Opsi (@ 10 Poin = 30 Poin)
+         ********************************************************************/
+        const QUESTIONS_REMEDI = [
+            // --- 10 SOAL PILIHAN GANDA (5 Poin / Soal = 50 Poin) ---
             {
                 id: 1,
                 numberLabel: "1",
-                section: "Objektif",
+                section: "Pilihan Ganda",
                 type: "mcq",
-                difficulty: "Mudah",
+                points: 5,
                 isHOTS: false,
-                points: 3,
-                prompt: "Perhatikan gambar segitiga $PQR$ yang siku-siku di titik $Q$ berikut! Manakah pernyataan dan rumus Teorema Pythagoras yang <strong>paling tepat</strong> untuk segitiga $PQR$ tersebut?",
-                diagramType: "triangle_pqr_basic",
+                difficulty: "Mudah",
+                prompt: "Perhatikan segitiga siku-siku $ABC$ yang siku-siku di titik $B$ berikut. Jika panjang sisi alas $AB = 9\\text{ cm}$ dan sisi tegak $BC = 12\\text{ cm}$, maka panjang sisi miring (hipotenusa) $AC$ adalah ....",
+                diagramType: "remedi_tri_9_12",
                 options: [
-                    { id: "A", text: "Sisi miring adalah $PQ$, sehingga $PQ^2 = QR^2 + PR^2$" },
-                    { id: "B", text: "Sisi miring adalah $PR$, sehingga $PR^2 = PQ^2 + QR^2$" },
-                    { id: "C", text: "Sisi miring adalah $QR$, sehingga $QR^2 = PQ^2 + PR^2$" },
-                    { id: "D", text: "Sisi miring adalah $PR$, sehingga $PR^2 = PQ^2 - QR^2$" }
+                    { id: "A", text: "$13\\text{ cm}$" },
+                    { id: "B", text: "$15\\text{ cm}$" },
+                    { id: "C", text: "$18\\text{ cm}$" },
+                    { id: "D", text: "$21\\text{ cm}$" }
                 ],
                 correctKey: "B",
-                explanation: "Sisi di depan sudut siku-siku Q adalah sisi PR (hipotenusa/sisi miring). Maka berlaku PR² = PQ² + QR²."
+                explanation: "$AC = \\sqrt{AB^2 + BC^2} = \\sqrt{9^2 + 12^2} = \\sqrt{81 + 144} = \\sqrt{225} = 15\\text{ cm}$."
             },
             {
                 id: 2,
                 numberLabel: "2",
-                section: "Objektif",
+                section: "Pilihan Ganda",
                 type: "mcq",
-                difficulty: "Mudah",
+                points: 5,
                 isHOTS: false,
-                points: 3,
-                prompt: "Sebuah segitiga siku-siku memiliki panjang kedua sisi penyikunya masing-masing $6\\text{ cm}$ dan $8\\text{ cm}$. Berapakah panjang sisi miring (hipotenusa) segitiga tersebut?",
-                diagramType: "triangle_6_8_x",
+                difficulty: "Mudah",
+                prompt: "Sebuah segitiga siku-siku $PQR$ siku-siku di $Q$. Diketahui panjang hipotenusa $PR = 17\\text{ cm}$ dan panjang sisi $PQ = 15\\text{ cm}$. Panjang sisi siku-siku $QR$ adalah ....",
+                diagramType: "remedi_tri_15_17",
                 options: [
-                    { id: "A", text: "$10\\text{ cm}$" },
-                    { id: "B", text: "$12\\text{ cm}$" },
-                    { id: "C", text: "$14\\text{ cm}$" },
-                    { id: "D", text: "$100\\text{ cm}$" }
+                    { id: "A", text: "$6\\text{ cm}$" },
+                    { id: "B", text: "$7\\text{ cm}$" },
+                    { id: "C", text: "$8\\text{ cm}$" },
+                    { id: "D", text: "$9\\text{ cm}$" }
                 ],
-                correctKey: "A",
-                explanation: "c = √(6² + 8²) = √(36 + 64) = √100 = 10 cm."
+                correctKey: "C",
+                explanation: "$QR = \\sqrt{PR^2 - PQ^2} = \\sqrt{17^2 - 15^2} = \\sqrt{289 - 225} = \\sqrt{64} = 8\\text{ cm}$."
             },
             {
                 id: 3,
                 numberLabel: "3",
-                section: "Objektif",
+                section: "Pilihan Ganda",
                 type: "mcq",
-                difficulty: "Mudah",
+                points: 5,
                 isHOTS: false,
-                points: 3,
-                prompt: "Diketahui segitiga $ABC$ siku-siku di $B$. Jika panjang sisi miring $AC = 13\\text{ cm}$ dan salah satu sisi siku-sikunya $AB = 5\\text{ cm}$, maka panjang sisi siku-siku $BC$ adalah ....",
-                diagramType: "triangle_5_b_13",
+                difficulty: "Mudah",
+                prompt: "Di bawah ini yang merupakan pasangan bilangan <strong>Tripel Pythagoras</strong> adalah ....",
+                diagramType: "triple_tester",
                 options: [
-                    { id: "A", text: "$8\\text{ cm}$" },
-                    { id: "B", text: "$9\\text{ cm}$" },
-                    { id: "C", text: "$12\\text{ cm}$" },
-                    { id: "D", text: "$18\\text{ cm}$" }
+                    { id: "A", text: "$6, 8, 12$" },
+                    { id: "B", text: "$8, 15, 17$" },
+                    { id: "C", text: "$7, 12, 15$" },
+                    { id: "D", text: "$9, 12, 16$" }
                 ],
-                correctKey: "C",
-                explanation: "BC = √(AC² - AB²) = √(13² - 5²) = √(169 - 25) = √144 = 12 cm."
+                correctKey: "B",
+                explanation: "Uji kuadrat: $8^2 + 15^2 = 64 + 225 = 289$, dan $17^2 = 289$. Maka $(8, 15, 17)$ adalah Tripel Pythagoras."
             },
             {
                 id: 4,
                 numberLabel: "4",
-                section: "Objektif",
+                section: "Pilihan Ganda",
                 type: "mcq",
-                difficulty: "Sedang",
+                points: 5,
                 isHOTS: false,
-                points: 3,
-                prompt: "Tiga bilangan asli $(a, b, c)$ disebut <strong>Tripel Pythagoras</strong> apabila memenuhi $a^2 + b^2 = c^2$. Di antara kelompok tiga bilangan berikut, manakah yang merupakan Tripel Pythagoras?",
-                diagramType: "triple_tester",
+                difficulty: "Sedang",
+                prompt: "Sebuah tangga yang panjangnya $10\\text{ meter}$ disandarkan pada tembok vertikal. Jika jarak ujung bawah tangga ke pangkal tembok adalah $6\\text{ meter}$, maka tinggi tembok yang dicapai ujung atas tangga adalah ....",
+                diagramType: "remedi_ladder_10_6",
                 options: [
-                    { id: "A", text: "$7,\\; 12,\\; 15$" },
-                    { id: "B", text: "$8,\\; 15,\\; 17$" },
-                    { id: "C", text: "$9,\\; 12,\\; 16$" },
-                    { id: "D", text: "$10,\\; 20,\\; 25$" }
+                    { id: "A", text: "$7\\text{ meter}$" },
+                    { id: "B", text: "$8\\text{ meter}$" },
+                    { id: "C", text: "$8,5\\text{ meter}$" },
+                    { id: "D", text: "$9\\text{ meter}$" }
                 ],
                 correctKey: "B",
-                explanation: "8² + 15² = 64 + 225 = 289, dan 17² = 289. Jadi (8, 15, 17) adalah tripel Pythagoras."
+                explanation: "$t = \\sqrt{10^2 - 6^2} = \\sqrt{100 - 36} = \\sqrt{64} = 8\\text{ meter}$."
             },
             {
                 id: 5,
                 numberLabel: "5",
-                section: "Objektif",
+                section: "Pilihan Ganda",
                 type: "mcq",
-                difficulty: "Sedang",
+                points: 5,
                 isHOTS: false,
-                points: 3,
-                prompt: "Sebuah tangga yang panjangnya $10\\text{ m}$ disandarkan pada tembok vertikal. Jika jarak ujung bawah tangga ke pangkal tembok adalah $6\\text{ m}$ dan tanah datar tegak lurus terhadap tembok, berapakah tinggi tembok yang dicapai ujung atas tangga?",
-                diagramType: "ladder_wall",
+                difficulty: "Sedang",
+                prompt: "Sebuah taman berbentuk persegi panjang berukuran panjang $12\\text{ m}$ dan lebar $5\\text{ m}$. Di tengah taman akan dibuat jalan setapak lurus mengikuti garis diagonalnya. Panjang jalan diagonal tersebut adalah ....",
+                diagramType: "remedi_rect_12_5",
                 options: [
-                    { id: "A", text: "$4\\text{ m}$" },
-                    { id: "B", text: "$7\\text{ m}$" },
-                    { id: "C", text: "$8\\text{ m}$" },
-                    { id: "D", text: "$11,6\\text{ m}$" }
+                    { id: "A", text: "$13\\text{ m}$" },
+                    { id: "B", text: "$14\\text{ m}$" },
+                    { id: "C", text: "$15\\text{ m}$" },
+                    { id: "D", text: "$17\\text{ m}$" }
                 ],
-                correctKey: "C",
-                explanation: "t = √(10² - 6²) = √(100 - 36) = √64 = 8 m."
+                correctKey: "A",
+                explanation: "$d = \\sqrt{12^2 + 5^2} = \\sqrt{144 + 25} = \\sqrt{169} = 13\\text{ m}$."
             },
             {
                 id: 6,
                 numberLabel: "6",
-                section: "Objektif",
+                section: "Pilihan Ganda",
                 type: "mcq",
-                difficulty: "Sedang",
+                points: 5,
                 isHOTS: false,
-                points: 3,
-                prompt: "Sebuah taman sekolah berbentuk persegi panjang dengan ukuran panjang $24\\text{ m}$ dan lebar $10\\text{ m}$. Di tengah taman akan dibuat jalan setapak lurus mengikuti garis diagonal taman. Berapakah panjang jalan diagonal tersebut?",
-                diagramType: "rectangle_diagonal",
+                difficulty: "Sedang",
+                prompt: "Suatu segitiga memiliki panjang sisi-sisi $5\\text{ cm}$, $7\\text{ cm}$, dan $9\\text{ cm}$. Berdasarkan kebalikan Teorema Pythagoras, jenis segitiga tersebut adalah ....",
+                diagramType: "remedi_triangle_5_7_9",
                 options: [
-                    { id: "A", text: "$25\\text{ m}$" },
-                    { id: "B", text: "$26\\text{ m}$" },
-                    { id: "C", text: "$28\\text{ m}$" },
-                    { id: "D", text: "$34\\text{ m}$" }
+                    { id: "A", text: "Segitiga lancip" },
+                    { id: "B", text: "Segitiga siku-siku" },
+                    { id: "C", text: "Segitiga tumpul" },
+                    { id: "D", text: "Segitiga sama sisi" }
                 ],
-                correctKey: "B",
-                explanation: "d = √(24² + 10²) = √(576 + 100) = √676 = 26 m (kelipatan 2 dari tripel 5-12-13)."
+                correctKey: "C",
+                explanation: "Sisi terpanjang $c = 9\\text{ cm} \\Rightarrow c^2 = 81$. Jumlah kuadrat dua sisi lainnya: $5^2 + 7^2 = 25 + 49 = 74$. Karena $c^2 > a^2 + b^2$ ($81 > 74$), maka segitiga tersebut adalah segitiga tumpul."
             },
             {
                 id: 7,
                 numberLabel: "7",
-                section: "Objektif",
+                section: "Pilihan Ganda",
                 type: "mcq",
-                difficulty: "Sedang",
+                points: 5,
                 isHOTS: false,
-                points: 3,
-                prompt: "Pada bidang koordinat Kartesius, titik $A$ terletak pada koordinat $(2, 1)$ dan titik $B$ terletak pada koordinat $(10, 7)$. Berapakah jarak lurus antara titik $A$ dan titik $B$?",
-                diagramType: "cartesian_points",
+                difficulty: "Sedang",
+                prompt: "Pada bidang koordinat Kartesius, jarak lurus antara titik $A(1, 2)$ dan titik $B(7, 10)$ adalah ....",
+                diagramType: "remedi_cartesian_ab",
                 options: [
                     { id: "A", text: "$8\\text{ satuan}$" },
                     { id: "B", text: "$10\\text{ satuan}$" },
@@ -1124,466 +1202,551 @@ function simpanHasilUjianKeSheets(data) {
                     { id: "D", text: "$14\\text{ satuan}$" }
                 ],
                 correctKey: "B",
-                explanation: "Δx = 10 - 2 = 8; Δy = 7 - 1 = 6. Jarak AB = √(8² + 6²) = √(64 + 36) = √100 = 10 satuan."
+                explanation: "$AB = \\sqrt{(7 - 1)^2 + (10 - 2)^2} = \\sqrt{6^2 + 8^2} = \\sqrt{36 + 64} = \\sqrt{100} = 10\\text{ satuan}$."
             },
             {
                 id: 8,
                 numberLabel: "8",
-                section: "Objektif",
+                section: "Pilihan Ganda",
                 type: "mcq",
-                difficulty: "Sulit (HOTS)",
-                isHOTS: true, // HOTS 1 PG (Disembunyikan dari siswa)
-                points: 3,
-                prompt: "Perhatikan gambar bangun yang tersusun dari dua segitiga siku-siku $\\triangle ABD$ dan $\\triangle BCD$ berikut! Diketahui $\\angle DAB = 90^\\circ$ dengan $AB = 12\\text{ cm}$ dan $AD = 9\\text{ cm}$. Segitiga $BCD$ siku-siku di $B$ ($\\angle DBC = 90^\\circ$) dengan panjang sisi miring $CD = 17\\text{ cm}$. Berapakah panjang sisi $BC$?",
-                diagramType: "two_triangles_hots",
+                points: 5,
+                isHOTS: true,
+                difficulty: "Sedang",
+                prompt: "Seorang nakhoda kapal berlayar dari pelabuhan $P$ ke arah Utara sejauh $12\\text{ km}$, lalu berbelok ke arah Timur sejauh $9\\text{ km}$, dan terakhir berbelok lagi ke arah Utara sejauh $8\\text{ km}$ hingga berhenti di pulau $Q$. Jarak terdekat (garis lurus) dari pelabuhan $P$ ke pulau $Q$ adalah ....",
+                diagramType: "remedi_ship_path",
                 options: [
-                    { id: "A", text: "$8\\text{ cm}$" },
-                    { id: "B", text: "$10\\text{ cm}$" },
-                    { id: "C", text: "$13\\text{ cm}$" },
-                    { id: "D", text: "$15\\text{ cm}$" }
+                    { id: "A", text: "$20\\text{ km}$" },
+                    { id: "B", text: "$21,9\\text{ km}$" },
+                    { id: "C", text: "$25\\text{ km}$" },
+                    { id: "D", text: "$29\\text{ km}$" }
                 ],
-                correctKey: "A",
-                explanation: "Langkah 1: Cari BD dari ΔABD siku-siku di A -> BD = √(12² + 9²) = √(144 + 81) = √225 = 15 cm. Langkah 2: Pada ΔBCD siku-siku di B, CD adalah sisi miring (17 cm), maka BC = √(CD² - BD²) = √(17² - 15²) = √(289 - 225) = √64 = 8 cm."
+                correctKey: "B",
+                explanation: "Total perpindahan ke Utara $= 12 + 8 = 20\\text{ km}$. Perpindahan ke Timur $= 9\\text{ km}$. Jarak lurus $PQ = \\sqrt{20^2 + 9^2} = \\sqrt{400 + 81} = \\sqrt{481} \\approx 21,9\\text{ km}$."
             },
             {
                 id: 9,
                 numberLabel: "9",
-                section: "Objektif",
+                section: "Pilihan Ganda",
                 type: "mcq",
-                difficulty: "Sulit (HOTS)",
-                isHOTS: true, // HOTS 2 PG
-                points: 3,
-                prompt: "Raka dan Dinda sedang menghitung panjang sisi siku-siku $p$ pada segitiga yang memiliki sisi miring $25\\text{ cm}$ dan sisi siku-siku lainnya $24\\text{ cm}$.<br>• <strong>Cara Raka:</strong> Menghitung $p = \\sqrt{25^2 - 24^2} = \\sqrt{625 - 576} = \\sqrt{49} = 7\\text{ cm}$.<br>• <strong>Cara Dinda:</strong> Menggunakan sifat selisih kuadrat $p = \\sqrt{(25+24)(25-24)} = \\sqrt{49 \\times 1} = 7\\text{ cm}$.<br>Berdasarkan analisis matematis, evaluasi manakah yang paling tepat terhadap strategi keduanya?",
-                diagramType: "strategy_eval_hots",
+                points: 5,
+                isHOTS: true,
+                difficulty: "Sedang",
+                prompt: "Perhatikan bangun gabungan dua segitiga siku-siku $\\triangle ABC$ dan $\\triangle ACD$ berikut! Diketahui $\\angle B = 90^\\circ$ dan $\\angle ACD = 90^\\circ$. Jika $AB = 6\\text{ cm}$, $BC = 8\\text{ cm}$, dan $CD = 24\\text{ cm}$, maka panjang sisi miring $AD$ adalah ....",
+                diagramType: "remedi_two_triangles",
                 options: [
-                    { id: "A", text: "Hanya cara Raka yang benar secara matematis, sedangkan cara Dinda kebetulan saja menghasilkan angka yang sama." },
-                    { id: "B", text: "Kedua cara benar secara matematis, dan strategi Dinda lebih efisien karena memanfaatkan identitas aljabar $c^2 - b^2 = (c+b)(c-b)$ tanpa harus menghitung kuadrat bilangan besar." },
-                    { id: "C", text: "Cara Dinda salah karena rumus Teorema Pythagoras tidak boleh diubah ke bentuk perkalian." },
-                    { id: "D", text: "Kedua cara salah karena seharusnya sisi yang dicari dihitung dengan $p = \\sqrt{25^2 + 24^2}$." }
+                    { id: "A", text: "$25\\text{ cm}$" },
+                    { id: "B", text: "$26\\text{ cm}$" },
+                    { id: "C", text: "$28\\text{ cm}$" },
+                    { id: "D", text: "$30\\text{ cm}$" }
                 ],
                 correctKey: "B",
-                explanation: "Identitas aljabar c² - b² = (c + b)(c - b) selalu berlaku untuk semua bilangan real dan sangat membantu mempercepat perhitungan Pythagoras."
+                explanation: "Langkah 1: Pada $\\triangle ABC$, $AC = \\sqrt{6^2 + 8^2} = \\sqrt{36 + 64} = 10\\text{ cm}$. Langkah 2: Pada $\\triangle ACD$, $AD = \\sqrt{AC^2 + CD^2} = \\sqrt{10^2 + 24^2} = \\sqrt{100 + 576} = \\sqrt{676} = 26\\text{ cm}$."
             },
             {
                 id: 10,
                 numberLabel: "10",
-                section: "Objektif",
+                section: "Pilihan Ganda",
                 type: "mcq",
-                difficulty: "Sulit (HOTS)",
-                isHOTS: true, // HOTS 3 PG
-                points: 3,
-                prompt: "Sebuah drone pemantau terbang tepat di atas titik $P$ pada ketinggian vertikal $120\\text{ m}$ dari permukaan tanah datar. Di tanah, terdapat pos pengamat $A$ dan pos pengamat $B$ yang berada segaris di sebelah timur titik $P$. Jarak pandang lurus dari drone ke pos $A$ adalah $130\\text{ m}$, sedangkan jarak pandang lurus dari drone ke pos $B$ adalah $200\\text{ m}$. Berapakah jarak darat antara pos $A$ dan pos $B$?",
-                diagramType: "drone_hots",
+                points: 5,
+                isHOTS: true,
+                difficulty: "Sedang",
+                prompt: "Sebuah drone pemetaan terbang tepat pada ketinggian $80\\text{ m}$ di atas titik $P$ di tanah datar. Dua patok penanda $A$ dan $B$ terletak segaris di sebelah timur titik $P$. Jika jarak miring drone ke patok $A$ adalah $100\\text{ m}$ dan jarak miring drone ke patok $B$ adalah $170\\text{ m}$, maka jarak mendatar antara patok $A$ dan patok $B$ adalah ....",
+                diagramType: "remedi_drone",
                 options: [
                     { id: "A", text: "$70\\text{ m}$" },
-                    { id: "B", text: "$110\\text{ m}$" },
-                    { id: "C", text: "$160\\text{ m}$" },
-                    { id: "D", text: "$210\\text{ m}$" }
+                    { id: "B", text: "$90\\text{ m}$" },
+                    { id: "C", text: "$110\\text{ m}$" },
+                    { id: "D", text: "$150\\text{ m}$" }
                 ],
                 correctKey: "B",
-                explanation: "Jarak P ke Pos A = √(130² - 120²) = √(16900 - 14400) = √2500 = 50 m. Jarak P ke Pos B = √(200² - 120²) = √(40000 - 14400) = √25600 = 160 m. Karena segaris di sebelah timur, jarak Pos A ke Pos B = 160 m - 50 m = 110 m."
+                explanation: "Jarak $PA = \\sqrt{100^2 - 80^2} = \\sqrt{10000 - 6400} = 60\\text{ m}$. Jarak $PB = \\sqrt{170^2 - 80^2} = \\sqrt{28900 - 6400} = \\sqrt{22500} = 150\\text{ m}$. Maka jarak $AB = PB - PA = 150 - 60 = 90\\text{ m}$."
             },
 
-            // --- BAGIAN A2: 2 SOAL MENCOCOKKAN (6 Poin / Soal = 12 Poin; 2 Poin per pasangan benar) ---
+            // --- 2 SOAL MENJODOHKAN (10 Poin / Soal = 20 Poin) ---
             {
                 id: 11,
                 numberLabel: "11",
-                section: "Objektif",
+                section: "Menjodohkan",
                 type: "matching",
-                difficulty: "Sedang",
+                points: 10,
                 isHOTS: false,
-                points: 6,
-                prompt: "<strong>Soal Mencocokkan 1:</strong> Pasangkan setiap ukuran dua sisi segitiga siku-siku di sebelah kiri dengan panjang sisi ketiga yang tepat di sebelah kanan! (Setiap pasangan benar bernilai 2 poin).",
+                difficulty: "Mudah",
+                prompt: "Cocokkan setiap ukuran dua sisi segitiga siku-siku di sebelah kiri dengan panjang sisi ketiga yang tepat di sebelah kanan!",
                 diagramType: "matching_triangles",
                 leftItems: [
-                    { id: "L1", text: "Sisi siku-siku $a = 9\\text{ cm}$ dan sisi siku-siku $b = 12\\text{ cm}$. Panjang sisi miring $c$ adalah..." },
-                    { id: "L2", text: "Sisi miring $c = 25\\text{ cm}$ dan sisi siku-siku $a = 7\\text{ cm}$. Panjang sisi siku-siku $b$ adalah..." },
-                    { id: "L3", text: "Sisi miring $c = 17\\text{ cm}$ dan sisi siku-siku $b = 15\\text{ cm}$. Panjang sisi siku-siku $a$ adalah..." }
+                    { id: "L1", text: "Sisi siku-siku $a = 3\\text{ cm}$ dan $b = 4\\text{ cm}$, maka sisi miring $c$ adalah..." },
+                    { id: "L2", text: "Sisi miring $c = 13\\text{ cm}$ dan sisi alas $a = 5\\text{ cm}$, maka sisi tegak $b$ adalah..." },
+                    { id: "L3", text: "Sisi siku-siku $a = 8\\text{ cm}$ dan $b = 15\\text{ cm}$, maka sisi miring $c$ adalah..." }
                 ],
                 rightOptions: [
-                    { value: "8 cm", label: "8 cm" },
-                    { value: "15 cm", label: "15 cm" },
-                    { value: "20 cm", label: "20 cm" },
-                    { value: "24 cm", label: "24 cm" }
+                    { value: "", label: "-- Pilih Pasangan Jawaban --" },
+                    { value: "5 cm", label: "5 cm" },
+                    { value: "10 cm", label: "10 cm" },
+                    { value: "12 cm", label: "12 cm" },
+                    { value: "17 cm", label: "17 cm" },
+                    { value: "20 cm", label: "20 cm" }
                 ],
                 correctPairs: {
-                    "L1": "15 cm",
-                    "L2": "24 cm",
-                    "L3": "8 cm"
+                    L1: "5 cm",
+                    L2: "12 cm",
+                    L3: "17 cm"
                 },
-                explanation: "L1: √(9²+12²) = 15 cm; L2: √(25²-7²) = 24 cm; L3: √(17²-15²) = 8 cm."
+                explanation: "L1: $\\sqrt{3^2+4^2}=5\\text{ cm}$. L2: $\\sqrt{13^2-5^2}=12\\text{ cm}$. L3: $\\sqrt{8^2+15^2}=17\\text{ cm}$."
             },
             {
                 id: 12,
                 numberLabel: "12",
-                section: "Objektif",
+                section: "Menjodohkan",
                 type: "matching",
-                difficulty: "Sedang",
+                points: 10,
                 isHOTS: false,
-                points: 6,
-                prompt: "<strong>Soal Mencocokkan 2:</strong> Pasangkan permasalahan kontekstual di sebelah kiri dengan hasil perhitungan Pythagoras yang benar di sebelah kanan! (Setiap pasangan benar bernilai 2 poin).",
+                difficulty: "Sedang",
+                prompt: "Pasangkan permasalahan kontekstual Teorema Pythagoras berikut dengan hasil perhitungan yang benar!",
                 diagramType: "matching_contextual",
                 leftItems: [
-                    { id: "M1", text: "Panjang diagonal layar monitor persegi panjang berukuran $16\\text{ inci} \\times 12\\text{ inci}$" },
-                    { id: "M2", text: "Tinggi tiang bendera jika kawat penyangga sepanjang $13\\text{ m}$ dipatok $5\\text{ m}$ dari pangkal tiang" },
-                    { id: "M3", text: "Jarak terpendek kapal ke pelabuhan setelah berlayar $12\\text{ km}$ ke utara lalu $35\\text{ km}$ ke timur" }
+                    { id: "M1", text: "Panjang diagonal persegi yang panjang sisinya $6\\text{ cm}$" },
+                    { id: "M2", text: "Tinggi segitiga sama kaki dengan sisi miring $10\\text{ cm}$ dan alas $12\\text{ cm}$" },
+                    { id: "M3", text: "Panjang diagonal persegi panjang berukuran $16\\text{ cm} \\times 12\\text{ cm}$" }
                 ],
                 rightOptions: [
-                    { value: "12 m", label: "12 m" },
-                    { value: "20 inci", label: "20 inci" },
-                    { value: "37 km", label: "37 km" },
-                    { value: "47 km", label: "47 km" }
+                    { value: "", label: "-- Pilih Pasangan Jawaban --" },
+                    { value: "6√2 cm", label: "6√2 cm" },
+                    { value: "8 cm", label: "8 cm" },
+                    { value: "14 cm", label: "14 cm" },
+                    { value: "20 cm", label: "20 cm" },
+                    { value: "24 cm", label: "24 cm" }
                 ],
                 correctPairs: {
-                    "M1": "20 inci",
-                    "M2": "12 m",
-                    "M3": "37 km"
+                    M1: "6√2 cm",
+                    M2: "8 cm",
+                    M3: "20 cm"
                 },
-                explanation: "M1: √(16²+12²) = 20 inci; M2: √(13²-5²) = 12 m; M3: √(12²+35²) = √(144+1225) = √1369 = 37 km."
+                explanation: "M1: $\\sqrt{6^2+6^2}=6\\sqrt{2}\\text{ cm}$. M2: Setengah alas $= 6\\text{ cm}$, tinggi $= \\sqrt{10^2-6^2}=8\\text{ cm}$. M3: $\\sqrt{16^2+12^2}=20\\text{ cm}$."
             },
 
-            // --- BAGIAN A3: 3 SOAL PILIHAN LEBIH DARI SATU / KOMPLEKS (6 Poin / Soal = 18 Poin) ---
+            // --- 3 SOAL PILIHAN KOMPLEKS MULTI-OPSI (10 Poin / Soal = 30 Poin) ---
             {
                 id: 13,
                 numberLabel: "13",
-                section: "Objektif",
+                section: "Pilihan Kompleks",
                 type: "complex",
-                difficulty: "Sedang",
+                points: 10,
                 isHOTS: false,
-                points: 6,
-                prompt: "<strong>Pilihan Lebih dari Satu:</strong> Manakah di antara kelompok tiga bilangan di bawah ini yang merupakan <strong>Tripel Pythagoras</strong>? <em>(Petunjuk: Pilih semua jawaban yang benar! Nilai penuh 6 poin diberikan jika seluruh pilihan benar dipilih dan tidak ada pilihan salah).</em>",
+                difficulty: "Sedang",
+                prompt: "Pilihlah <strong>semua jawaban yang benar</strong> (jawaban benar lebih dari satu)! Manakah di antara kelompok tiga bilangan berikut yang merupakan <strong>Tripel Pythagoras</strong>?",
                 diagramType: "triple_grid_visual",
                 options: [
-                    { id: "A", text: "$5,\\; 12,\\; 13$" },
-                    { id: "B", text: "$6,\\; 8,\\; 12$" },
-                    { id: "C", text: "$7,\\; 24,\\; 25$" },
-                    { id: "D", text: "$9,\\; 40,\\; 41$" },
-                    { id: "E", text: "$10,\\; 12,\\; 15$" }
+                    { id: "A", text: "$3, 4, 5$" },
+                    { id: "B", text: "$5, 12, 13$" },
+                    { id: "C", text: "$6, 8, 11$" },
+                    { id: "D", text: "$9, 12, 15$" }
                 ],
-                correctKeys: ["A", "C", "D"],
-                explanation: "(5,12,13), (7,24,25), dan (9,40,41) ketiganya memenuhi a² + b² = c²."
+                correctKeys: ["A", "B", "D"],
+                explanation: "A ($3^2+4^2=5^2$), B ($5^2+12^2=13^2$), dan D ($9^2+12^2=15^2$) adalah Tripel Pythagoras. Opsi C salah karena $6^2+8^2=100 \\neq 11^2$."
             },
             {
                 id: 14,
                 numberLabel: "14",
-                section: "Objektif",
+                section: "Pilihan Kompleks",
                 type: "complex",
-                difficulty: "Sedang",
+                points: 10,
                 isHOTS: false,
-                points: 6,
-                prompt: "<strong>Pilihan Lebih dari Satu:</strong> Perhatikan segitiga siku-siku $KLM$ yang siku-siku di titik $L$ dengan panjang $KL = k$, $LM = m$, dan sisi miring $KM = l$. Manakah persamaan matematika berikut yang <strong>bernilai benar</strong>? <em>(Pilih lebih dari satu jawaban yang benar!)</em>",
+                difficulty: "Sedang",
+                prompt: "Perhatikan segitiga siku-siku $KLM$ yang siku-siku di titik $L$ (sehingga sisi miringnya adalah $l$). Pilihlah <strong>semua pernyataan rumus yang benar</strong>!",
                 diagramType: "triangle_klm_labels",
                 options: [
                     { id: "A", text: "$l^2 = k^2 + m^2$" },
                     { id: "B", text: "$k^2 = l^2 - m^2$" },
                     { id: "C", text: "$m^2 = k^2 - l^2$" },
-                    { id: "D", text: "$m = \\sqrt{l^2 - k^2}$" },
-                    { id: "E", text: "$l = k + m$" }
+                    { id: "D", text: "Sisi terpanjang pada $\\triangle KLM$ adalah sisi $KM$ (atau $l$)" }
                 ],
                 correctKeys: ["A", "B", "D"],
-                explanation: "Karena siku-siku di L, sisi miring adalah KM = l. Maka l² = k² + m², sehingga k² = l² - m² dan m = √(l² - k²)."
+                explanation: "Karena siku-siku di $L$, hipotenusanya adalah sisi $KM = l$. Maka $l^2 = k^2 + m^2$, $k^2 = l^2 - m^2$, dan $m^2 = l^2 - k^2$."
             },
             {
                 id: 15,
                 numberLabel: "15",
-                section: "Objektif",
+                section: "Pilihan Kompleks",
                 type: "complex",
-                difficulty: "Sedang",
+                points: 10,
                 isHOTS: false,
-                points: 6,
-                prompt: "<strong>Pilihan Lebih dari Satu:</strong> Sebuah persegi panjang memiliki ukuran panjang $15\\text{ cm}$ dan lebar $8\\text{ cm}$. Pernyataan manakah di bawah ini yang <strong>benar</strong> berkaitan dengan bangun tersebut? <em>(Pilih lebih dari satu jawaban yang benar!)</em>",
-                diagramType: "rect_15_8",
+                difficulty: "Sedang",
+                prompt: "Sebuah taman berbentuk persegi panjang memiliki panjang $12\\text{ cm}$ dan lebar $9\\text{ cm}$ pada maket. Pilihlah <strong>semua pernyataan yang benar</strong> mengenai maket taman tersebut!",
+                diagramType: "remedi_rect_12_9",
                 options: [
-                    { id: "A", text: "Panjang diagonal persegi panjang tersebut adalah $17\\text{ cm}$." },
-                    { id: "B", text: "Kuadrat panjang diagonalnya sama dengan $15^2 + 8^2 = 289$." },
-                    { id: "C", text: "Panjang diagonalnya sama dengan jumlah panjang dan lebarnya yaitu $23\\text{ cm}$." },
-                    { id: "D", text: "Diagonal membagi persegi panjang menjadi dua segitiga siku-siku yang kongruen dengan ukuran sisi $8\\text{ cm}, 15\\text{ cm}, 17\\text{ cm}$." }
+                    { id: "A", text: "Panjang diagonal persegi panjang tersebut adalah $15\\text{ cm}$" },
+                    { id: "B", text: "Keliling persegi panjang tersebut adalah $42\\text{ cm}$" },
+                    { id: "C", text: "Luas persegi panjang tersebut adalah $108\\text{ cm}^2$" },
+                    { id: "D", text: "Panjang diagonal persegi panjang tersebut adalah $21\\text{ cm}$" }
                 ],
-                correctKeys: ["A", "B", "D"],
-                explanation: "Diagonal = √(15² + 8²) = √(225 + 64) = √289 = 17 cm, membentuk dua segitiga siku-siku 8-15-17."
-            },
-
-            // --- BAGIAN B: 5 SOAL ESAI (Total 40 Poin: 2 Soal Beranak [16 & 17], 2 Soal Reguler [18 & 19], 1 Soal HOTS [20]) ---
-            {
-                id: 16,
-                numberLabel: "16 (a, b, c)",
-                section: "Esai",
-                type: "essay_branched",
-                difficulty: "Sedang",
-                isHOTS: false,
-                points: 10,
-                prompt: "<strong>Soal Esai Beranak 1 (16a, 16b, 16c):</strong> Sebuah tiang pemancar sinyal internet di sekolah memiliki tinggi vertikal $12\\text{ m}$ di atas tanah datar. Untuk menahan tiang agar kokoh, dipasang seutas kawat baja lurus dari puncak tiang ke sebuah patok di tanah yang berjarak $9\\text{ m}$ dari pangkal bawah tiang.",
-                diagramType: "essay_tower_wire",
-                subQuestions: [
-                    {
-                        subId: "16a",
-                        label: "16a",
-                        points: 4,
-                        prompt: "Gunakan Teorema Pythagoras untuk menentukan panjang minimum satu utas kawat baja dari puncak tiang sampai ke patok!",
-                        expectedKeywords: ["15", "12^2", "9^2", "225", "144", "81"],
-                        sampleKey: "c = \\sqrt{12^2 + 9^2} = \\sqrt{144 + 81} = \\sqrt{225} = 15\\text{ m}"
-                    },
-                    {
-                        subId: "16b",
-                        label: "16b",
-                        points: 3,
-                        prompt: "Jika teknisi memasang <strong>4 utas kawat baja yang identik</strong> di keempat sisi tiang dan setiap kawat membutuhkan tambahan panjang $1\\text{ m}$ untuk ikatan simpul, berapakah total panjang kawat baja yang dibutuhkan seluruhnya?",
-                        expectedKeywords: ["64", "16", "60"],
-                        sampleKey: "\\text{Panjang 1 kawat + simpul} = 15 + 1 = 16\\text{ m}. \\text{Total 4 kawat} = 4 \\times 16 = 64\\text{ m}."
-                    },
-                    {
-                        subId: "16c",
-                        label: "16c",
-                        points: 3,
-                        prompt: "Jika panitia sekolah telah membeli 1 gulung kawat baja sepanjang $70\\text{ m}$, tentukan apakah kawat tersebut cukup, serta berapa sisa atau kekurangannya!",
-                        expectedKeywords: ["cukup", "6", "sisa"],
-                        sampleKey: "Kawat 70 m cukup, karena hanya dibutuhkan 64 m dan masih tersisa 70 - 64 = 6 m."
-                    }
-                ],
-                explanation: "16a: 15 m; 16b: 4 × (15+1) = 64 m; 16c: Cukup, sisa 6 m."
-            },
-            {
-                id: 17,
-                numberLabel: "17 (a, b)",
-                section: "Esai",
-                type: "essay_branched",
-                difficulty: "Sedang",
-                isHOTS: false,
-                points: 8,
-                prompt: "<strong>Soal Esai Beranak 2 (17a, 17b):</strong> Pak Ahmad memiliki kebun berbentuk trapesium siku-siku $ABCD$ ($AB \\parallel DC$ dan siku-siku di $A$ serta $D$). Panjang sisi sejajar atas $DC = 14\\text{ m}$, sisi sejajar bawah $AB = 22\\text{ m}$, dan tinggi trapesium $AD = 15\\text{ m}$.",
-                diagramType: "essay_trapezoid",
-                subQuestions: [
-                    {
-                        subId: "17a",
-                        label: "17a",
-                        points: 4,
-                        prompt: "Tentukan panjang sisi miring $BC$ pada trapesium tersebut menggunakan bantuan garis tinggi dari titik $C$ tegak lurus ke sisi $AB$!",
-                        expectedKeywords: ["17", "8", "15", "289", "64", "225"],
-                        sampleKey: "Alas segitiga siku-siku = 22 - 14 = 8\\text{ m}, tinggi = 15\\text{ m}. BC = \\sqrt{8^2 + 15^2} = \\sqrt{64 + 225} = \\sqrt{289} = 17\\text{ m}."
-                    },
-                    {
-                        subId: "17b",
-                        label: "17b",
-                        points: 4,
-                        prompt: "Gunakan hasil pada bagian (17a) untuk menghitung <strong>keliling total</strong> kebun trapesium $ABCD$ milik Pak Ahmad!",
-                        expectedKeywords: ["68", "22", "17", "14", "15"],
-                        sampleKey: "\\text{Keliling} = AB + BC + CD + DA = 22 + 17 + 14 + 15 = 68\\text{ m}."
-                    }
-                ],
-                explanation: "17a: BC = √(8² + 15²) = 17 m; 17b: Keliling = 22 + 17 + 14 + 15 = 68 m."
-            },
-            {
-                id: 18,
-                numberLabel: "18",
-                section: "Esai",
-                type: "essay_single",
-                difficulty: "Mudah",
-                isHOTS: false,
-                points: 6,
-                prompt: "<strong>Soal Esai Konsep & Perhitungan:</strong> Sebuah segitiga siku-siku sama kaki memiliki panjang kedua sisi siku-sikunya masing-masing $10\\text{ cm}$. Tentukan panjang sisi miringnya!",
-                diagramType: "essay_isosceles_right",
-                expectedKeywords: ["200", "10\\sqrt{2}", "14,14", "14.14", "100"],
-                sampleKey: "c = \\sqrt{10^2 + 10^2} = \\sqrt{100 + 100} = \\sqrt{200} = 10\\sqrt{2}\\text{ cm} \\approx 14,14\\text{ cm}.",
-                explanation: "Menerima bentuk akar sederhana √200 = 10√2 cm maupun desimal 14,14 cm."
-            },
-            {
-                id: 19,
-                numberLabel: "19",
-                section: "Esai",
-                type: "essay_single",
-                difficulty: "Sedang",
-                isHOTS: false,
-                points: 6,
-                prompt: "<strong>Soal Esai Pembuktian Jenis Segitiga:</strong> Seorang tukang kayu memotong tiga batang kayu dengan ukuran panjang $9\\text{ cm}$, $12\\text{ cm}$, dan $16\\text{ cm}$ untuk membuat bingkai siku-siku. Selidikilah menggunakan perhitungan kuadrat sisi-sisinya, apakah ketiga kayu tersebut benar-benar membentuk segitiga siku-siku? Lengkapi isian berikut!",
-                diagramType: "essay_wood_check",
-                expectedKeywords: ["225", "256", "bukan", "tumpul", "tidak"],
-                sampleKey: "9^2 + 12^2 = 81 + 144 = 225, sedangkan sisi terpanjang 16^2 = 256. Karena 225 \\neq 256 (atau 9^2 + 12^2 < 16^2), maka BUKAN segitiga siku-siku melainkan segitiga tumpul.",
-                explanation: "9² + 12² = 225 < 16² (256), sehingga bukan segitiga siku-siku (termasuk segitiga tumpul)."
-            },
-            {
-                id: 20,
-                numberLabel: "20",
-                section: "Esai",
-                type: "essay_single",
-                difficulty: "Sulit (HOTS)",
-                isHOTS: true, // HOTS Esai (Disembunyikan dari siswa)
-                points: 10,
-                prompt: "<strong>Soal Esai Pemecahan Masalah Kontekstual:</strong> Sebuah sungai lurus memiliki lebar $12\\text{ m}$. Pos Kemah $A$ berada tepat di tepi seberang utara sungai. Pos Logistik $B$ berada di tepi selatan sungai, berjarak $16\\text{ m}$ ke arah timur dari titik $P$ (titik tepat di seberang Pos $A$). Panitia pramuka memiliki dua opsi pemasangan kabel komunikasi dari Pos $A$ ke Pos $B$:<br>• <strong>Opsi 1:</strong> Menarik kabel lurus langsung menyeberangi sungai secara diagonal dari $A$ ke $B$ dengan biaya kabel tahan air Rp$50.000,00$ per meter.<br>• <strong>Opsi 2:</strong> Menarik kabel menyeberang tegak lurus dari $A$ ke $P$ ($12\\text{ m}$) dengan biaya Rp$50.000,00$/meter, lalu dilanjutkan kabel darat dari $P$ ke $B$ ($16\\text{ m}$) dengan biaya Rp$30.000,00$/meter.<br>Analisislah panjang kabel pada Opsi 1, hitung total biaya masing-masing opsi, dan tentukan opsi manakah yang paling hemat beserta selisih biayanya! Lengkapi isian berikut!",
-                diagramType: "essay_river_hots",
-                expectedKeywords: ["20", "1.000.000", "1000000", "1.080.000", "1080000", "80.000", "Opsi 1"],
-                sampleKey: "Panjang diagonal AB (Opsi 1) = \\sqrt{12^2 + 16^2} = \\sqrt{144 + 256} = \\sqrt{400} = 20\\text{ m}. Biaya Opsi 1 = 20 \\times 50.000 = \\text{Rp}1.000.000. Biaya Opsi 2 = (12 \\times 50.000) + (16 \\times 30.000) = 600.000 + 480.000 = \\text{Rp}1.080.000. Kesimpulan: Opsi 1 lebih hemat sebesar Rp80.000.",
-                explanation: "Jarak diagonal AB = 20 m -> Biaya Opsi 1 = Rp1.000.000. Biaya Opsi 2 = Rp600.000 + Rp480.000 = Rp1.080.000. Opsi 1 lebih hemat Rp80.000."
+                correctKeys: ["A", "B", "C"],
+                explanation: "Diagonal $= \\sqrt{12^2 + 9^2} = \\sqrt{144 + 81} = 15\\text{ cm}$ (A benar). Keliling $= 2(12+9) = 42\\text{ cm}$ (B benar). Luas $= 12 \\times 9 = 108\\text{ cm}^2$ (C benar)."
             }
         ];
 
         /********************************************************************
-         * 2b. KUNCI ISIAN ESAI (ANGKA / BENTUK AKAR + SATUAN) — DICOCOKKAN OTOMATIS
+         * 4. BANK SOAL PAKET PENGAYAAN (15 SOAL PENINGKATAN - SKALA 100 POIN)
+         *    - 10 Pilihan Ganda (@ 5 Poin = 50 Poin)
+         *    - 2 Menjodohkan (@ 10 Poin = 20 Poin)
+         *    - 3 Pilihan Kompleks Multi-Opsi (@ 10 Poin = 30 Poin)
          ********************************************************************/
-        const UNIT_OPTIONS = ["mm", "cm", "m", "km", "mm²", "cm²", "m²", "km²", "mm³", "cm³", "m³", "inci", "Rp", "satuan"];
+        const QUESTIONS_PENGAYAAN = [
+            // --- 10 SOAL PILIHAN GANDA PENGAYAAN (5 Poin / Soal = 50 Poin) ---
+            {
+                id: 1,
+                numberLabel: "1",
+                section: "Pilihan Ganda",
+                type: "mcq",
+                points: 5,
+                isHOTS: true,
+                difficulty: "Pengayaan",
+                prompt: "Sebuah segitiga siku-siku memiliki panjang sisi siku-siku $12\\text{ cm}$ dan $(2x - 1)\\text{ cm}$, serta panjang hipotenusa $(2x + 1)\\text{ cm}$. Nilai $x$ dan keliling segitiga tersebut berturut-turut adalah ....",
+                diagramType: "pengayaan_algebra_tri",
+                options: [
+                    { id: "A", text: "$x = 18$ dan Keliling $= 84\\text{ cm}$" },
+                    { id: "B", text: "$x = 16$ dan Keliling $= 72\\text{ cm}$" },
+                    { id: "C", text: "$x = 18$ dan Keliling $= 90\\text{ cm}$" },
+                    { id: "D", text: "$x = 15$ dan Keliling $= 70\\text{ cm}$" }
+                ],
+                correctKey: "A",
+                explanation: "$12^2 + (2x-1)^2 = (2x+1)^2 \\Rightarrow 144 + 4x^2 - 4x + 1 = 4x^2 + 4x + 1 \\Rightarrow 8x = 144 \\Rightarrow x = 18$. Sisi-sisinya adalah $12\\text{ cm}$, $35\\text{ cm}$, dan $37\\text{ cm}$. Keliling $= 12 + 35 + 37 = 84\\text{ cm}$."
+            },
+            {
+                id: 2,
+                numberLabel: "2",
+                section: "Pilihan Ganda",
+                type: "mcq",
+                points: 5,
+                isHOTS: false,
+                difficulty: "Pengayaan",
+                prompt: "Sebuah belah ketupat $ABCD$ memiliki panjang diagonal $AC = 16\\text{ cm}$ dan $BD = 30\\text{ cm}$. Keliling belah ketupat $ABCD$ tersebut adalah ....",
+                diagramType: "pengayaan_rhombus",
+                options: [
+                    { id: "A", text: "$52\\text{ cm}$" },
+                    { id: "B", text: "$60\\text{ cm}$" },
+                    { id: "C", text: "$68\\text{ cm}$" },
+                    { id: "D", text: "$76\\text{ cm}$" }
+                ],
+                correctKey: "C",
+                explanation: "Diagonal belah ketupat saling berpotongan tegak lurus membagi dua sama panjang: $8\\text{ cm}$ dan $15\\text{ cm}$. Panjang sisi $s = \\sqrt{8^2 + 15^2} = 17\\text{ cm}$. Keliling $= 4 \\times 17 = 68\\text{ cm}$."
+            },
+            {
+                id: 3,
+                numberLabel: "3",
+                section: "Pilihan Ganda",
+                type: "mcq",
+                points: 5,
+                isHOTS: false,
+                difficulty: "Pengayaan",
+                prompt: "Keliling sebuah segitiga sama kaki $PQR$ adalah $50\\text{ cm}$. Jika panjang kedua sisi kakinya $PQ = PR = 17\\text{ cm}$ dan alasnya adalah $QR$, maka <strong>luas</strong> segitiga $PQR$ tersebut adalah ....",
+                diagramType: "pengayaan_isosceles",
+                options: [
+                    { id: "A", text: "$120\\text{ cm}^2$" },
+                    { id: "B", text: "$136\\text{ cm}^2$" },
+                    { id: "C", text: "$150\\text{ cm}^2$" },
+                    { id: "D", text: "$240\\text{ cm}^2$" }
+                ],
+                correctKey: "A",
+                explanation: "Panjang alas $QR = 50 - (17 + 17) = 16\\text{ cm}$. Setengah alas $= 8\\text{ cm}$. Tinggi segitiga $t = \\sqrt{17^2 - 8^2} = \\sqrt{289 - 64} = 15\\text{ cm}$. Luas $= \\frac{1}{2} \\times 16 \\times 15 = 120\\text{ cm}^2$."
+            },
+            {
+                id: 4,
+                numberLabel: "4",
+                section: "Pilihan Ganda",
+                type: "mcq",
+                points: 5,
+                isHOTS: true,
+                difficulty: "Pengayaan",
+                prompt: "Sebuah tangga sepanjang $25\\text{ meter}$ disandarkan pada dinding vertikal sehingga ujung atas tangga berada pada ketinggian $24\\text{ meter}$ dari tanah. Jika ujung atas tangga merosot ke bawah sejauh $4\\text{ meter}$, maka ujung bawah tangga akan bergeser menjauhi dinding sejauh ....",
+                diagramType: "pengayaan_sliding_ladder",
+                options: [
+                    { id: "A", text: "$4\\text{ meter}$" },
+                    { id: "B", text: "$7\\text{ meter}$" },
+                    { id: "C", text: "$8\\text{ meter}$" },
+                    { id: "D", text: "$15\\text{ meter}$" }
+                ],
+                correctKey: "C",
+                explanation: "Jarak bawah mula-mula $x_1 = \\sqrt{25^2 - 24^2} = 7\\text{ m}$. Setelah ujung atas turun $4\\text{ m}$, tinggi menjadi $t_2 = 20\\text{ m}$. Jarak bawah baru $x_2 = \\sqrt{25^2 - 20^2} = 15\\text{ m}$. Pergeseran $= 15 - 7 = 8\\text{ meter}$."
+            },
+            {
+                id: 5,
+                numberLabel: "5",
+                section: "Pilihan Ganda",
+                type: "mcq",
+                points: 5,
+                isHOTS: true,
+                difficulty: "Pengayaan",
+                prompt: "Perhatikan trapesium siku-siku $ABCD$ ($AB \\parallel DC$ dan $AD \\perp AB$). Diketahui sisi atas $DC = 12\\text{ cm}$, sisi alas $AB = 21\\text{ cm}$, dan sisi miring $BC = 15\\text{ cm}$. Luas trapesium $ABCD$ adalah ....",
+                diagramType: "pengayaan_trapezoid",
+                options: [
+                    { id: "A", text: "$180\\text{ cm}^2$" },
+                    { id: "B", text: "$198\\text{ cm}^2$" },
+                    { id: "C", text: "$216\\text{ cm}^2$" },
+                    { id: "D", text: "$247,5\\text{ cm}^2$" }
+                ],
+                correctKey: "B",
+                explanation: "Selisih alas dan atas $= 21 - 12 = 9\\text{ cm}$. Tinggi trapesium $AD = \\sqrt{15^2 - 9^2} = 12\\text{ cm}$. Luas $= \\frac{12 + 21}{2} \\times 12 = 33 \\times 6 = 198\\text{ cm}^2$."
+            },
+            {
+                id: 6,
+                numberLabel: "6",
+                section: "Pilihan Ganda",
+                type: "mcq",
+                points: 5,
+                isHOTS: true,
+                difficulty: "Pengayaan",
+                prompt: "Pada bidang koordinat Kartesius, diketahui titik $P(-4, 3)$ dan $Q(4, -3)$. Jika titik $M$ adalah titik tengah ruas garis $PQ$, maka jarak dari titik $M$ ke titik $R(5, 12)$ adalah ....",
+                diagramType: "pengayaan_cartesian",
+                options: [
+                    { id: "A", text: "$10\\text{ satuan}$" },
+                    { id: "B", text: "$12\\text{ satuan}$" },
+                    { id: "C", text: "$13\\text{ satuan}$" },
+                    { id: "D", text: "$15\\text{ satuan}$" }
+                ],
+                correctKey: "C",
+                explanation: "Titik tengah $M = \\left(\\frac{-4+4}{2}, \\frac{3+(-3)}{2}\\right) = (0, 0)$. Jarak dari $M(0,0)$ ke $R(5,12)$ adalah $\\sqrt{5^2 + 12^2} = 13\\text{ satuan}$."
+            },
+            {
+                id: 7,
+                numberLabel: "7",
+                section: "Pilihan Ganda",
+                type: "mcq",
+                points: 5,
+                isHOTS: true,
+                difficulty: "Pengayaan",
+                prompt: "Perhatikan rangkaian tiga segitiga siku-siku berantai ($\\triangle ABC$, $\\triangle ACD$, dan $\\triangle ADE$) berikut! Diketahui $AB = 3\\text{ cm}$, $BC = 4\\text{ cm}$, $CD = 12\\text{ cm}$, dan $DE = 84\\text{ cm}$. Panjang hipotenusa paling luar $AE$ adalah ....",
+                diagramType: "pengayaan_spiral_3tri",
+                options: [
+                    { id: "A", text: "$85\\text{ cm}$" },
+                    { id: "B", text: "$86\\text{ cm}$" },
+                    { id: "C", text: "$91\\text{ cm}$" },
+                    { id: "D", text: "$97\\text{ cm}$" }
+                ],
+                correctKey: "A",
+                explanation: "$AC = \\sqrt{3^2+4^2} = 5\\text{ cm}$. Lalu $AD = \\sqrt{5^2+12^2} = 13\\text{ cm}$. Terakhir $AE = \\sqrt{13^2+84^2} = \\sqrt{169 + 7056} = \\sqrt{7225} = 85\\text{ cm}$."
+            },
+            {
+                id: 8,
+                numberLabel: "8",
+                section: "Pilihan Ganda",
+                type: "mcq",
+                points: 5,
+                isHOTS: true,
+                difficulty: "Pengayaan",
+                prompt: "Sebuah aula berbentuk balok $ABCD.EFGH$ memiliki ukuran panjang $AB = 12\\text{ m}$, lebar $BC = 9\\text{ m}$, dan tinggi $CG = 8\\text{ m}$. Panjang kabel lurus terpendek yang membentang di udara dari sudut lantai $A$ ke sudut plafon seberangnya di titik $G$ (diagonal ruang $AG$) adalah ....",
+                diagramType: "pengayaan_cuboid_3d",
+                options: [
+                    { id: "A", text: "$15\\text{ m}$" },
+                    { id: "B", text: "$17\\text{ m}$" },
+                    { id: "C", text: "$21\\text{ m}$" },
+                    { id: "D", text: "$23\\text{ m}$" }
+                ],
+                correctKey: "B",
+                explanation: "Diagonal bidang alas $AC = \\sqrt{12^2 + 9^2} = 15\\text{ m}$. Diagonal ruang $AG = \\sqrt{AC^2 + CG^2} = \\sqrt{15^2 + 8^2} = \\sqrt{225 + 64} = 17\\text{ m}$."
+            },
+            {
+                id: 9,
+                numberLabel: "9",
+                section: "Pilihan Ganda",
+                type: "mcq",
+                points: 5,
+                isHOTS: true,
+                difficulty: "Pengayaan",
+                prompt: "Dua kapal $A$ dan $B$ berangkat dari pelabuhan $P$ pada pukul 08.00 secara bersamaan. Kapal $A$ berlayar ke arah Utara dengan kecepatan rata-rata $16\\text{ km/jam}$, sedangkan kapal $B$ berlayar ke arah Barat dengan kecepatan rata-rata $12\\text{ km/jam}$. Pada pukul 10.30, jarak lurus antara kapal $A$ dan kapal $B$ adalah ....",
+                diagramType: "pengayaan_two_ships",
+                options: [
+                    { id: "A", text: "$40\\text{ km}$" },
+                    { id: "B", text: "$45\\text{ km}$" },
+                    { id: "C", text: "$50\\text{ km}$" },
+                    { id: "D", text: "$60\\text{ km}$" }
+                ],
+                correctKey: "C",
+                explanation: "Waktu tempuh dari 08.00 ke 10.30 adalah $2,5\\text{ jam}$. Jarak kapal $A = 16 \\times 2,5 = 40\\text{ km}$ (Utara). Jarak kapal $B = 12 \\times 2,5 = 30\\text{ km}$ (Barat). Jarak lurus $AB = \\sqrt{40^2 + 30^2} = 50\\text{ km}$."
+            },
+            {
+                id: 10,
+                numberLabel: "10",
+                section: "Pilihan Ganda",
+                type: "mcq",
+                points: 5,
+                isHOTS: true,
+                difficulty: "Pengayaan",
+                prompt: "Diketahui tiga segitiga dengan ukuran sisi sebagai berikut:<br>(i) Segitiga $X$: $8\\text{ cm}, 15\\text{ cm}, 16\\text{ cm}$<br>(ii) Segitiga $Y$: $9\\text{ cm}, 12\\text{ cm}, 16\\text{ cm}$<br>(iii) Segitiga $Z$: $10\\text{ cm}, 24\\text{ cm}, 26\\text{ cm}$<br>Urutan jenis segitiga $X, Y,$ dan $Z$ berturut-turut adalah ....",
+                diagramType: "pengayaan_classify_3",
+                options: [
+                    { id: "A", text: "Lancip, Tumpul, Siku-siku" },
+                    { id: "B", text: "Tumpul, Lancip, Siku-siku" },
+                    { id: "C", text: "Lancip, Siku-siku, Tumpul" },
+                    { id: "D", text: "Siku-siku, Tumpul, Lancip" }
+                ],
+                correctKey: "A",
+                explanation: "Segitiga $X$: $16^2 = 256 < 8^2+15^2=289$ (Lancip). Segitiga $Y$: $16^2 = 256 > 9^2+12^2=225$ (Tumpul). Segitiga $Z$: $26^2 = 676 = 10^2+24^2$ (Siku-siku)."
+            },
 
-        const ESSAY_FIELDS = {
-            "16a": [
-                { id: "f1", kind: "number", label: "Panjang satu utas kawat baja", value: 15, unit: "m", keyText: "15 m" }
-            ],
-            "16b": [
-                { id: "f1", kind: "number", label: "Total panjang kawat baja yang dibutuhkan", value: 64, unit: "m", keyText: "64 m" }
-            ],
-            "16c": [
-                { id: "f1", kind: "choice", label: "Kesimpulan", choices: ["Kawat cukup", "Kawat tidak cukup"], answer: "Kawat cukup" },
-                { id: "f2", kind: "number", label: "Sisa / kekurangan kawat", value: 6, unit: "m", keyText: "6 m" }
-            ],
-            "17a": [
-                { id: "f1", kind: "number", label: "Panjang sisi BC", value: 17, unit: "m", keyText: "17 m" }
-            ],
-            "17b": [
-                { id: "f1", kind: "number", label: "Keliling kebun ABCD", value: 68, unit: "m", keyText: "68 m" }
-            ],
-            "single_18": [
-                { id: "f1", kind: "number", label: "Panjang sisi miring", value: 10 * Math.SQRT2, unit: "cm", keyText: "10√2 cm (≈ 14,14 cm; √200 juga diterima)" }
-            ],
-            "single_19": [
-                { id: "f1", kind: "number", label: "9² + 12² =", value: 225, unit: "cm²", keyText: "225 cm²" },
-                { id: "f2", kind: "number", label: "16² =", value: 256, unit: "cm²", keyText: "256 cm²" },
-                { id: "f3", kind: "choice", label: "Kesimpulan jenis segitiga", choices: ["Segitiga siku-siku", "Segitiga lancip", "Segitiga tumpul"], answer: "Segitiga tumpul" }
-            ],
-            "single_20": [
-                { id: "f1", kind: "number", label: "Panjang kabel Opsi 1 (AB)", value: 20, unit: "m", keyText: "20 m" },
-                { id: "f2", kind: "number", label: "Total biaya Opsi 1", value: 1000000, unit: "Rp", keyText: "Rp1.000.000" },
-                { id: "f3", kind: "number", label: "Total biaya Opsi 2", value: 1080000, unit: "Rp", keyText: "Rp1.080.000" },
-                { id: "f4", kind: "choice", label: "Opsi yang paling hemat", choices: ["Opsi 1", "Opsi 2"], answer: "Opsi 1" },
-                { id: "f5", kind: "number", label: "Selisih biaya", value: 80000, unit: "Rp", keyText: "Rp80.000" }
-            ]
-        };
+            // --- 2 SOAL MENJODOHKAN PENGAYAAN (10 Poin / Soal = 20 Poin) ---
+            {
+                id: 11,
+                numberLabel: "11",
+                section: "Menjodohkan",
+                type: "matching",
+                points: 10,
+                isHOTS: true,
+                difficulty: "Pengayaan",
+                prompt: "Cocokkan bangun ruang / bangun datar gabungan di sebelah kiri dengan ukuran unsur geometri yang tepat di sebelah kanan!",
+                diagramType: "matching_triangles",
+                leftItems: [
+                    { id: "P1", text: "Panjang garis pelukis kerucut ($s$) yang berjari-jari alas $r = 7\\text{ cm}$ dan tinggi $t = 24\\text{ cm}$" },
+                    { id: "P2", text: "Tinggi limas persegi yang panjang rusuk alasnya $12\\text{ cm}$ dan tinggi segitiga sisi tegaknya $10\\text{ cm}$" },
+                    { id: "P3", text: "Panjang sisi belah ketupat yang luasnya $240\\text{ cm}^2$ dan salah satu diagonalnya $16\\text{ cm}$" }
+                ],
+                rightOptions: [
+                    { value: "", label: "-- Pilih Pasangan Jawaban --" },
+                    { value: "8 cm", label: "8 cm" },
+                    { value: "13 cm", label: "13 cm" },
+                    { value: "17 cm", label: "17 cm" },
+                    { value: "25 cm", label: "25 cm" },
+                    { value: "30 cm", label: "30 cm" }
+                ],
+                correctPairs: {
+                    P1: "25 cm",
+                    P2: "8 cm",
+                    P3: "17 cm"
+                },
+                explanation: "P1: $s = \\sqrt{7^2+24^2} = 25\\text{ cm}$. P2: setengah sisi alas $= 6\\text{ cm}$, tinggi limas $= \\sqrt{10^2-6^2} = 8\\text{ cm}$. P3: $d_2 = \\frac{2 \\times 240}{16} = 30\\text{ cm}$, sisi $= \\sqrt{8^2+15^2} = 17\\text{ cm}$."
+            },
+            {
+                id: 12,
+                numberLabel: "12",
+                section: "Menjodohkan",
+                type: "matching",
+                points: 10,
+                isHOTS: true,
+                difficulty: "Pengayaan",
+                prompt: "Cocokkan masalah penerapan lanjutan Teorema Pythagoras berikut dengan jawaban yang benar!",
+                diagramType: "matching_contextual",
+                leftItems: [
+                    { id: "Q1", text: "Jarak titik $(-3, 4)$ ke titik $(9, -1)$ pada bidang koordinat Kartesius" },
+                    { id: "Q2", text: "Panjang diagonal persegi yang memiliki luas $50\\text{ cm}^2$" },
+                    { id: "Q3", text: "Keliling persegi panjang yang lebarnya $9\\text{ cm}$ dan panjang diagonalnya $15\\text{ cm}$" }
+                ],
+                rightOptions: [
+                    { value: "", label: "-- Pilih Pasangan Jawaban --" },
+                    { value: "10 cm", label: "10 cm" },
+                    { value: "13 satuan", label: "13 satuan" },
+                    { value: "21 cm", label: "21 cm" },
+                    { value: "42 cm", label: "42 cm" },
+                    { value: "50 cm", label: "50 cm" }
+                ],
+                correctPairs: {
+                    Q1: "13 satuan",
+                    Q2: "10 cm",
+                    Q3: "42 cm"
+                },
+                explanation: "Q1: $\\sqrt{(9-(-3))^2 + (-1-4)^2} = \\sqrt{12^2 + (-5)^2} = 13\\text{ satuan}$. Q2: $s^2 = 50 \\Rightarrow d = \\sqrt{s^2+s^2} = \\sqrt{100} = 10\\text{ cm}$. Q3: $p = \\sqrt{15^2-9^2} = 12\\text{ cm}$, Keliling $= 2(12+9) = 42\\text{ cm}$."
+            },
 
-        function getEssaySubList(q) {
-            return q.type === "essay_branched"
-                ? q.subQuestions
-                : [{ subId: `single_${q.id}`, label: `${q.numberLabel}`, points: q.points, prompt: "" }];
-        }
-
-        // Parsing angka format Indonesia: "1.000.000" (titik ribuan), "14,14" (koma desimal), atau teks seperti "sisa 6" / "6 m"
-        function parseIDNumber(str) {
-            if (str === undefined || str === null) return NaN;
-            let s = String(str).trim();
-            if (s === "") return NaN;
-            // Bersihkan format ribuan bertitik seperti 1.000 atau 50.000
-            s = s.replace(/\.(\d{3})(?=[^\d]|$)/g, "$1");
-            // Ambil bagian angka desimal/bulat (mendukung koma atau titik)
-            const match = s.match(/-?\d+(?:[.,]\d+)?/);
-            if (!match) return NaN;
-            let numStr = match[0].replace(",", ".");
-            return parseFloat(numStr);
-        }
-
-        // Nilai isian: koefisien × √(bilangan dalam akar)
-        function evaluateNumberField(fa) {
-            if (!fa) return NaN;
-            const coefRaw = (fa.coef || "").trim();
-            if (fa.useRoot) {
-                const rad = parseIDNumber(fa.rad);
-                if (isNaN(rad) || rad < 0) return NaN;
-                const coef = coefRaw === "" ? 1 : parseIDNumber(coefRaw);
-                if (isNaN(coef)) return NaN;
-                return coef * Math.sqrt(rad);
+            // --- 3 SOAL PILIHAN KOMPLEKS PENGAYAAN (10 Poin / Soal = 30 Poin) ---
+            {
+                id: 13,
+                numberLabel: "13",
+                section: "Pilihan Kompleks",
+                type: "complex",
+                points: 10,
+                isHOTS: true,
+                difficulty: "Pengayaan",
+                prompt: "Diketahui segitiga siku-siku $ABC$ siku-siku di $B$ dengan panjang sisi $AB = 15\\text{ cm}$ dan $BC = 20\\text{ cm}$. Dari titik $B$ ditarik garis tinggi $BD$ yang tegak lurus terhadap sisi miring $AC$ ($BD \\perp AC$). Pilihlah <strong>semua pernyataan yang benar</strong>!",
+                diagramType: "pengayaan_altitude_hyp",
+                options: [
+                    { id: "A", text: "Panjang hipotenusa $AC$ adalah $25\\text{ cm}$" },
+                    { id: "B", text: "Luas segitiga $ABC$ adalah $150\\text{ cm}^2$" },
+                    { id: "C", text: "Panjang garis tinggi $BD$ adalah $12\\text{ cm}$" },
+                    { id: "D", text: "Panjang proyeksi $AD$ adalah $10\\text{ cm}$" }
+                ],
+                correctKeys: ["A", "B", "C"],
+                explanation: "$AC = \\sqrt{15^2+20^2} = 25\\text{ cm}$ (A benar). Luas $= \\frac{1}{2} \\times 15 \\times 20 = 150\\text{ cm}^2$ (B benar). Dari rumus luas: $\\frac{1}{2} \\times AC \\times BD = 150 \\Rightarrow BD = \\frac{300}{25} = 12\\text{ cm}$ (C benar). Sedangkan $AD = \\sqrt{15^2 - 12^2} = 9\\text{ cm}$ (D salah)."
+            },
+            {
+                id: 14,
+                numberLabel: "14",
+                section: "Pilihan Kompleks",
+                type: "complex",
+                points: 10,
+                isHOTS: true,
+                difficulty: "Pengayaan",
+                prompt: "Dua tiang listrik berdiri tegak lurus di atas tanah datar dengan jarak mendatar antar tiang $24\\text{ meter}$. Tinggi tiang pertama adalah $15\\text{ meter}$ dan tinggi tiang kedua adalah $22\\text{ meter}$. Seutas kabel baja akan dipasang lurus menghubungkan ujung atas kedua tiang tersebut. Pilihlah <strong>semua pernyataan yang benar</strong>!",
+                diagramType: "pengayaan_two_poles",
+                options: [
+                    { id: "A", text: "Selisih tinggi kedua tiang listrik tersebut adalah $7\\text{ meter}$" },
+                    { id: "B", text: "Panjang kabel baja minimum yang menghubungkan kedua puncak tiang adalah $25\\text{ meter}$" },
+                    { id: "C", text: "Jika harga kabel $\\text{Rp}20.000,00$ per meter, maka biaya pembelian kabel adalah $\\text{Rp}500.000,00$" },
+                    { id: "D", text: "Panjang kabel baja minimum adalah $31\\text{ meter}$" }
+                ],
+                correctKeys: ["A", "B", "C"],
+                explanation: "Selisih tinggi $\\Delta t = 22 - 15 = 7\\text{ m}$ (A benar). Panjang kabel $= \\sqrt{24^2 + 7^2} = \\sqrt{576 + 49} = 25\\text{ m}$ (B benar, D salah). Biaya kabel $= 25 \\times \\text{Rp}20.000 = \\text{Rp}500.000,00$ (C benar)."
+            },
+            {
+                id: 15,
+                numberLabel: "15",
+                section: "Pilihan Kompleks",
+                type: "complex",
+                points: 10,
+                isHOTS: true,
+                difficulty: "Pengayaan",
+                prompt: "Untuk sebarang bilangan asli $m > n > 0$, bilangan $(m^2 - n^2)$, $(2mn)$, dan $(m^2 + n^2)$ selalu membentuk <strong>Tripel Pythagoras</strong>. Pilihlah <strong>semua pernyataan yang benar</strong> berdasarkan rumus pembangkit Euclid tersebut!",
+                diagramType: "triple_grid_visual",
+                options: [
+                    { id: "A", text: "Untuk $m = 4$ dan $n = 1$, dihasilkan Tripel Pythagoras $(8, 15, 17)$" },
+                    { id: "B", text: "Untuk $m = 4$ dan $n = 3$, dihasilkan Tripel Pythagoras $(7, 24, 25)$" },
+                    { id: "C", text: "Untuk $m = 5$ dan $n = 2$, dihasilkan Tripel Pythagoras $(20, 21, 29)$" },
+                    { id: "D", text: "Untuk $m = 3$ dan $n = 2$, dihasilkan Tripel Pythagoras $(5, 10, 13)$" }
+                ],
+                correctKeys: ["A", "B", "C"],
+                explanation: "A: $m=4,n=1 \\Rightarrow (15, 8, 17)$ benar. B: $m=4,n=3 \\Rightarrow (7, 24, 25)$ benar. C: $m=5,n=2 \\Rightarrow (21, 20, 29)$ benar. D salah karena untuk $m=3,n=2$ seharusnya $(5, 12, 13)$."
             }
-            return parseIDNumber(coefRaw);
-        }
+        ];
 
-        function isFieldFilled(field, fa) {
-            if (!fa) return false;
-            if (field.kind === "choice") return !!fa.choice;
-            return !isNaN(evaluateNumberField(fa)) && !!fa.unit;
-        }
-
-        // Skor 1 = angka & satuan benar; 0,5 = angka benar tapi satuan salah; 0 = salah
-        function scoreField(field, fa) {
-            if (!fa) return 0;
-            if (field.kind === "choice") return fa.choice === field.answer ? 1 : 0;
-            const v = evaluateNumberField(fa);
-            if (isNaN(v)) return 0;
-            const tol = Math.max(0.01, Math.abs(field.value) * 0.001);
-            if (Math.abs(v - field.value) > tol) return 0;
-            return fa.unit === field.unit ? 1 : 0.5;
-        }
-
-        function formatFieldAnswer(field, fa) {
-            if (!fa) return "-";
-            if (field.kind === "choice") return fa.choice || "-";
-            const coef = (fa.coef || "").trim();
-            const num = fa.useRoot ? `${coef}√${(fa.rad || "").trim()}` : coef;
-            return `${num || "-"} ${fa.unit || ""}`.trim();
-        }
+        // Variabel aktif bank soal (default Remedi, berubah otomatis mengikuti siswa)
+        let EXAM_QUESTIONS = QUESTIONS_REMEDI;
 
         /********************************************************************
-         * 3. STATE MANAGEMENT & LOCAL STORAGE PERSISTENCE
+         * 5. STATE APLIKASI & PENYIMPANAN LOKAL (LOCALSTORAGE)
          ********************************************************************/
-        const STORAGE_KEY = "DOODLE_EXAM_PYTHAGORAS_V1";
-        const EXAM_DURATION_SECONDS = 100 * 60; // 100 Menit = 6000 detik
+        const STORAGE_KEY = "DOODLE_EXAM_PYTHAGORAS_REMEDI_PENGAYAAN_V1";
+        const EXAM_DURATION_SECONDS = 60 * 60; // 60 Menit
         const DEFAULT_GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbymaL3hjEKXSlLEQqxGDpIZkn5VYYKJM3mfo_IOJ82bpTJd8xEPWL-72NPFt5ANUnXN/exec";
 
         let appState = {
             phase: "landing", // landing | countdown | exam | finished
+            packageType: "remedi", // remedi | pengayaan
+            prevScore: null,
+            isRegistered: false,
             student: {
                 name: "",
                 className: "",
                 absent: "",
-                token: "PYTHAGORAS8"
+                token: "REMEDI-PYTHAGORAS"
             },
             selectedQuote: null,
             examStartTime: null,
             remainingSeconds: EXAM_DURATION_SECONDS,
             currentQuestionIndex: 0,
-            answers: {}, // Menyimpan jawaban PG, Matching, Complex, Essay (LaTeX + plain)
-            doubtFlags: {}, // Menyimpan status ragu-ragu per soal id
+            answers: {},
+            doubtFlags: {},
             finalScores: null,
-            gasWebhookUrl: DEFAULT_GAS_WEBHOOK_URL
+            gasWebhookUrl: localStorage.getItem("DOODLE_GAS_URL") || DEFAULT_GAS_WEBHOOK_URL
         };
 
         let timerInterval = null;
-        let hasInitialized = false;
+        let countdownInterval = null;
 
-        // Muat state saat halaman dibuka / di-refresh (Mendukung DOMContentLoaded, pageshow bfcache, dan readyState)
-        function initAppSession() {
-            if (hasInitialized) return;
-            hasInitialized = true;
-            loadStateFromStorage();
-            renderMathNotationInDOM();
-
-            if (appState.phase === "exam") {
-                restoreExamSession();
-            } else if (appState.phase === "finished" && appState.finalScores) {
-                showResultScreen();
-            } else if (appState.student && appState.student.name && Object.keys(appState.answers || {}).length > 0) {
-                // Fallback aman: jika ada jawaban tersimpan, otomatis pulihkan sesi ujian
-                restoreExamSession();
-            } else if (appState.student && appState.student.name) {
-                showResumeExamBanner();
-            }
-        }
-
-        if (document.readyState === "loading") {
-            window.addEventListener("DOMContentLoaded", initAppSession);
-        } else {
-            initAppSession();
-        }
-        window.addEventListener("pageshow", initAppSession);
-        window.addEventListener("load", initAppSession);
-
-        function showResumeExamBanner() {
-            const card = document.getElementById("resumeExamCard");
-            const rName = document.getElementById("resumeStudentName");
-            const rClass = document.getElementById("resumeStudentClass");
-            if (card && rName && rClass && appState.student) {
-                rName.textContent = appState.student.name || "-";
-                rClass.textContent = `${appState.student.className || "-"} (#${appState.student.absent || "-"})`;
-                card.classList.remove("hidden");
-            }
+        function setActiveQuestionBank(pkgType) {
+            appState.packageType = (pkgType === "pengayaan") ? "pengayaan" : "remedi";
+            EXAM_QUESTIONS = (appState.packageType === "pengayaan") ? QUESTIONS_PENGAYAAN : QUESTIONS_REMEDI;
         }
 
         function saveStateToStorage() {
             try {
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
-                triggerSaveBadge();
             } catch (e) {
                 console.warn("Penyimpanan lokal penuh atau dibatasi:", e);
             }
@@ -1592,318 +1755,501 @@ function simpanHasilUjianKeSheets(data) {
         function loadStateFromStorage() {
             try {
                 const raw = localStorage.getItem(STORAGE_KEY);
-                if (!raw) return;
+                if (!raw) return false;
                 const parsed = JSON.parse(raw);
-                appState = { ...appState, ...parsed };
-                if (!appState.gasWebhookUrl) {
-                    appState.gasWebhookUrl = localStorage.getItem("DOODLE_GAS_URL") || DEFAULT_GAS_WEBHOOK_URL;
-                }
-                if (appState.gasWebhookUrl) {
-                    const urlInput = document.getElementById("inputGasWebhookUrl");
-                    if (urlInput) urlInput.value = appState.gasWebhookUrl;
-                }
-                if (appState.student) {
-                    const nameIn = document.getElementById("inputStudentName");
-                    const classIn = document.getElementById("inputStudentClass");
-                    const absentIn = document.getElementById("inputStudentAbsent");
-                    if (nameIn && !nameIn.value && appState.student.name) nameIn.value = appState.student.name;
-                    if (classIn && !classIn.value && appState.student.className) classIn.value = appState.student.className;
-                    if (absentIn && !absentIn.value && appState.student.absent) absentIn.value = appState.student.absent;
+                if (parsed && parsed.student && parsed.phase) {
+                    appState = { ...appState, ...parsed };
+                    setActiveQuestionBank(appState.packageType);
+                    return true;
                 }
             } catch (e) {
-                console.warn("Gagal memuat state:", e);
+                console.warn("Gagal memuat sesi ujian:", e);
             }
-        }
-
-        function triggerSaveBadge() {
-            const badge = document.getElementById("saveStatusBadge");
-            const text = document.getElementById("saveStatusText");
-            if (!badge || !text) return;
-            text.textContent = "Menyimpan...";
-            badge.classList.replace("bg-emerald-100", "bg-amber-100");
-            setTimeout(() => {
-                text.textContent = "Tersimpan Otomatis";
-                badge.classList.replace("bg-amber-100", "bg-emerald-100");
-            }, 450);
+            return false;
         }
 
         /********************************************************************
-         * 4. VALIDASI IDENTITAS SISWA
+         * 6. FILTER SISWA TERDAFTAR & SINKRONISASI DAFTAR DARI SPREADSHEET
          ********************************************************************/
+        function populateStudentSelectDropdown() {
+            const sel = document.getElementById("selectRegisteredStudent");
+            if (!sel) return;
+            const currentVal = sel.value;
 
-        function handleIdentitySubmit(e) {
+            // Urutkan: Pengayaan dulu, lalu Remedi sesuai abjad
+            const sorted = [...REGISTERED_STUDENTS].sort((a, b) => b.prevScore - a.prevScore);
+            let html = `<option value="">-- Pilih Nama dari Daftar Nilai Ujian Utama --</option>`;
+            sorted.forEach(s => {
+                const badge = s.prevScore >= KKM_SCORE
+                    ? `🌟 PENGAYAAN (Nilai Awal: ${s.prevScore})`
+                    : `🛠️ REMEDI / PERBAIKAN (Nilai Awal: ${s.prevScore})`;
+                html += `<option value="${s.name}">${s.name} (${s.className}) — ${badge}</option>`;
+            });
+            html += `<option value="__NEW__">➕ Nama Saya Belum Terdaftar (Langsung Ikut Remedi / Perbaikan)</option>`;
+            sel.innerHTML = html;
+            if (currentVal) sel.value = currentVal;
+        }
+
+        async function syncRegisteredStudentsFromSheet() {
+            try {
+                const res = await fetch(SPREADSHEET_CSV_URL, { cache: "no-store" });
+                if (!res.ok) return;
+                const csvText = await res.text();
+                const lines = csvText.split(/\r?\n/).filter(l => l.trim().length > 0);
+                if (lines.length <= 1) return;
+
+                for (let i = 1; i < lines.length; i++) {
+                    const cols = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, "").trim());
+                    if (cols.length >= 12) {
+                        const sName = cols[1];
+                        const sClass = cols[2];
+                        const sAbsent = cols[3];
+                        const sToken = cols[4] || "";
+                        // Hanya ambil dari ujian utama (bukan hasil remedi/pengayaan sendiri)
+                        if (sToken.includes("REMEDI") || sToken.includes("PENGAYAAN")) continue;
+                        const sScore = parseFloat(String(cols[11]).replace(",", "."));
+                        if (!sName || isNaN(sScore)) continue;
+
+                        const existing = findRegisteredStudentByName(sName);
+                        const pkg = sScore >= KKM_SCORE ? "pengayaan" : "remedi";
+                        if (existing) {
+                            if (sScore > existing.prevScore) {
+                                existing.prevScore = sScore;
+                                existing.packageType = pkg;
+                            }
+                        } else {
+                            REGISTERED_STUDENTS.push({
+                                name: sName,
+                                className: sClass || "VIII-A",
+                                absent: sAbsent || "1",
+                                prevScore: sScore,
+                                packageType: pkg
+                            });
+                        }
+                    }
+                }
+                populateStudentSelectDropdown();
+            } catch (e) {
+                // Gunakan daftar bawaan jika offline
+            }
+        }
+
+        function handleSelectRegisteredStudent(val) {
+            const nameInput = document.getElementById("inputStudentName");
+            const classInput = document.getElementById("inputStudentClass");
+            const absentInput = document.getElementById("inputStudentAbsent");
+
+            if (!val) {
+                updatePackageBannerUI(null, "");
+                return;
+            }
+
+            if (val === "__NEW__") {
+                nameInput.value = "";
+                nameInput.focus();
+                updatePackageBannerUI(null, "Siswa Baru");
+                return;
+            }
+
+            const found = findRegisteredStudentByName(val);
+            if (found) {
+                nameInput.value = found.name;
+                classInput.value = found.className;
+                absentInput.value = found.absent;
+                updatePackageBannerUI(found, found.name);
+            }
+        }
+
+        function handleManualNameInput(val) {
+            const found = findRegisteredStudentByName(val);
+            const sel = document.getElementById("selectRegisteredStudent");
+            if (found) {
+                if (sel) sel.value = found.name;
+                const classInput = document.getElementById("inputStudentClass");
+                const absentInput = document.getElementById("inputStudentAbsent");
+                if (classInput && !classInput.value) classInput.value = found.className;
+                if (absentInput && !absentInput.value) absentInput.value = found.absent;
+                updatePackageBannerUI(found, found.name);
+            } else {
+                if (sel && sel.value !== "__NEW__") sel.value = val.trim() ? "__NEW__" : "";
+                updatePackageBannerUI(null, val.trim());
+            }
+        }
+
+        function updatePackageBannerUI(registeredObj, typedName) {
+            const banner = document.getElementById("packageStatusBanner");
+            const titleEl = document.getElementById("packageStatusTitle");
+            const descEl = document.getElementById("packageStatusDesc");
+            const iconBox = document.getElementById("packageStatusIcon");
+            const tokenInput = document.getElementById("inputExamToken");
+
+            if (!typedName && !registeredObj) {
+                if (banner) banner.classList.add("hidden");
+                setActiveQuestionBank("remedi");
+                if (tokenInput) tokenInput.value = "REMEDI / PENGAYAAN (OTOMATIS)";
+                return;
+            }
+
+            if (banner) banner.classList.remove("hidden");
+
+            if (registeredObj && registeredObj.prevScore >= KKM_SCORE) {
+                setActiveQuestionBank("pengayaan");
+                appState.prevScore = registeredObj.prevScore;
+                appState.isRegistered = true;
+                banner.className = "rounded-xl border-2 border-slate-800 p-3.5 bg-purple-200 transition-all";
+                iconBox.className = "w-10 h-10 rounded-xl border-2 border-slate-800 flex items-center justify-center font-doodle font-bold text-lg flex-shrink-0 bg-purple-400 text-slate-900";
+                iconBox.innerHTML = `<i class="ph-fill ph-sparkle"></i>`;
+                titleEl.textContent = `🌟 PAKET PENGAYAAN (Nilai Sebelumnya: ${registeredObj.prevScore} ≥ 75)`;
+                descEl.innerHTML = `Selamat <strong>${registeredObj.name}</strong>! Karena nilaimu sudah mencapai/melampaui KKM 75, kamu mendapatkan <strong>15 Soal Paket Pengayaan</strong> (Tantangan HOTS • Boleh Open Book).`;
+                if (tokenInput) tokenInput.value = "PENGAYAAN-PYTHAGORAS";
+            } else if (registeredObj) {
+                setActiveQuestionBank("remedi");
+                appState.prevScore = registeredObj.prevScore;
+                appState.isRegistered = true;
+                banner.className = "rounded-xl border-2 border-slate-800 p-3.5 bg-amber-200 transition-all";
+                iconBox.className = "w-10 h-10 rounded-xl border-2 border-slate-800 flex items-center justify-center font-doodle font-bold text-lg flex-shrink-0 bg-amber-400 text-slate-900";
+                iconBox.innerHTML = `<i class="ph-fill ph-lifebuoy"></i>`;
+                titleEl.textContent = `🛠️ PAKET REMEDI / PERBAIKAN (Nilai Sebelumnya: ${registeredObj.prevScore} < 75)`;
+                descEl.innerHTML = `Semangat <strong>${registeredObj.name}</strong>! Kamu mengikuti <strong>15 Soal Paket Remedi (Perbaikan Nilai)</strong> untuk menuntaskan KKM 75 (Boleh Open Book).`;
+                if (tokenInput) tokenInput.value = "REMEDI-PYTHAGORAS";
+            } else {
+                setActiveQuestionBank("remedi");
+                appState.prevScore = null;
+                appState.isRegistered = false;
+                banner.className = "rounded-xl border-2 border-slate-800 p-3.5 bg-sky-200 transition-all";
+                iconBox.className = "w-10 h-10 rounded-xl border-2 border-slate-800 flex items-center justify-center font-doodle font-bold text-lg flex-shrink-0 bg-sky-400 text-slate-900";
+                iconBox.innerHTML = `<i class="ph-fill ph-user-plus"></i>`;
+                titleEl.textContent = `🛠️ PAKET REMEDI / PERBAIKAN (Nama Belum Terdaftar di Ujian Utama)`;
+                descEl.innerHTML = `Nama <strong>${typedName}</strong> belum ada di daftar nilai sebelumnya, sehingga otomatis mengikuti <strong>15 Soal Paket Remedi / Perbaikan</strong> (Boleh Open Book).`;
+                if (tokenInput) tokenInput.value = "REMEDI-SUSULAN";
+            }
+        }
+
+        /********************************************************************
+         * 7. INISIALISASI HALAMAN & PEMULIHAN SESI OTOMATIS
+         ********************************************************************/
+        function initDoodleExamApp() {
+            populateStudentSelectDropdown();
+            syncRegisteredStudentsFromSheet();
+
+            const savedUrl = localStorage.getItem("DOODLE_GAS_URL") || DEFAULT_GAS_WEBHOOK_URL;
+            const gasInput = document.getElementById("inputGasWebhookUrl");
+            if (gasInput) gasInput.value = savedUrl;
+            appState.gasWebhookUrl = savedUrl;
+
+            const hasSaved = loadStateFromStorage();
+            if (hasSaved && (appState.phase === "exam" || appState.phase === "countdown") && appState.student && appState.student.name) {
+                if (appState.phase === "countdown") {
+                    appState.phase = "exam";
+                    if (!appState.examStartTime) appState.examStartTime = Date.now();
+                    saveStateToStorage();
+                }
+                const elapsed = appState.examStartTime ? Math.floor((Date.now() - appState.examStartTime) / 1000) : 0;
+                appState.remainingSeconds = Math.max(0, EXAM_DURATION_SECONDS - elapsed);
+
+                populateResumeBanner();
+                enterExamWorkspace();
+            } else if (hasSaved && appState.phase === "finished" && appState.finalScores) {
+                showResultScreen();
+            }
+        }
+
+        function populateResumeBanner() {
+            const banner = document.getElementById("resumeSessionBanner");
+            if (!banner || !appState.student || !appState.student.name) return;
+            const nameEl = document.getElementById("resumeStudentName");
+            if (nameEl) nameEl.textContent = `${appState.student.name} (${appState.student.className}) — ${appState.packageType === 'pengayaan' ? 'Paket Pengayaan' : 'Paket Remedi'}`;
+            banner.classList.remove("hidden");
+        }
+
+        function resumeSavedExamSession() {
+            enterExamWorkspace();
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initDoodleExamApp);
+        } else {
+            initDoodleExamApp();
+        }
+
+        window.addEventListener("pageshow", (event) => {
+            if (event.persisted) initDoodleExamApp();
+        });
+
+        /********************************************************************
+         * 8. PENanganan FORM LOGIN & COUNTDOWN 5 DETIK + KUTIPAN
+         ********************************************************************/
+        function handleStartExamFlow(e) {
             e.preventDefault();
             const name = document.getElementById("inputStudentName").value.trim();
             const className = document.getElementById("inputStudentClass").value.trim();
             const absent = document.getElementById("inputStudentAbsent").value.trim();
-            const token = document.getElementById("inputExamToken").value.trim() || "PYTHAGORAS8";
 
-            const errBox = document.getElementById("identityErrorBox");
-            const errText = document.getElementById("identityErrorText");
-
-            if (!name || name.length < 2) {
-                errText.textContent = "Nama lengkap siswa wajib diisi (minimal 2 karakter)!";
-                errBox.classList.remove("hidden");
-                document.getElementById("inputStudentName").focus();
-                return;
-            }
-            if (!className) {
-                errText.textContent = "Silakan pilih kelasmu terlebih dahulu!";
-                errBox.classList.remove("hidden");
-                document.getElementById("inputStudentClass").focus();
-                return;
-            }
-            if (!absent || parseInt(absent, 10) < 1) {
-                errText.textContent = "Nomor absen wajib diisi dengan angka yang valid!";
-                errBox.classList.remove("hidden");
-                document.getElementById("inputStudentAbsent").focus();
+            if (!name || !className || !absent) {
+                showToast("Harap lengkapi Nama, Kelas, dan Nomor Absen!", "error");
                 return;
             }
 
-            errBox.classList.add("hidden");
-            appState.student = { name, className, absent, token };
+            // Cek otomatis paket berdasarkan nama siswa
+            const found = findRegisteredStudentByName(name);
+            let pkgType = "remedi";
+            let tokenLabel = "REMEDI-PYTHAGORAS";
+            if (found && found.prevScore >= KKM_SCORE) {
+                pkgType = "pengayaan";
+                tokenLabel = `PENGAYAAN (Awal: ${found.prevScore})`;
+            } else if (found) {
+                pkgType = "remedi";
+                tokenLabel = `REMEDI (Awal: ${found.prevScore})`;
+            } else {
+                pkgType = "remedi";
+                tokenLabel = "REMEDI-SUSULAN";
+            }
+
+            setActiveQuestionBank(pkgType);
+
+            const randomQuote = VERIFIED_QUOTES[Math.floor(Math.random() * VERIFIED_QUOTES.length)];
+
+            appState.student = { name, className, absent, token: tokenLabel };
+            appState.selectedQuote = randomQuote;
+            appState.phase = "countdown";
+            appState.answers = {};
+            appState.doubtFlags = {};
+            appState.currentQuestionIndex = 0;
+            appState.remainingSeconds = EXAM_DURATION_SECONDS;
             saveStateToStorage();
 
-            // Jika sebelumnya sudah ada jawaban tersimpan di sesi ini, langsung pulihkan ke lembar soal!
-            if (Object.keys(appState.answers || {}).length > 0) {
-                restoreExamSession();
-                return;
-            }
-
-            // Tampilkan Pop-up Doa Sebelum Ujian
-            document.getElementById("modalPrayer").classList.remove("hidden");
+            startFiveSecondCountdown();
         }
 
-        function closePrayerModal() {
-            document.getElementById("modalPrayer").classList.add("hidden");
-        }
-
-        /********************************************************************
-         * 5. COUNTDOWN 5 DETIK & PEMILIHAN KUTIPAN MOTIVASI ACAK
-         ********************************************************************/
-        function startCountdownSequence() {
-            closePrayerModal();
+        function startFiveSecondCountdown() {
             document.getElementById("viewLanding").classList.add("hidden");
             const lhc = document.getElementById("landingHeaderControls");
             if (lhc) lhc.classList.add("hidden");
             document.getElementById("viewCountdown").classList.remove("hidden");
 
-            // Pilih kutipan acak jika belum ada di sesi ini
-            if (!appState.selectedQuote) {
-                const randomIndex = Math.floor(Math.random() * VERIFIED_QUOTES.length);
-                appState.selectedQuote = VERIFIED_QUOTES[randomIndex];
-                saveStateToStorage();
-            }
+            const q = appState.selectedQuote || VERIFIED_QUOTES[0];
+            document.getElementById("quoteTextDisplay").textContent = `"${q.quote}"`;
+            document.getElementById("quoteAuthorDisplay").textContent = `— ${q.author}`;
+            document.getElementById("quoteSourceDisplay").textContent = q.source;
 
-            document.getElementById("countdownQuoteText").textContent = `"${appState.selectedQuote.quote}"`;
-            document.getElementById("countdownQuoteAuthor").textContent = `— ${appState.selectedQuote.author}`;
-            document.getElementById("countdownQuoteSource").textContent = appState.selectedQuote.source;
-
-            let count = 5;
+            let sec = 5;
             const numEl = document.getElementById("countdownNumber");
-            numEl.textContent = count;
+            const barEl = document.getElementById("countdownProgressBar");
+            numEl.textContent = sec;
+            barEl.style.width = "100%";
 
-            const cdTimer = setInterval(() => {
-                count--;
-                if (count > 0) {
-                    numEl.classList.remove("countdown-pop");
-                    void numEl.offsetWidth; // trigger reflow
-                    numEl.textContent = count;
-                    numEl.classList.add("countdown-pop");
+            if (countdownInterval) clearInterval(countdownInterval);
+            countdownInterval = setInterval(() => {
+                sec--;
+                if (sec > 0) {
+                    numEl.textContent = sec;
+                    barEl.style.width = `${(sec / 5) * 100}%`;
                 } else {
-                    clearInterval(cdTimer);
-                    beginActualExam();
+                    clearInterval(countdownInterval);
+                    barEl.style.width = "0%";
+                    appState.phase = "exam";
+                    appState.examStartTime = Date.now();
+                    saveStateToStorage();
+                    enterExamWorkspace();
                 }
             }, 1000);
         }
 
-        function beginActualExam() {
-            appState.phase = "exam";
-            if (!appState.examStartTime) {
-                appState.examStartTime = Date.now();
-                appState.remainingSeconds = EXAM_DURATION_SECONDS;
-            }
-            saveStateToStorage();
-            restoreExamSession();
-        }
+        /********************************************************************
+         * 9. WORKSPACE UJIAN, TIMER, & NAVIGASI SOAL
+         ********************************************************************/
+        function enterExamWorkspace() {
+            setActiveQuestionBank(appState.packageType);
 
-        function restoreExamSession() {
-            appState.phase = "exam";
-            saveStateToStorage();
             document.getElementById("viewLanding").classList.add("hidden");
-            const resumeCard = document.getElementById("resumeExamCard");
-            if (resumeCard) resumeCard.classList.add("hidden");
             const lhc = document.getElementById("landingHeaderControls");
             if (lhc) lhc.classList.add("hidden");
             document.getElementById("viewCountdown").classList.add("hidden");
             document.getElementById("viewResult").classList.add("hidden");
             document.getElementById("viewExam").classList.remove("hidden");
-
             document.getElementById("examHeaderControls").classList.remove("hidden");
-            document.getElementById("examHeaderControls").classList.add("flex");
-            const st = appState.student || {};
-            document.getElementById("headerStudentName").textContent = st.name || "Siswa";
-            document.getElementById("headerStudentClass").textContent = `${st.className || "-"} (#${st.absent || "-"})`;
 
-            if (!appState.selectedQuote) {
-                appState.selectedQuote = VERIFIED_QUOTES[0];
+            const pkgLabel = appState.packageType === "pengayaan" ? "🌟 PENGAYAAN" : "🛠️ REMEDI";
+            document.getElementById("headerStudentName").textContent = `${appState.student.name} (${pkgLabel})`;
+            document.getElementById("headerStudentClass").textContent = `${appState.student.className} • Absen ${appState.student.absent}`;
+
+            const sideBadge = document.getElementById("sidebarPackageBadge");
+            if (sideBadge) {
+                if (appState.packageType === "pengayaan") {
+                    sideBadge.textContent = "PAKET PENGAYAAN";
+                    sideBadge.className = "text-[11px] font-extrabold px-2 py-0.5 rounded-md bg-purple-200 border border-slate-800 text-purple-950";
+                } else {
+                    sideBadge.textContent = "PAKET REMEDI";
+                    sideBadge.className = "text-[11px] font-extrabold px-2 py-0.5 rounded-md bg-amber-200 border border-slate-800 text-amber-950";
+                }
             }
-            document.getElementById("sessionQuoteBanner").textContent = `"${appState.selectedQuote.quote}"`;
-            document.getElementById("sessionQuoteAuthorBanner").textContent = `— ${appState.selectedQuote.author}`;
 
-            startExamCountdownTimer();
+            const q = appState.selectedQuote || VERIFIED_QUOTES[0];
+            document.getElementById("examBannerQuote").textContent = `"${q.quote}"`;
+            document.getElementById("examBannerAuthor").textContent = `— ${q.author}`;
+
+            startExamTimer();
             renderQuestionByIndex(appState.currentQuestionIndex || 0);
             renderNavigationGrid();
         }
 
-        /********************************************************************
-         * 6. TIMER UJIAN 100 MENIT (REAL-TIME & ANTI-RELOAD RESET)
-         ********************************************************************/
-        function startExamCountdownTimer() {
+        function startExamTimer() {
             if (timerInterval) clearInterval(timerInterval);
+            updateTimerDisplay();
 
-            const updateTimerUI = () => {
-                // Hitung sisa waktu akurat berdasarkan examStartTime
-                const elapsedSec = Math.floor((Date.now() - appState.examStartTime) / 1000);
-                const left = Math.max(0, EXAM_DURATION_SECONDS - elapsedSec);
-                appState.remainingSeconds = left;
-
-                const mins = Math.floor(left / 60);
-                const secs = left % 60;
-                const formatted = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-                const display = document.getElementById("timerDisplay");
-                const timerBox = document.getElementById("timerBox");
-
-                if (display) display.textContent = formatted;
-
-                // Peringatan warna jika waktu < 10 menit
-                if (left <= 600 && timerBox) {
-                    timerBox.classList.remove("bg-amber-200");
-                    timerBox.classList.add("bg-red-300");
-                }
-
-                if (left <= 0) {
+            timerInterval = setInterval(() => {
+                appState.remainingSeconds--;
+                if (appState.remainingSeconds <= 0) {
+                    appState.remainingSeconds = 0;
                     clearInterval(timerInterval);
-                    showToast("Waktu ujian 100 menit telah habis! Jawaban dikumpulkan otomatis.", "warning");
+                    updateTimerDisplay();
+                    showToast("Waktu ujian telah habis! Jawaban dikumpulkan otomatis.", "warning");
                     finalizeExamSubmission(true);
+                } else {
+                    updateTimerDisplay();
+                    if (appState.remainingSeconds % 5 === 0) saveStateToStorage();
                 }
-            };
+            }, 1000);
+        }
 
-            updateTimerUI();
-            timerInterval = setInterval(updateTimerUI, 1000);
+        function updateTimerDisplay() {
+            const mins = Math.floor(appState.remainingSeconds / 60);
+            const secs = appState.remainingSeconds % 60;
+            const formatted = `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+            const timerEl = document.getElementById("examTimerDisplay");
+            timerEl.textContent = formatted;
+
+            const box = document.getElementById("timerBox");
+            if (appState.remainingSeconds <= 300) {
+                box.classList.remove("bg-amber-200");
+                box.classList.add("bg-rose-300", "animate-pulse");
+            }
         }
 
         /********************************************************************
-         * 7. GAMBAR PENDUKUNG SOAL (SVG STATIS, TANPA INTERAKSI/PETUNJUK)
+         * 10. GENERATOR DIAGRAM SVG STATIS (REMEDI & PENGAYAAN)
          ********************************************************************/
-        const SVG_TXT = 'font-family="Fredoka" font-weight="bold"';
+        const SVG_TXT = 'font-family="Fredoka, sans-serif" font-weight="700" fill="#0f172a"';
 
-        function generateDiagramSVG(diagramType) {
+        function generateDiagramSVG(type) {
+            if (!type) return "";
             let svg = "";
-            switch (diagramType) {
-                case "triangle_pqr_basic":
+
+            switch (type) {
+                // --- DIAGRAM PAKET REMEDI ---
+                case "remedi_tri_9_12":
                     svg = `
-                    <svg viewBox="0 0 280 175" class="w-full max-w-xs h-44 mx-auto">
-                        <polygon points="50,140 210,140 50,35" fill="#e0f2fe" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                    <svg viewBox="0 0 280 175" class="w-full max-w-xs h-40 mx-auto">
+                        <polygon points="50,140 210,140 50,35" fill="#bae6fd" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
                         <rect x="50" y="124" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <text x="32" y="32" ${SVG_TXT} font-size="16">P</text>
-                        <text x="32" y="158" ${SVG_TXT} font-size="16">Q</text>
-                        <text x="216" y="158" ${SVG_TXT} font-size="16">R</text>
+                        <text x="32" y="35" ${SVG_TXT} font-size="15">C</text>
+                        <text x="32" y="155" ${SVG_TXT} font-size="15">B</text>
+                        <text x="218" y="155" ${SVG_TXT} font-size="15">A</text>
+                        <text x="115" y="162" ${SVG_TXT} font-size="14">9 cm</text>
+                        <text x="8" y="95" ${SVG_TXT} font-size="14">12 cm</text>
+                        <text x="140" y="80" ${SVG_TXT} font-size="15" fill="#0284c7">AC = ?</text>
                     </svg>`;
                     break;
 
-                case "triangle_6_8_x":
+                case "remedi_tri_15_17":
                     svg = `
-                    <svg viewBox="0 0 280 175" class="w-full max-w-xs h-44 mx-auto">
-                        <polygon points="45,140 215,140 45,35" fill="#fef9c3" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
-                        <rect x="45" y="122" width="18" height="18" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <text x="6" y="95" ${SVG_TXT} font-size="15">6 cm</text>
-                        <text x="110" y="162" ${SVG_TXT} font-size="15">8 cm</text>
-                        <text x="138" y="80" ${SVG_TXT} font-size="15">?</text>
-                    </svg>`;
-                    break;
-
-                case "triangle_5_b_13":
-                    svg = `
-                    <svg viewBox="0 0 280 175" class="w-full max-w-xs h-44 mx-auto">
-                        <polygon points="55,140 225,140 55,45" fill="#dcfce7" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                    <svg viewBox="0 0 280 175" class="w-full max-w-xs h-40 mx-auto">
+                        <polygon points="55,140 225,140 55,35" fill="#fde68a" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
                         <rect x="55" y="124" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <text x="38" y="40" ${SVG_TXT} font-size="14">A</text>
-                        <text x="38" y="155" ${SVG_TXT} font-size="14">B</text>
-                        <text x="230" y="155" ${SVG_TXT} font-size="14">C</text>
-                        <text x="12" y="98" ${SVG_TXT} font-size="14">5 cm</text>
-                        <text x="140" y="82" ${SVG_TXT} font-size="14">13 cm</text>
-                        <text x="132" y="162" ${SVG_TXT} font-size="14">?</text>
+                        <text x="38" y="35" ${SVG_TXT} font-size="15">R</text>
+                        <text x="38" y="155" ${SVG_TXT} font-size="15">Q</text>
+                        <text x="232" y="155" ${SVG_TXT} font-size="15">P</text>
+                        <text x="120" y="162" ${SVG_TXT} font-size="14">15 cm</text>
+                        <text x="148" y="80" ${SVG_TXT} font-size="14">17 cm</text>
+                        <text x="8" y="95" ${SVG_TXT} font-size="14" fill="#b45309">QR = ?</text>
                     </svg>`;
                     break;
 
-                case "ladder_wall":
+                case "remedi_ladder_10_6":
                     svg = `
-                    <svg viewBox="0 0 280 185" class="w-full max-w-xs h-48 mx-auto">
-                        <line x1="25" y1="150" x2="250" y2="150" stroke="#475569" stroke-width="4"/>
-                        <rect x="45" y="25" width="18" height="125" fill="#fca5a5" stroke="#1e293b" stroke-width="2.5"/>
-                        <rect x="63" y="134" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <line x1="63" y1="35" x2="185" y2="150" stroke="#d97706" stroke-width="6" stroke-linecap="round"/>
-                        <text x="135" y="82" ${SVG_TXT} font-size="14">10 m</text>
-                        <text x="110" y="170" ${SVG_TXT} font-size="14">6 m</text>
-                        <text x="72" y="95" ${SVG_TXT} font-size="14">?</text>
+                    <svg viewBox="0 0 280 185" class="w-full max-w-xs h-44 mx-auto">
+                        <line x1="30" y1="155" x2="250" y2="155" stroke="#334155" stroke-width="3"/>
+                        <rect x="45" y="25" width="22" height="130" fill="#cbd5e1" stroke="#1e293b" stroke-width="2.5"/>
+                        <rect x="67" y="139" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <line x1="67" y1="35" x2="185" y2="155" stroke="#d97706" stroke-width="5" stroke-linecap="round"/>
+                        <text x="108" y="174" ${SVG_TXT} font-size="13">6 m</text>
+                        <text x="138" y="88" ${SVG_TXT} font-size="13">Tangga 10 m</text>
+                        <text x="10" y="95" ${SVG_TXT} font-size="14" fill="#dc2626">t = ?</text>
                     </svg>`;
                     break;
 
-                case "rectangle_diagonal":
+                case "remedi_rect_12_5":
                     svg = `
-                    <svg viewBox="0 0 300 175" class="w-full max-w-sm h-44 mx-auto">
-                        <rect x="40" y="30" width="210" height="105" fill="#bbf7d0" stroke="#1e293b" stroke-width="3"/>
-                        <line x1="40" y1="30" x2="250" y2="135" stroke="#1e293b" stroke-width="3" stroke-dasharray="6,4"/>
-                        <text x="128" y="155" ${SVG_TXT} font-size="14">24 m</text>
-                        <text x="256" y="88" ${SVG_TXT} font-size="14">10 m</text>
+                    <svg viewBox="0 0 300 165" class="w-full max-w-sm h-40 mx-auto">
+                        <rect x="45" y="25" width="200" height="105" fill="#bbf7d0" stroke="#1e293b" stroke-width="3"/>
+                        <line x1="45" y1="130" x2="245" y2="25" stroke="#dc2626" stroke-width="3" stroke-dasharray="6,4"/>
+                        <rect x="229" y="114" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <text x="125" y="150" ${SVG_TXT} font-size="14">12 m</text>
+                        <text x="252" y="85" ${SVG_TXT} font-size="14">5 m</text>
+                        <text x="125" y="72" ${SVG_TXT} font-size="14" fill="#dc2626">d = ?</text>
                     </svg>`;
                     break;
 
-                case "cartesian_points":
+                case "remedi_triangle_5_7_9":
+                    svg = `
+                    <svg viewBox="0 0 290 160" class="w-full max-w-xs h-36 mx-auto">
+                        <polygon points="35,135 255,135 85,40" fill="#DDD6FE" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                        <text x="38" y="85" ${SVG_TXT} font-size="13">5 cm</text>
+                        <text x="178" y="80" ${SVG_TXT} font-size="13">7 cm</text>
+                        <text x="130" y="152" ${SVG_TXT} font-size="13">9 cm</text>
+                    </svg>`;
+                    break;
+
+                case "remedi_cartesian_ab":
+                    svg = `
+                    <svg viewBox="0 0 280 175" class="w-full max-w-xs h-40 mx-auto">
+                        <line x1="35" y1="145" x2="255" y2="145" stroke="#64748b" stroke-width="2"/>
+                        <line x1="45" y1="20" x2="45" y2="155" stroke="#64748b" stroke-width="2"/>
+                        <line x1="75" y1="120" x2="205" y2="40" stroke="#0284c7" stroke-width="3"/>
+                        <line x1="75" y1="120" x2="205" y2="120" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4"/>
+                        <line x1="205" y1="120" x2="205" y2="40" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4"/>
+                        <circle cx="75" cy="120" r="5" fill="#dc2626"/>
+                        <circle cx="205" cy="40" r="5" fill="#dc2626"/>
+                        <text x="55" y="138" ${SVG_TXT} font-size="13">A(1, 2)</text>
+                        <text x="180" y="30" ${SVG_TXT} font-size="13">B(7, 10)</text>
+                    </svg>`;
+                    break;
+
+                case "remedi_ship_path":
                     svg = `
                     <svg viewBox="0 0 290 180" class="w-full max-w-sm h-44 mx-auto">
-                        <line x1="35" y1="150" x2="265" y2="150" stroke="#64748b" stroke-width="2"/>
-                        <line x1="35" y1="20" x2="35" y2="150" stroke="#64748b" stroke-width="2"/>
-                        <text x="268" y="155" ${SVG_TXT} font-size="12">x</text>
-                        <text x="30" y="15" ${SVG_TXT} font-size="12">y</text>
-                        <text x="22" y="164" ${SVG_TXT} font-size="11">O</text>
-                        <line x1="65" y1="130" x2="215" y2="45" stroke="#1e293b" stroke-width="3"/>
-                        <circle cx="65" cy="130" r="5" fill="#1e293b"/>
-                        <circle cx="215" cy="45" r="5" fill="#1e293b"/>
-                        <text x="48" y="122" ${SVG_TXT} font-size="13">A(2, 1)</text>
-                        <text x="195" y="35" ${SVG_TXT} font-size="13">B(10, 7)</text>
+                        <line x1="60" y1="150" x2="60" y2="85" stroke="#1e293b" stroke-width="3"/>
+                        <line x1="60" y1="85" x2="175" y2="85" stroke="#1e293b" stroke-width="3"/>
+                        <line x1="175" y1="85" x2="175" y2="30" stroke="#1e293b" stroke-width="3"/>
+                        <line x1="60" y1="150" x2="175" y2="30" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="5,3"/>
+                        <circle cx="60" cy="150" r="5" fill="#0f172a"/>
+                        <circle cx="175" cy="30" r="5" fill="#dc2626"/>
+                        <text x="38" y="162" ${SVG_TXT} font-size="13">P</text>
+                        <text x="185" y="34" ${SVG_TXT} font-size="13">Q</text>
+                        <text x="12" y="122" ${SVG_TXT} font-size="12">12 km (U)</text>
+                        <text x="95" y="102" ${SVG_TXT} font-size="12">9 km (T)</text>
+                        <text x="183" y="65" ${SVG_TXT} font-size="12">8 km (U)</text>
                     </svg>`;
                     break;
 
-                case "two_triangles_hots":
+                case "remedi_two_triangles":
                     svg = `
-                    <svg viewBox="0 0 310 190" class="w-full max-w-sm h-48 mx-auto">
-                        <polygon points="45,150 165,150 45,55" fill="#bae6fd" stroke="#1e293b" stroke-width="2.5"/>
-                        <rect x="45" y="135" width="15" height="15" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <polygon points="165,150 222,78 45,55" fill="#fde68a" fill-opacity="0.7" stroke="#1e293b" stroke-width="2.5"/>
-                        <text x="28" y="164" ${SVG_TXT} font-size="14">A</text>
-                        <text x="162" y="168" ${SVG_TXT} font-size="14">B</text>
-                        <text x="228" y="78" ${SVG_TXT} font-size="14">C</text>
-                        <text x="28" y="50" ${SVG_TXT} font-size="14">D</text>
-                        <text x="8" y="108" ${SVG_TXT} font-size="13">9 cm</text>
-                        <text x="88" y="168" ${SVG_TXT} font-size="13">12 cm</text>
-                        <text x="140" y="56" ${SVG_TXT} font-size="13">17 cm</text>
+                    <svg viewBox="0 0 310 180" class="w-full max-w-sm h-44 mx-auto">
+                        <polygon points="45,140 135,140 45,75" fill="#bae6fd" stroke="#1e293b" stroke-width="2.5" stroke-linejoin="round"/>
+                        <polygon points="45,75 135,140 250,35" fill="#fde68a" stroke="#1e293b" stroke-width="2.5" stroke-linejoin="round"/>
+                        <rect x="45" y="126" width="14" height="14" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <text x="28" y="75" ${SVG_TXT} font-size="14">A</text>
+                        <text x="28" y="152" ${SVG_TXT} font-size="14">B</text>
+                        <text x="135" y="160" ${SVG_TXT} font-size="14">C</text>
+                        <text x="256" y="38" ${SVG_TXT} font-size="14">D</text>
+                        <text x="10" y="115" ${SVG_TXT} font-size="12">6 cm</text>
+                        <text x="78" y="156" ${SVG_TXT} font-size="12">8 cm</text>
+                        <text x="198" y="102" ${SVG_TXT} font-size="12">24 cm</text>
+                        <text x="130" y="48" ${SVG_TXT} font-size="13" fill="#dc2626">AD = ?</text>
                     </svg>`;
                     break;
 
-                case "strategy_eval_hots":
-                    svg = `
-                    <svg viewBox="0 0 290 160" class="w-full max-w-sm h-40 mx-auto">
-                        <polygon points="45,135 235,135 45,35" fill="#f3e8ff" stroke="#1e293b" stroke-width="3"/>
-                        <rect x="45" y="119" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <text x="24" y="90" ${SVG_TXT} font-size="14">p</text>
-                        <text x="118" y="152" ${SVG_TXT} font-size="14">24 cm</text>
-                        <text x="140" y="75" ${SVG_TXT} font-size="14">25 cm</text>
-                    </svg>`;
-                    break;
-
-                case "drone_hots":
+                case "remedi_drone":
                     svg = `
                     <svg viewBox="0 0 320 180" class="w-full max-w-md h-44 mx-auto">
                         <line x1="30" y1="145" x2="295" y2="145" stroke="#1e293b" stroke-width="3"/>
@@ -1913,9 +2259,9 @@ function simpanHasilUjianKeSheets(data) {
                         <line x1="60" y1="35" x2="265" y2="145" stroke="#1e293b" stroke-width="2.5"/>
                         <circle cx="60" cy="35" r="7" fill="#f59e0b" stroke="#1e293b" stroke-width="2"/>
                         <text x="45" y="22" ${SVG_TXT} font-size="13">Drone</text>
-                        <text x="12" y="95" ${SVG_TXT} font-size="12">120 m</text>
-                        <text x="84" y="102" ${SVG_TXT} font-size="12">130 m</text>
-                        <text x="175" y="82" ${SVG_TXT} font-size="12">200 m</text>
+                        <text x="12" y="95" ${SVG_TXT} font-size="12">80 m</text>
+                        <text x="84" y="102" ${SVG_TXT} font-size="12">100 m</text>
+                        <text x="175" y="82" ${SVG_TXT} font-size="12">170 m</text>
                         <text x="54" y="164" ${SVG_TXT} font-size="13">P</text>
                         <text x="138" y="164" ${SVG_TXT} font-size="13">A</text>
                         <text x="260" y="164" ${SVG_TXT} font-size="13">B</text>
@@ -1930,71 +2276,177 @@ function simpanHasilUjianKeSheets(data) {
                         <text x="32" y="32" ${SVG_TXT} font-size="15">K</text>
                         <text x="32" y="152" ${SVG_TXT} font-size="15">L</text>
                         <text x="226" y="152" ${SVG_TXT} font-size="15">M</text>
-                        <text x="30" y="90" ${SVG_TXT} font-size="14" font-style="italic">k</text>
-                        <text x="130" y="154" ${SVG_TXT} font-size="14" font-style="italic">m</text>
+                        <text x="30" y="90" ${SVG_TXT} font-size="14" font-style="italic">m</text>
+                        <text x="130" y="154" ${SVG_TXT} font-size="14" font-style="italic">k</text>
                         <text x="140" y="78" ${SVG_TXT} font-size="14" font-style="italic">l</text>
                     </svg>`;
                     break;
 
-                case "rect_15_8":
+                case "remedi_rect_12_9":
                     svg = `
                     <svg viewBox="0 0 300 160" class="w-full max-w-sm h-40 mx-auto">
-                        <rect x="40" y="30" width="210" height="100" fill="#fef3c7" stroke="#1e293b" stroke-width="3"/>
-                        <text x="130" y="150" ${SVG_TXT} font-size="14">15 cm</text>
-                        <text x="256" y="85" ${SVG_TXT} font-size="14">8 cm</text>
+                        <rect x="40" y="30" width="200" height="100" fill="#fef3c7" stroke="#1e293b" stroke-width="3"/>
+                        <line x1="40" y1="130" x2="240" y2="30" stroke="#0284c7" stroke-width="2.5" stroke-dasharray="5,3"/>
+                        <text x="125" y="150" ${SVG_TXT} font-size="14">12 cm</text>
+                        <text x="248" y="85" ${SVG_TXT} font-size="14">9 cm</text>
                     </svg>`;
                     break;
 
-                case "essay_tower_wire":
+                // --- DIAGRAM PAKET PENGAYAAN ---
+                case "pengayaan_algebra_tri":
+                    svg = `
+                    <svg viewBox="0 0 290 175" class="w-full max-w-xs h-40 mx-auto">
+                        <polygon points="45,140 235,140 45,35" fill="#f3e8ff" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                        <rect x="45" y="124" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <text x="6" y="95" ${SVG_TXT} font-size="13">12 cm</text>
+                        <text x="105" y="160" ${SVG_TXT} font-size="13">(2x - 1) cm</text>
+                        <text x="135" y="75" ${SVG_TXT} font-size="13" fill="#7e22ce">(2x + 1) cm</text>
+                    </svg>`;
+                    break;
+
+                case "pengayaan_rhombus":
                     svg = `
                     <svg viewBox="0 0 290 180" class="w-full max-w-xs h-44 mx-auto">
-                        <line x1="30" y1="150" x2="260" y2="150" stroke="#334155" stroke-width="3"/>
-                        <line x1="80" y1="30" x2="80" y2="150" stroke="#0284c7" stroke-width="6"/>
-                        <rect x="80" y="134" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <line x1="80" y1="30" x2="195" y2="150" stroke="#1e293b" stroke-width="2.5" stroke-dasharray="5,3"/>
-                        <circle cx="195" cy="150" r="4" fill="#1e293b"/>
-                        <text x="40" y="95" ${SVG_TXT} font-size="13">12 m</text>
-                        <text x="128" y="168" ${SVG_TXT} font-size="13">9 m</text>
-                        <text x="150" y="85" ${SVG_TXT} font-size="13">kawat</text>
+                        <polygon points="145,20 255,90 145,160 35,90" fill="#dcfce7" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                        <line x1="145" y1="20" x2="145" y2="160" stroke="#1e293b" stroke-width="2" stroke-dasharray="4"/>
+                        <line x1="35" y1="90" x2="255" y2="90" stroke="#1e293b" stroke-width="2" stroke-dasharray="4"/>
+                        <rect x="145" y="78" width="12" height="12" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <text x="140" y="15" ${SVG_TXT} font-size="13">A</text>
+                        <text x="262" y="95" ${SVG_TXT} font-size="13">B</text>
+                        <text x="140" y="175" ${SVG_TXT} font-size="13">C</text>
+                        <text x="18" y="95" ${SVG_TXT} font-size="13">D</text>
+                        <text x="152" y="58" ${SVG_TXT} font-size="12">AC = 16 cm</text>
+                        <text x="165" y="106" ${SVG_TXT} font-size="12">BD = 30 cm</text>
                     </svg>`;
                     break;
 
-                case "essay_trapezoid":
+                case "pengayaan_isosceles":
+                    svg = `
+                    <svg viewBox="0 0 280 175" class="w-full max-w-xs h-40 mx-auto">
+                        <polygon points="140,25 45,145 235,145" fill="#fef3c7" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                        <line x1="140" y1="25" x2="140" y2="145" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="4"/>
+                        <rect x="140" y="131" width="14" height="14" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <text x="135" y="18" ${SVG_TXT} font-size="14">P</text>
+                        <text x="28" y="155" ${SVG_TXT} font-size="14">Q</text>
+                        <text x="242" y="155" ${SVG_TXT} font-size="14">R</text>
+                        <text x="52" y="82" ${SVG_TXT} font-size="13">17 cm</text>
+                        <text x="192" y="82" ${SVG_TXT} font-size="13">17 cm</text>
+                        <text x="105" y="165" ${SVG_TXT} font-size="13">Keliling = 50 cm</text>
+                    </svg>`;
+                    break;
+
+                case "pengayaan_sliding_ladder":
+                    svg = `
+                    <svg viewBox="0 0 290 180" class="w-full max-w-xs h-44 mx-auto">
+                        <line x1="30" y1="150" x2="265" y2="150" stroke="#1e293b" stroke-width="3"/>
+                        <line x1="55" y1="20" x2="55" y2="150" stroke="#1e293b" stroke-width="4"/>
+                        <line x1="55" y1="30" x2="125" y2="150" stroke="#94a3b8" stroke-width="3" stroke-dasharray="4"/>
+                        <line x1="55" y1="65" x2="195" y2="150" stroke="#d97706" stroke-width="4"/>
+                        <text x="10" y="52" ${SVG_TXT} font-size="11" fill="#dc2626">↓ 4 m</text>
+                        <text x="138" y="168" ${SVG_TXT} font-size="12" fill="#dc2626">Geser = ?</text>
+                        <text x="130" y="95" ${SVG_TXT} font-size="12">Tangga 25 m</text>
+                    </svg>`;
+                    break;
+
+                case "pengayaan_trapezoid":
+                    svg = `
+                    <svg viewBox="0 0 300 175" class="w-full max-w-sm h-40 mx-auto">
+                        <polygon points="45,140 245,140 180,40 45,40" fill="#bae6fd" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                        <line x1="180" y1="40" x2="180" y2="140" stroke="#dc2626" stroke-width="2" stroke-dasharray="4"/>
+                        <rect x="45" y="126" width="14" height="14" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <text x="95" y="32" ${SVG_TXT} font-size="13">DC = 12 cm</text>
+                        <text x="110" y="160" ${SVG_TXT} font-size="13">AB = 21 cm</text>
+                        <text x="218" y="90" ${SVG_TXT} font-size="13">15 cm</text>
+                    </svg>`;
+                    break;
+
+                case "pengayaan_cartesian":
+                    svg = `
+                    <svg viewBox="0 0 280 175" class="w-full max-w-xs h-40 mx-auto">
+                        <line x1="30" y1="115" x2="250" y2="115" stroke="#64748b" stroke-width="2"/>
+                        <line x1="115" y1="20" x2="115" y2="160" stroke="#64748b" stroke-width="2"/>
+                        <line x1="115" y1="115" x2="210" y2="35" stroke="#7e22ce" stroke-width="3"/>
+                        <circle cx="115" cy="115" r="5" fill="#dc2626"/>
+                        <circle cx="210" cy="35" r="5" fill="#7e22ce"/>
+                        <text x="65" y="132" ${SVG_TXT} font-size="12">M(0,0)</text>
+                        <text x="175" y="26" ${SVG_TXT} font-size="12">R(5, 12)</text>
+                    </svg>`;
+                    break;
+
+                case "pengayaan_spiral_3tri":
                     svg = `
                     <svg viewBox="0 0 310 180" class="w-full max-w-sm h-44 mx-auto">
-                        <polygon points="45,145 255,145 185,40 45,40" fill="#dcfce7" stroke="#1e293b" stroke-width="3"/>
-                        <rect x="45" y="130" width="15" height="15" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <rect x="45" y="40" width="15" height="15" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <text x="28" y="158" ${SVG_TXT} font-size="13">A</text>
-                        <text x="260" y="158" ${SVG_TXT} font-size="13">B</text>
-                        <text x="188" y="32" ${SVG_TXT} font-size="13">C</text>
-                        <text x="28" y="35" ${SVG_TXT} font-size="13">D</text>
-                        <text x="100" y="32" ${SVG_TXT} font-size="13">14 m</text>
-                        <text x="135" y="165" ${SVG_TXT} font-size="13">22 m</text>
-                        <text x="8" y="98" ${SVG_TXT} font-size="13">15 m</text>
+                        <polygon points="50,130 110,130 50,85" fill="#bae6fd" stroke="#1e293b" stroke-width="2.5"/>
+                        <polygon points="50,85 110,130 180,55" fill="#fde68a" stroke="#1e293b" stroke-width="2.5"/>
+                        <polygon points="50,85 180,55 265,140" fill="#bbf7d0" stroke="#1e293b" stroke-width="2.5"/>
+                        <text x="32" y="88" ${SVG_TXT} font-size="13">A</text>
+                        <text x="32" y="140" ${SVG_TXT} font-size="13">B</text>
+                        <text x="108" y="148" ${SVG_TXT} font-size="13">C</text>
+                        <text x="180" y="45" ${SVG_TXT} font-size="13">D</text>
+                        <text x="272" y="145" ${SVG_TXT} font-size="13">E</text>
+                        <text x="145" y="128" ${SVG_TXT} font-size="13" fill="#dc2626">AE = ?</text>
                     </svg>`;
                     break;
 
-                case "essay_isosceles_right":
+                case "pengayaan_cuboid_3d":
                     svg = `
-                    <svg viewBox="0 0 240 180" class="w-full max-w-xs h-44 mx-auto">
-                        <polygon points="50,150 180,150 50,20" fill="#fce7f3" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
-                        <rect x="50" y="134" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
-                        <text x="8" y="90" ${SVG_TXT} font-size="14">10 cm</text>
-                        <text x="95" y="170" ${SVG_TXT} font-size="14">10 cm</text>
+                    <svg viewBox="0 0 300 180" class="w-full max-w-sm h-44 mx-auto">
+                        <rect x="40" y="65" width="160" height="90" fill="none" stroke="#1e293b" stroke-width="2.5"/>
+                        <rect x="90" y="25" width="160" height="90" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="4"/>
+                        <line x1="40" y1="65" x2="90" y2="25" stroke="#1e293b" stroke-width="2"/>
+                        <line x1="200" y1="65" x2="250" y2="25" stroke="#1e293b" stroke-width="2"/>
+                        <line x1="40" y1="155" x2="90" y2="115" stroke="#64748b" stroke-width="2" stroke-dasharray="4"/>
+                        <line x1="200" y1="155" x2="250" y2="115" stroke="#1e293b" stroke-width="2"/>
+                        <line x1="40" y1="155" x2="250" y2="25" stroke="#dc2626" stroke-width="3"/>
+                        <text x="25" y="165" ${SVG_TXT} font-size="13">A</text>
+                        <text x="205" y="165" ${SVG_TXT} font-size="13">B</text>
+                        <text x="256" y="120" ${SVG_TXT} font-size="13">C</text>
+                        <text x="256" y="25" ${SVG_TXT} font-size="13">G</text>
+                        <text x="105" y="172" ${SVG_TXT} font-size="12">12 m</text>
+                        <text x="232" y="145" ${SVG_TXT} font-size="12">9 m</text>
+                        <text x="258" y="75" ${SVG_TXT} font-size="12">8 m</text>
                     </svg>`;
                     break;
 
-                case "essay_river_hots":
+                case "pengayaan_two_ships":
                     svg = `
-                    <svg viewBox="0 0 320 185" class="w-full max-w-md h-48 mx-auto">
-                        <rect x="20" y="45" width="280" height="90" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
-                        <text x="250" y="95" ${SVG_TXT} font-size="12" fill="#0369a1">Sungai</text>
-                        <circle cx="65" cy="45" r="6" fill="#1e293b"/><text x="50" y="35" ${SVG_TXT} font-size="13">A</text>
-                        <circle cx="65" cy="135" r="5" fill="#1e293b"/><text x="58" y="158" ${SVG_TXT} font-size="13">P</text>
-                        <circle cx="235" cy="135" r="6" fill="#1e293b"/><text x="230" y="158" ${SVG_TXT} font-size="13">B</text>
-                        <text x="6" y="40" ${SVG_TXT} font-size="11">Utara</text>
-                        <text x="6" y="150" ${SVG_TXT} font-size="11">Selatan</text>
+                    <svg viewBox="0 0 280 175" class="w-full max-w-xs h-40 mx-auto">
+                        <polygon points="210,140 70,140 210,35" fill="#e0f2fe" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                        <rect x="194" y="124" width="16" height="16" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <text x="218" y="152" ${SVG_TXT} font-size="14">P</text>
+                        <text x="218" y="35" ${SVG_TXT} font-size="14">Kapal A (U)</text>
+                        <text x="25" y="160" ${SVG_TXT} font-size="14">Kapal B (B)</text>
+                        <text x="95" y="80" ${SVG_TXT} font-size="13" fill="#dc2626">Jarak AB = ?</text>
+                    </svg>`;
+                    break;
+
+                case "pengayaan_altitude_hyp":
+                    svg = `
+                    <svg viewBox="0 0 290 175" class="w-full max-w-xs h-40 mx-auto">
+                        <polygon points="50,140 230,140 50,35" fill="#fef3c7" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                        <line x1="50" y1="140" x2="108" y2="69" stroke="#dc2626" stroke-width="3"/>
+                        <rect x="50" y="124" width="15" height="15" fill="none" stroke="#1e293b" stroke-width="2"/>
+                        <text x="32" y="35" ${SVG_TXT} font-size="14">A</text>
+                        <text x="32" y="152" ${SVG_TXT} font-size="14">B</text>
+                        <text x="238" y="152" ${SVG_TXT} font-size="14">C</text>
+                        <text x="112" y="62" ${SVG_TXT} font-size="14" fill="#dc2626">D</text>
+                        <text x="8" y="95" ${SVG_TXT} font-size="12">15 cm</text>
+                        <text x="125" y="158" ${SVG_TXT} font-size="12">20 cm</text>
+                    </svg>`;
+                    break;
+
+                case "pengayaan_two_poles":
+                    svg = `
+                    <svg viewBox="0 0 300 180" class="w-full max-w-sm h-44 mx-auto">
+                        <line x1="30" y1="150" x2="270" y2="150" stroke="#1e293b" stroke-width="3"/>
+                        <line x1="65" y1="65" x2="65" y2="150" stroke="#0284c7" stroke-width="5"/>
+                        <line x1="225" y1="25" x2="225" y2="150" stroke="#0284c7" stroke-width="5"/>
+                        <line x1="65" y1="65" x2="225" y2="25" stroke="#dc2626" stroke-width="3"/>
+                        <line x1="65" y1="65" x2="225" y2="65" stroke="#64748b" stroke-width="2" stroke-dasharray="4"/>
+                        <text x="18" y="115" ${SVG_TXT} font-size="12">15 m</text>
+                        <text x="232" y="95" ${SVG_TXT} font-size="12">22 m</text>
+                        <text x="125" y="168" ${SVG_TXT} font-size="12">24 m</text>
+                        <text x="120" y="38" ${SVG_TXT} font-size="12" fill="#dc2626">Kabel = ?</text>
                     </svg>`;
                     break;
 
@@ -2003,28 +2455,33 @@ function simpanHasilUjianKeSheets(data) {
             }
 
             return `<div class="doodle-card-sm bg-white p-4 border-2 border-slate-800">
-                <p class="text-xs font-extrabold text-slate-500 mb-2">Gambar:</p>
+                <p class="text-xs font-extrabold text-slate-500 mb-2">Gambar Ilustrasi Soal:</p>
                 ${svg}
                 <p class="text-[11px] text-slate-400 text-center mt-1">Gambar tidak sesuai skala sebenarnya.</p>
             </div>`;
         }
 
         /********************************************************************
-         * 8. RENDER SOAL & INPUT JAWABAN (PG, MENCOCOKKAN, KOMPLEKS, ESAI)
+         * 11. RENDER SOAL & INPUT JAWABAN (PG, MENJODOHKAN, KOMPLEKS)
          ********************************************************************/
         function formatMathStringToHTML(str) {
             if (!str) return "";
-            // Mengubah notasi $...$ sederhana menjadi tampilan matematika yang rapi dan mudah dibaca siswa
             return str.replace(/\$([^$]+)\$/g, (match, expr) => {
                 let formatted = expr
                     .replace(/\\sqrt\{([^}]+)\}/g, '√($1)')
+                    .replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, '($1/$2)')
+                    .replace(/\\left\(/g, '(')
+                    .replace(/\\right\)/g, ')')
                     .replace(/\\text\{([^}]+)\}/g, '$1')
                     .replace(/\\triangle/g, '△')
+                    .replace(/\\Delta/g, 'Δ')
                     .replace(/\^\\circ/g, '°')
                     .replace(/\\angle/g, '∠')
                     .replace(/\\circ/g, '°')
                     .replace(/\\times/g, '×')
                     .replace(/\\parallel/g, '∥')
+                    .replace(/\\perp/g, '⊥')
+                    .replace(/\\Rightarrow/g, '⇒')
                     .replace(/\\neq/g, '≠')
                     .replace(/\\approx/g, '≈')
                     .replace(/\^2/g, '²')
@@ -2043,15 +2500,12 @@ function simpanHasilUjianKeSheets(data) {
             document.getElementById("qNumberBadge").textContent = `Soal #${q.numberLabel}`;
 
             const typeLabels = {
-                mcq: "Pilihan Ganda (1 Jawaban Benar)",
-                matching: "Mencocokkan Pasangan",
-                complex: "Pilihan Kompleks (Lebih dari 1 Benar)",
-                essay_branched: "Esai Beranak (Isian Jawaban)",
-                essay_single: "Esai (Isian Jawaban)"
+                mcq: `Pilihan Ganda (${q.points} Poin • 1 Jawaban Benar)`,
+                matching: `Menjodohkan Pasangan (${q.points} Poin)`,
+                complex: `Pilihan Kompleks (${q.points} Poin • Lebih dari 1 Benar)`
             };
             document.getElementById("qTypeBadge").textContent = typeLabels[q.type] || "Soal Matematika";
 
-            // Update tombol ragu-ragu
             const isDoubt = !!appState.doubtFlags[q.id];
             const doubtBtn = document.getElementById("btnDoubtToggle");
             const doubtText = document.getElementById("doubtBtnText");
@@ -2063,14 +2517,9 @@ function simpanHasilUjianKeSheets(data) {
                 doubtText.textContent = "Tandai Ragu-ragu";
             }
 
-            // Render Teks Pertanyaan (TANPA menampilkan label HOTS ke siswa)
             document.getElementById("questionPromptContainer").innerHTML = `<p>${formatMathStringToHTML(q.prompt)}</p>`;
-
-            // Render Gambar Pendukung Soal (statis)
             document.getElementById("questionDiagramContainer").innerHTML = generateDiagramSVG(q.diagramType);
 
-
-            // Render Input Jawaban sesuai tipe
             const container = document.getElementById("answerInputContainer");
             container.innerHTML = "";
 
@@ -2080,15 +2529,12 @@ function simpanHasilUjianKeSheets(data) {
                 renderMatchingInput(q, container);
             } else if (q.type === "complex") {
                 renderComplexInput(q, container);
-            } else if (q.type === "essay_branched" || q.type === "essay_single") {
-                renderEssayInput(q, container);
             }
 
-            // Tombol Navigasi Prev/Next
             document.getElementById("btnPrevQuestion").disabled = (index === 0);
             const nextBtn = document.getElementById("btnNextQuestion");
             if (index === EXAM_QUESTIONS.length - 1) {
-                nextBtn.innerHTML = `<span>Selesai & Periksa</span> <i class="ph-bold ph-check-circle"></i>`;
+                nextBtn.innerHTML = `<span>Selesai & Kumpulkan</span> <i class="ph-bold ph-check-circle"></i>`;
                 nextBtn.onclick = () => openSubmitConfirmation();
             } else {
                 nextBtn.innerHTML = `<span>Soal Selanjutnya</span> <i class="ph-bold ph-arrow-right"></i>`;
@@ -2099,7 +2545,6 @@ function simpanHasilUjianKeSheets(data) {
             renderNavigationGrid();
         }
 
-        // A1. Render Pilihan Ganda
         function renderMCQOptions(q, container) {
             const currentAns = appState.answers[q.id] || "";
             const list = document.createElement("div");
@@ -2126,7 +2571,6 @@ function simpanHasilUjianKeSheets(data) {
             container.appendChild(list);
         }
 
-        // A2. Render Mencocokkan (Responsif di Laptop & HP)
         function renderMatchingInput(q, container) {
             const savedPairs = appState.answers[q.id] || {};
             const box = document.createElement("div");
@@ -2148,7 +2592,6 @@ function simpanHasilUjianKeSheets(data) {
                     </div>
                     <div class="md:w-1/3">
                         <select onchange="handleMatchingChange(${q.id}, '${item.id}', this.value)" class="doodle-input w-full text-sm font-bold bg-amber-50">
-                            <option value="">-- Pilih Pasangan --</option>
                             ${optionsHtml}
                         </select>
                     </div>
@@ -2158,245 +2601,103 @@ function simpanHasilUjianKeSheets(data) {
             container.appendChild(box);
         }
 
-        function handleMatchingChange(qId, leftId, value) {
-            if (!appState.answers[qId] || typeof appState.answers[qId] !== "object") {
-                appState.answers[qId] = {};
-            }
-            if (value) {
-                appState.answers[qId][leftId] = value;
-            } else {
-                delete appState.answers[qId][leftId];
-            }
+        function handleMatchingChange(qId, leftId, val) {
+            if (!appState.answers[qId]) appState.answers[qId] = {};
+            appState.answers[qId][leftId] = val;
             saveStateToStorage();
             renderNavigationGrid();
         }
 
-        // A3. Render Pilihan Lebih dari Satu (Kompleks)
         function renderComplexInput(q, container) {
-            const selectedArr = Array.isArray(appState.answers[q.id]) ? appState.answers[q.id] : [];
-            const info = document.createElement("div");
-            info.className = "p-3 rounded-xl bg-purple-100 border-2 border-slate-800 text-xs font-bold text-purple-950 flex items-center gap-2";
-            info.innerHTML = `<i class="ph-fill ph-checks text-lg"></i> <span>Petunjuk: Lebih dari satu jawaban mungkin benar. Klik kotak untuk memilih beberapa opsi sekaligus!</span>`;
-            container.appendChild(info);
-
-            const list = document.createElement("div");
-            list.className = "space-y-2.5";
+            const currentArr = Array.isArray(appState.answers[q.id]) ? appState.answers[q.id] : [];
+            const wrapper = document.createElement("div");
+            wrapper.className = "space-y-2.5";
 
             q.options.forEach(opt => {
-                const isChecked = selectedArr.includes(opt.id);
-                const item = document.createElement("button");
-                item.type = "button";
-                item.className = `doodle-btn w-full p-3.5 text-left flex items-center gap-3 ${isChecked ? 'bg-emerald-200 ring-2 ring-slate-900' : 'bg-white hover:bg-slate-50'}`;
+                const checked = currentArr.includes(opt.id);
+                const item = document.createElement("div");
+                item.className = `doodle-btn p-3.5 flex items-center gap-3 cursor-pointer ${checked ? 'bg-emerald-200 ring-2 ring-slate-900' : 'bg-white hover:bg-slate-50'}`;
                 item.onclick = () => {
-                    let next = [...selectedArr];
-                    if (next.includes(opt.id)) {
-                        next = next.filter(x => x !== opt.id);
+                    let updated = [...currentArr];
+                    if (updated.includes(opt.id)) {
+                        updated = updated.filter(x => x !== opt.id);
                     } else {
-                        next.push(opt.id);
+                        updated.push(opt.id);
                     }
-                    appState.answers[q.id] = next.sort();
+                    appState.answers[q.id] = updated;
                     saveStateToStorage();
                     renderQuestionByIndex(appState.currentQuestionIndex);
                 };
                 item.innerHTML = `
-                    <span class="w-8 h-8 rounded-lg border-2 border-slate-800 flex items-center justify-center flex-shrink-0 ${isChecked ? 'bg-slate-900 text-emerald-300' : 'bg-white'}">
-                        <i class="ph-bold ${isChecked ? 'ph-check-square' : 'ph-square'} text-lg"></i>
-                    </span>
-                    <span class="font-body font-bold text-sm md:text-base text-slate-800"><strong>(${opt.id})</strong> ${formatMathStringToHTML(opt.text)}</span>
-                `;
-                list.appendChild(item);
-            });
-            container.appendChild(list);
-        }
-
-        /********************************************************************
-         * 9. INPUT JAWABAN ESAI (ISIAN ANGKA / AKAR + PILIHAN SATUAN)
-         ********************************************************************/
-        function getFieldAnswer(qId, subId, fieldId) {
-            const qa = appState.answers[qId];
-            if (!qa || typeof qa !== "object") return {};
-            const sa = qa[subId];
-            if (!sa || !sa.fields) return {};
-            return sa.fields[fieldId] || {};
-        }
-
-        function setFieldAnswer(qId, subId, fieldId, patch) {
-            if (!appState.answers[qId] || typeof appState.answers[qId] !== "object") appState.answers[qId] = {};
-            const qa = appState.answers[qId];
-            if (!qa[subId] || !qa[subId].fields) qa[subId] = { fields: {} };
-            qa[subId].fields[fieldId] = { ...(qa[subId].fields[fieldId] || {}), ...patch };
-            saveStateToStorage();
-            renderNavigationGrid();
-        }
-
-        function escapeAttr(s) {
-            return String(s || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
-        }
-
-        function renderEssayInput(q, container) {
-            const help = document.createElement("div");
-            help.className = "p-3 rounded-xl bg-amber-50 border-2 border-slate-800 text-xs font-bold text-slate-700 space-y-1";
-            help.innerHTML = `
-                <div class="flex items-center gap-1.5"><i class="ph-fill ph-info text-base text-amber-600"></i> Petunjuk pengisian:</div>
-                <ul class="list-disc pl-5 font-semibold space-y-0.5">
-                    <li>Tulis jawaban akhir berupa angka. Gunakan <strong>koma</strong> untuk desimal (contoh: 2,5).</li>
-                    <li>Jika jawaban berbentuk akar, centang <strong>√ Akar</strong> lalu isi angka di depan dan di dalam akar (contoh: 5√3).</li>
-                    <li>Jangan lupa memilih <strong>satuan</strong> yang tepat.</li>
-                </ul>`;
-            container.appendChild(help);
-
-            getEssaySubList(q).forEach(sub => {
-                const fields = ESSAY_FIELDS[sub.subId] || [];
-                const card = document.createElement("div");
-                card.className = "doodle-card-sm p-4 bg-white space-y-3";
-
-                const header = q.type === "essay_branched" ? `
-                    <div class="flex items-center justify-between border-b border-dashed border-slate-200 pb-2">
-                        <span class="px-2.5 py-0.5 rounded-lg bg-purple-200 border border-slate-800 font-doodle font-bold text-xs md:text-sm">Soal ${sub.label}</span>
-                        <span class="text-[11px] font-bold text-slate-500">Bobot: ${sub.points} Poin</span>
+                    <div class="w-7 h-7 rounded-lg border-2 border-slate-900 flex items-center justify-center ${checked ? 'bg-slate-900 text-emerald-300' : 'bg-white'}">
+                        ${checked ? '<i class="ph-bold ph-check text-base"></i>' : ''}
                     </div>
-                    <p class="text-sm font-bold text-slate-800">${formatMathStringToHTML(sub.prompt)}</p>` : "";
-
-                const rows = fields.map(f => {
-                    const fa = getFieldAnswer(q.id, sub.subId, f.id);
-                    const base = `${q.id}|${sub.subId}|${f.id}`;
-                    if (f.kind === "choice") {
-                        return `
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-2">
-                            <label class="text-sm font-extrabold text-slate-800 sm:w-56">${f.label}</label>
-                            <select data-k="${base}" data-p="choice" class="essay-in doodle-input text-sm font-bold bg-amber-50 sm:w-64">
-                                <option value="">-- Pilih --</option>
-                                ${f.choices.map(c => `<option value="${escapeAttr(c)}" ${fa.choice === c ? "selected" : ""}>${c}</option>`).join("")}
-                            </select>
-                        </div>`;
-                    }
-                    const unitOpts = UNIT_OPTIONS.map(u => `<option value="${u}" ${fa.unit === u ? "selected" : ""}>${u}</option>`).join("");
-                    return `
-                    <div class="flex flex-col sm:flex-row sm:items-center gap-2">
-                        <label class="text-sm font-extrabold text-slate-800 sm:w-56">${f.label}</label>
-                        <div class="flex flex-wrap items-center gap-2">
-                            <input type="text" inputmode="decimal" autocomplete="off" data-k="${base}" data-p="coef"
-                                value="${escapeAttr(fa.coef)}" placeholder="${fa.useRoot ? "(angka depan)" : "angka"}"
-                                class="essay-in doodle-input text-sm font-bold w-32 text-center">
-                            <label class="flex items-center gap-1 text-xs font-extrabold px-2 py-2 rounded-lg border-2 border-slate-800 bg-slate-50 cursor-pointer select-none">
-                                <input type="checkbox" data-k="${base}" data-p="useRoot" class="essay-root accent-slate-800" ${fa.useRoot ? "checked" : ""}> √ Akar
-                            </label>
-                            <span class="${fa.useRoot ? "flex" : "hidden"} items-center gap-1" data-rootbox="${base}">
-                                <span class="font-doodle font-bold text-2xl text-slate-800">√</span>
-                                <input type="text" inputmode="decimal" autocomplete="off" data-k="${base}" data-p="rad"
-                                    value="${escapeAttr(fa.rad)}" placeholder="dalam akar"
-                                    class="essay-in doodle-input text-sm font-bold w-28 text-center border-t-4">
-                            </span>
-                            <select data-k="${base}" data-p="unit" class="essay-in doodle-input text-sm font-bold bg-sky-50 w-32">
-                                <option value="">Satuan</option>
-                                ${unitOpts}
-                            </select>
-                        </div>
-                    </div>`;
-                }).join("");
-
-                card.innerHTML = `${header}
-                    <div class="text-xs font-extrabold text-slate-500">Jawaban:</div>
-                    <div class="space-y-3">${rows}</div>`;
-                container.appendChild(card);
+                    <span class="font-doodle font-bold text-sm px-2 py-0.5 rounded bg-slate-200 border border-slate-700">${opt.id}</span>
+                    <span class="text-sm md:text-base font-bold text-slate-800">${formatMathStringToHTML(opt.text)}</span>
+                `;
+                wrapper.appendChild(item);
             });
-
-            container.querySelectorAll(".essay-in").forEach(el => {
-                const handler = () => {
-                    const [qId, subId, fId] = el.dataset.k.split("|");
-                    setFieldAnswer(Number(qId), subId, fId, { [el.dataset.p]: el.value });
-                };
-                el.addEventListener("input", handler);
-                el.addEventListener("change", handler);
-            });
-            container.querySelectorAll(".essay-root").forEach(el => {
-                el.addEventListener("change", () => {
-                    const [qId, subId, fId] = el.dataset.k.split("|");
-                    setFieldAnswer(Number(qId), subId, fId, { useRoot: el.checked });
-                    const box = container.querySelector(`[data-rootbox="${el.dataset.k}"]`);
-                    if (box) {
-                        box.classList.toggle("hidden", !el.checked);
-                        box.classList.toggle("flex", el.checked);
-                    }
-                });
-            });
+            container.appendChild(wrapper);
         }
 
         /********************************************************************
-         * 10. NAVIGASI SOAL & CEK STATUS TERJAWAB
+         * 12. NAVIGASI GRID SOAL & PENGECEKAN KELENGKAPAN JAWABAN
          ********************************************************************/
         function isQuestionAnswered(q) {
             const ans = appState.answers[q.id];
             if (!ans) return false;
             if (q.type === "mcq") return typeof ans === "string" && ans.length > 0;
             if (q.type === "matching") {
-                return typeof ans === "object" && Object.keys(ans).length === q.leftItems.length;
+                return q.leftItems.every(li => ans[li.id] && ans[li.id].trim() !== "");
             }
             if (q.type === "complex") {
                 return Array.isArray(ans) && ans.length > 0;
-            }
-            if (q.type === "essay_branched" || q.type === "essay_single") {
-                return getEssaySubList(q).every(sub =>
-                    (ESSAY_FIELDS[sub.subId] || []).every(f => isFieldFilled(f, getFieldAnswer(q.id, sub.subId, f.id)))
-                );
             }
             return false;
         }
 
         function renderNavigationGrid() {
-            const objGrid = document.getElementById("navGridObjective");
-            const essGrid = document.getElementById("navGridEssay");
-            if (!objGrid || !essGrid) return;
+            const gridObj = document.getElementById("navGridObjective");
+            if (!gridObj) return;
+            gridObj.innerHTML = "";
 
-            objGrid.innerHTML = "";
-            essGrid.innerHTML = "";
-
-            let answeredTotal = 0;
+            let answeredCount = 0;
 
             EXAM_QUESTIONS.forEach((q, idx) => {
                 const answered = isQuestionAnswered(q);
-                if (answered) answeredTotal++;
-                const isCurrent = idx === appState.currentQuestionIndex;
+                if (answered) answeredCount++;
                 const isDoubt = !!appState.doubtFlags[q.id];
-
-                let colorClass = "bg-white text-slate-800 hover:bg-slate-100";
-                if (isDoubt) {
-                    colorClass = "bg-amber-300 text-slate-900";
-                } else if (answered) {
-                    colorClass = "bg-emerald-300 text-slate-900";
-                } else if (isCurrent) {
-                    colorClass = "bg-sky-100 text-slate-900";
-                }
-
-                if (isCurrent) {
-                    colorClass += " ring-4 ring-sky-500 ring-offset-1 font-black shadow-md";
-                }
+                const isCurrent = (idx === appState.currentQuestionIndex);
 
                 const btn = document.createElement("button");
                 btn.type = "button";
-                btn.className = `doodle-btn py-2 text-xs font-bold ${colorClass}`;
-                btn.textContent = q.id;
+
+                let bgClass = "bg-white text-slate-800 hover:bg-slate-100";
+                if (isDoubt) bgClass = "bg-amber-300 text-slate-900";
+                else if (answered) bgClass = "bg-emerald-300 text-slate-900";
+
+                const currentRing = isCurrent
+                    ? (answered || isDoubt ? "ring-3 ring-sky-500 scale-105" : "bg-sky-200 ring-2 ring-slate-900")
+                    : "";
+
+                btn.className = `h-10 rounded-xl border-2 border-slate-800 font-doodle font-bold text-sm flex items-center justify-center transition-all shadow-[2px_2px_0px_#1e293b] ${bgClass} ${currentRing}`;
+                btn.textContent = q.numberLabel;
                 btn.onclick = () => renderQuestionByIndex(idx);
 
-                if (q.section === "Objektif") {
-                    objGrid.appendChild(btn);
-                } else {
-                    essGrid.appendChild(btn);
-                }
+                gridObj.appendChild(btn);
             });
 
-            document.getElementById("answeredCountBadge").textContent = `${answeredTotal}/20 Terjawab`;
+            document.getElementById("answeredCountBadge").textContent = `${answeredCount}/${EXAM_QUESTIONS.length} Terjawab`;
         }
 
         function navigateQuestion(delta) {
-            const nextIdx = appState.currentQuestionIndex + delta;
-            if (nextIdx >= 0 && nextIdx < EXAM_QUESTIONS.length) {
-                renderQuestionByIndex(nextIdx);
-                window.scrollTo({ top: 0, behavior: "smooth" });
+            const target = appState.currentQuestionIndex + delta;
+            if (target >= 0 && target < EXAM_QUESTIONS.length) {
+                renderQuestionByIndex(target);
             }
         }
 
-        function toggleDoubtCurrent() {
+        function toggleDoubtCurrentQuestion() {
             const q = EXAM_QUESTIONS[appState.currentQuestionIndex];
             appState.doubtFlags[q.id] = !appState.doubtFlags[q.id];
             saveStateToStorage();
@@ -2404,50 +2705,49 @@ function simpanHasilUjianKeSheets(data) {
         }
 
         /********************************************************************
-         * 11. PENILAIAN OTOMATIS & PENGUMPULAN KE GOOGLE APPS SCRIPT
+         * 13. KALKULASI SKOR 15 SOAL (TOTAL 100 POIN) & SUBMIT KE SHEETS
          ********************************************************************/
         function openSubmitConfirmation() {
-            let answeredCount = 0;
-            let doubtCount = 0;
-            EXAM_QUESTIONS.forEach(q => {
-                if (isQuestionAnswered(q)) answeredCount++;
-                if (appState.doubtFlags[q.id]) doubtCount++;
-            });
-            const unanswered = EXAM_QUESTIONS.length - answeredCount;
+            const total = EXAM_QUESTIONS.length;
+            const answered = EXAM_QUESTIONS.filter(q => isQuestionAnswered(q)).length;
+            const unanswered = total - answered;
 
-            const box = document.getElementById("submitSummaryBox");
-            box.innerHTML = `
-                <div class="flex justify-between"><span>Soal Sudah Dijawab:</span> <span class="text-emerald-700">${answeredCount} dari 20 Soal</span></div>
-                <div class="flex justify-between"><span>Soal Belum Dijawab:</span> <span class="${unanswered > 0 ? 'text-red-600' : 'text-slate-600'}">${unanswered} Soal</span></div>
-                <div class="flex justify-between"><span>Ditandai Ragu-ragu:</span> <span class="text-amber-700">${doubtCount} Soal</span></div>
-            `;
-            document.getElementById("modalSubmitConfirm").classList.remove("hidden");
+            const summary = document.getElementById("submitModalSummaryText");
+            const pkgName = appState.packageType === "pengayaan" ? "Paket Pengayaan" : "Paket Remedi (Perbaikan)";
+            if (unanswered > 0) {
+                summary.innerHTML = `<span class="text-rose-600 font-extrabold">Perhatian! Masih ada ${unanswered} dari ${total} soal (${pkgName}) yang belum dijawab.</span> Apakah kamu yakin tetap ingin mengumpulkan sekarang?`;
+            } else {
+                summary.innerHTML = `<span class="text-emerald-700 font-extrabold">Luar biasa! Seluruh ${total} soal (${pkgName}) telah kamu jawab lengkap.</span> Siap mengumpulkan hasil ujianmu?`;
+            }
+
+            document.getElementById("modalConfirmSubmit").classList.remove("hidden");
         }
 
         function closeSubmitConfirmation() {
-            document.getElementById("modalSubmitConfirm").classList.add("hidden");
+            document.getElementById("modalConfirmSubmit").classList.add("hidden");
         }
 
         function calculateExamScores() {
-            let mcqScore = 0;     // Maks 10 * 3 = 30
-            let matchScore = 0;   // Maks 2 * 6 = 12
-            let complexScore = 0; // Maks 3 * 6 = 18
-            let essayScore = 0;   // Maks 40
+            let mcqScore = 0;       // Maks 10 x 5 = 50
+            let matchScore = 0;     // Maks 2 x 10 = 20
+            let complexScore = 0;   // Maks 3 x 10 = 30
 
             EXAM_QUESTIONS.forEach(q => {
                 const ans = appState.answers[q.id];
+                if (!ans) return;
+
                 if (q.type === "mcq") {
                     if (ans === q.correctKey) mcqScore += q.points;
                 } else if (q.type === "matching") {
-                    if (ans && typeof ans === "object") {
-                        Object.keys(q.correctPairs).forEach(leftKey => {
-                            if (ans[leftKey] === q.correctPairs[leftKey]) {
-                                matchScore += 2; // 2 poin per pasangan benar
-                            }
-                        });
-                    }
+                    let correctCount = 0;
+                    const totalPairs = q.leftItems.length;
+                    q.leftItems.forEach(li => {
+                        if (ans[li.id] === q.correctPairs[li.id]) {
+                            correctCount++;
+                        }
+                    });
+                    matchScore += Math.round((correctCount / totalPairs) * q.points * 10) / 10;
                 } else if (q.type === "complex") {
-                    // Aturan ketat sesuai instruksi: Nilai penuh jika seluruh pilihan benar dipilih dan tidak ada pilihan salah
                     if (Array.isArray(ans)) {
                         const sortedAns = [...ans].sort().join(",");
                         const sortedKey = [...q.correctKeys].sort().join(",");
@@ -2455,19 +2755,13 @@ function simpanHasilUjianKeSheets(data) {
                             complexScore += q.points;
                         }
                     }
-                } else if (q.type === "essay_branched" || q.type === "essay_single") {
-                    getEssaySubList(q).forEach(sub => {
-                        const fields = ESSAY_FIELDS[sub.subId] || [];
-                        if (!fields.length) return;
-                        const got = fields.reduce((acc, f) => acc + scoreField(f, getFieldAnswer(q.id, sub.subId, f.id)), 0);
-                        essayScore += sub.points * got / fields.length;
-                    });
                 }
             });
 
-            essayScore = Math.round(essayScore * 10) / 10;
-            const objectiveTotal = mcqScore + matchScore + complexScore;
-            const grandTotal = objectiveTotal + essayScore;
+            matchScore = Math.round(matchScore * 10) / 10;
+            const objectiveTotal = Math.round((mcqScore + matchScore + complexScore) * 10) / 10;
+            const essayScore = 0;
+            const grandTotal = objectiveTotal;
 
             return {
                 mcqScore,
@@ -2496,22 +2790,22 @@ function simpanHasilUjianKeSheets(data) {
             };
             saveStateToStorage();
 
+            const pkgTag = appState.packageType === "pengayaan" ? "[PENGAYAAN]" : "[REMEDI]";
             const payload = {
                 student: appState.student,
                 durationSeconds,
                 scores,
-                quoteUsed: appState.selectedQuote ? `${appState.selectedQuote.quote} (${appState.selectedQuote.author})` : "-",
+                quoteUsed: `${pkgTag} ${appState.selectedQuote ? `${appState.selectedQuote.quote} (${appState.selectedQuote.author})` : "-"}`,
                 answers: appState.answers
             };
 
-            // Kirim ke Google Apps Script (Native google.script.run atau Webhook URL)
             const syncText = document.getElementById("resultSyncStatus");
             try {
                 await sendPayloadToSheets(payload);
-                if (syncText) syncText.textContent = "✅ Jawaban berhasil terekam di Google Spreadsheet!";
+                if (syncText) syncText.textContent = "✅ Jawaban Remedi/Pengayaan berhasil terekam di Google Spreadsheet!";
                 showToast("Jawaban berhasil disimpan ke Google Sheets!", "success");
             } catch (err) {
-                if (syncText) syncText.textContent = "ℹ️ Jawaban tersimpan aman di perangkat. Klik tombol 'Unduh Bukti Jawaban (.JSON)' untuk mengirim bukti ke guru.";
+                if (syncText) syncText.textContent = "ℹ️ Jawaban tersimpan aman di perangkat. Klik 'Kirim Ulang ke Google Spreadsheet' atau unduh bukti JSON.";
             }
 
             showResultScreen();
@@ -2527,13 +2821,19 @@ function simpanHasilUjianKeSheets(data) {
             document.getElementById("viewResult").classList.remove("hidden");
 
             const sc = appState.finalScores;
-            document.getElementById("resObjectiveScore").textContent = `${sc.objectiveTotal} / 60`;
-            document.getElementById("resObjectiveDetail").textContent = `PG: ${sc.mcqScore} | Pasangan: ${sc.matchScore} | Kompleks: ${sc.complexScore}`;
-            document.getElementById("resEssayScore").textContent = `${sc.essayScore} / 40`;
+            document.getElementById("resObjectiveScore").textContent = `${sc.objectiveTotal} / 100`;
+            document.getElementById("resObjectiveDetail").textContent = `PG: ${sc.mcqScore}/50 | Jodoh: ${sc.matchScore}/20 | Kompleks: ${sc.complexScore}/30`;
+            document.getElementById("resEssayScore").textContent = appState.packageType === "pengayaan" ? "🌟 PENGAYAAN" : "🛠️ REMEDI";
+            const subEl = document.getElementById("resPackageSubtext");
+            if (subEl) {
+                subEl.textContent = appState.prevScore !== null
+                    ? `Nilai Sebelumnya: ${appState.prevScore} • Open Book`
+                    : `Program Perbaikan KKM 75 • Open Book`;
+            }
             document.getElementById("resTotalScore").textContent = sc.grandTotal;
 
             document.getElementById("resName").textContent = appState.student.name;
-            document.getElementById("resClassAbsent").textContent = `${appState.student.className} / No. ${appState.student.absent}`;
+            document.getElementById("resClassAbsent").textContent = `${appState.student.className} / No. ${appState.student.absent} (${appState.student.token})`;
             document.getElementById("resTimestamp").textContent = sc.submittedAt;
             const m = Math.floor(sc.durationSeconds / 60);
             const s = sc.durationSeconds % 60;
@@ -2570,13 +2870,14 @@ function simpanHasilUjianKeSheets(data) {
                 return;
             }
             if (btn) btn.disabled = true;
-            if (syncText) syncText.textContent = "⏳ Sedang mencoba mengirim data ke Google Spreadsheet...";
+            if (syncText) syncText.textContent = "⏳ Sedang mengirim data ke Google Spreadsheet...";
 
+            const pkgTag = appState.packageType === "pengayaan" ? "[PENGAYAAN]" : "[REMEDI]";
             const payload = {
                 student: appState.student,
                 durationSeconds: appState.finalScores.durationSeconds || 0,
                 scores: appState.finalScores,
-                quoteUsed: appState.selectedQuote ? `${appState.selectedQuote.quote} (${appState.selectedQuote.author})` : "-",
+                quoteUsed: `${pkgTag} ${appState.selectedQuote ? `${appState.selectedQuote.quote} (${appState.selectedQuote.author})` : "-"}`,
                 answers: appState.answers
             };
 
@@ -2585,7 +2886,7 @@ function simpanHasilUjianKeSheets(data) {
                 if (syncText) syncText.textContent = "✅ Berhasil dikirim ke Google Spreadsheet!";
                 showToast("Data ujian berhasil disinkronkan ke Google Spreadsheet!", "success");
             } catch (err) {
-                if (syncText) syncText.textContent = "⚠️ Belum terkirim: " + err.message + ". Silakan unduh bukti JSON atau kirim screenshot ke guru.";
+                if (syncText) syncText.textContent = "⚠️ Belum terkirim: " + err.message;
                 showToast(err.message, "warning");
             } finally {
                 if (btn) btn.disabled = false;
@@ -2626,7 +2927,7 @@ function simpanHasilUjianKeSheets(data) {
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState, null, 2));
             const dlAnchor = document.createElement("a");
             dlAnchor.setAttribute("href", dataStr);
-            dlAnchor.setAttribute("download", `Bukti_Ujian_${appState.student.name.replace(/\s+/g, '_')}.json`);
+            dlAnchor.setAttribute("download", `Bukti_${appState.packageType.toUpperCase()}_${appState.student.name.replace(/\s+/g, '_')}.json`);
             document.body.appendChild(dlAnchor);
             dlAnchor.click();
             dlAnchor.remove();
@@ -2638,7 +2939,7 @@ function simpanHasilUjianKeSheets(data) {
         }
 
         /********************************************************************
-         * 12. PANEL GURU (KISI-KISI, KUNCI, RUBRIK & LABEL HOTS) & SETUP GAS
+         * 14. PANEL GURU (KUNCI JAWABAN PAKET REMEDI & PAKET PENGAYAAN)
          ********************************************************************/
         function openTeacherModal() {
             document.getElementById("modalTeacherAdmin").classList.remove("hidden");
@@ -2663,7 +2964,7 @@ function simpanHasilUjianKeSheets(data) {
             content.classList.remove("hidden");
             showToast("Panel Guru berhasil dibuka!", "success");
 
-            renderTeacherTable();
+            renderTeacherTable("remedi");
         }
 
         function changeTeacherPin() {
@@ -2677,21 +2978,22 @@ function simpanHasilUjianKeSheets(data) {
             showToast("Sandi guru berhasil diperbarui!", "success");
         }
 
-        function renderTeacherTable() {
+        function renderTeacherTable(pkgView = "remedi") {
+            const list = pkgView === "pengayaan" ? QUESTIONS_PENGAYAAN : QUESTIONS_REMEDI;
+            const titleLabel = pkgView === "pengayaan"
+                ? "🌟 KUNCI JAWABAN PAKET PENGAYAAN (Nilai Awal ≥ 75)"
+                : "🛠️ KUNCI JAWABAN PAKET REMEDI / PERBAIKAN (Nilai Awal < 75 / Belum Terdaftar)";
 
             const tableContainer = document.getElementById("teacherQuestionsTable");
-            tableContainer.innerHTML = EXAM_QUESTIONS.map(q => {
+            tableContainer.innerHTML = `
+                <div class="p-3 rounded-xl border-2 border-slate-800 ${pkgView === 'pengayaan' ? 'bg-purple-200' : 'bg-amber-200'} font-doodle font-bold text-sm">
+                    ${titleLabel}
+                </div>
+            ` + list.map(q => {
                 let keyDisplay = "";
                 if (q.type === "mcq") keyDisplay = `Kunci Pilihan Ganda: <strong>${q.correctKey}</strong>`;
                 if (q.type === "matching") keyDisplay = `Pasangan Kunci: <code>${JSON.stringify(q.correctPairs)}</code>`;
                 if (q.type === "complex") keyDisplay = `Kunci Multi-Opsi: <strong>${q.correctKeys.join(", ")}</strong>`;
-                if (q.type === "essay_branched" || q.type === "essay_single") {
-                    keyDisplay = getEssaySubList(q).map(sub => {
-                        const items = (ESSAY_FIELDS[sub.subId] || [])
-                            .map(f => `${f.label} <strong>${f.kind === "choice" ? f.answer : f.keyText}</strong>`).join("; ");
-                        return `<div>• <strong>${sub.label} (${sub.points} poin):</strong> ${items}</div>`;
-                    }).join("") + `<div class="text-[11px] text-slate-500 mt-1">Penilaian otomatis: angka + satuan benar = penuh; angka benar satuan salah = setengah.</div>`;
-                }
 
                 return `
                 <div class="doodle-card-sm p-3.5 bg-white space-y-1.5">
@@ -2700,12 +3002,12 @@ function simpanHasilUjianKeSheets(data) {
                             <span class="px-2.5 py-0.5 rounded bg-slate-900 text-white font-doodle font-bold text-xs">No. ${q.numberLabel}</span>
                             <span class="px-2 py-0.5 rounded bg-sky-100 border border-slate-700 font-bold text-xs">${q.section} (${q.points} Poin)</span>
                             <span class="px-2 py-0.5 rounded bg-slate-100 border border-slate-400 font-bold text-xs">${q.difficulty}</span>
-                            ${q.isHOTS ? '<span class="px-2.5 py-0.5 rounded bg-rose-500 text-white font-extrabold text-xs">★ SOAL HOTS (Admin Only)</span>' : ''}
+                            ${q.isHOTS ? '<span class="px-2.5 py-0.5 rounded bg-rose-500 text-white font-extrabold text-xs">★ HOTS</span>' : ''}
                         </div>
                     </div>
                     <div class="text-xs text-slate-700">${formatMathStringToHTML(q.prompt)}</div>
                     <div class="p-2 rounded bg-emerald-50 border border-emerald-200 text-xs text-emerald-950">${keyDisplay}</div>
-                    <div class="text-[11px] text-slate-500"><strong>Pembahasan:</strong> ${q.explanation}</div>
+                    <div class="text-[11px] text-slate-500"><strong>Pembahasan:</strong> ${formatMathStringToHTML(q.explanation)}</div>
                 </div>`;
             }).join("");
         }
@@ -2739,10 +3041,6 @@ function simpanHasilUjianKeSheets(data) {
             setTimeout(() => {
                 document.getElementById("copyGasBtnText").textContent = "Salin Code.gs";
             }, 2000);
-        }
-
-        function renderMathNotationInDOM() {
-            // Helper inisialisasi awal
         }
 
         function showToast(msg, type = "success") {
