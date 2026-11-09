@@ -312,8 +312,8 @@
                                     <i class="ph-bold ph-identification-card text-xl"></i>
                                 </div>
                                 <div>
-                                    <h3 class="font-doodle font-bold text-lg text-slate-900">Pilih Nama / Identitas Peserta</h3>
-                                    <p class="text-xs text-slate-600">Pilih namamu dari daftar nilai atau tulis nama jika belum terdaftar</p>
+                                    <h3 class="font-doodle font-bold text-lg text-slate-900">Identitas Peserta Ujian</h3>
+                                    <p class="text-xs text-slate-600">Ketik nama lengkapmu (huruf besar/kecil bebas, otomatis terfilter Remedi/Pengayaan)</p>
                                 </div>
                             </div>
 
@@ -323,39 +323,28 @@
                                 <span id="identityErrorText">Mohon lengkapi seluruh kolom wajib!</span>
                             </div>
 
-                            <form id="studentIdentityForm" onsubmit="handleIdentitySubmit(event)" class="space-y-3.5" novalidate>
-                                <!-- Dropdown Filter Siswa Terdaftar -->
-                                <div>
-                                    <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1">
-                                        1. Cari di Daftar Peserta Ujian Sebelumnya:
-                                    </label>
-                                    <select id="selectRegisteredStudent" onchange="handleSelectRegisteredStudent(this.value)" class="doodle-input w-full text-xs md:text-sm font-bold bg-sky-50">
-                                        <option value="">-- Pilih Namamu dari Daftar Berikut --</option>
-                                        <!-- Diisi otomatis via JS dari database nilai + sinkronisasi Sheets -->
-                                    </select>
-                                    <p class="text-[11px] font-bold text-slate-500 mt-1">
-                                        *Jika namamu belum ada di daftar atas, pilih <strong>"Nama Belum Ada (Ikut Perbaikan/Remedi)"</strong> atau langsung ketik namamu di bawah.
-                                    </p>
-                                </div>
-
-                                <!-- Indikator Paket Otomatis (Remedi / Pengayaan) -->
-                                <div id="packageStatusBanner" class="p-3.5 rounded-xl bg-amber-100 border-2 border-slate-800 space-y-1">
-                                    <div class="flex items-center justify-between">
-                                        <span id="packageBadgeTitle" class="text-xs font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-300 border border-slate-800 text-slate-900">
-                                            🛠️ PROGRAM REMEDI / PERBAIKAN
-                                        </span>
-                                        <span id="packagePrevScoreLabel" class="text-xs font-bold text-slate-700">KKM: 75</span>
-                                    </div>
-                                    <p id="packageBadgeDesc" class="text-xs font-bold text-slate-700 pt-1">
-                                        Paket Soal: 15 Soal Perbaikan Objektif (Boleh Open Book).
-                                    </p>
-                                </div>
-
+                            <form id="studentIdentityForm" onsubmit="handleStartExamFlow(event)" class="space-y-3.5" novalidate>
                                 <div>
                                     <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1">
                                         Nama Lengkap Siswa <span class="text-red-600">*</span>
                                     </label>
-                                    <input type="text" id="inputStudentName" oninput="handleManualNameInput(this.value)" placeholder="Ketik nama lengkapmu..." class="doodle-input w-full text-sm font-bold" required>
+                                    <input type="text" id="inputStudentName" oninput="handleManualNameInput(this.value)" placeholder="Contoh: Kholafa Rusydan / Ridho Abdul Rohim" class="doodle-input w-full text-sm font-bold" autocomplete="off" required>
+                                    <p class="text-[11px] font-bold text-slate-500 mt-1">
+                                        *Ketik sesuai nama lengkapmu (huruf besar/kecil tidak masalah).
+                                    </p>
+                                </div>
+
+                                <!-- Indikator Paket Otomatis (Remedi / Pengayaan) -->
+                                <div id="packageStatusBanner" class="p-3.5 rounded-xl bg-amber-100 border-2 border-slate-800 space-y-1 transition-all">
+                                    <div class="flex items-center justify-between gap-2 flex-wrap">
+                                        <span id="packageBadgeTitle" class="text-xs font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-300 border border-slate-800 text-slate-900">
+                                            🛠️ PROGRAM REMEDI / PERBAIKAN
+                                        </span>
+                                        <span id="packagePrevScoreLabel" class="text-xs font-bold text-slate-700">KKM: 75 • Open Book</span>
+                                    </div>
+                                    <p id="packageBadgeDesc" class="text-xs font-bold text-slate-700 pt-1">
+                                        Ketik nama lengkapmu di atas untuk melihat paket soal secara otomatis.
+                                    </p>
                                 </div>
 
                                 <div class="grid grid-cols-2 gap-3">
@@ -377,15 +366,8 @@
                                         <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1">
                                             Nomor Absen <span class="text-red-600">*</span>
                                         </label>
-                                        <input type="number" id="inputStudentAbsent" min="1" max="50" placeholder="Contoh: 8" class="doodle-input w-full text-sm font-bold" required>
+                                        <input type="number" id="inputStudentAbsent" min="1" max="50" placeholder="Contoh: 7" class="doodle-input w-full text-sm font-bold" required>
                                     </div>
-                                </div>
-
-                                <div>
-                                    <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1">
-                                        Kode Paket Ujian <span class="text-slate-400 font-normal">(Otomatis)</span>
-                                    </label>
-                                    <input type="text" id="inputExamToken" value="REMEDI-PYTHAGORAS" readonly class="doodle-input w-full text-xs font-extrabold uppercase bg-slate-100 text-slate-700 cursor-not-allowed">
                                 </div>
 
                                 <!-- Tombol Lanjutkan -->
@@ -1050,11 +1032,16 @@ function simpanHasilUjianKeSheets(data) {
             { name: "Fitria Nur Khasanah", className: "VIII-A", absent: "3", prevScore: 64.5, packageType: "remedi" },
             { name: "Chotidjah Allaydrus", className: "VIII-A", absent: "2", prevScore: 62.5, packageType: "remedi" },
             { name: "Ghina May Fitri", className: "VIII-A", absent: "4", prevScore: 56.5, packageType: "remedi" },
-            { name: "Khafifah Nastitiani", className: "VIII-A", absent: "5", prevScore: 55.5, packageType: "remedi" }
+            { name: "Khafifah Nastitiani", className: "VIII-A", absent: "5", prevScore: 55.5, packageType: "remedi" },
+            { name: "Ridho Abdul Rohim", className: "VIII-A", absent: "7", prevScore: null, packageType: "remedi" }
         ];
 
         function normalizeStudentName(str) {
-            return String(str || "").trim().toLowerCase().replace(/\s+/g, " ");
+            return String(str || "")
+                .toLowerCase()
+                .replace(/[^a-z0-9\s]/g, " ")
+                .trim()
+                .replace(/\s+/g, " ");
         }
 
         function findRegisteredStudentByName(nameStr) {
@@ -1769,27 +1756,8 @@ function simpanHasilUjianKeSheets(data) {
         }
 
         /********************************************************************
-         * 6. FILTER SISWA TERDAFTAR & SINKRONISASI DAFTAR DARI SPREADSHEET
+         * 6. FILTER OTOMATIS BERDASARKAN NAMA (CASE-INSENSITIVE)
          ********************************************************************/
-        function populateStudentSelectDropdown() {
-            const sel = document.getElementById("selectRegisteredStudent");
-            if (!sel) return;
-            const currentVal = sel.value;
-
-            // Urutkan: Pengayaan dulu, lalu Remedi sesuai abjad
-            const sorted = [...REGISTERED_STUDENTS].sort((a, b) => b.prevScore - a.prevScore);
-            let html = `<option value="">-- Pilih Nama dari Daftar Nilai Ujian Utama --</option>`;
-            sorted.forEach(s => {
-                const badge = s.prevScore >= KKM_SCORE
-                    ? `🌟 PENGAYAAN (Nilai Awal: ${s.prevScore})`
-                    : `🛠️ REMEDI / PERBAIKAN (Nilai Awal: ${s.prevScore})`;
-                html += `<option value="${s.name}">${s.name} (${s.className}) — ${badge}</option>`;
-            });
-            html += `<option value="__NEW__">➕ Nama Saya Belum Terdaftar (Langsung Ikut Remedi / Perbaikan)</option>`;
-            sel.innerHTML = html;
-            if (currentVal) sel.value = currentVal;
-        }
-
         async function syncRegisteredStudentsFromSheet() {
             try {
                 const res = await fetch(SPREADSHEET_CSV_URL, { cache: "no-store" });
@@ -1813,7 +1781,7 @@ function simpanHasilUjianKeSheets(data) {
                         const existing = findRegisteredStudentByName(sName);
                         const pkg = sScore >= KKM_SCORE ? "pengayaan" : "remedi";
                         if (existing) {
-                            if (sScore > existing.prevScore) {
+                            if (existing.prevScore === null || sScore > existing.prevScore) {
                                 existing.prevScore = sScore;
                                 existing.packageType = pkg;
                             }
@@ -1828,100 +1796,77 @@ function simpanHasilUjianKeSheets(data) {
                         }
                     }
                 }
-                populateStudentSelectDropdown();
             } catch (e) {
                 // Gunakan daftar bawaan jika offline
             }
         }
 
-        function handleSelectRegisteredStudent(val) {
-            const nameInput = document.getElementById("inputStudentName");
-            const classInput = document.getElementById("inputStudentClass");
-            const absentInput = document.getElementById("inputStudentAbsent");
-
-            if (!val) {
-                updatePackageBannerUI(null, "");
-                return;
-            }
-
-            if (val === "__NEW__") {
-                nameInput.value = "";
-                nameInput.focus();
-                updatePackageBannerUI(null, "Siswa Baru");
-                return;
-            }
-
-            const found = findRegisteredStudentByName(val);
-            if (found) {
-                nameInput.value = found.name;
-                classInput.value = found.className;
-                absentInput.value = found.absent;
-                updatePackageBannerUI(found, found.name);
-            }
-        }
-
         function handleManualNameInput(val) {
-            const found = findRegisteredStudentByName(val);
-            const sel = document.getElementById("selectRegisteredStudent");
+            const trimmed = String(val || "").trim();
+            const found = findRegisteredStudentByName(trimmed);
             if (found) {
-                if (sel) sel.value = found.name;
                 const classInput = document.getElementById("inputStudentClass");
                 const absentInput = document.getElementById("inputStudentAbsent");
-                if (classInput && !classInput.value) classInput.value = found.className;
-                if (absentInput && !absentInput.value) absentInput.value = found.absent;
+                if (classInput && !classInput.value && found.className) classInput.value = found.className;
+                if (absentInput && !absentInput.value && found.absent) absentInput.value = found.absent;
                 updatePackageBannerUI(found, found.name);
             } else {
-                if (sel && sel.value !== "__NEW__") sel.value = val.trim() ? "__NEW__" : "";
-                updatePackageBannerUI(null, val.trim());
+                updatePackageBannerUI(null, trimmed);
             }
         }
 
         function updatePackageBannerUI(registeredObj, typedName) {
             const banner = document.getElementById("packageStatusBanner");
-            const titleEl = document.getElementById("packageStatusTitle");
-            const descEl = document.getElementById("packageStatusDesc");
-            const iconBox = document.getElementById("packageStatusIcon");
-            const tokenInput = document.getElementById("inputExamToken");
+            const titleEl = document.getElementById("packageBadgeTitle");
+            const scoreEl = document.getElementById("packagePrevScoreLabel");
+            const descEl = document.getElementById("packageBadgeDesc");
 
             if (!typedName && !registeredObj) {
-                if (banner) banner.classList.add("hidden");
                 setActiveQuestionBank("remedi");
-                if (tokenInput) tokenInput.value = "REMEDI / PENGAYAAN (OTOMATIS)";
+                if (banner) banner.className = "p-3.5 rounded-xl bg-amber-100 border-2 border-slate-800 space-y-1 transition-all";
+                if (titleEl) {
+                    titleEl.className = "text-xs font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-300 border border-slate-800 text-slate-900";
+                    titleEl.textContent = "🛠️ REMEDI / 🌟 PENGAYAAN (OTOMATIS)";
+                }
+                if (scoreEl) scoreEl.textContent = "KKM: 75 • Open Book";
+                if (descEl) descEl.textContent = "Ketik nama lengkapmu di atas untuk melihat paket soal secara otomatis.";
                 return;
             }
 
-            if (banner) banner.classList.remove("hidden");
-
-            if (registeredObj && registeredObj.prevScore >= KKM_SCORE) {
+            if (registeredObj && registeredObj.prevScore !== null && registeredObj.prevScore >= KKM_SCORE) {
                 setActiveQuestionBank("pengayaan");
                 appState.prevScore = registeredObj.prevScore;
                 appState.isRegistered = true;
-                banner.className = "rounded-xl border-2 border-slate-800 p-3.5 bg-purple-200 transition-all";
-                iconBox.className = "w-10 h-10 rounded-xl border-2 border-slate-800 flex items-center justify-center font-doodle font-bold text-lg flex-shrink-0 bg-purple-400 text-slate-900";
-                iconBox.innerHTML = `<i class="ph-fill ph-sparkle"></i>`;
-                titleEl.textContent = `🌟 PAKET PENGAYAAN (Nilai Sebelumnya: ${registeredObj.prevScore} ≥ 75)`;
-                descEl.innerHTML = `Selamat <strong>${registeredObj.name}</strong>! Karena nilaimu sudah mencapai/melampaui KKM 75, kamu mendapatkan <strong>15 Soal Paket Pengayaan</strong> (Tantangan HOTS • Boleh Open Book).`;
-                if (tokenInput) tokenInput.value = "PENGAYAAN-PYTHAGORAS";
-            } else if (registeredObj) {
+                if (banner) banner.className = "p-3.5 rounded-xl bg-purple-100 border-2 border-slate-800 space-y-1 transition-all";
+                if (titleEl) {
+                    titleEl.className = "text-xs font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-purple-300 border border-slate-800 text-slate-900";
+                    titleEl.textContent = "🌟 PAKET PENGAYAAN (TUNTAS ≥ 75)";
+                }
+                if (scoreEl) scoreEl.textContent = `Nilai Awal: ${registeredObj.prevScore} • Open Book`;
+                if (descEl) descEl.innerHTML = `Terdeteksi: <strong>${registeredObj.name}</strong>. Kamu mengerjakan <strong>15 Soal Paket Pengayaan</strong>.`;
+            } else if (registeredObj && registeredObj.prevScore !== null) {
                 setActiveQuestionBank("remedi");
                 appState.prevScore = registeredObj.prevScore;
                 appState.isRegistered = true;
-                banner.className = "rounded-xl border-2 border-slate-800 p-3.5 bg-amber-200 transition-all";
-                iconBox.className = "w-10 h-10 rounded-xl border-2 border-slate-800 flex items-center justify-center font-doodle font-bold text-lg flex-shrink-0 bg-amber-400 text-slate-900";
-                iconBox.innerHTML = `<i class="ph-fill ph-lifebuoy"></i>`;
-                titleEl.textContent = `🛠️ PAKET REMEDI / PERBAIKAN (Nilai Sebelumnya: ${registeredObj.prevScore} < 75)`;
-                descEl.innerHTML = `Semangat <strong>${registeredObj.name}</strong>! Kamu mengikuti <strong>15 Soal Paket Remedi (Perbaikan Nilai)</strong> untuk menuntaskan KKM 75 (Boleh Open Book).`;
-                if (tokenInput) tokenInput.value = "REMEDI-PYTHAGORAS";
+                if (banner) banner.className = "p-3.5 rounded-xl bg-amber-100 border-2 border-slate-800 space-y-1 transition-all";
+                if (titleEl) {
+                    titleEl.className = "text-xs font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-300 border border-slate-800 text-slate-900";
+                    titleEl.textContent = "🛠️ PAKET REMEDI / PERBAIKAN (< 75)";
+                }
+                if (scoreEl) scoreEl.textContent = `Nilai Awal: ${registeredObj.prevScore} • Open Book`;
+                if (descEl) descEl.innerHTML = `Terdeteksi: <strong>${registeredObj.name}</strong>. Kamu mengerjakan <strong>15 Soal Paket Remedi (Perbaikan)</strong>.`;
             } else {
                 setActiveQuestionBank("remedi");
                 appState.prevScore = null;
                 appState.isRegistered = false;
-                banner.className = "rounded-xl border-2 border-slate-800 p-3.5 bg-sky-200 transition-all";
-                iconBox.className = "w-10 h-10 rounded-xl border-2 border-slate-800 flex items-center justify-center font-doodle font-bold text-lg flex-shrink-0 bg-sky-400 text-slate-900";
-                iconBox.innerHTML = `<i class="ph-fill ph-user-plus"></i>`;
-                titleEl.textContent = `🛠️ PAKET REMEDI / PERBAIKAN (Nama Belum Terdaftar di Ujian Utama)`;
-                descEl.innerHTML = `Nama <strong>${typedName}</strong> belum ada di daftar nilai sebelumnya, sehingga otomatis mengikuti <strong>15 Soal Paket Remedi / Perbaikan</strong> (Boleh Open Book).`;
-                if (tokenInput) tokenInput.value = "REMEDI-SUSULAN";
+                const displayName = registeredObj ? registeredObj.name : typedName;
+                if (banner) banner.className = "p-3.5 rounded-xl bg-sky-100 border-2 border-slate-800 space-y-1 transition-all";
+                if (titleEl) {
+                    titleEl.className = "text-xs font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-sky-300 border border-slate-800 text-slate-900";
+                    titleEl.textContent = "🛠️ PAKET REMEDI / PERBAIKAN";
+                }
+                if (scoreEl) scoreEl.textContent = "Susulan / Perbaikan • Open Book";
+                if (descEl) descEl.innerHTML = `Peserta: <strong>${displayName}</strong>. Otomatis mengerjakan <strong>15 Soal Paket Remedi / Perbaikan</strong>.`;
             }
         }
 
@@ -1929,7 +1874,6 @@ function simpanHasilUjianKeSheets(data) {
          * 7. INISIALISASI HALAMAN & PEMULIHAN SESI OTOMATIS
          ********************************************************************/
         function initDoodleExamApp() {
-            populateStudentSelectDropdown();
             syncRegisteredStudentsFromSheet();
 
             const savedUrl = localStorage.getItem("DOODLE_GAS_URL") || DEFAULT_GAS_WEBHOOK_URL;
@@ -1977,39 +1921,51 @@ function simpanHasilUjianKeSheets(data) {
         });
 
         /********************************************************************
-         * 8. PENanganan FORM LOGIN & COUNTDOWN 5 DETIK + KUTIPAN
+         * 8. PENANGANAN FORM LOGIN & COUNTDOWN 5 DETIK + KUTIPAN
          ********************************************************************/
+        function handleIdentitySubmit(e) {
+            return handleStartExamFlow(e);
+        }
+
         function handleStartExamFlow(e) {
             e.preventDefault();
-            const name = document.getElementById("inputStudentName").value.trim();
+            const rawName = document.getElementById("inputStudentName").value.trim();
             const className = document.getElementById("inputStudentClass").value.trim();
             const absent = document.getElementById("inputStudentAbsent").value.trim();
 
-            if (!name || !className || !absent) {
-                showToast("Harap lengkapi Nama, Kelas, dan Nomor Absen!", "error");
+            if (!rawName || !className || !absent) {
+                showToast("Harap lengkapi Nama Lengkap, Kelas, dan Nomor Absen!", "error");
                 return;
             }
 
-            // Cek otomatis paket berdasarkan nama siswa
-            const found = findRegisteredStudentByName(name);
+            // Cek otomatis paket berdasarkan nama siswa (case-insensitive, besar/kecil huruf aman)
+            const found = findRegisteredStudentByName(rawName);
+            const finalName = found ? found.name : rawName;
             let pkgType = "remedi";
-            let tokenLabel = "REMEDI-PYTHAGORAS";
-            if (found && found.prevScore >= KKM_SCORE) {
+            let tokenLabel = "REMEDI";
+
+            if (found && found.prevScore !== null && found.prevScore >= KKM_SCORE) {
                 pkgType = "pengayaan";
                 tokenLabel = `PENGAYAAN (Awal: ${found.prevScore})`;
-            } else if (found) {
+                appState.prevScore = found.prevScore;
+                appState.isRegistered = true;
+            } else if (found && found.prevScore !== null) {
                 pkgType = "remedi";
                 tokenLabel = `REMEDI (Awal: ${found.prevScore})`;
+                appState.prevScore = found.prevScore;
+                appState.isRegistered = true;
             } else {
                 pkgType = "remedi";
-                tokenLabel = "REMEDI-SUSULAN";
+                tokenLabel = "REMEDI-PERBAIKAN";
+                appState.prevScore = null;
+                appState.isRegistered = false;
             }
 
             setActiveQuestionBank(pkgType);
 
             const randomQuote = VERIFIED_QUOTES[Math.floor(Math.random() * VERIFIED_QUOTES.length)];
 
-            appState.student = { name, className, absent, token: tokenLabel };
+            appState.student = { name: finalName, className, absent, token: tokenLabel };
             appState.selectedQuote = randomQuote;
             appState.phase = "countdown";
             appState.answers = {};
