@@ -1,0 +1,2199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doodle Exam — Ujian KKA Kelas VII: Flowchart (Bagan Alir)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka, Gochi Hand, & Nunito -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Gochi+Hand&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        doodle: ['Fredoka', 'cursive', 'sans-serif'],
+                        hand: ['Gochi Hand', 'cursive'],
+                        body: ['Nunito', 'sans-serif']
+                    },
+                    colors: {
+                        paper: '#fffdf7',
+                        ink: '#1e293b'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #fffaf0;
+            color: #1e293b;
+            background-image: radial-gradient(#d6cdb5 1.3px, transparent 1.5px);
+            background-size: 22px 22px;
+        }
+
+        .doodle-card {
+            background: #ffffff;
+            border: 3px solid #1e293b;
+            border-radius: 1.25rem;
+            box-shadow: 5px 5px 0px #1e293b;
+            transition: all 0.18s ease;
+        }
+
+        .doodle-card-sm {
+            background: #ffffff;
+            border: 2.5px solid #1e293b;
+            border-radius: 0.9rem;
+            box-shadow: 3px 3px 0px #1e293b;
+        }
+
+        .doodle-btn {
+            border: 2.5px solid #1e293b;
+            border-radius: 0.85rem;
+            box-shadow: 3px 3px 0px #1e293b;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .doodle-btn:hover:not(:disabled) {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px #1e293b;
+        }
+
+        .doodle-btn:active:not(:disabled) {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #1e293b;
+        }
+
+        .doodle-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .doodle-input {
+            border: 2.5px solid #1e293b;
+            border-radius: 0.75rem;
+            padding: 0.65rem 0.9rem;
+            background: #ffffff;
+            box-shadow: inset 2px 2px 0px rgba(30, 41, 59, 0.06);
+            transition: all 0.15s ease;
+        }
+
+        .doodle-input:focus {
+            outline: none;
+            background: #fefce8;
+            box-shadow: 3px 3px 0px #1e293b;
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-7px) rotate(3deg); }
+        }
+        .animate-float {
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+
+        @keyframes popScale {
+            0% { transform: scale(0.6); opacity: 0; }
+            60% { transform: scale(1.12); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .countdown-pop {
+            animation: popScale 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .notebook-margin {
+            border-left: 3px dashed #f43f5e;
+        }
+
+        /* Flowchart Chip Styling */
+        .fc-chip {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            border: 2.5px solid #1e293b;
+            box-shadow: 2.5px 2.5px 0px #1e293b;
+            transition: all 0.12s ease;
+        }
+        .fc-chip-term { background: #ff9ecd; border-radius: 999px; }
+        .fc-chip-proc { background: #9fdcff; border-radius: 0.65rem; }
+        .fc-chip-io   { background: #b5ef9b; border-radius: 0.65rem; }
+        .fc-chip-dec  { background: #ffe066; border-radius: 0.65rem; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between relative overflow-x-hidden">
+
+    <!-- DEKORASI LATAR DOODLE -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-25">
+        <svg class="absolute top-12 left-6 w-20 h-20 animate-float" viewBox="0 0 100 100" fill="none">
+            <rect x="12" y="25" width="76" height="46" rx="23" fill="#ff9ecd" stroke="#1e293b" stroke-width="5"/>
+        </svg>
+        <svg class="absolute top-20 right-10 w-24 h-24 animate-float" style="animation-delay: 1s;" viewBox="0 0 100 100" fill="none">
+            <polygon points="50,10 90,50 50,90 10,50" fill="#ffe066" stroke="#1e293b" stroke-width="5"/>
+        </svg>
+        <svg class="absolute bottom-14 left-12 w-24 h-20 animate-float" style="animation-delay: 2s;" viewBox="0 0 120 90" fill="none">
+            <polygon points="22,15 110,15 98,75 10,75" fill="#b5ef9b" stroke="#1e293b" stroke-width="5"/>
+        </svg>
+    </div>
+
+    <!-- HEADER UTAMA / NAVBAR -->
+    <header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b-4 border-slate-800 px-4 py-3 shadow-sm">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+            <!-- Brand Doodle -->
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl bg-amber-300 border-2 border-slate-800 flex items-center justify-center shadow-[2px_2px_0px_#1e293b]">
+                    <i class="ph-fill ph-git-branch text-2xl text-slate-900"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <h1 class="font-doodle text-xl md:text-2xl font-bold text-slate-800 tracking-tight">DOODLE EXAM</h1>
+                        <span class="text-xs font-extrabold px-2.5 py-0.5 rounded-full bg-pink-200 border border-slate-800 text-slate-900">KKA Kelas VII SMP/MTs</span>
+                    </div>
+                    <p class="text-xs text-slate-600 font-semibold">Materi: Flowchart (Bagan Alir) • Simbol, Urut, Percabangan & Perulangan</p>
+                </div>
+            </div>
+
+            <!-- Status Bar Saat Ujian Berlangsung -->
+            <div id="examHeaderControls" class="hidden items-center gap-2 md:gap-4 flex-wrap">
+                <div id="saveStatusBadge" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-100 border-2 border-slate-800 text-xs font-bold text-emerald-900">
+                    <i class="ph-fill ph-cloud-check text-base text-emerald-600"></i>
+                    <span id="saveStatusText">Tersimpan</span>
+                </div>
+
+                <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-purple-100 border-2 border-slate-800 text-xs font-bold">
+                    <i class="ph-fill ph-student text-base text-purple-700"></i>
+                    <span id="headerStudentName">Siswa</span>
+                    <span class="px-1.5 py-0.5 bg-white rounded border border-slate-700" id="headerStudentClass">VII-A</span>
+                </div>
+
+                <div id="timerBox" class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-amber-200 border-2 border-slate-800 shadow-[2px_2px_0px_#1e293b]">
+                    <i class="ph-bold ph-timer text-lg text-slate-800 animate-pulse"></i>
+                    <div class="text-left">
+                        <span class="block text-[10px] uppercase font-extrabold text-slate-700 leading-none">Sisa Waktu</span>
+                        <span id="timerDisplay" class="font-doodle text-base md:text-lg font-bold text-slate-900 tracking-wider">60:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tombol Panel Guru & Konfigurasi GAS -->
+            <div id="landingHeaderControls" class="flex items-center gap-2">
+                <button onclick="openTeacherModal()" class="doodle-btn bg-purple-200 hover:bg-purple-300 px-3 py-1.5 text-xs md:text-sm flex items-center gap-1.5">
+                    <i class="ph-bold ph-chalkboard-teacher text-base"></i>
+                    <span>Panel Guru & Kunci</span>
+                </button>
+                <button onclick="openBackendModal()" class="doodle-btn bg-emerald-200 hover:bg-emerald-300 px-3 py-1.5 text-xs md:text-sm flex items-center gap-1.5">
+                    <i class="ph-bold ph-database text-base"></i>
+                    <span class="hidden sm:inline">Setup Google Sheets</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- KONTEN UTAMA -->
+    <main class="flex-grow z-10 px-4 py-6 md:py-8 max-w-7xl w-full mx-auto">
+
+        <!-- ==========================================
+             VIEW 1: HALAMAN PEMBUKA & IDENTITAS SISWA
+             ========================================== -->
+        <section id="viewLanding" class="max-w-4xl mx-auto">
+            <div class="doodle-card p-6 md:p-10 relative overflow-hidden notebook-margin">
+                <div class="grid md:grid-cols-12 gap-8 items-start">
+                    <!-- Kolom Kiri: Info Materi Flowchart -->
+                    <div class="md:col-span-6 space-y-4">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-yellow-200 border-2 border-slate-800 text-xs font-extrabold">
+                                🗺️ Ujian KKA Kelas VII
+                            </div>
+                            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-200 border-2 border-slate-800 text-xs font-extrabold text-slate-900">
+                                ✨ 15 Soal Interaktif
+                            </div>
+                        </div>
+
+                        <h2 class="font-doodle text-3xl md:text-4xl font-bold text-slate-900 leading-tight">
+                            Evaluasi Materi: <span class="underline decoration-wavy decoration-pink-500">Flowchart (Bagan Alir)</span>
+                        </h2>
+
+                        <p class="text-slate-700 text-sm md:text-base leading-relaxed">
+                            Uji pemahamanmu tentang <strong>peta langkah penyelesaian masalah</strong>! Mulai dari mengenal simbol dasar hingga menyusun kotak alur <em>Urut</em>, <em>Percabangan</em>, dan <em>Perulangan</em>.
+                        </p>
+
+                        <!-- Ringkasan Komposisi Soal -->
+                        <div class="space-y-2 text-xs font-bold">
+                            <div class="p-3 rounded-xl bg-sky-100 border-2 border-slate-800 flex items-start gap-2.5">
+                                <i class="ph-fill ph-check-square-offset text-lg text-sky-800 flex-shrink-0 mt-0.5"></i>
+                                <div>
+                                    <span class="font-extrabold text-slate-900">Bagian A — 10 Soal Objektif (60 Poin):</span>
+                                    <p class="text-slate-700 font-semibold mt-0.5">6 Pilihan Ganda (30 poin), 2 Menjodohkan Simbol (12 poin), & 2 Pilihan Kompleks Multi-Opsi (18 poin).</p>
+                                </div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-pink-100 border-2 border-slate-800 flex items-start gap-2.5">
+                                <i class="ph-fill ph-arrows-down-up text-lg text-pink-800 flex-shrink-0 mt-0.5"></i>
+                                <div>
+                                    <span class="font-extrabold text-slate-900">Bagian B — 5 Soal Esai Menyusun Flowchart (40 Poin):</span>
+                                    <p class="text-slate-700 font-semibold mt-0.5">Susun kotak-kotak langkah yang teracak dari <strong>Mulai &rarr; Langkah &rarr; Selesai</strong> dengan tepat!</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kartu Info Ringkas -->
+                        <div class="grid grid-cols-3 gap-2.5 pt-1">
+                            <div class="doodle-card-sm bg-amber-100 p-3 text-center">
+                                <i class="ph-bold ph-shapes text-2xl text-amber-800"></i>
+                                <div class="font-doodle font-bold text-lg text-slate-900">10 + 5</div>
+                                <div class="text-[11px] font-bold text-slate-600">Objektif & Susun</div>
+                            </div>
+                            <div class="doodle-card-sm bg-emerald-100 p-3 text-center">
+                                <i class="ph-bold ph-clock-countdown text-2xl text-emerald-700"></i>
+                                <div class="font-doodle font-bold text-lg text-slate-900">60 Menit</div>
+                                <div class="text-[11px] font-bold text-slate-600">Waktu Pengerjaan</div>
+                            </div>
+                            <div class="doodle-card-sm bg-purple-100 p-3 text-center">
+                                <i class="ph-bold ph-medal text-2xl text-purple-700"></i>
+                                <div class="font-doodle font-bold text-lg text-slate-900">100 Poin</div>
+                                <div class="text-[11px] font-bold text-slate-600">Otomatis Kerekap</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kolom Kanan: Formulir Identitas Siswa -->
+                    <div class="md:col-span-6">
+                        <!-- Banner Lanjutkan Ujian Jika Sesi Masih Berjalan -->
+                        <div id="resumeExamCard" class="hidden doodle-card-sm bg-emerald-100 border-2 border-slate-800 p-4 mb-4 space-y-2">
+                            <div class="flex items-center gap-2 text-emerald-900 font-extrabold text-sm">
+                                <i class="ph-fill ph-arrow-circle-right text-xl text-emerald-600"></i>
+                                <span>Sesi Ujian Ditemukan!</span>
+                            </div>
+                            <p class="text-xs text-slate-700 font-bold">
+                                Jawabanmu tersimpan aman atas nama <strong id="resumeStudentName" class="text-blue-800"></strong> (<span id="resumeStudentClass"></span>).
+                            </p>
+                            <button type="button" onclick="restoreExamSession()" class="doodle-btn bg-emerald-400 hover:bg-emerald-500 w-full py-2.5 text-xs font-black flex items-center justify-center gap-2">
+                                <i class="ph-bold ph-play"></i> Lanjutkan Mengerjakan Ujian &rarr;
+                            </button>
+                        </div>
+
+                        <div class="doodle-card-sm bg-amber-50/70 p-6 space-y-4">
+                            <div class="flex items-center gap-2 border-b-2 border-dashed border-slate-300 pb-3">
+                                <div class="w-9 h-9 rounded-xl bg-pink-300 border-2 border-slate-800 flex items-center justify-center">
+                                    <i class="ph-bold ph-identification-card text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-doodle font-bold text-lg text-slate-900">Identitas Peserta Kelas VII</h3>
+                                    <p class="text-xs text-slate-600">Isi data dirimu dengan benar sebelum memulai</p>
+                                </div>
+                            </div>
+
+                            <form id="studentIdentityForm" onsubmit="handleStartExamFlow(event)" class="space-y-3.5" novalidate>
+                                <div>
+                                    <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1">
+                                        Nama Lengkap Siswa <span class="text-red-600">*</span>
+                                    </label>
+                                    <input type="text" id="inputStudentName" placeholder="Ketik nama lengkapmu..." class="doodle-input w-full text-sm font-bold" autocomplete="off" required>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1">
+                                            Kelas <span class="text-red-600">*</span>
+                                        </label>
+                                        <select id="inputStudentClass" class="doodle-input w-full text-sm font-bold" required>
+                                            <option value="">-- Pilih Kelas --</option>
+                                            <option value="VII-A">Kelas VII-A</option>
+                                            <option value="VII-B">Kelas VII-B</option>
+                                            <option value="VII-C">Kelas VII-C</option>
+                                            <option value="VII-D">Kelas VII-D</option>
+                                            <option value="VII-E">Kelas VII-E</option>
+                                            <option value="VII-Unggulan">VII-Unggulan</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-1">
+                                            Nomor Absen <span class="text-red-600">*</span>
+                                        </label>
+                                        <input type="number" id="inputStudentAbsent" min="1" max="50" placeholder="Contoh: 5" class="doodle-input w-full text-sm font-bold" required>
+                                    </div>
+                                </div>
+
+                                <!-- Legenda Singkat Warna Simbol Flowchart -->
+                                <div class="p-3 rounded-xl bg-white border-2 border-slate-800 space-y-1.5">
+                                    <div class="text-[11px] font-extrabold uppercase tracking-wider text-slate-600"> pengingat warna simbol flowchart:</div>
+                                    <div class="flex flex-wrap gap-1.5 text-[11px] font-extrabold">
+                                        <span class="px-2 py-0.5 rounded-full border border-slate-800" style="background:#ff9ecd">Oval = Mulai/Selesai</span>
+                                        <span class="px-2 py-0.5 rounded border border-slate-800" style="background:#9fdcff">Persegi = Proses</span>
+                                        <span class="px-2 py-0.5 rounded border border-slate-800" style="background:#b5ef9b">Jajar Genjang = Input/Output</span>
+                                        <span class="px-2 py-0.5 rounded border border-slate-800" style="background:#ffe066">Belah Ketupat = Keputusan</span>
+                                    </div>
+                                </div>
+
+                                <div class="pt-2">
+                                    <button type="submit" class="doodle-btn w-full bg-yellow-300 hover:bg-yellow-400 py-3.5 text-base md:text-lg flex items-center justify-center gap-2">
+                                        <span>Mulai Kerjakan Ujian</span>
+                                        <i class="ph-bold ph-arrow-circle-right text-xl"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             VIEW 2: COUNTDOWN 5 DETIK & KUTIPAN MOTIVASI
+             ========================================== -->
+        <section id="viewCountdown" class="hidden max-w-2xl mx-auto my-8">
+            <div class="doodle-card p-8 md:p-12 text-center space-y-6 bg-gradient-to-b from-amber-50 to-white">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-200 border-2 border-slate-800 text-xs font-bold">
+                    <i class="ph-fill ph-rocket-launch text-base"></i> Persiapan Memulai Ujian Flowchart
+                </div>
+
+                <h3 class="font-doodle text-xl font-bold text-slate-700">Tarik napas dalam-dalam, ujian dimulai dalam:</h3>
+
+                <div class="py-4">
+                    <div id="countdownNumber" class="w-32 h-32 mx-auto rounded-3xl bg-yellow-300 border-4 border-slate-800 shadow-[6px_6px_0px_#1e293b] flex items-center justify-center font-doodle text-7xl font-bold text-slate-900 countdown-pop">
+                        5
+                    </div>
+                </div>
+
+                <div class="doodle-card-sm bg-white p-6 text-left relative">
+                    <i class="ph-fill ph-quotes text-4xl text-amber-300 absolute top-3 right-4"></i>
+                    <p class="text-xs font-extrabold uppercase tracking-wider text-purple-700 mb-2">Kutipan Semangat Belajar Hari Ini:</p>
+                    <blockquote id="countdownQuoteText" class="text-base md:text-lg font-bold text-slate-800 italic leading-relaxed mb-3">
+                        "..."
+                    </blockquote>
+                    <div class="flex items-center justify-between text-xs font-bold text-slate-600 border-t border-dashed border-slate-300 pt-2">
+                        <span id="countdownQuoteAuthor" class="text-slate-900">— Tokoh</span>
+                        <span id="countdownQuoteSource" class="text-slate-500">Sumber Terverifikasi</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             VIEW 3: HALAMAN UJIAN UTAMA
+             ========================================== -->
+        <section id="viewExam" class="hidden">
+            <div class="mb-5 doodle-card-sm bg-amber-100/90 px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs">
+                <div class="flex items-center gap-2">
+                    <span class="px-2 py-0.5 rounded bg-amber-300 border border-slate-800 font-bold">Motivasi Sesi Ini</span>
+                    <span id="sessionQuoteBanner" class="font-bold italic text-slate-800"></span>
+                </div>
+                <span id="sessionQuoteAuthorBanner" class="font-extrabold text-slate-700"></span>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-6 items-start">
+                <!-- KOLOM KIRI (8 Kolom): Kartu Soal -->
+                <div class="lg:col-span-8 space-y-5">
+                    <div class="doodle-card p-5 md:p-8 notebook-margin relative">
+                        <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-5 border-b-2 border-dashed border-slate-300">
+                            <div class="flex items-center gap-2.5 flex-wrap">
+                                <span id="qNumberBadge" class="px-3.5 py-1.5 rounded-xl bg-yellow-300 border-2 border-slate-800 font-doodle font-bold text-base md:text-lg shadow-[2px_2px_0px_#1e293b]">
+                                    Soal #1
+                                </span>
+                                <span id="qTypeBadge" class="px-3 py-1 rounded-xl bg-sky-200 border-2 border-slate-800 text-xs font-extrabold text-slate-900">
+                                    Pilihan Ganda
+                                </span>
+                            </div>
+
+                            <button onclick="toggleDoubtCurrent()" id="btnDoubtToggle" class="doodle-btn px-3 py-1.5 text-xs bg-slate-100 hover:bg-amber-200 flex items-center gap-1.5">
+                                <i class="ph-bold ph-flag text-sm"></i>
+                                <span id="doubtBtnText">Tandai Ragu-ragu</span>
+                            </button>
+                        </div>
+
+                        <!-- Teks Pertanyaan -->
+                        <div id="questionPromptContainer" class="text-base md:text-lg font-bold text-slate-800 leading-relaxed mb-5 space-y-2">
+                        </div>
+
+                        <!-- Gambar Flowchart Pendukung Soal -->
+                        <div id="questionDiagramContainer" class="mb-6"></div>
+
+                        <!-- AREA JAWABAN DINAMIS (PG / Mencocokkan / Kompleks / Esai Susun Flowchart) -->
+                        <div id="answerInputContainer" class="space-y-4">
+                        </div>
+
+                        <!-- Navigasi Soal Bawah -->
+                        <div class="flex items-center justify-between gap-3 pt-6 mt-8 border-t-2 border-dashed border-slate-300">
+                            <button id="btnPrevQuestion" onclick="navigateQuestion(-1)" class="doodle-btn bg-slate-200 hover:bg-slate-300 px-4 py-2.5 text-sm flex items-center gap-2">
+                                <i class="ph-bold ph-arrow-left"></i>
+                                <span>Soal Sebelumnya</span>
+                            </button>
+
+                            <span id="questionProgressLabel" class="text-xs font-extrabold text-slate-500">
+                                1 dari 15
+                            </span>
+
+                            <button id="btnNextQuestion" onclick="navigateQuestion(1)" class="doodle-btn bg-sky-300 hover:bg-sky-400 px-5 py-2.5 text-sm flex items-center gap-2">
+                                <span>Soal Selanjutnya</span>
+                                <i class="ph-bold ph-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KOLOM KANAN (4 Kolom): Peta Nomor Soal -->
+                <div class="lg:col-span-4 space-y-5 sticky top-20">
+                    <div class="doodle-card p-5 space-y-4">
+                        <div class="flex items-center justify-between border-b-2 border-dashed border-slate-300 pb-2.5">
+                            <h3 class="font-doodle font-bold text-base text-slate-900 flex items-center gap-1.5">
+                                <i class="ph-fill ph-grid-four text-purple-600 text-lg"></i> Navigasi Nomor Soal
+                            </h3>
+                            <span id="answeredCountBadge" class="text-xs font-extrabold px-2.5 py-0.5 rounded-full bg-emerald-200 border border-slate-800">
+                                0/15 Terjawab
+                            </span>
+                        </div>
+
+                        <!-- Kelompok Objektif (1-10) -->
+                        <div>
+                            <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-2">A. Soal Objektif (1–10 • 60 Poin)</p>
+                            <div id="navGridObjective" class="grid grid-cols-5 gap-2">
+                            </div>
+                        </div>
+
+                        <!-- Kelompok Esai Susun Langkah (11-15) -->
+                        <div>
+                            <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 mb-2">B. Esai Susun Flowchart (11–15 • 40 Poin)</p>
+                            <div id="navGridEssay" class="grid grid-cols-5 gap-2">
+                            </div>
+                        </div>
+
+                        <!-- Legenda Warna -->
+                        <div class="grid grid-cols-2 gap-2 pt-2 text-[11px] font-bold text-slate-600 border-t border-dashed border-slate-300">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3.5 h-3.5 rounded bg-emerald-300 border border-slate-800 inline-block"></span> Sudah Dijawab
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3.5 h-3.5 rounded bg-amber-300 border border-slate-800 inline-block"></span> Ragu-ragu
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3.5 h-3.5 rounded bg-sky-300 border-2 border-slate-900 inline-block"></span> Sedang Dibuka
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3.5 h-3.5 rounded bg-white border border-slate-800 inline-block"></span> Belum Dijawab
+                            </div>
+                        </div>
+
+                        <!-- Tombol Kumpulkan Ujian -->
+                        <div class="pt-3">
+                            <button onclick="openSubmitConfirmation()" class="doodle-btn w-full bg-emerald-300 hover:bg-emerald-400 py-3 text-sm md:text-base flex items-center justify-center gap-2">
+                                <i class="ph-bold ph-paper-plane-tilt text-lg"></i>
+                                <span>Kumpulkan Jawaban Ujian</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             VIEW 4: HASIL UJIAN & BUKTI PENGUMPULAN
+             ========================================== -->
+        <section id="viewResult" class="hidden max-w-4xl mx-auto space-y-6">
+            <div class="doodle-card p-6 md:p-10 text-center space-y-6 relative overflow-hidden">
+                <div class="w-20 h-20 mx-auto rounded-3xl bg-emerald-300 border-3 border-slate-800 shadow-[4px_4px_0px_#1e293b] flex items-center justify-center">
+                    <i class="ph-fill ph-medal text-5xl text-slate-900"></i>
+                </div>
+
+                <div class="space-y-2">
+                    <span class="px-3 py-1 rounded-full bg-emerald-100 border border-slate-800 text-xs font-extrabold text-emerald-900">
+                        Ujian KKA Kelas VII Selesai & Tersimpan
+                    </span>
+                    <h2 class="font-doodle text-3xl md:text-4xl font-bold text-slate-900">Alhamdulillah, Jawabanmu Telah Terkirim!</h2>
+                    <p id="resultSyncStatus" class="text-sm font-bold text-slate-600">Data jawaban telah direkam di Google Spreadsheet.</p>
+                </div>
+
+                <div class="grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
+                    <div class="doodle-card-sm bg-sky-100 p-4">
+                        <div class="text-xs font-bold text-slate-600">Bagian Objektif (1–10)</div>
+                        <div id="resObjectiveScore" class="font-doodle text-3xl font-bold text-slate-900 my-1">0 / 60</div>
+                        <div id="resObjectiveDetail" class="text-[11px] font-bold text-sky-900">PG: 0 | Jodoh: 0 | Kompleks: 0</div>
+                    </div>
+                    <div class="doodle-card-sm bg-pink-100 p-4">
+                        <div class="text-xs font-bold text-slate-600">Esai Susun Flowchart (11–15)</div>
+                        <div id="resEssayScore" class="font-doodle text-3xl font-bold text-slate-900 my-1">0 / 40</div>
+                        <div class="text-[11px] font-bold text-pink-900">5 Soal Menyusun Langkah</div>
+                    </div>
+                    <div class="doodle-card-sm bg-yellow-200 p-4">
+                        <div class="text-xs font-bold text-slate-700">Total Nilai Akhir</div>
+                        <div id="resTotalScore" class="font-doodle text-4xl font-bold text-slate-900 my-1">0</div>
+                        <div class="text-[11px] font-extrabold text-slate-800">Skala 100 Poin</div>
+                    </div>
+                </div>
+
+                <div class="doodle-card-sm bg-slate-50 p-5 max-w-2xl mx-auto text-left text-xs md:text-sm space-y-2">
+                    <div class="font-doodle font-bold text-base text-slate-900 border-b border-dashed border-slate-300 pb-2 mb-2">
+                        Bukti Pengumpulan Ujian KKA Kelas VII (Flowchart)
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div><span class="text-slate-500">Nama Siswa:</span> <strong id="resName">-</strong></div>
+                        <div><span class="text-slate-500">Kelas / Absen:</span> <strong id="resClassAbsent">-</strong></div>
+                        <div><span class="text-slate-500">Waktu Selesai:</span> <strong id="resTimestamp">-</strong></div>
+                        <div><span class="text-slate-500">Durasi Pengerjaan:</span> <strong id="resDuration">-</strong></div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-3 pt-2">
+                    <button id="btnResyncSheets" onclick="resyncCurrentResultToSheets()" class="doodle-btn bg-emerald-300 hover:bg-emerald-400 px-5 py-2.5 text-sm flex items-center gap-2">
+                        <i class="ph-bold ph-cloud-arrow-up text-lg"></i>
+                        <span>Kirim Ulang ke Google Spreadsheet</span>
+                    </button>
+                    <button onclick="downloadStudentReceiptJSON()" class="doodle-btn bg-sky-200 hover:bg-sky-300 px-5 py-2.5 text-sm flex items-center gap-2">
+                        <i class="ph-bold ph-download-simple text-lg"></i>
+                        <span>Unduh Bukti Jawaban (.JSON)</span>
+                    </button>
+                    <button onclick="resetExamForNewStudent()" class="doodle-btn bg-amber-200 hover:bg-amber-300 px-5 py-2.5 text-sm flex items-center gap-2">
+                        <i class="ph-bold ph-arrows-clockwise text-lg"></i>
+                        <span>Ujian Siswa Baru (Reset)</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="z-10 border-t-2 border-dashed border-slate-300 bg-white/80 py-3 px-4 mt-10 text-center text-xs font-semibold text-slate-500">
+        Doodle Exam KKA Kelas VII SMP/MTs • Materi Flowchart (Bagan Alir) • Terintegrasi Google Spreadsheet
+    </footer>
+
+    <!-- MODAL KONFIRMASI KUMPULKAN UJIAN -->
+    <div id="modalSubmitConfirm" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="doodle-card max-w-md w-full p-6 bg-white space-y-4">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-amber-200 border-2 border-slate-800 flex items-center justify-center flex-shrink-0">
+                    <i class="ph-fill ph-check-square-offset text-2xl text-amber-900"></i>
+                </div>
+                <div>
+                    <h3 class="font-doodle font-bold text-xl text-slate-900">Kumpulkan Jawaban Sekarang?</h3>
+                    <p class="text-xs text-slate-600">Pastikan semua soal objektif dan susunan flowchart sudah diperiksa.</p>
+                </div>
+            </div>
+
+            <div id="submitSummaryBox" class="doodle-card-sm bg-slate-50 p-4 text-xs space-y-2 font-bold">
+            </div>
+
+            <div class="flex gap-3 pt-2">
+                <button onclick="closeSubmitConfirmation()" class="doodle-btn bg-slate-200 hover:bg-slate-300 py-2.5 px-4 text-sm w-1/2">
+                    Periksa Lagi
+                </button>
+                <button id="btnConfirmFinalSubmit" onclick="finalizeExamSubmission(false)" class="doodle-btn bg-emerald-300 hover:bg-emerald-400 py-2.5 px-4 text-sm w-1/2 flex items-center justify-center gap-1.5">
+                    <i class="ph-bold ph-check-circle"></i>
+                    <span>Ya, Kumpulkan!</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PANEL ADMINISTRASI GURU & KUNCI JAWABAN -->
+    <div id="modalTeacherAdmin" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="doodle-card max-w-5xl w-full max-h-[90vh] flex flex-col bg-white overflow-hidden">
+            <div class="p-5 bg-purple-100 border-b-3 border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <i class="ph-fill ph-chalkboard-teacher text-2xl text-purple-800"></i>
+                    <div>
+                        <h3 class="font-doodle font-bold text-lg md:text-xl text-slate-900">Panel Guru KKA Kelas VII — Kisi-Kisi & Kunci Flowchart</h3>
+                        <p class="text-xs text-slate-600">Dilindungi sandi guru (Default: GURU7 atau GURU8)</p>
+                    </div>
+                </div>
+                <button onclick="closeTeacherModal()" class="doodle-btn bg-white px-3 py-1 text-xs">Tutup</button>
+            </div>
+
+            <div id="teacherAuthBox" class="p-8 text-center space-y-4">
+                <div class="w-14 h-14 mx-auto rounded-2xl bg-purple-200 border-2 border-slate-800 flex items-center justify-center">
+                    <i class="ph-bold ph-lock-key text-2xl"></i>
+                </div>
+                <h4 class="font-doodle font-bold text-lg">Akses Khusus Guru KKA / Informatika</h4>
+                <p class="text-xs text-slate-600 max-w-md mx-auto">
+                    Masukkan kode sandi guru untuk melihat kunci jawaban 10 soal objektif dan 5 soal esai menyusun flowchart.
+                </p>
+                <div class="flex justify-center gap-2 max-w-xs mx-auto">
+                    <input type="password" id="inputTeacherPin" placeholder="Sandi guru..." class="doodle-input text-sm font-bold text-center w-full" autocomplete="off">
+                    <button onclick="unlockTeacherPanel()" class="doodle-btn bg-purple-300 hover:bg-purple-400 px-4 py-2 text-sm">Buka</button>
+                </div>
+            </div>
+
+            <div id="teacherContentBox" class="hidden p-5 overflow-y-auto space-y-4 text-xs md:text-sm">
+                <div class="doodle-card-sm bg-purple-50 p-3.5 flex flex-wrap items-center justify-between gap-3 border border-purple-200">
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <i class="ph-fill ph-shield-check text-xl text-purple-700"></i>
+                        <span class="font-bold text-slate-800">Rekap Nilai & Integrasi Spreadsheet:</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="openImportJsonDialog()" class="doodle-btn bg-sky-200 hover:bg-sky-300 px-3 py-1 text-xs flex items-center gap-1.5">
+                            <i class="ph-bold ph-upload-simple"></i>
+                            <span>Import JSON Siswa ke Sheets</span>
+                        </button>
+                        <input type="file" id="inputTeacherImportJson" accept=".json" class="hidden" onchange="handleTeacherImportJson(event)">
+                        <a href="https://docs.google.com/spreadsheets/d/13lFYNxpwdyA2M1OiyxhETYX1gnlyvF5lhaCZjWZaUZc/edit" target="_blank" class="doodle-btn bg-emerald-200 hover:bg-emerald-300 px-3 py-1 text-xs flex items-center gap-1.5">
+                            <i class="ph-bold ph-table text-sm text-emerald-800"></i>
+                            <span>Buka Spreadsheet Ujian ↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div class="doodle-card-sm bg-sky-50 p-3">
+                        <div class="text-xs text-slate-500 font-bold">Pilihan Ganda (1–6)</div>
+                        <div class="font-doodle font-bold text-base">6 Soal PG</div>
+                        <div class="text-[11px] text-sky-700 font-bold">6 × 5 = 30 Poin</div>
+                    </div>
+                    <div class="doodle-card-sm bg-amber-50 p-3">
+                        <div class="text-xs text-slate-500 font-bold">Menjodohkan (7–8)</div>
+                        <div class="font-doodle font-bold text-base">2 Soal Pasangan</div>
+                        <div class="text-[11px] text-amber-700 font-bold">2 × 6 = 12 Poin</div>
+                    </div>
+                    <div class="doodle-card-sm bg-emerald-50 p-3">
+                        <div class="text-xs text-slate-500 font-bold">Pilihan Kompleks (9–10)</div>
+                        <div class="font-doodle font-bold text-base">2 Soal Multi-Opsi</div>
+                        <div class="text-[11px] text-emerald-700 font-bold">2 × 9 = 18 Poin</div>
+                    </div>
+                    <div class="doodle-card-sm bg-pink-50 p-3">
+                        <div class="text-xs text-slate-500 font-bold">Esai Susun Flowchart (11–15)</div>
+                        <div class="font-doodle font-bold text-base">5 Soal Urutkan</div>
+                        <div class="text-[11px] text-pink-700 font-bold">5 × 8 = 40 Poin</div>
+                    </div>
+                </div>
+
+                <div id="teacherQuestionsTable" class="space-y-3"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL SETUP GOOGLE SHEETS -->
+    <div id="modalBackendSetup" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="doodle-card max-w-3xl w-full max-h-[90vh] flex flex-col bg-white overflow-hidden">
+            <div class="p-5 bg-emerald-100 border-b-3 border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <i class="ph-fill ph-google-logo text-2xl text-emerald-800"></i>
+                    <div>
+                        <h3 class="font-doodle font-bold text-lg text-slate-900">Integrasi Google Spreadsheet (Otomatis Terhubung)</h3>
+                        <p class="text-xs text-slate-600">Menggunakan Spreadsheet utama dengan penanda Kode Ujian: KKA7-FLOWCHART</p>
+                    </div>
+                </div>
+                <button onclick="closeBackendModal()" class="doodle-btn bg-white px-3 py-1 text-xs">Tutup</button>
+            </div>
+
+            <div class="p-5 overflow-y-auto space-y-4 text-xs md:text-sm">
+                <div class="doodle-card-sm bg-emerald-50 p-4 border-2 border-emerald-600 flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                        <div class="text-xs font-extrabold uppercase text-emerald-800">Spreadsheet Tujuan Rekap Nilai:</div>
+                        <div class="font-mono font-bold text-xs md:text-sm text-slate-900 break-all">ID: 13lFYNxpwdyA2M1OiyxhETYX1gnlyvF5lhaCZjWZaUZc</div>
+                    </div>
+                    <a href="https://docs.google.com/spreadsheets/d/13lFYNxpwdyA2M1OiyxhETYX1gnlyvF5lhaCZjWZaUZc/edit" target="_blank" class="doodle-btn bg-emerald-300 hover:bg-emerald-400 px-3 py-1.5 text-xs flex items-center gap-1">
+                        <span>Buka Google Sheet</span>
+                        <i class="ph-bold ph-arrow-square-out"></i>
+                    </a>
+                </div>
+
+                <div class="doodle-card-sm bg-amber-50 p-4 space-y-2">
+                    <label class="block font-bold text-slate-800">URL Web App Google Apps Script (Sudah Terpasang Otomatis):</label>
+                    <div class="flex gap-2">
+                        <input type="url" id="inputGasWebhookUrl" placeholder="https://script.google.com/macros/s/.../exec" class="doodle-input w-full text-xs">
+                        <button onclick="saveGasWebhookUrl()" class="doodle-btn bg-emerald-300 hover:bg-emerald-400 px-4 py-2 text-xs flex-shrink-0">Simpan URL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFIKASI -->
+    <div id="toastNotification" class="fixed bottom-5 right-5 z-50 hidden doodle-card-sm bg-slate-900 text-white px-4 py-3 text-xs md:text-sm font-bold flex items-center gap-2.5 shadow-lg">
+        <i id="toastIcon" class="ph-fill ph-check-circle text-emerald-400 text-lg"></i>
+        <span id="toastMessage">Notifikasi</span>
+    </div>
+
+    <!-- ==========================================
+         SCRIPT UTAMA UJIAN KKA KELAS VII (FLOWCHART)
+         ========================================== -->
+    <script>
+        /********************************************************************
+         * 1. KUTIPAN MOTIVASI TERVERIFIKASI
+         ********************************************************************/
+        const VERIFIED_QUOTES = [
+            {
+                quote: "Semua orang di negara ini harus belajar memprogram komputer, karena itu mengajarkan kita cara berpikir.",
+                author: "Steve Jobs",
+                source: "Wawancara 'The Lost Interview' (1995)"
+            },
+            {
+                quote: "Pendidikan bukan cuma pergi ke sekolah dan mendapatkan gelar. Tapi juga soal memperluas pengetahuan dan menyerap ilmu kehidupan.",
+                author: "Shakuntala Devi",
+                source: "Buku 'Figuring: The Joy of Numbers'"
+            },
+            {
+                quote: "Ing ngarsa sung tuladha, ing madya mangun karsa, tut wuri handayani.",
+                author: "Ki Hadjar Dewantara",
+                source: "Asas Taman Siswa (1922)"
+            },
+            {
+                quote: "Keberhasilan bukanlah milik orang yang pintar. Keberhasilan adalah kepunyaan mereka yang senantiasa berusaha.",
+                author: "Prof. Dr. Ing. B.J. Habibie",
+                source: "Pidato Inspiratif Presiden RI ke-3"
+            },
+            {
+                quote: "Bukan karena saya sangat pintar, melainkan karena saya bertahan lebih lama dalam menghadapi dan memecahkan suatu masalah.",
+                author: "Albert Einstein",
+                source: "Dikutip dalam 'Einstein: His Life and Universe'"
+            },
+            {
+                quote: "Barangsiapa belum pernah merasakan pahitnya menuntut ilmu walau sesaat, ia akan menelan hinanya kebodohan sepanjang hidupnya.",
+                author: "Imam Asy-Syafi'i",
+                source: "Diwan Al-Imam Asy-Syafi'i"
+            }
+        ];
+
+        /********************************************************************
+         * 2. ENGINE GENERATOR SVG FLOWCHART (SESUAI MATERI BELAJAR FLOWCHART)
+         ********************************************************************/
+        let fcUid = 0;
+        const FC_COLORS = {
+            term: "#ff9ecd",
+            proc: "#9fdcff",
+            io:   "#b5ef9b",
+            dec:  "#ffe066"
+        };
+
+        function escHtml(s) {
+            return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+        }
+
+        function renderFcShape(n) {
+            const { type, cx, cy, w, h, blank } = n;
+            const x = cx - w / 2, y = cy - h / 2;
+            const fill = blank ? "#ffffff" : (FC_COLORS[type] || "#ffffff");
+            const dash = blank ? 'stroke-dasharray="7 5"' : '';
+            const strokeAttr = `fill="${fill}" stroke="#1d1d1d" stroke-width="3" stroke-linejoin="round" ${dash}`;
+
+            if (type === "term") {
+                return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${h/2}" ${strokeAttr}/>`;
+            }
+            if (type === "proc") {
+                return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="6" ${strokeAttr}/>`;
+            }
+            if (type === "io") {
+                const s = 16;
+                return `<polygon points="${x+s},${y} ${x+w},${y} ${x+w-s},${y+h} ${x},${y+h}" ${strokeAttr}/>`;
+            }
+            if (type === "dec") {
+                return `<polygon points="${cx},${y} ${x+w},${cy} ${cx},${y+h} ${x},${cy}" ${strokeAttr}/>`;
+            }
+            return "";
+        }
+
+        function renderFcLabel(cx, cy, text, fs, isBlank) {
+            const lines = String(text).split("\n");
+            const lh = fs * 1.22;
+            const y0 = cy - ((lines.length - 1) * lh) / 2;
+            const fill = isBlank ? "#ff2e7e" : "#1d1d1d";
+            const fontSize = isBlank ? 22 : fs;
+            return `<text x="${cx}" y="${y0}" font-family="Nunito, sans-serif" font-weight="800" text-anchor="middle" dominant-baseline="middle" fill="${fill}" font-size="${fontSize}">` +
+                lines.map((l, i) => `<tspan x="${cx}" dy="${i ? lh : 0}">${escHtml(l)}</tspan>`).join("") +
+                `</text>`;
+        }
+
+        function buildVerticalFlowSVG(nodes) {
+            const p = "fc" + (++fcUid);
+            const dims = { term: [130, 38], proc: [215, 42], io: [215, 42], dec: [175, 62] };
+            const cx = 135, W = 355, GAP = 26;
+            let y = 14;
+            const pos = [];
+            const arrows = [];
+            const labels = [];
+
+            nodes.forEach((n, i) => {
+                const [w, h] = dims[n.t] || [200, 40];
+                const node = {
+                    id: "m" + i,
+                    type: n.t,
+                    cx,
+                    cy: y + h / 2,
+                    w,
+                    h,
+                    text: n.blank ? "?" : n.s,
+                    blank: !!n.blank
+                };
+                pos.push(node);
+                if (i > 0) {
+                    const pr = pos[i - 1];
+                    arrows.push(`M${cx} ${pr.cy + pr.h / 2} V${y - 2}`);
+                    if (pr.type === "dec") {
+                        labels.push({ x: cx + 10, y: pr.cy + pr.h / 2 + 12, text: n.yesLabel || "Ya", anchor: "start", fs: 14 });
+                    }
+                }
+                y += h + GAP;
+            });
+
+            nodes.forEach((n, i) => {
+                if (n.t !== "dec") return;
+                const d = pos[i];
+                const r = cx + d.w / 2;
+                if (n.no) {
+                    arrows.push(`M${r} ${d.cy} H${r + 30}`);
+                    labels.push({ x: r + 15, y: d.cy - 10, text: "Tidak", anchor: "middle", fs: 13 });
+                    labels.push({ x: r + 35, y: d.cy, text: n.no, anchor: "start", fs: 13 });
+                }
+                if (n.back != null && pos[n.back]) {
+                    const t = pos[n.back];
+                    arrows.push(`M${r} ${d.cy} H318 V${t.cy} H${cx + t.w / 2 + 3}`);
+                    labels.push({ x: r + 30, y: d.cy - 10, text: "Tidak", anchor: "middle", fs: 13 });
+                }
+            });
+
+            const totalH = y - GAP + 14;
+            let svg = `<svg viewBox="0 0 ${W} ${totalH}" class="w-full max-w-[330px] h-auto mx-auto block overflow-visible" xmlns="http://www.w3.org/2000/svg">` +
+                `<defs><marker id="${p}k" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0L10,5L0,10z" fill="#1d1d1d"/></marker></defs>`;
+
+            arrows.forEach(d => {
+                svg += `<path d="${d}" fill="none" stroke="#1d1d1d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#${p}k)"/>`;
+            });
+            labels.forEach(l => {
+                svg += `<text x="${l.x}" y="${l.y}" font-family="Gochi Hand, cursive" font-size="${l.fs || 15}" fill="#1d1d1d" text-anchor="${l.anchor || 'middle'}" dominant-baseline="middle">${escHtml(l.text)}</text>`;
+            });
+            pos.forEach(n => {
+                svg += `<g>${renderFcShape(n)}${renderFcLabel(n.cx, n.cy, n.text, 12, n.blank)}</g>`;
+            });
+            svg += `</svg>`;
+            return svg;
+        }
+
+        function buildFourSymbolsGridSVG() {
+            const p = "sym" + (++fcUid);
+            const items = [
+                { t: "term", title: "1. Oval", sub: "(Terminator)" },
+                { t: "proc", title: "2. Persegi Panjang", sub: "(Proses)" },
+                { t: "io",   title: "3. Jajar Genjang", sub: "(Input / Output)" },
+                { t: "dec",  title: "4. Belah Ketupat", sub: "(Keputusan)" }
+            ];
+            let cards = items.map(it => {
+                const dims = { term: [115, 42], proc: [118, 44], io: [122, 44], dec: [110, 56] }[it.t];
+                const shapeSvg = renderFcShape({ type: it.t, cx: 70, cy: 34, w: dims[0], h: dims[1], blank: false });
+                return `<div class="p-2.5 rounded-xl bg-amber-50/70 border-2 border-slate-800 text-center">
+                    <svg viewBox="0 0 140 68" class="w-28 h-14 mx-auto">${shapeSvg}</svg>
+                    <div class="text-xs font-extrabold text-slate-900 mt-1">${it.title}</div>
+                    <div class="text-[11px] font-bold text-slate-500">${it.sub}</div>
+                </div>`;
+            }).join("");
+            return `<div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">${cards}</div>`;
+        }
+
+        function generateDiagramSVG(diagramType) {
+            if (!diagramType) return "";
+            let inner = "";
+
+            switch (diagramType) {
+                case "fc_intro_mie":
+                    inner = buildVerticalFlowSVG([
+                        { t: "term", s: "Mulai" },
+                        { t: "proc", s: "Siapkan gelas & teh" },
+                        { t: "proc", s: "Tuang air panas & aduk" },
+                        { t: "term", s: "Selesai" }
+                    ]);
+                    break;
+
+                case "fc_four_symbols":
+                    inner = buildFourSymbolsGridSVG();
+                    break;
+
+                case "fc_absen_blank":
+                    inner = buildVerticalFlowSVG([
+                        { t: "term", s: "Mulai" },
+                        { t: "proc", s: "Ambil lembar absen" },
+                        { t: "proc", s: "?", blank: true },
+                        { t: "proc", s: "Serahkan ke teman sebelah" },
+                        { t: "term", s: "Selesai" }
+                    ]);
+                    break;
+
+                case "fc_cek_nilai_75":
+                    inner = buildVerticalFlowSVG([
+                        { t: "term", s: "Mulai" },
+                        { t: "io",   s: "Input nilai" },
+                        { t: "dec",  s: "Nilai ≥ 75?", no: 'Tampilkan "Remedial"' },
+                        { t: "io",   s: 'Tampilkan "Lulus"' },
+                        { t: "term", s: "Selesai" }
+                    ]);
+                    break;
+
+                case "fc_loop_buku_4":
+                    inner = buildVerticalFlowSVG([
+                        { t: "term", s: "Mulai" },
+                        { t: "proc", s: "Halaman = 1" },
+                        { t: "proc", s: "Baca halaman" },
+                        { t: "proc", s: "Halaman = Halaman + 1" },
+                        { t: "dec",  s: "Halaman > 4?", back: 2 },
+                        { t: "term", s: "Selesai" }
+                    ]);
+                    break;
+
+                case "fc_koperasi_uang":
+                    inner = buildVerticalFlowSVG([
+                        { t: "term", s: "Mulai" },
+                        { t: "io",   s: "Input uang & harga" },
+                        { t: "dec",  s: "Uang ≥ harga?", no: 'Muncul "Uang kurang"' },
+                        { t: "proc", s: "Beli jajan & terima kembalian" },
+                        { t: "term", s: "Selesai" }
+                    ]);
+                    break;
+
+                default:
+                    return "";
+            }
+
+            return `<div class="doodle-card-sm bg-white p-4 border-2 border-slate-800">
+                <p class="text-xs font-extrabold text-slate-500 mb-2">🗺️ Ilustrasi Flowchart Soal:</p>
+                ${inner}
+            </div>`;
+        }
+
+        /********************************************************************
+         * 3. BANK 15 SOAL UJIAN KKA KELAS VII — FLOWCHART (100 POIN)
+         *    - Bagian A (Nomor 1–10): 60 Poin
+         *      * 6 Pilihan Ganda (@ 5 Poin = 30 Poin)
+         *      * 2 Menjodohkan (@ 6 Poin = 12 Poin)
+         *      * 2 Pilihan Kompleks (@ 9 Poin = 18 Poin)
+         *    - Bagian B (Nomor 11–15): 40 Poin
+         *      * 5 Esai Menyusun / Mengurutkan Langkah Flowchart (@ 8 Poin = 40 Poin)
+         ********************************************************************/
+        const EXAM_QUESTIONS = [
+            // --- BAGIAN A1: 6 SOAL PILIHAN GANDA (@ 5 Poin = 30 Poin) ---
+            {
+                id: 1,
+                numberLabel: "1",
+                section: "Objektif",
+                type: "mcq",
+                points: 5,
+                isHOTS: false,
+                difficulty: "Mudah",
+                prompt: "Apa yang dimaksud dengan <strong>Flowchart (bagan alir)</strong> dan mengapa seorang <em>programmer</em> membuatnya sebelum menulis kode program?",
+                diagramType: "fc_intro_mie",
+                options: [
+                    { id: "A", text: "Gambar langkah-langkah menggunakan simbol & panah agar urutan penyelesaian masalah jelas dan tidak ada langkah yang terlewat" },
+                    { id: "B", text: "Aplikasi khusus untuk mengedit foto dan menggambar ilustrasi kartun di komputer" },
+                    { id: "C", text: "Daftar harga komponen perangkat keras (hardware) komputer di laboratorium" },
+                    { id: "D", text: "Bahasa rahasia yang hanya bisa dibaca oleh mesin komputer tanpa bisa dipahami manusia" }
+                ],
+                correctKey: "A",
+                explanation: "Flowchart adalah peta langkah-langkah bergambar (simbol & panah) agar alur penyelesaian masalah terstruktur, jelas, dan mudah dicari jika ada langkah yang keliru."
+            },
+            {
+                id: 2,
+                numberLabel: "2",
+                section: "Objektif",
+                type: "mcq",
+                points: 5,
+                isHOTS: false,
+                difficulty: "Mudah",
+                prompt: "Komputer meminta pengguna mengetikkan nama melalui papan ketik, yaitu langkah <strong>\"Masukkan nama\"</strong>. Simbol flowchart yang tepat untuk langkah memasukkan data (<em>Input</em>) atau menampilkan hasil (<em>Output</em>) adalah ....",
+                diagramType: "fc_four_symbols",
+                options: [
+                    { id: "A", text: "Oval (Terminator)" },
+                    { id: "B", text: "Persegi Panjang (Proses)" },
+                    { id: "C", text: "Jajar Genjang (Input / Output)" },
+                    { id: "D", text: "Belah Ketupat (Keputusan)" }
+                ],
+                correctKey: "C",
+                explanation: "Simbol Input/Output berbentuk Jajar Genjang, digunakan saat ada data yang masuk ke program ('Masukkan nama') atau hasil yang ditampilkan keluar ('Tampilkan sapa')."
+            },
+            {
+                id: 3,
+                numberLabel: "3",
+                section: "Objektif",
+                type: "mcq",
+                points: 5,
+                isHOTS: false,
+                difficulty: "Mudah",
+                prompt: "Saat berada di koperasi sekolah, kamu berpikir: <strong>\"Apakah uangku cukup untuk membeli jajan?\"</strong>. Di dalam flowchart, pertanyaan yang memiliki 2 jalur jawaban (<strong>Ya</strong> atau <strong>Tidak</strong>) digambar dengan simbol ....",
+                diagramType: "fc_four_symbols",
+                options: [
+                    { id: "A", text: "Oval (Terminator)" },
+                    { id: "B", text: "Persegi Panjang (Proses)" },
+                    { id: "C", text: "Jajar Genjang (Input / Output)" },
+                    { id: "D", text: "Belah Ketupat (Keputusan / Decision)" }
+                ],
+                correctKey: "D",
+                explanation: "Simbol Keputusan (Decision) berbentuk Belah Ketupat, berisi pertanyaan pemeriksaan syarat yang selalu bercabang menjadi 2 jalur: Ya dan Tidak."
+            },
+            {
+                id: 4,
+                numberLabel: "4",
+                section: "Objektif",
+                type: "mcq",
+                points: 5,
+                isHOTS: false,
+                difficulty: "Sedang",
+                prompt: "Perhatikan <strong>Flowchart Urut (Sekuensial) Absen Kelas</strong> di bawah ini! Terdapat satu kotak proses yang masih bertanda tanya (<strong>?</strong>). Langkah yang paling tepat untuk mengisi kotak tersebut adalah ....",
+                diagramType: "fc_absen_blank",
+                options: [
+                    { id: "A", text: "Tulis nama & tanda tangan di lembar absen" },
+                    { id: "B", text: "Mulai" },
+                    { id: "C", text: "Apakah nilai ≥ 75?" },
+                    { id: "D", text: "Pulang ke rumah" }
+                ],
+                correctKey: "A",
+                explanation: "Setelah mengambil lembar absen, langkah proses berikutnya sebelum diserahkan ke teman sebelah adalah menulis nama & tanda tangan."
+            },
+            {
+                id: 5,
+                numberLabel: "5",
+                section: "Objektif",
+                type: "mcq",
+                points: 5,
+                isHOTS: true,
+                difficulty: "Sedang",
+                prompt: "Perhatikan <strong>Flowchart Percabangan Cek Nilai Ulangan</strong> berikut! Ingat bahwa tanda <strong>&ge;</strong> berarti <em>\"lebih dari atau sama dengan\"</em>. Jika nilai yang dimasukkan adalah <strong>75</strong>, maka jalur yang dilewati dan output yang tampil adalah ....",
+                diagramType: "fc_cek_nilai_75",
+                options: [
+                    { id: "A", text: "Melewati jalur Tidak &rarr; Tampilkan \"Remedial\"" },
+                    { id: "B", text: "Melewati jalur Ya &rarr; Tampilkan \"Lulus\"" },
+                    { id: "C", text: "Program berhenti dan menampilkan pesan Error" },
+                    { id: "D", text: "Melewati kedua jalur sekaligus (Lulus dan Remedial)" }
+                ],
+                correctKey: "B",
+                explanation: "Karena syaratnya adalah Nilai ≥ 75 (lebih dari atau sama dengan 75), maka untuk nilai = 75 jawabannya adalah YA, sehingga menampilkan \"Lulus\"."
+            },
+            {
+                id: 6,
+                numberLabel: "6",
+                section: "Objektif",
+                type: "mcq",
+                points: 5,
+                isHOTS: true,
+                difficulty: "Sedang",
+                prompt: "Perhatikan <strong>Flowchart Perulangan (Looping) Membaca Buku</strong> di bawah ini! Berapa kali kotak proses <strong>\"Baca halaman\"</strong> dijalankan dari awal hingga mencapai <strong>Selesai</strong>?",
+                diagramType: "fc_loop_buku_4",
+                options: [
+                    { id: "A", text: "3 kali" },
+                    { id: "B", text: "4 kali" },
+                    { id: "C", text: "5 kali" },
+                    { id: "D", text: "Tidak pernah berhenti (selamanya)" }
+                ],
+                correctKey: "B",
+                explanation: "Kotak 'Baca halaman' dijalankan untuk Halaman = 1, 2, 3, dan 4 (sebanyak 4 kali). Saat Halaman bertambah menjadi 5, kondisi '5 > 4?' bernilai Ya sehingga menuju Selesai."
+            },
+
+            // --- BAGIAN A2: 2 SOAL MENJODOHKAN (@ 6 Poin = 12 Poin) ---
+            {
+                id: 7,
+                numberLabel: "7",
+                section: "Objektif",
+                type: "matching",
+                points: 6,
+                isHOTS: false,
+                difficulty: "Mudah",
+                prompt: "Pasangkan setiap <strong>nama simbol flowchart</strong> di sebelah kiri dengan <strong>fungsi utamanya</strong> yang tepat di sebelah kanan!",
+                diagramType: "fc_four_symbols",
+                leftItems: [
+                    { id: "L1", text: "Terminator (Bentuk Oval)" },
+                    { id: "L2", text: "Proses (Bentuk Persegi Panjang)" },
+                    { id: "L3", text: "Garis Alir / Flowline (Bentuk Panah)" }
+                ],
+                rightOptions: [
+                    { value: "", label: "-- Pilih Fungsi Simbol --" },
+                    { value: "Menandai titik awal (Mulai) dan akhir (Selesai)", label: "Menandai titik awal (Mulai) dan akhir (Selesai)" },
+                    { value: "Mengerjakan tindakan atau menghitung rumus", label: "Mengerjakan tindakan atau menghitung rumus" },
+                    { value: "Menunjukkan arah urutan langkah dari satu simbol ke simbol lain", label: "Menunjukkan arah urutan langkah dari satu simbol ke simbol lain" },
+                    { value: "Membuat cabang pertanyaan Ya dan Tidak", label: "Membuat cabang pertanyaan Ya dan Tidak" }
+                ],
+                correctPairs: {
+                    L1: "Menandai titik awal (Mulai) dan akhir (Selesai)",
+                    L2: "Mengerjakan tindakan atau menghitung rumus",
+                    L3: "Menunjukkan arah urutan langkah dari satu simbol ke simbol lain"
+                },
+                explanation: "Oval untuk Mulai/Selesai, Persegi panjang untuk Proses/perhitungan, dan Panah (Garis Alir) untuk menunjukkan arah urutan langkah."
+            },
+            {
+                id: 8,
+                numberLabel: "8",
+                section: "Objektif",
+                type: "matching",
+                points: 6,
+                isHOTS: false,
+                difficulty: "Sedang",
+                prompt: "Pasangkan setiap <strong>kalimat langkah pada flowchart</strong> di sebelah kiri dengan <strong>bentuk simbol</strong> yang wajib digunakan di sebelah kanan!",
+                diagramType: "",
+                leftItems: [
+                    { id: "M1", text: "Langkah menghitung: \"Total = Harga × Jumlah\"" },
+                    { id: "M2", text: "Langkah menerima data: \"Input uang dan harga\"" },
+                    { id: "M3", text: "Langkah memeriksa syarat: \"Apakah Uang ≥ Total?\"" }
+                ],
+                rightOptions: [
+                    { value: "", label: "-- Pilih Bentuk Simbol --" },
+                    { value: "Persegi Panjang (Proses)", label: "Persegi Panjang (Proses)" },
+                    { value: "Jajar Genjang (Input/Output)", label: "Jajar Genjang (Input/Output)" },
+                    { value: "Belah Ketupat (Keputusan)", label: "Belah Ketupat (Keputusan)" },
+                    { value: "Oval (Terminator)", label: "Oval (Terminator)" }
+                ],
+                correctPairs: {
+                    M1: "Persegi Panjang (Proses)",
+                    M2: "Jajar Genjang (Input/Output)",
+                    M3: "Belah Ketupat (Keputusan)"
+                },
+                explanation: "Perhitungan memakai Persegi Panjang (Proses), menerima input memakai Jajar Genjang (Input/Output), dan pertanyaan syarat memakai Belah Ketupat (Keputusan)."
+            },
+
+            // --- BAGIAN A3: 2 SOAL PILIHAN KOMPLEKS MULTI-OPSI (@ 9 Poin = 18 Poin) ---
+            {
+                id: 9,
+                numberLabel: "9",
+                section: "Objektif",
+                type: "complex",
+                points: 9,
+                isHOTS: false,
+                difficulty: "Sedang",
+                prompt: "Pilihlah <strong>semua pernyataan yang benar</strong> (jawaban benar lebih dari satu) mengenai <strong>Aturan Menggambar Flowchart</strong> yang baik!",
+                diagramType: "",
+                options: [
+                    { id: "A", text: "Setiap flowchart harus memiliki tepat 1 simbol Mulai dan 1 simbol Selesai" },
+                    { id: "B", text: "Simbol Keputusan (Belah Ketupat) selalu memiliki 2 jalur keluar yang diberi label Ya dan Tidak" },
+                    { id: "C", text: "Letak kotak diatur rapi dari atas ke bawah supaya garis panah tidak saling bersilangan" },
+                    { id: "D", text: "Simbol Terminator (Mulai) boleh diletakkan di tengah-tengah langkah perhitungan" }
+                ],
+                correctKeys: ["A", "B", "C"],
+                explanation: "Aturan menggambar flowchart: (A) 1 Mulai & 1 Selesai, (B) Belah ketupat bercabang 2 jalur Ya & Tidak, dan (C) Panah tidak bersilangan serta mengalir dari atas ke bawah."
+            },
+            {
+                id: 10,
+                numberLabel: "10",
+                section: "Objektif",
+                type: "complex",
+                points: 9,
+                isHOTS: true,
+                difficulty: "Sulit",
+                prompt: "Perhatikan <strong>Flowchart Membeli Jajan di Koperasi</strong> berikut! Pilihlah <strong>semua pernyataan yang benar</strong> berdasarkan alur flowchart tersebut!",
+                diagramType: "fc_koperasi_uang",
+                options: [
+                    { id: "A", text: "Jika uang = Rp5.000 dan harga = Rp4.000, maka jalur yang ditempuh adalah Ya (Beli jajan & terima kembalian)" },
+                    { id: "B", text: "Jika uang = Rp3.000 dan harga = Rp5.000, maka jalur yang ditempuh adalah Tidak (Muncul \"Uang kurang\")" },
+                    { id: "C", text: "Jika uang = Rp5.000 dan harga = Rp5.000, maka siswa tetap berhasil membeli jajan (karena 5.000 ≥ 5.000 adalah Ya)" },
+                    { id: "D", text: "Jika uang = Rp2.000 dan harga = Rp5.000, maka siswa tetap mendapat kembalian" }
+                ],
+                correctKeys: ["A", "B", "C"],
+                explanation: "A benar (5.000 ≥ 4.000 → Ya). B benar (3.000 ≥ 5.000 → Tidak). C benar (5.000 ≥ 5.000 → Ya). D salah karena uangnya kurang."
+            },
+
+            // --- BAGIAN B: 5 SOAL ESAI MENYUSUN / MENGURUTKAN FLOWCHART (@ 8 Poin = 40 Poin) ---
+            {
+                id: 11,
+                numberLabel: "11",
+                section: "Esai Flowchart",
+                type: "ordering",
+                points: 8,
+                isHOTS: false,
+                difficulty: "Mudah",
+                prompt: "<strong>[Esai Susun Flowchart 1 — Alur Urut / Sekuensial]</strong><br>Susunlah langkah-langkah <strong>Memasak Mie Instan</strong> berikut dari <strong>Mulai</strong> hingga <strong>Selesai</strong> dengan urutan yang benar! <em>(Klik kotak di bagian atas untuk memasukkannya ke dalam Flowchart secara berurutan).</em>",
+                items: [
+                    { id: "S1", t: "proc", text: "Rebus air di panci sampai mendidih" },
+                    { id: "S2", t: "proc", text: "Masukkan mie ke dalam air mendidih" },
+                    { id: "S3", t: "proc", text: "Tunggu kira-kira 3 menit hingga mie matang" },
+                    { id: "S4", t: "proc", text: "Tiriskan mie, lalu campurkan dengan bumbu di piring" }
+                ],
+                initialPoolOrder: ["S3", "S1", "S4", "S2"],
+                correctOrder: ["S1", "S2", "S3", "S4"],
+                explanation: "Urutan memasak mie instan: (1) Rebus air sampai mendidih → (2) Masukkan mie → (3) Tunggu 3 menit → (4) Tiriskan & beri bumbu."
+            },
+            {
+                id: 12,
+                numberLabel: "12",
+                section: "Esai Flowchart",
+                type: "ordering",
+                points: 8,
+                isHOTS: false,
+                difficulty: "Mudah",
+                prompt: "<strong>[Esai Susun Flowchart 2 — Alur Urut Kegiatan Sehari-hari]</strong><br>Waktunya <strong>Piket Kebersihan Kamar Asrama / Kelas</strong>! Susunlah ke-4 langkah berikut dari <strong>Mulai</strong> hingga <strong>Selesai</strong> supaya kamar bersih maksimal!",
+                items: [
+                    { id: "P1", t: "proc", text: "Rapikan kasur dan lipat selimut terlebih dahulu" },
+                    { id: "P2", t: "proc", text: "Sapu lantai hingga debu dan kotoran bersih" },
+                    { id: "P3", t: "proc", text: "Pel lantai sampai bersih dan kering" },
+                    { id: "P4", t: "proc", text: "Lapor kepada ketua kamar bahwa piket sudah beres" }
+                ],
+                initialPoolOrder: ["P3", "P4", "P1", "P2"],
+                correctOrder: ["P1", "P2", "P3", "P4"],
+                explanation: "Rapikan kasur dulu (agar debu jatuh ke lantai), lalu sapu lantai, kemudian pel lantai, dan terakhir lapor ke ketua kamar."
+            },
+            {
+                id: 13,
+                numberLabel: "13",
+                section: "Esai Flowchart",
+                type: "ordering",
+                points: 8,
+                isHOTS: true,
+                difficulty: "Sedang",
+                prompt: "<strong>[Esai Susun Flowchart 3 — Alur Input, Proses, dan Output]</strong><br>Sebuah program komputer di <strong>Kasir Koperasi Sekolah</strong> digunakan untuk menghitung total belanja dan uang kembalian. Susunlah langkah-langkah berikut sesuai urutan logika <strong>Input &rarr; Proses &rarr; Output</strong>!",
+                items: [
+                    { id: "K1", t: "io",   text: "Input harga barang, jumlah beli, dan uang bayar" },
+                    { id: "K2", t: "proc", text: "Hitung Total = harga barang × jumlah beli" },
+                    { id: "K3", t: "proc", text: "Hitung Kembalian = uang bayar − Total" },
+                    { id: "K4", t: "io",   text: "Tampilkan nilai Total dan Kembalian ke layar" }
+                ],
+                initialPoolOrder: ["K3", "K1", "K4", "K2"],
+                correctOrder: ["K1", "K2", "K3", "K4"],
+                explanation: "Program harus menerima Input (harga, jumlah, uang) dulu, lalu menghitung Total, menghitung Kembalian, dan terakhir menampilkan Output ke layar."
+            },
+            {
+                id: 14,
+                numberLabel: "14",
+                section: "Esai Flowchart",
+                type: "ordering",
+                points: 8,
+                isHOTS: true,
+                difficulty: "Sedang",
+                prompt: "<strong>[Esai Susun Flowchart 4 — Alur Percabangan / Keputusan]</strong><br>Susunlah langkah-langkah <strong>Berangkat ke Sekolah dengan Mengecek Cuaca Hujan</strong> berikut agar menjadi alur percabangan yang runtut dari <strong>Mulai</strong> hingga <strong>Selesai</strong>!",
+                items: [
+                    { id: "C1", t: "proc", text: "Siapkan tas sekolah dan pakai seragam lengkap" },
+                    { id: "C2", t: "io",   text: "Lihat kondisi cuaca di halaman luar" },
+                    { id: "C3", t: "dec",  text: "Keputusan: Apakah sedang turun hujan?" },
+                    { id: "C4", t: "proc", text: "Jika Ya: pakai jas hujan/payung • Jika Tidak: langsung berangkat" }
+                ],
+                initialPoolOrder: ["C3", "C1", "C4", "C2"],
+                correctOrder: ["C1", "C2", "C3", "C4"],
+                explanation: "Siapkan tas & seragam → Lihat kondisi cuaca di luar → Cek keputusan 'Apakah turun hujan?' → Ambil tindakan sesuai cabang Ya/Tidak."
+            },
+            {
+                id: 15,
+                numberLabel: "15",
+                section: "Esai Flowchart",
+                type: "ordering",
+                points: 8,
+                isHOTS: true,
+                difficulty: "Sulit",
+                prompt: "<strong>[Esai Susun Flowchart 5 — Alur Perulangan / Looping]</strong><br>Saat berwudhu, kita membasuh muka sebanyak <strong>3 kali</strong>. Susunlah ke-4 kotak <strong>Flowchart Perulangan</strong> berikut dengan urutan yang tepat agar tidak terjadi perulangan tanpa akhir (<em>infinite loop</em>)!",
+                items: [
+                    { id: "L1", t: "proc", text: "Atur nilai awal penghitung: Hitungan = 1" },
+                    { id: "L2", t: "proc", text: "Lakukan langkah: Basuh muka" },
+                    { id: "L3", t: "proc", text: "Tambah penghitung: Hitungan = Hitungan + 1" },
+                    { id: "L4", t: "dec",  text: "Keputusan: Hitungan > 3? (Tidak → ulangi Basuh muka, Ya → Selesai)" }
+                ],
+                initialPoolOrder: ["L2", "L4", "L1", "L3"],
+                correctOrder: ["L1", "L2", "L3", "L4"],
+                explanation: "Pada perulangan: (1) Atur Hitungan = 1 di awal → (2) Basuh muka → (3) Tambah Hitungan + 1 → (4) Cek apakah Hitungan > 3? Jika Tidak kembali ke Basuh muka, jika Ya lanjut Selesai."
+            }
+        ];
+
+        /********************************************************************
+         * 4. STATE APLIKASI & PENYIMPANAN LOKAL (TERPISAH DARI KELAS 8)
+         ********************************************************************/
+        const STORAGE_KEY = "DOODLE_EXAM_KKA7_FLOWCHART_V1";
+        const EXAM_DURATION_SECONDS = 60 * 60; // 60 Menit
+        const DEFAULT_GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbymaL3hjEKXSlLEQqxGDpIZkn5VYYKJM3mfo_IOJ82bpTJd8xEPWL-72NPFt5ANUnXN/exec";
+
+        let appState = {
+            phase: "landing", // landing | countdown | exam | finished
+            student: {
+                name: "",
+                className: "",
+                absent: "",
+                token: "KKA7-FLOWCHART"
+            },
+            selectedQuote: null,
+            examStartTime: null,
+            remainingSeconds: EXAM_DURATION_SECONDS,
+            currentQuestionIndex: 0,
+            answers: {},
+            doubtFlags: {},
+            finalScores: null,
+            gasWebhookUrl: localStorage.getItem("DOODLE_GAS_URL") || DEFAULT_GAS_WEBHOOK_URL
+        };
+
+        let timerInterval = null;
+        let countdownInterval = null;
+
+        function saveStateToStorage() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+            } catch (e) {
+                console.warn("Penyimpanan lokal penuh atau dibatasi:", e);
+            }
+        }
+
+        function loadStateFromStorage() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return false;
+                const parsed = JSON.parse(raw);
+                if (parsed && parsed.student && parsed.phase) {
+                    appState = { ...appState, ...parsed };
+                    return true;
+                }
+            } catch (e) {
+                console.warn("Gagal memuat sesi ujian:", e);
+            }
+            return false;
+        }
+
+        /********************************************************************
+         * 5. INISIALISASI HALAMAN & PEMULIHAN SESI OTOMATIS
+         ********************************************************************/
+        function initDoodleExamApp() {
+            const savedUrl = localStorage.getItem("DOODLE_GAS_URL") || DEFAULT_GAS_WEBHOOK_URL;
+            const gasInput = document.getElementById("inputGasWebhookUrl");
+            if (gasInput) gasInput.value = savedUrl;
+            appState.gasWebhookUrl = savedUrl;
+
+            const hasSaved = loadStateFromStorage();
+            if (hasSaved && (appState.phase === "exam" || appState.phase === "countdown") && appState.student && appState.student.name) {
+                if (appState.phase === "countdown") {
+                    appState.phase = "exam";
+                    if (!appState.examStartTime) appState.examStartTime = Date.now();
+                    saveStateToStorage();
+                }
+                const elapsed = appState.examStartTime ? Math.floor((Date.now() - appState.examStartTime) / 1000) : 0;
+                appState.remainingSeconds = Math.max(0, EXAM_DURATION_SECONDS - elapsed);
+
+                populateResumeBanner();
+                enterExamWorkspace();
+            } else if (hasSaved && appState.phase === "finished" && appState.finalScores) {
+                showResultScreen();
+            }
+        }
+
+        function populateResumeBanner() {
+            const banner = document.getElementById("resumeExamCard");
+            if (!banner || !appState.student || !appState.student.name) return;
+            const nameEl = document.getElementById("resumeStudentName");
+            const classEl = document.getElementById("resumeStudentClass");
+            if (nameEl) nameEl.textContent = appState.student.name;
+            if (classEl) classEl.textContent = `${appState.student.className} • Absen ${appState.student.absent}`;
+            banner.classList.remove("hidden");
+        }
+
+        function restoreExamSession() {
+            enterExamWorkspace();
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initDoodleExamApp);
+        } else {
+            initDoodleExamApp();
+        }
+
+        window.addEventListener("pageshow", (event) => {
+            if (event.persisted) initDoodleExamApp();
+        });
+
+        /********************************************************************
+         * 6. FORM LOGIN & COUNTDOWN 5 DETIK
+         ********************************************************************/
+        function handleStartExamFlow(e) {
+            e.preventDefault();
+            const name = document.getElementById("inputStudentName").value.trim();
+            const className = document.getElementById("inputStudentClass").value.trim();
+            const absent = document.getElementById("inputStudentAbsent").value.trim();
+
+            if (!name || !className || !absent) {
+                showToast("Harap lengkapi Nama Lengkap, Kelas, dan Nomor Absen!", "error");
+                return;
+            }
+
+            const randomQuote = VERIFIED_QUOTES[Math.floor(Math.random() * VERIFIED_QUOTES.length)];
+
+            appState.student = {
+                name,
+                className,
+                absent,
+                token: "KKA7-FLOWCHART"
+            };
+            appState.selectedQuote = randomQuote;
+            appState.phase = "countdown";
+            appState.answers = {};
+            appState.doubtFlags = {};
+            appState.currentQuestionIndex = 0;
+            appState.remainingSeconds = EXAM_DURATION_SECONDS;
+            saveStateToStorage();
+
+            startFiveSecondCountdown();
+        }
+
+        function startFiveSecondCountdown() {
+            document.getElementById("viewLanding").classList.add("hidden");
+            const lhc = document.getElementById("landingHeaderControls");
+            if (lhc) lhc.classList.add("hidden");
+            document.getElementById("viewCountdown").classList.remove("hidden");
+
+            const q = appState.selectedQuote || VERIFIED_QUOTES[0];
+            const qText = document.getElementById("countdownQuoteText");
+            const qAuthor = document.getElementById("countdownQuoteAuthor");
+            const qSource = document.getElementById("countdownQuoteSource");
+            if (qText) qText.textContent = `"${q.quote}"`;
+            if (qAuthor) qAuthor.textContent = `— ${q.author}`;
+            if (qSource) qSource.textContent = q.source || "Kutipan Semangat Belajar";
+
+            let sec = 5;
+            const numEl = document.getElementById("countdownNumber");
+            if (numEl) numEl.textContent = sec;
+
+            if (countdownInterval) clearInterval(countdownInterval);
+            countdownInterval = setInterval(() => {
+                sec--;
+                if (sec > 0) {
+                    if (numEl) numEl.textContent = sec;
+                } else {
+                    clearInterval(countdownInterval);
+                    appState.phase = "exam";
+                    appState.examStartTime = Date.now();
+                    saveStateToStorage();
+                    enterExamWorkspace();
+                }
+            }, 1000);
+        }
+
+        /********************************************************************
+         * 7. WORKSPACE UJIAN & TIMER
+         ********************************************************************/
+        function enterExamWorkspace() {
+            document.getElementById("viewLanding").classList.add("hidden");
+            const lhc = document.getElementById("landingHeaderControls");
+            if (lhc) lhc.classList.add("hidden");
+            document.getElementById("viewCountdown").classList.add("hidden");
+            document.getElementById("viewResult").classList.add("hidden");
+            document.getElementById("viewExam").classList.remove("hidden");
+            document.getElementById("examHeaderControls").classList.remove("hidden");
+
+            document.getElementById("headerStudentName").textContent = appState.student.name;
+            document.getElementById("headerStudentClass").textContent = `${appState.student.className} • Absen ${appState.student.absent}`;
+
+            const q = appState.selectedQuote || VERIFIED_QUOTES[0];
+            const bannerQuote = document.getElementById("sessionQuoteBanner");
+            const bannerAuthor = document.getElementById("sessionQuoteAuthorBanner");
+            if (bannerQuote) bannerQuote.textContent = `"${q.quote}"`;
+            if (bannerAuthor) bannerAuthor.textContent = `— ${q.author}`;
+
+            startExamTimer();
+            renderQuestionByIndex(appState.currentQuestionIndex || 0);
+            renderNavigationGrid();
+        }
+
+        function startExamTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            updateTimerDisplay();
+
+            timerInterval = setInterval(() => {
+                appState.remainingSeconds--;
+                if (appState.remainingSeconds <= 0) {
+                    appState.remainingSeconds = 0;
+                    clearInterval(timerInterval);
+                    updateTimerDisplay();
+                    showToast("Waktu ujian telah habis! Jawaban dikumpulkan otomatis.", "warning");
+                    finalizeExamSubmission(true);
+                } else {
+                    updateTimerDisplay();
+                    if (appState.remainingSeconds % 5 === 0) saveStateToStorage();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(appState.remainingSeconds / 60);
+            const secs = appState.remainingSeconds % 60;
+            const formatted = `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+            const timerEl = document.getElementById("timerDisplay");
+            if (timerEl) timerEl.textContent = formatted;
+
+            const box = document.getElementById("timerBox");
+            if (box && appState.remainingSeconds <= 300) {
+                box.classList.remove("bg-amber-200");
+                box.classList.add("bg-rose-300", "animate-pulse");
+            }
+        }
+
+        /********************************************************************
+         * 8. RENDER SOAL (PG, MENJODOHKAN, KOMPLEKS, & ESAI SUSUN FLOWCHART)
+         ********************************************************************/
+        function renderQuestionByIndex(index) {
+            if (index < 0 || index >= EXAM_QUESTIONS.length) return;
+            appState.currentQuestionIndex = index;
+            saveStateToStorage();
+
+            const q = EXAM_QUESTIONS[index];
+            document.getElementById("qNumberBadge").textContent = `Soal #${q.numberLabel}`;
+
+            const typeLabels = {
+                mcq: `Pilihan Ganda (${q.points} Poin • 1 Jawaban Benar)`,
+                matching: `Menjodohkan Simbol (${q.points} Poin)`,
+                complex: `Pilihan Kompleks (${q.points} Poin • Lebih dari 1 Benar)`,
+                ordering: `Esai Menyusun Flowchart (${q.points} Poin • Urutkan Langkah)`
+            };
+            document.getElementById("qTypeBadge").textContent = typeLabels[q.type] || "Soal Flowchart";
+
+            const isDoubt = !!appState.doubtFlags[q.id];
+            const doubtBtn = document.getElementById("btnDoubtToggle");
+            const doubtText = document.getElementById("doubtBtnText");
+            if (isDoubt) {
+                doubtBtn.classList.replace("bg-slate-100", "bg-amber-300");
+                doubtText.textContent = "Ditandai Ragu-ragu";
+            } else {
+                doubtBtn.classList.replace("bg-amber-300", "bg-slate-100");
+                doubtText.textContent = "Tandai Ragu-ragu";
+            }
+
+            document.getElementById("questionPromptContainer").innerHTML = `<p>${q.prompt}</p>`;
+            document.getElementById("questionDiagramContainer").innerHTML = generateDiagramSVG(q.diagramType);
+
+            const container = document.getElementById("answerInputContainer");
+            container.innerHTML = "";
+
+            if (q.type === "mcq") {
+                renderMCQOptions(q, container);
+            } else if (q.type === "matching") {
+                renderMatchingInput(q, container);
+            } else if (q.type === "complex") {
+                renderComplexInput(q, container);
+            } else if (q.type === "ordering") {
+                renderOrderingEssayInput(q, container);
+            }
+
+            document.getElementById("btnPrevQuestion").disabled = (index === 0);
+            const nextBtn = document.getElementById("btnNextQuestion");
+            if (index === EXAM_QUESTIONS.length - 1) {
+                nextBtn.innerHTML = `<span>Selesai & Kumpulkan</span> <i class="ph-bold ph-check-circle"></i>`;
+                nextBtn.onclick = () => openSubmitConfirmation();
+            } else {
+                nextBtn.innerHTML = `<span>Soal Selanjutnya</span> <i class="ph-bold ph-arrow-right"></i>`;
+                nextBtn.onclick = () => navigateQuestion(1);
+            }
+
+            document.getElementById("questionProgressLabel").textContent = `Soal ${index + 1} dari ${EXAM_QUESTIONS.length}`;
+            renderNavigationGrid();
+        }
+
+        function renderMCQOptions(q, container) {
+            const currentAns = appState.answers[q.id] || "";
+            const list = document.createElement("div");
+            list.className = "grid sm:grid-cols-2 gap-3";
+
+            q.options.forEach(opt => {
+                const selected = currentAns === opt.id;
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = `doodle-btn p-4 text-left flex items-center gap-3 ${selected ? 'bg-yellow-300 ring-2 ring-slate-900' : 'bg-white hover:bg-sky-50'}`;
+                btn.onclick = () => {
+                    appState.answers[q.id] = opt.id;
+                    saveStateToStorage();
+                    renderQuestionByIndex(appState.currentQuestionIndex);
+                };
+                btn.innerHTML = `
+                    <span class="w-9 h-9 rounded-xl border-2 border-slate-800 flex items-center justify-center font-doodle font-bold text-base flex-shrink-0 ${selected ? 'bg-slate-900 text-yellow-300' : 'bg-slate-100 text-slate-800'}">
+                        ${opt.id}
+                    </span>
+                    <span class="font-body font-bold text-sm md:text-base text-slate-800">${opt.text}</span>
+                `;
+                list.appendChild(btn);
+            });
+            container.appendChild(list);
+        }
+
+        function renderMatchingInput(q, container) {
+            const savedPairs = appState.answers[q.id] || {};
+            const box = document.createElement("div");
+            box.className = "space-y-3";
+
+            q.leftItems.forEach((item, idx) => {
+                const currentVal = savedPairs[item.id] || "";
+                const row = document.createElement("div");
+                row.className = "doodle-card-sm p-4 bg-white flex flex-col md:flex-row md:items-center justify-between gap-3";
+
+                const optionsHtml = q.rightOptions.map(ro =>
+                    `<option value="${ro.value}" ${currentVal === ro.value ? 'selected' : ''}>${ro.label}</option>`
+                ).join("");
+
+                row.innerHTML = `
+                    <div class="flex items-start gap-2.5 md:w-1/2">
+                        <span class="w-7 h-7 rounded-lg bg-purple-200 border border-slate-800 font-doodle font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">${idx + 1}</span>
+                        <p class="text-sm font-bold text-slate-800">${item.text}</p>
+                    </div>
+                    <div class="md:w-1/2">
+                        <select onchange="handleMatchingChange(${q.id}, '${item.id}', this.value)" class="doodle-input w-full text-sm font-bold bg-amber-50">
+                            ${optionsHtml}
+                        </select>
+                    </div>
+                `;
+                box.appendChild(row);
+            });
+            container.appendChild(box);
+        }
+
+        function handleMatchingChange(qId, leftId, val) {
+            if (!appState.answers[qId]) appState.answers[qId] = {};
+            appState.answers[qId][leftId] = val;
+            saveStateToStorage();
+            renderNavigationGrid();
+        }
+
+        function renderComplexInput(q, container) {
+            const currentArr = Array.isArray(appState.answers[q.id]) ? appState.answers[q.id] : [];
+            const wrapper = document.createElement("div");
+            wrapper.className = "space-y-2.5";
+
+            q.options.forEach(opt => {
+                const checked = currentArr.includes(opt.id);
+                const item = document.createElement("div");
+                item.className = `doodle-btn p-3.5 flex items-center gap-3 cursor-pointer ${checked ? 'bg-emerald-200 ring-2 ring-slate-900' : 'bg-white hover:bg-slate-50'}`;
+                item.onclick = () => {
+                    let updated = [...currentArr];
+                    if (updated.includes(opt.id)) {
+                        updated = updated.filter(x => x !== opt.id);
+                    } else {
+                        updated.push(opt.id);
+                    }
+                    appState.answers[q.id] = updated;
+                    saveStateToStorage();
+                    renderQuestionByIndex(appState.currentQuestionIndex);
+                };
+                item.innerHTML = `
+                    <div class="w-7 h-7 rounded-lg border-2 border-slate-900 flex items-center justify-center flex-shrink-0 ${checked ? 'bg-slate-900 text-emerald-300' : 'bg-white'}">
+                        ${checked ? '<i class="ph-bold ph-check text-base"></i>' : ''}
+                    </div>
+                    <span class="font-doodle font-bold text-sm px-2 py-0.5 rounded bg-slate-200 border border-slate-700">${opt.id}</span>
+                    <span class="text-sm md:text-base font-bold text-slate-800">${opt.text}</span>
+                `;
+                wrapper.appendChild(item);
+            });
+            container.appendChild(wrapper);
+        }
+
+        // B. Render Esai Menyusun / Mengurutkan Kotak Flowchart
+        function renderOrderingEssayInput(q, container) {
+            const placedIds = Array.isArray(appState.answers[q.id]) ? [...appState.answers[q.id]] : [];
+            const itemMap = {};
+            q.items.forEach(it => { itemMap[it.id] = it; });
+
+            const defaultPool = q.initialPoolOrder || q.items.map(it => it.id);
+            const availableIds = defaultPool.filter(id => !placedIds.includes(id));
+
+            const shapeBadge = (t) => {
+                if (t === "io") return `<span class="text-[10px] uppercase px-1.5 py-0.5 rounded bg-white/80 border border-slate-800 mr-1">Jajar Genjang</span>`;
+                if (t === "dec") return `<span class="text-[10px] uppercase px-1.5 py-0.5 rounded bg-white/80 border border-slate-800 mr-1">◆ Belah Ketupat</span>`;
+                return `<span class="text-[10px] uppercase px-1.5 py-0.5 rounded bg-white/80 border border-slate-800 mr-1">Persegi Panjang</span>`;
+            };
+
+            const poolHtml = availableIds.length > 0
+                ? availableIds.map(id => {
+                    const it = itemMap[id];
+                    return `<button type="button" onclick="addStepToFlowchart(${q.id}, '${it.id}')" class="fc-chip fc-chip-${it.t} px-3.5 py-2.5 text-left text-xs md:text-sm hover:-translate-y-0.5 active:translate-y-0.5 flex items-center gap-1.5">
+                        <i class="ph-bold ph-plus-circle text-base flex-shrink-0"></i>
+                        <div>${shapeBadge(it.t)}<span>${it.text}</span></div>
+                    </button>`;
+                }).join("")
+                : `<div class="text-xs font-extrabold text-emerald-800 py-2 flex items-center gap-1.5">
+                    <i class="ph-fill ph-check-circle text-lg text-emerald-600"></i>
+                    <span>Semua kotak langkah sudah dimasukkan ke dalam Flowchart di bawah!</span>
+                </div>`;
+
+            let slotsHtml = "";
+            for (let idx = 0; idx < q.items.length; idx++) {
+                const stepId = placedIds[idx];
+                if (stepId && itemMap[stepId]) {
+                    const it = itemMap[stepId];
+                    slotsHtml += `
+                        <div class="w-full max-w-lg flex items-center gap-2">
+                            <span class="w-7 h-7 rounded-full bg-slate-900 text-yellow-300 font-doodle font-bold text-xs flex items-center justify-center flex-shrink-0">${idx + 1}</span>
+                            <div class="fc-chip fc-chip-${it.t} flex-grow px-3.5 py-2.5 text-xs md:text-sm flex items-center justify-between gap-2">
+                                <div>${shapeBadge(it.t)}<span>${it.text}</span></div>
+                                <div class="flex items-center gap-1 flex-shrink-0">
+                                    <button type="button" onclick="moveStepInFlowchart(${q.id}, ${idx}, -1)" ${idx === 0 ? 'disabled' : ''} class="w-7 h-7 rounded-lg bg-white border border-slate-800 flex items-center justify-center hover:bg-amber-100 disabled:opacity-40" title="Geser Naik">
+                                        <i class="ph-bold ph-arrow-up text-xs"></i>
+                                    </button>
+                                    <button type="button" onclick="moveStepInFlowchart(${q.id}, ${idx}, 1)" ${idx === placedIds.length - 1 ? 'disabled' : ''} class="w-7 h-7 rounded-lg bg-white border border-slate-800 flex items-center justify-center hover:bg-amber-100 disabled:opacity-40" title="Geser Turun">
+                                        <i class="ph-bold ph-arrow-down text-xs"></i>
+                                    </button>
+                                    <button type="button" onclick="removeStepFromFlowchart(${q.id}, '${it.id}')" class="w-7 h-7 rounded-lg bg-rose-100 border border-slate-800 text-rose-800 flex items-center justify-center hover:bg-rose-200" title="Lepas Kotak">
+                                        <i class="ph-bold ph-x text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-slate-800 font-extrabold text-lg leading-none select-none">↓</div>
+                    `;
+                } else {
+                    slotsHtml += `
+                        <div class="w-full max-w-lg flex items-center gap-2">
+                            <span class="w-7 h-7 rounded-full bg-slate-200 border border-slate-700 text-slate-700 font-doodle font-bold text-xs flex items-center justify-center flex-shrink-0">${idx + 1}</span>
+                            <div class="flex-grow border-2 border-dashed border-slate-400 rounded-xl py-2.5 px-4 text-center text-xs font-bold text-slate-400 bg-slate-50/70">
+                                Kotak Langkah ke-${idx + 1} (Klik salah satu kotak di atas)
+                            </div>
+                        </div>
+                        <div class="text-slate-400 font-extrabold text-lg leading-none select-none">↓</div>
+                    `;
+                }
+            }
+
+            const isComplete = placedIds.length === q.items.length;
+            const statusColor = isComplete ? "bg-emerald-100 border-emerald-600 text-emerald-900" : "bg-amber-100 border-amber-600 text-amber-900";
+
+            const wrapper = document.createElement("div");
+            wrapper.className = "space-y-4";
+            wrapper.innerHTML = `
+                <!-- Kotak Acak -->
+                <div class="doodle-card-sm bg-amber-50/80 p-4 space-y-2.5">
+                    <div class="flex items-center justify-between flex-wrap gap-2">
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-slate-700">
+                            🧩 1. Kotak Langkah Tersedia (Klik untuk memasukkan ke urutan):
+                        </span>
+                        <button type="button" onclick="resetFlowchartOrder(${q.id})" class="doodle-btn bg-white hover:bg-rose-50 px-2.5 py-1 text-xs flex items-center gap-1">
+                            <i class="ph-bold ph-arrow-counter-clockwise"></i>
+                            <span>Ulangi Susunan</span>
+                        </button>
+                    </div>
+                    <div class="flex flex-wrap gap-2.5 pt-1">
+                        ${poolHtml}
+                    </div>
+                </div>
+
+                <!-- Area Susunan Flowchart Siswa -->
+                <div class="doodle-card-sm bg-white p-5 space-y-3">
+                    <div class="flex items-center justify-between flex-wrap gap-2 border-b border-dashed border-slate-300 pb-2">
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-slate-700">
+                            🗺️ 2. Susunan Flowchart Kamu:
+                        </span>
+                        <span class="text-xs font-extrabold px-2.5 py-0.5 rounded-full border ${statusColor}">
+                            ${placedIds.length} / ${q.items.length} Kotak Tersusun ${isComplete ? '✅' : ''}
+                        </span>
+                    </div>
+
+                    <div class="flex flex-col items-center space-y-1.5 py-2">
+                        <div class="fc-chip fc-chip-term px-6 py-1.5 text-xs md:text-sm font-extrabold">
+                            Mulai
+                        </div>
+                        <div class="text-slate-800 font-extrabold text-lg leading-none select-none">↓</div>
+                        ${slotsHtml}
+                        <div class="fc-chip fc-chip-term px-6 py-1.5 text-xs md:text-sm font-extrabold">
+                            Selesai
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(wrapper);
+        }
+
+        function addStepToFlowchart(qId, stepId) {
+            if (!Array.isArray(appState.answers[qId])) appState.answers[qId] = [];
+            if (!appState.answers[qId].includes(stepId)) {
+                appState.answers[qId].push(stepId);
+                saveStateToStorage();
+                renderQuestionByIndex(appState.currentQuestionIndex);
+            }
+        }
+
+        function removeStepFromFlowchart(qId, stepId) {
+            if (!Array.isArray(appState.answers[qId])) return;
+            appState.answers[qId] = appState.answers[qId].filter(id => id !== stepId);
+            saveStateToStorage();
+            renderQuestionByIndex(appState.currentQuestionIndex);
+        }
+
+        function moveStepInFlowchart(qId, index, delta) {
+            if (!Array.isArray(appState.answers[qId])) return;
+            const arr = [...appState.answers[qId]];
+            const target = index + delta;
+            if (target < 0 || target >= arr.length) return;
+            const temp = arr[index];
+            arr[index] = arr[target];
+            arr[target] = temp;
+            appState.answers[qId] = arr;
+            saveStateToStorage();
+            renderQuestionByIndex(appState.currentQuestionIndex);
+        }
+
+        function resetFlowchartOrder(qId) {
+            appState.answers[qId] = [];
+            saveStateToStorage();
+            renderQuestionByIndex(appState.currentQuestionIndex);
+        }
+
+        /********************************************************************
+         * 9. NAVIGASI GRID SOAL & STATUS JAWABAN
+         ********************************************************************/
+        function isQuestionAnswered(q) {
+            const ans = appState.answers[q.id];
+            if (!ans) return false;
+            if (q.type === "mcq") return typeof ans === "string" && ans.length > 0;
+            if (q.type === "matching") {
+                return q.leftItems.every(li => ans[li.id] && ans[li.id].trim() !== "");
+            }
+            if (q.type === "complex") {
+                return Array.isArray(ans) && ans.length > 0;
+            }
+            if (q.type === "ordering") {
+                return Array.isArray(ans) && ans.length === q.items.length;
+            }
+            return false;
+        }
+
+        function renderNavigationGrid() {
+            const gridObj = document.getElementById("navGridObjective");
+            const gridEssay = document.getElementById("navGridEssay");
+            if (!gridObj || !gridEssay) return;
+            gridObj.innerHTML = "";
+            gridEssay.innerHTML = "";
+
+            let answeredCount = 0;
+
+            EXAM_QUESTIONS.forEach((q, idx) => {
+                const answered = isQuestionAnswered(q);
+                if (answered) answeredCount++;
+                const isDoubt = !!appState.doubtFlags[q.id];
+                const isCurrent = (idx === appState.currentQuestionIndex);
+
+                const btn = document.createElement("button");
+                btn.type = "button";
+
+                let bgClass = "bg-white text-slate-800 hover:bg-slate-100";
+                if (isDoubt) bgClass = "bg-amber-300 text-slate-900";
+                else if (answered) bgClass = "bg-emerald-300 text-slate-900";
+
+                const currentRing = isCurrent
+                    ? (answered || isDoubt ? "ring-3 ring-sky-500 scale-105" : "bg-sky-200 ring-2 ring-slate-900")
+                    : "";
+
+                btn.className = `h-10 rounded-xl border-2 border-slate-800 font-doodle font-bold text-sm flex items-center justify-center transition-all shadow-[2px_2px_0px_#1e293b] ${bgClass} ${currentRing}`;
+                btn.textContent = q.numberLabel;
+                btn.onclick = () => renderQuestionByIndex(idx);
+
+                if (q.type === "ordering") {
+                    gridEssay.appendChild(btn);
+                } else {
+                    gridObj.appendChild(btn);
+                }
+            });
+
+            document.getElementById("answeredCountBadge").textContent = `${answeredCount}/${EXAM_QUESTIONS.length} Terjawab`;
+        }
+
+        function navigateQuestion(delta) {
+            const target = appState.currentQuestionIndex + delta;
+            if (target >= 0 && target < EXAM_QUESTIONS.length) {
+                renderQuestionByIndex(target);
+            }
+        }
+
+        function toggleDoubtCurrent() {
+            const q = EXAM_QUESTIONS[appState.currentQuestionIndex];
+            appState.doubtFlags[q.id] = !appState.doubtFlags[q.id];
+            saveStateToStorage();
+            renderQuestionByIndex(appState.currentQuestionIndex);
+        }
+
+        /********************************************************************
+         * 10. KALKULASI SKOR OTOMATIS (60 OBJEKTIF + 40 ESAI = 100 POIN)
+         ********************************************************************/
+        function openSubmitConfirmation() {
+            const total = EXAM_QUESTIONS.length;
+            const answered = EXAM_QUESTIONS.filter(q => isQuestionAnswered(q)).length;
+            const unanswered = total - answered;
+
+            const summary = document.getElementById("submitSummaryBox");
+            if (summary) {
+                if (unanswered > 0) {
+                    summary.innerHTML = `<span class="text-rose-600 font-extrabold">Perhatian! Masih ada ${unanswered} dari ${total} soal yang belum selesai dijawab/disusun.</span><p class="text-slate-600 font-semibold mt-1">Apakah kamu yakin tetap ingin mengumpulkan sekarang?</p>`;
+                } else {
+                    summary.innerHTML = `<span class="text-emerald-700 font-extrabold">Luar biasa! Seluruh ${total} soal (10 Objektif & 5 Esai Susun Flowchart) telah selesai kamu kerjakan.</span><p class="text-slate-600 font-semibold mt-1">Siap mengumpulkan hasil ujianmu?</p>`;
+                }
+            }
+
+            document.getElementById("modalSubmitConfirm").classList.remove("hidden");
+        }
+
+        function closeSubmitConfirmation() {
+            document.getElementById("modalSubmitConfirm").classList.add("hidden");
+        }
+
+        function calculateExamScores() {
+            let mcqScore = 0;       // Maks 6 x 5 = 30
+            let matchScore = 0;     // Maks 2 x 6 = 12
+            let complexScore = 0;   // Maks 2 x 9 = 18
+            let essayScore = 0;     // Maks 5 x 8 = 40
+
+            EXAM_QUESTIONS.forEach(q => {
+                const ans = appState.answers[q.id];
+                if (!ans) return;
+
+                if (q.type === "mcq") {
+                    if (ans === q.correctKey) mcqScore += q.points;
+                } else if (q.type === "matching") {
+                    let correctCount = 0;
+                    const totalPairs = q.leftItems.length;
+                    q.leftItems.forEach(li => {
+                        if (ans[li.id] === q.correctPairs[li.id]) {
+                            correctCount++;
+                        }
+                    });
+                    matchScore += (correctCount / totalPairs) * q.points;
+                } else if (q.type === "complex") {
+                    if (Array.isArray(ans)) {
+                        const sortedAns = [...ans].sort().join(",");
+                        const sortedKey = [...q.correctKeys].sort().join(",");
+                        if (sortedAns === sortedKey) {
+                            complexScore += q.points;
+                        }
+                    }
+                } else if (q.type === "ordering") {
+                    if (Array.isArray(ans) && ans.length > 0) {
+                        let exactPositions = 0;
+                        const totalSteps = q.correctOrder.length;
+                        for (let i = 0; i < totalSteps; i++) {
+                            if (ans[i] === q.correctOrder[i]) {
+                                exactPositions++;
+                            }
+                        }
+                        essayScore += (exactPositions / totalSteps) * q.points;
+                    }
+                }
+            });
+
+            matchScore = Math.round(matchScore * 10) / 10;
+            essayScore = Math.round(essayScore * 10) / 10;
+            const objectiveTotal = Math.round((mcqScore + matchScore + complexScore) * 10) / 10;
+            const grandTotal = Math.round((objectiveTotal + essayScore) * 10) / 10;
+
+            return {
+                mcqScore,
+                matchScore,
+                complexScore,
+                objectiveTotal,
+                essayScore,
+                grandTotal
+            };
+        }
+
+        async function finalizeExamSubmission(isAutoSubmit = false) {
+            closeSubmitConfirmation();
+            if (timerInterval) clearInterval(timerInterval);
+
+            const scores = calculateExamScores();
+            const durationSeconds = appState.examStartTime
+                ? Math.min(EXAM_DURATION_SECONDS, Math.floor((Date.now() - appState.examStartTime) / 1000))
+                : 0;
+
+            appState.phase = "finished";
+            appState.finalScores = {
+                ...scores,
+                durationSeconds,
+                submittedAt: new Date().toLocaleString("id-ID")
+            };
+            saveStateToStorage();
+
+            const payload = {
+                student: appState.student,
+                durationSeconds,
+                scores,
+                quoteUsed: `[KKA7-FLOWCHART] ${appState.selectedQuote ? `${appState.selectedQuote.quote} (${appState.selectedQuote.author})` : "-"}`,
+                answers: appState.answers
+            };
+
+            const syncText = document.getElementById("resultSyncStatus");
+            try {
+                await sendPayloadToSheets(payload);
+                if (syncText) syncText.textContent = "✅ Nilai Ujian KKA Kelas VII berhasil terekam di Google Spreadsheet!";
+                showToast("Jawaban berhasil disimpan ke Google Sheets!", "success");
+            } catch (err) {
+                if (syncText) syncText.textContent = "ℹ️ Jawaban tersimpan di perangkat. Klik 'Kirim Ulang ke Google Spreadsheet' atau unduh bukti JSON.";
+            }
+
+            showResultScreen();
+        }
+
+        function showResultScreen() {
+            document.getElementById("viewLanding").classList.add("hidden");
+            const lhc = document.getElementById("landingHeaderControls");
+            if (lhc) lhc.classList.add("hidden");
+            document.getElementById("viewCountdown").classList.add("hidden");
+            document.getElementById("viewExam").classList.add("hidden");
+            document.getElementById("examHeaderControls").classList.add("hidden");
+            document.getElementById("viewResult").classList.remove("hidden");
+
+            const sc = appState.finalScores;
+            document.getElementById("resObjectiveScore").textContent = `${sc.objectiveTotal} / 60`;
+            document.getElementById("resObjectiveDetail").textContent = `PG: ${sc.mcqScore}/30 | Jodoh: ${sc.matchScore}/12 | Kompleks: ${sc.complexScore}/18`;
+            document.getElementById("resEssayScore").textContent = `${sc.essayScore} / 40`;
+            document.getElementById("resTotalScore").textContent = sc.grandTotal;
+
+            document.getElementById("resName").textContent = appState.student.name;
+            document.getElementById("resClassAbsent").textContent = `${appState.student.className} / No. ${appState.student.absent} (${appState.student.token})`;
+            document.getElementById("resTimestamp").textContent = sc.submittedAt;
+            const m = Math.floor(sc.durationSeconds / 60);
+            const s = sc.durationSeconds % 60;
+            document.getElementById("resDuration").textContent = `${m} menit ${s} detik`;
+        }
+
+        async function sendPayloadToSheets(payload) {
+            const webhookUrl = appState.gasWebhookUrl || localStorage.getItem("DOODLE_GAS_URL") || DEFAULT_GAS_WEBHOOK_URL;
+            if (webhookUrl) {
+                await fetch(webhookUrl, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+                return { status: "success" };
+            } else {
+                throw new Error("URL Web App Google Sheets belum diatur.");
+            }
+        }
+
+        async function resyncCurrentResultToSheets() {
+            const syncText = document.getElementById("resultSyncStatus");
+            const btn = document.getElementById("btnResyncSheets");
+            if (!appState.finalScores) return;
+            if (btn) btn.disabled = true;
+            if (syncText) syncText.textContent = "⏳ Sedang mengirim ulang data ke Google Spreadsheet...";
+
+            const payload = {
+                student: appState.student,
+                durationSeconds: appState.finalScores.durationSeconds || 0,
+                scores: appState.finalScores,
+                quoteUsed: `[KKA7-FLOWCHART] ${appState.selectedQuote ? `${appState.selectedQuote.quote} (${appState.selectedQuote.author})` : "-"}`,
+                answers: appState.answers
+            };
+
+            try {
+                await sendPayloadToSheets(payload);
+                if (syncText) syncText.textContent = "✅ Berhasil dikirim ke Google Spreadsheet!";
+                showToast("Data ujian berhasil disinkronkan ke Google Spreadsheet!", "success");
+            } catch (err) {
+                if (syncText) syncText.textContent = "⚠️ Gagal mengirim: " + err.message;
+            } finally {
+                if (btn) btn.disabled = false;
+            }
+        }
+
+        function openImportJsonDialog() {
+            document.getElementById("inputTeacherImportJson").click();
+        }
+
+        async function handleTeacherImportJson(e) {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+            try {
+                const text = await file.text();
+                const parsed = JSON.parse(text);
+                if (!parsed.student || !parsed.finalScores) {
+                    throw new Error("Format file JSON tidak sesuai.");
+                }
+                const payload = {
+                    student: parsed.student,
+                    durationSeconds: parsed.finalScores.durationSeconds || 0,
+                    scores: parsed.finalScores,
+                    quoteUsed: `[KKA7-FLOWCHART] ${parsed.selectedQuote ? `${parsed.selectedQuote.quote} (${parsed.selectedQuote.author})` : "-"}`,
+                    answers: parsed.answers || {}
+                };
+                await sendPayloadToSheets(payload);
+                showToast("✅ Nilai " + parsed.student.name + " berhasil dikirim ke Google Spreadsheet!", "success");
+            } catch (err) {
+                showToast("Gagal mengimpor: " + err.message, "error");
+            } finally {
+                e.target.value = "";
+            }
+        }
+
+        function downloadStudentReceiptJSON() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState, null, 2));
+            const dlAnchor = document.createElement("a");
+            dlAnchor.setAttribute("href", dataStr);
+            dlAnchor.setAttribute("download", `Bukti_KKA7_Flowchart_${appState.student.name.replace(/\s+/g, '_')}.json`);
+            document.body.appendChild(dlAnchor);
+            dlAnchor.click();
+            dlAnchor.remove();
+        }
+
+        function resetExamForNewStudent() {
+            localStorage.removeItem(STORAGE_KEY);
+            window.location.reload();
+        }
+
+        /********************************************************************
+         * 11. PANEL GURU & KUNCI JAWABAN
+         ********************************************************************/
+        function openTeacherModal() {
+            document.getElementById("modalTeacherAdmin").classList.remove("hidden");
+        }
+        function closeTeacherModal() {
+            document.getElementById("modalTeacherAdmin").classList.add("hidden");
+        }
+
+        function unlockTeacherPanel() {
+            const pin = document.getElementById("inputTeacherPin").value.trim().toUpperCase();
+            const savedPin = localStorage.getItem("DOODLE_TEACHER_PIN") || "GURU7";
+            if (pin !== savedPin && pin !== "GURU7" && pin !== "GURU8") {
+                showToast("Kode sandi guru salah!", "error");
+                return;
+            }
+            document.getElementById("teacherAuthBox").classList.add("hidden");
+            document.getElementById("teacherContentBox").classList.remove("hidden");
+            showToast("Panel Guru berhasil dibuka!", "success");
+            renderTeacherTable();
+        }
+
+        function renderTeacherTable() {
+            const tableContainer = document.getElementById("teacherQuestionsTable");
+            tableContainer.innerHTML = EXAM_QUESTIONS.map(q => {
+                let keyDisplay = "";
+                if (q.type === "mcq") keyDisplay = `Kunci Pilihan Ganda: <strong>${q.correctKey}</strong>`;
+                if (q.type === "matching") keyDisplay = `Pasangan Kunci: <code>${JSON.stringify(q.correctPairs)}</code>`;
+                if (q.type === "complex") keyDisplay = `Kunci Multi-Opsi: <strong>${q.correctKeys.join(", ")}</strong>`;
+                if (q.type === "ordering") {
+                    const orderedTexts = q.correctOrder.map((id, i) => {
+                        const it = q.items.find(x => x.id === id);
+                        return `${i + 1}. ${it ? it.text : id}`;
+                    }).join(" &rarr; ");
+                    keyDisplay = `Urutan Flowchart Benar: <strong>Mulai &rarr; ${orderedTexts} &rarr; Selesai</strong>`;
+                }
+
+                return `
+                <div class="doodle-card-sm p-3.5 bg-white space-y-1.5">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded bg-slate-900 text-white font-doodle font-bold text-xs">No. ${q.numberLabel}</span>
+                            <span class="px-2 py-0.5 rounded bg-sky-100 border border-slate-700 font-bold text-xs">${q.section} (${q.points} Poin)</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-100 border border-slate-400 font-bold text-xs">${q.difficulty}</span>
+                        </div>
+                    </div>
+                    <div class="text-xs text-slate-700">${q.prompt}</div>
+                    <div class="p-2 rounded bg-emerald-50 border border-emerald-200 text-xs text-emerald-950">${keyDisplay}</div>
+                    <div class="text-[11px] text-slate-500"><strong>Pembahasan:</strong> ${q.explanation}</div>
+                </div>`;
+            }).join("");
+        }
+
+        function openBackendModal() {
+            document.getElementById("modalBackendSetup").classList.remove("hidden");
+        }
+        function closeBackendModal() {
+            document.getElementById("modalBackendSetup").classList.add("hidden");
+        }
+
+        function saveGasWebhookUrl() {
+            const url = document.getElementById("inputGasWebhookUrl").value.trim();
+            appState.gasWebhookUrl = url;
+            localStorage.setItem("DOODLE_GAS_URL", url);
+            saveStateToStorage();
+            showToast("URL Google Apps Script berhasil disimpan!", "success");
+        }
+
+        function showToast(msg, type = "success") {
+            const toast = document.getElementById("toastNotification");
+            const icon = document.getElementById("toastIcon");
+            const text = document.getElementById("toastMessage");
+            text.textContent = msg;
+
+            icon.className = type === "error"
+                ? "ph-fill ph-warning-octagon text-rose-400 text-lg"
+                : type === "warning"
+                ? "ph-fill ph-clock-countdown text-amber-400 text-lg"
+                : "ph-fill ph-check-circle text-emerald-400 text-lg";
+
+            toast.classList.remove("hidden");
+            setTimeout(() => {
+                toast.classList.add("hidden");
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
