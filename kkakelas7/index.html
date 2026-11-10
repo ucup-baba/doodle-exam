@@ -944,6 +944,28 @@
                     ]);
                     break;
 
+                case "fc_loop_total":
+                    inner = buildVerticalFlowSVG([
+                        { t: "term", s: "Mulai" },
+                        { t: "proc", s: "Total = 0\nHitungan = 1" },
+                        { t: "proc", s: "Total = Total + 5" },
+                        { t: "proc", s: "Hitungan = Hitungan + 1" },
+                        { t: "dec",  s: "Hitungan > 4?", back: 2 },
+                        { t: "io",   s: "Tampilkan Total" },
+                        { t: "term", s: "Selesai" }
+                    ]);
+                    break;
+
+                case "fc_infinite_loop":
+                    inner = buildVerticalFlowSVG([
+                        { t: "term", s: "Mulai" },
+                        { t: "proc", s: "Hitungan = 1" },
+                        { t: "proc", s: "Basuh muka" },
+                        { t: "dec",  s: "Hitungan > 3?", back: 2 },
+                        { t: "term", s: "Selesai" }
+                    ]);
+                    break;
+
                 default:
                     return "";
             }
@@ -972,6 +994,7 @@
                 type: "mcq",
                 points: 5,
                 isHOTS: false,
+                cognitive: "C2 Memahami",
                 difficulty: "Mudah",
                 prompt: "Apa yang dimaksud dengan <strong>Flowchart (bagan alir)</strong> dan mengapa seorang <em>programmer</em> membuatnya sebelum menulis kode program?",
                 diagramType: "fc_intro_mie",
@@ -991,6 +1014,7 @@
                 type: "mcq",
                 points: 5,
                 isHOTS: false,
+                cognitive: "C2 Memahami",
                 difficulty: "Mudah",
                 prompt: "Komputer meminta pengguna mengetikkan nama melalui papan ketik, yaitu langkah <strong>\"Masukkan nama\"</strong>. Simbol flowchart yang tepat untuk langkah memasukkan data (<em>Input</em>) atau menampilkan hasil (<em>Output</em>) adalah ....",
                 diagramType: "fc_four_symbols",
@@ -1010,6 +1034,7 @@
                 type: "mcq",
                 points: 5,
                 isHOTS: false,
+                cognitive: "C2 Memahami",
                 difficulty: "Mudah",
                 prompt: "Saat berada di koperasi sekolah, kamu berpikir: <strong>\"Apakah uangku cukup untuk membeli jajan?\"</strong>. Di dalam flowchart, pertanyaan yang memiliki 2 jalur jawaban (<strong>Ya</strong> atau <strong>Tidak</strong>) digambar dengan simbol ....",
                 diagramType: "fc_four_symbols",
@@ -1028,18 +1053,19 @@
                 section: "Objektif",
                 type: "mcq",
                 points: 5,
-                isHOTS: false,
-                difficulty: "Sedang",
-                prompt: "Perhatikan <strong>Flowchart Urut (Sekuensial) Absen Kelas</strong> di bawah ini! Terdapat satu kotak proses yang masih bertanda tanya (<strong>?</strong>). Langkah yang paling tepat untuk mengisi kotak tersebut adalah ....",
-                diagramType: "fc_absen_blank",
+                isHOTS: true,
+                cognitive: "C4 Menganalisis",
+                difficulty: "Sulit",
+                prompt: "Perhatikan <strong>Flowchart Perulangan Menghitung Total</strong> di bawah ini! Telusuri nilai variabel <strong>Total</strong> dan <strong>Hitungan</strong> pada setiap putaran. Berapakah nilai <strong>Total</strong> yang ditampilkan di akhir program?",
+                diagramType: "fc_loop_total",
                 options: [
-                    { id: "A", text: "Tulis nama & tanda tangan di lembar absen" },
-                    { id: "B", text: "Mulai" },
-                    { id: "C", text: "Apakah nilai ≥ 75?" },
-                    { id: "D", text: "Pulang ke rumah" }
+                    { id: "A", text: "15" },
+                    { id: "B", text: "20" },
+                    { id: "C", text: "25" },
+                    { id: "D", text: "5" }
                 ],
-                correctKey: "A",
-                explanation: "Setelah mengambil lembar absen, langkah proses berikutnya sebelum diserahkan ke teman sebelah adalah menulis nama & tanda tangan."
+                correctKey: "B",
+                explanation: "Putaran 1: Total = 5, Hitungan = 2. Putaran 2: Total = 10, Hitungan = 3. Putaran 3: Total = 15, Hitungan = 4. Putaran 4: Total = 20, Hitungan = 5. Karena 5 > 4 bernilai Ya, program menampilkan Total = 20."
             },
             {
                 id: 5,
@@ -1048,6 +1074,7 @@
                 type: "mcq",
                 points: 5,
                 isHOTS: true,
+                cognitive: "C4 Menganalisis",
                 difficulty: "Sedang",
                 prompt: "Perhatikan <strong>Flowchart Percabangan Cek Nilai Ulangan</strong> berikut! Ingat bahwa tanda <strong>&ge;</strong> berarti <em>\"lebih dari atau sama dengan\"</em>. Jika nilai yang dimasukkan adalah <strong>75</strong>, maka jalur yang dilewati dan output yang tampil adalah ....",
                 diagramType: "fc_cek_nilai_75",
@@ -1067,6 +1094,7 @@
                 type: "mcq",
                 points: 5,
                 isHOTS: true,
+                cognitive: "C4 Menganalisis",
                 difficulty: "Sedang",
                 prompt: "Perhatikan <strong>Flowchart Perulangan (Looping) Membaca Buku</strong> di bawah ini! Berapa kali kotak proses <strong>\"Baca halaman\"</strong> dijalankan dari awal hingga mencapai <strong>Selesai</strong>?",
                 diagramType: "fc_loop_buku_4",
@@ -1088,6 +1116,7 @@
                 type: "matching",
                 points: 6,
                 isHOTS: false,
+                cognitive: "C1 Mengingat",
                 difficulty: "Mudah",
                 prompt: "Pasangkan setiap <strong>nama simbol flowchart</strong> di sebelah kiri dengan <strong>fungsi utamanya</strong> yang tepat di sebelah kanan!",
                 diagramType: "fc_four_symbols",
@@ -1117,6 +1146,7 @@
                 type: "matching",
                 points: 6,
                 isHOTS: false,
+                cognitive: "C3 Menerapkan",
                 difficulty: "Sedang",
                 prompt: "Pasangkan setiap <strong>kalimat langkah pada flowchart</strong> di sebelah kiri dengan <strong>bentuk simbol</strong> yang wajib digunakan di sebelah kanan!",
                 diagramType: "",
@@ -1147,18 +1177,19 @@
                 section: "Objektif",
                 type: "complex",
                 points: 9,
-                isHOTS: false,
-                difficulty: "Sedang",
-                prompt: "Pilihlah <strong>semua pernyataan yang benar</strong> (jawaban benar lebih dari satu) mengenai <strong>Aturan Menggambar Flowchart</strong> yang baik!",
-                diagramType: "",
+                isHOTS: true,
+                cognitive: "C5 Mengevaluasi",
+                difficulty: "Sulit",
+                prompt: "Rina membuat flowchart untuk <strong>membasuh muka sebanyak 3 kali</strong> saat berwudhu, tetapi ketika dijalankan programnya <strong>tidak pernah berhenti</strong>. Periksa flowchart Rina di bawah ini, lalu pilihlah <strong>semua pernyataan yang benar</strong>!",
+                diagramType: "fc_infinite_loop",
                 options: [
-                    { id: "A", text: "Setiap flowchart harus memiliki tepat 1 simbol Mulai dan 1 simbol Selesai" },
-                    { id: "B", text: "Simbol Keputusan (Belah Ketupat) selalu memiliki 2 jalur keluar yang diberi label Ya dan Tidak" },
-                    { id: "C", text: "Letak kotak diatur rapi dari atas ke bawah supaya garis panah tidak saling bersilangan" },
-                    { id: "D", text: "Simbol Terminator (Mulai) boleh diletakkan di tengah-tengah langkah perhitungan" }
+                    { id: "A", text: "Flowchart tersebut mengalami perulangan tanpa akhir (infinite loop)" },
+                    { id: "B", text: "Penyebabnya: tidak ada langkah yang menambah nilai Hitungan, sehingga Hitungan selalu bernilai 1" },
+                    { id: "C", text: "Cara memperbaikinya: tambahkan kotak proses \"Hitungan = Hitungan + 1\" setelah \"Basuh muka\"" },
+                    { id: "D", text: "Cara memperbaikinya: ganti simbol Selesai menjadi simbol Belah Ketupat" }
                 ],
                 correctKeys: ["A", "B", "C"],
-                explanation: "Aturan menggambar flowchart: (A) 1 Mulai & 1 Selesai, (B) Belah ketupat bercabang 2 jalur Ya & Tidak, dan (C) Panah tidak bersilangan serta mengalir dari atas ke bawah."
+                explanation: "Hitungan selalu 1, sehingga kondisi 'Hitungan > 3?' selalu bernilai Tidak dan alur terus kembali ke 'Basuh muka' (infinite loop). Perbaikannya adalah menambahkan proses 'Hitungan = Hitungan + 1' setelah 'Basuh muka'. Opsi D salah karena simbol Selesai tetap harus berbentuk Oval."
             },
             {
                 id: 10,
@@ -1167,6 +1198,7 @@
                 type: "complex",
                 points: 9,
                 isHOTS: true,
+                cognitive: "C4 Menganalisis",
                 difficulty: "Sulit",
                 prompt: "Perhatikan <strong>Flowchart Membeli Jajan di Koperasi</strong> berikut! Pilihlah <strong>semua pernyataan yang benar</strong> berdasarkan alur flowchart tersebut!",
                 diagramType: "fc_koperasi_uang",
@@ -1188,6 +1220,7 @@
                 type: "ordering",
                 points: 8,
                 isHOTS: false,
+                cognitive: "C3 Menerapkan",
                 difficulty: "Mudah",
                 prompt: "<strong>[Esai Susun Flowchart 1 — Alur Urut / Sekuensial]</strong><br>Susunlah langkah-langkah <strong>Memasak Mie Instan</strong> berikut dari <strong>Mulai</strong> hingga <strong>Selesai</strong> dengan urutan yang benar! <em>(Klik kotak di bagian atas untuk memasukkannya ke dalam Flowchart secara berurutan).</em>",
                 items: [
@@ -1206,18 +1239,20 @@
                 section: "Esai Flowchart",
                 type: "ordering",
                 points: 8,
-                isHOTS: false,
-                difficulty: "Mudah",
-                prompt: "<strong>[Esai Susun Flowchart 2 — Alur Urut Kegiatan Sehari-hari]</strong><br>Waktunya <strong>Piket Kebersihan Kamar Asrama / Kelas</strong>! Susunlah ke-4 langkah berikut dari <strong>Mulai</strong> hingga <strong>Selesai</strong> supaya kamar bersih maksimal!",
+                isHOTS: true,
+                cognitive: "C4 Menganalisis",
+                difficulty: "Sulit",
+                prompt: "<strong>[Esai Susun Flowchart 2 — Perulangan dengan Penjumlahan]</strong><br>Kasir koperasi ingin menghitung <strong>total harga 3 barang</strong> yang dibeli seorang siswa. Susunlah ke-5 kotak berikut menjadi flowchart perulangan yang benar dari <strong>Mulai</strong> hingga <strong>Selesai</strong>! <em>(Petunjuk: nilai awal harus diatur sebelum perulangan dimulai).</em>",
                 items: [
-                    { id: "P1", t: "proc", text: "Rapikan kasur dan lipat selimut terlebih dahulu" },
-                    { id: "P2", t: "proc", text: "Sapu lantai hingga debu dan kotoran bersih" },
-                    { id: "P3", t: "proc", text: "Pel lantai sampai bersih dan kering" },
-                    { id: "P4", t: "proc", text: "Lapor kepada ketua kamar bahwa piket sudah beres" }
+                    { id: "P1", t: "proc", text: "Atur nilai awal: Total = 0 dan Hitungan = 1" },
+                    { id: "P2", t: "io",   text: "Input harga barang ke-Hitungan" },
+                    { id: "P3", t: "proc", text: "Total = Total + harga barang" },
+                    { id: "P4", t: "proc", text: "Hitungan = Hitungan + 1" },
+                    { id: "P5", t: "dec",  text: "Keputusan: Hitungan > 3? (Tidak → kembali ke Input harga, Ya → Tampilkan Total)" }
                 ],
-                initialPoolOrder: ["P3", "P4", "P1", "P2"],
-                correctOrder: ["P1", "P2", "P3", "P4"],
-                explanation: "Rapikan kasur dulu (agar debu jatuh ke lantai), lalu sapu lantai, kemudian pel lantai, dan terakhir lapor ke ketua kamar."
+                initialPoolOrder: ["P3", "P5", "P1", "P4", "P2"],
+                correctOrder: ["P1", "P2", "P3", "P4", "P5"],
+                explanation: "Nilai awal (Total = 0, Hitungan = 1) diatur sekali sebelum perulangan → Input harga barang → Tambahkan ke Total → Hitungan bertambah 1 → Cek 'Hitungan > 3?'. Jika Tidak, kembali ke Input harga; jika Ya, tampilkan Total lalu Selesai."
             },
             {
                 id: 13,
@@ -1225,7 +1260,8 @@
                 section: "Esai Flowchart",
                 type: "ordering",
                 points: 8,
-                isHOTS: true,
+                isHOTS: false,
+                cognitive: "C3 Menerapkan",
                 difficulty: "Sedang",
                 prompt: "<strong>[Esai Susun Flowchart 3 — Alur Input, Proses, dan Output]</strong><br>Sebuah program komputer di <strong>Kasir Koperasi Sekolah</strong> digunakan untuk menghitung total belanja dan uang kembalian. Susunlah langkah-langkah berikut sesuai urutan logika <strong>Input &rarr; Proses &rarr; Output</strong>!",
                 items: [
@@ -1244,7 +1280,8 @@
                 section: "Esai Flowchart",
                 type: "ordering",
                 points: 8,
-                isHOTS: true,
+                isHOTS: false,
+                cognitive: "C3 Menerapkan",
                 difficulty: "Sedang",
                 prompt: "<strong>[Esai Susun Flowchart 4 — Alur Percabangan / Keputusan]</strong><br>Susunlah langkah-langkah <strong>Berangkat ke Sekolah dengan Mengecek Cuaca Hujan</strong> berikut agar menjadi alur percabangan yang runtut dari <strong>Mulai</strong> hingga <strong>Selesai</strong>!",
                 items: [
@@ -1264,6 +1301,7 @@
                 type: "ordering",
                 points: 8,
                 isHOTS: true,
+                cognitive: "C4 Menganalisis",
                 difficulty: "Sulit",
                 prompt: "<strong>[Esai Susun Flowchart 5 — Alur Perulangan / Looping]</strong><br>Saat berwudhu, kita membasuh muka sebanyak <strong>3 kali</strong>. Susunlah ke-4 kotak <strong>Flowchart Perulangan</strong> berikut dengan urutan yang tepat agar tidak terjadi perulangan tanpa akhir (<em>infinite loop</em>)!",
                 items: [
@@ -2153,6 +2191,8 @@
                             <span class="px-2.5 py-0.5 rounded bg-slate-900 text-white font-doodle font-bold text-xs">No. ${q.numberLabel}</span>
                             <span class="px-2 py-0.5 rounded bg-sky-100 border border-slate-700 font-bold text-xs">${q.section} (${q.points} Poin)</span>
                             <span class="px-2 py-0.5 rounded bg-slate-100 border border-slate-400 font-bold text-xs">${q.difficulty}</span>
+                            <span class="px-2 py-0.5 rounded bg-amber-50 border border-amber-400 font-bold text-xs">${q.cognitive || "-"}</span>
+                            ${q.isHOTS ? '<span class="px-2.5 py-0.5 rounded bg-rose-500 text-white font-extrabold text-xs">★ HOTS</span>' : ''}
                         </div>
                     </div>
                     <div class="text-xs text-slate-700">${q.prompt}</div>
