@@ -1899,11 +1899,17 @@ function simpanHasilUjianKeSheets(data) {
         }
 
         function populateResumeBanner() {
-            const banner = document.getElementById("resumeSessionBanner");
+            const banner = document.getElementById("resumeExamCard");
             if (!banner || !appState.student || !appState.student.name) return;
             const nameEl = document.getElementById("resumeStudentName");
-            if (nameEl) nameEl.textContent = `${appState.student.name} (${appState.student.className}) — ${appState.packageType === 'pengayaan' ? 'Paket Pengayaan' : 'Paket Remedi'}`;
+            const classEl = document.getElementById("resumeStudentClass");
+            if (nameEl) nameEl.textContent = `${appState.student.name}`;
+            if (classEl) classEl.textContent = `${appState.student.className} • Absen ${appState.student.absent}`;
             banner.classList.remove("hidden");
+        }
+
+        function restoreExamSession() {
+            enterExamWorkspace();
         }
 
         function resumeSavedExamSession() {
@@ -1984,25 +1990,24 @@ function simpanHasilUjianKeSheets(data) {
             document.getElementById("viewCountdown").classList.remove("hidden");
 
             const q = appState.selectedQuote || VERIFIED_QUOTES[0];
-            document.getElementById("quoteTextDisplay").textContent = `"${q.quote}"`;
-            document.getElementById("quoteAuthorDisplay").textContent = `— ${q.author}`;
-            document.getElementById("quoteSourceDisplay").textContent = q.source;
+            const qText = document.getElementById("countdownQuoteText");
+            const qAuthor = document.getElementById("countdownQuoteAuthor");
+            const qSource = document.getElementById("countdownQuoteSource");
+            if (qText) qText.textContent = `"${q.quote}"`;
+            if (qAuthor) qAuthor.textContent = `— ${q.author}`;
+            if (qSource) qSource.textContent = q.source || "Kutipan Motivasi Belajar";
 
             let sec = 5;
             const numEl = document.getElementById("countdownNumber");
-            const barEl = document.getElementById("countdownProgressBar");
-            numEl.textContent = sec;
-            barEl.style.width = "100%";
+            if (numEl) numEl.textContent = sec;
 
             if (countdownInterval) clearInterval(countdownInterval);
             countdownInterval = setInterval(() => {
                 sec--;
                 if (sec > 0) {
-                    numEl.textContent = sec;
-                    barEl.style.width = `${(sec / 5) * 100}%`;
+                    if (numEl) numEl.textContent = sec;
                 } else {
                     clearInterval(countdownInterval);
-                    barEl.style.width = "0%";
                     appState.phase = "exam";
                     appState.examStartTime = Date.now();
                     saveStateToStorage();
@@ -2041,8 +2046,10 @@ function simpanHasilUjianKeSheets(data) {
             }
 
             const q = appState.selectedQuote || VERIFIED_QUOTES[0];
-            document.getElementById("examBannerQuote").textContent = `"${q.quote}"`;
-            document.getElementById("examBannerAuthor").textContent = `— ${q.author}`;
+            const bannerQuote = document.getElementById("sessionQuoteBanner");
+            const bannerAuthor = document.getElementById("sessionQuoteAuthorBanner");
+            if (bannerQuote) bannerQuote.textContent = `"${q.quote}"`;
+            if (bannerAuthor) bannerAuthor.textContent = `— ${q.author}`;
 
             startExamTimer();
             renderQuestionByIndex(appState.currentQuestionIndex || 0);
@@ -2072,13 +2079,15 @@ function simpanHasilUjianKeSheets(data) {
             const mins = Math.floor(appState.remainingSeconds / 60);
             const secs = appState.remainingSeconds % 60;
             const formatted = `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
-            const timerEl = document.getElementById("examTimerDisplay");
-            timerEl.textContent = formatted;
+            const timerEl = document.getElementById("timerDisplay");
+            if (timerEl) timerEl.textContent = formatted;
 
             const box = document.getElementById("timerBox");
-            if (appState.remainingSeconds <= 300) {
-                box.classList.remove("bg-amber-200");
-                box.classList.add("bg-rose-300", "animate-pulse");
+            if (box) {
+                if (appState.remainingSeconds <= 300) {
+                    box.classList.remove("bg-amber-200");
+                    box.classList.add("bg-rose-300", "animate-pulse");
+                }
             }
         }
 
@@ -2653,6 +2662,10 @@ function simpanHasilUjianKeSheets(data) {
             }
         }
 
+        function toggleDoubtCurrent() {
+            toggleDoubtCurrentQuestion();
+        }
+
         function toggleDoubtCurrentQuestion() {
             const q = EXAM_QUESTIONS[appState.currentQuestionIndex];
             appState.doubtFlags[q.id] = !appState.doubtFlags[q.id];
@@ -2668,19 +2681,23 @@ function simpanHasilUjianKeSheets(data) {
             const answered = EXAM_QUESTIONS.filter(q => isQuestionAnswered(q)).length;
             const unanswered = total - answered;
 
-            const summary = document.getElementById("submitModalSummaryText");
+            const summary = document.getElementById("submitSummaryBox");
             const pkgName = appState.packageType === "pengayaan" ? "Paket Pengayaan" : "Paket Remedi (Perbaikan)";
-            if (unanswered > 0) {
-                summary.innerHTML = `<span class="text-rose-600 font-extrabold">Perhatian! Masih ada ${unanswered} dari ${total} soal (${pkgName}) yang belum dijawab.</span> Apakah kamu yakin tetap ingin mengumpulkan sekarang?`;
-            } else {
-                summary.innerHTML = `<span class="text-emerald-700 font-extrabold">Luar biasa! Seluruh ${total} soal (${pkgName}) telah kamu jawab lengkap.</span> Siap mengumpulkan hasil ujianmu?`;
+            if (summary) {
+                if (unanswered > 0) {
+                    summary.innerHTML = `<span class="text-rose-600 font-extrabold">Perhatian! Masih ada ${unanswered} dari ${total} soal (${pkgName}) yang belum dijawab.</span><p class="text-slate-600 font-semibold mt-1">Apakah kamu yakin tetap ingin mengumpulkan sekarang?</p>`;
+                } else {
+                    summary.innerHTML = `<span class="text-emerald-700 font-extrabold">Luar biasa! Seluruh ${total} soal (${pkgName}) telah kamu jawab lengkap.</span><p class="text-slate-600 font-semibold mt-1">Siap mengumpulkan hasil ujianmu?</p>`;
+                }
             }
 
-            document.getElementById("modalConfirmSubmit").classList.remove("hidden");
+            const modal = document.getElementById("modalSubmitConfirm");
+            if (modal) modal.classList.remove("hidden");
         }
 
         function closeSubmitConfirmation() {
-            document.getElementById("modalConfirmSubmit").classList.add("hidden");
+            const modal = document.getElementById("modalSubmitConfirm");
+            if (modal) modal.classList.add("hidden");
         }
 
         function calculateExamScores() {
