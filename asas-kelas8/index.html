@@ -2807,7 +2807,7 @@
             let pgkScore = 0;     // Maks 30
             let matchScore = 0;   // Maks 15
             let shortScore = 0;   // Maks 10
-            let essayScore = 0;   // Maks 15
+            let uraianScore = 0;  // Maks 15
 
             EXAM_QUESTIONS.forEach(q => {
                 const ans = appState.answers[q.id];
@@ -2845,7 +2845,7 @@
                             matchedFields++;
                         }
                     });
-                    essayScore += (matchedFields / q.fields.length) * q.points;
+                    uraianScore += (matchedFields / q.fields.length) * q.points;
                 }
             });
 
@@ -2854,13 +2854,26 @@
             pgkScore = r1(pgkScore);
             matchScore = r1(matchScore);
             shortScore = r1(shortScore);
-            essayScore = r1(essayScore);
+            uraianScore = r1(uraianScore);
 
             const objectiveTotal = r1(pgScore + pgkScore + matchScore);
-            const essayTotal = r1(shortScore + essayScore);
+            const essayTotal = r1(shortScore + uraianScore);
             const grandTotal = r1(objectiveTotal + essayTotal);
 
-            return { pgScore, pgkScore, matchScore, shortScore, essayScore, objectiveTotal, essayTotal, grandTotal };
+            // Sertakan key kompatibel Code.gs (mcqScore, matchScore, complexScore, objectiveTotal, essayScore, grandTotal)
+            return {
+                mcqScore: pgScore,
+                complexScore: pgkScore,
+                matchScore,
+                objectiveTotal,
+                essayScore: essayTotal,
+                grandTotal,
+                pgScore,
+                pgkScore,
+                shortScore,
+                uraianScore,
+                essayTotal
+            };
         }
 
         function openSubmitConfirmation() {
@@ -2921,10 +2934,11 @@
             document.getElementById("viewResult").classList.remove("hidden");
 
             const sc = appState.finalScores;
+            const uraianVal = (sc.uraianScore !== undefined) ? sc.uraianScore : sc.essayScore;
             document.getElementById("resObjectiveScore").textContent = `${sc.objectiveTotal} / 75`;
             document.getElementById("resObjectiveDetail").textContent = `PG: ${sc.pgScore}/30 | PGK: ${sc.pgkScore}/30 | Jodoh: ${sc.matchScore}/15`;
             document.getElementById("resEssayScore").textContent = `${sc.essayTotal} / 25`;
-            document.getElementById("resEssayDetail").textContent = `Isian: ${sc.shortScore}/10 | Uraian: ${sc.essayScore}/15`;
+            document.getElementById("resEssayDetail").textContent = `Isian: ${sc.shortScore}/10 | Uraian: ${uraianVal}/15`;
             document.getElementById("resTotalScore").textContent = sc.grandTotal;
 
             document.getElementById("resName").textContent = appState.student.name;
